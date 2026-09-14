@@ -1,0 +1,83 @@
+{
+  "boundary": "MNIST uint8 image already in RAM -> float32 / 255 -> Q22.12 -> PynqBuffer -> flush -> DMA MM2S -> FPGA LeNet -> DMA S2MM -> invalidate -> decode -> argmax",
+  "dataset_loading_from_disk_included": false,
+  "batch": 1,
+  "measurement_method": "single wall-clock timer around complete loop; no per-inference timer",
+  "warmups": 200,
+  "campaigns": 5,
+  "inferences_per_campaign": 20000,
+  "total_measured_inferences": 100000,
+  "runs": [
+    {
+      "campaign": 1,
+      "n_inferences": 20000,
+      "elapsed_s": 21.99234519,
+      "fps": 909.4073336523506,
+      "last_index": 9999,
+      "last_prediction_fpga": 6,
+      "last_prediction_hls": 6,
+      "dma_error": false
+    },
+    {
+      "campaign": 2,
+      "n_inferences": 20000,
+      "elapsed_s": 22.07826325,
+      "fps": 905.8683544775652,
+      "last_index": 9999,
+      "last_prediction_fpga": 6,
+      "last_prediction_hls": 6,
+      "dma_error": false
+    },
+    {
+      "campaign": 3,
+      "n_inferences": 20000,
+      "elapsed_s": 22.14417149,
+      "fps": 903.1721963059996,
+      "last_index": 9999,
+      "last_prediction_fpga": 6,
+      "last_prediction_hls": 6,
+      "dma_error": false
+    },
+    {
+      "campaign": 4,
+      "n_inferences": 20000,
+      "elapsed_s": 21.88172917,
+      "fps": 914.0045489375738,
+      "last_index": 9999,
+      "last_prediction_fpga": 6,
+      "last_prediction_hls": 6,
+      "dma_error": false
+    },
+    {
+      "campaign": 5,
+      "n_inferences": 20000,
+      "elapsed_s": 22.14092513,
+      "fps": 903.304621761304,
+      "last_index": 9999,
+      "last_prediction_fpga": 6,
+      "last_prediction_hls": 6,
+      "dma_error": false
+    }
+  ],
+  "fps_statistics": {
+    "n": 5,
+    "mean": 907.1514110269587,
+    "median": 905.8683544775652,
+    "std_sample": 4.591646155586796,
+    "cv_percent": 0.5061609451049337,
+    "min": 903.1721963059996,
+    "max": 914.0045489375738,
+    "p90": 912.1656628234845,
+    "p95": 913.0851058805291,
+    "p99": 913.8206603261648,
+    "t_ci95": [
+      901.4501293030759,
+      912.8526927508416
+    ],
+    "bootstrap_ci95": [
+      903.7643981224344,
+      910.9186353542143
+    ]
+  },
+  "outliers_removed": false
+}

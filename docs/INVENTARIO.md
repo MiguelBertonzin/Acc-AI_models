@@ -4,15 +4,15 @@ Data da curadoria: **2026-09-14**.
 
 | Área | Arquivos | Tamanho aproximado | Destaques |
 | --- | ---: | ---: | --- |
-| `MLP/` | 944 | 93 MB | Iris, CPU/GPU, Vitis AI, hls4ml, Vivado e ZCU104 |
-| `LeNet/` | 458 | 79 MB | MNIST, CPU/GPU, Vitis AI, IP/overlay hls4ml e ZCU104 |
-| `resnet8/` | 438 | 96 MB | CIFAR-10, CPU/GPU, Vitis AI, IP/overlays hls4ml e ZCU104 |
-| `H1/` | 1.033 | 218 MB | varreduras de reuse factor, relatórios, validações e DCPs |
-| `ARM_CPU/` | 56 | 14 MB | TensorFlow Lite, implantação e resultados ARM/ZCU104 |
-| `artifacts/` | 8 | 8,9 MB | exports IP HLS das variantes H1 |
-| `docs/` | 4 + documentação do repositório | 112 KB + | consolidação e metodologia |
+| `MLP/` | 1.189 | 127 MB | Iris, CPU/GPU, Vitis AI, hls4ml, Vivado e ZCU104 |
+| `LeNet/` | 563 | 85 MB | MNIST, CPU/GPU, Vitis AI, IP/overlay hls4ml e ZCU104 |
+| `resnet8/` | 432 | 123 MB | CIFAR-10, CPU/GPU, Vitis AI, IP/overlays hls4ml e ZCU104 |
+| `H1/` | 1.034 | 218 MB | varreduras de reuse factor, relatórios, validações e DCPs |
+| `artifacts/` | 9 | 8,9 MB | exports IP HLS das variantes H1 |
+| `docs/` | 7 | 124 KB | consolidação e metodologia |
+| `scripts/` | 2 | 12 KB | validação de integridade do repositório |
 
-O snapshot completo tem cerca de **508 MB** antes da compactação interna do Git.
+O snapshot completo tem cerca de **560 MiB** antes da compactação interna do Git.
 
 ## Modelos de referência
 
@@ -26,7 +26,6 @@ O snapshot completo tem cerca de **508 MB** antes da compactação interna do Gi
 - LeNet hls4ml: `LeNet/hls4ml/hardware/deploy/lenet_zcu104_q22_12_rf5_50_64_60_42_100mhz/`.
 - ResNet8 hls4ml: `resnet8/hls4ml/Resultados_ZCU104/`.
 - Vitis AI: subdiretórios `artifacts/compiled`, `artifacts/deploy` e `results` de cada rede.
-- CPU ARM: `ARM_CPU/deploy_zcu104/`.
 
 ## Exploração H1
 

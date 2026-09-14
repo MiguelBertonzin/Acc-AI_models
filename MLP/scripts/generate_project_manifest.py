@@ -16,7 +16,7 @@ def main():
   rel=p.relative_to(ROOT)
   if not p.is_file() or rel.parts[0] in {'snapshots','manifests','.git'} or '__pycache__' in rel.parts:continue
   files.append({'path':rel.as_posix(),'bytes':p.stat().st_size,'sha256':sha(p)})
- obj={'schema_version':1,'state':'host_ready_for_zcu104_board_stage','generated_utc':datetime.now(timezone.utc).isoformat(),'file_count':len(files),'total_bytes':sum(x['bytes'] for x in files),'files':files}
+ obj={'schema_version':1,'state':'completed_with_zcu104_results','generated_utc':datetime.now(timezone.utc).isoformat(),'file_count':len(files),'total_bytes':sum(x['bytes'] for x in files),'files':files}
  (OUT/'host_ready_manifest.json').write_text(json.dumps(obj,indent=2,ensure_ascii=False)+'\n')
  (OUT/'HOST_READY_SHA256SUMS.txt').write_text(''.join(f"{x['sha256']}  {x['path']}\n" for x in files))
  print(json.dumps({k:obj[k] for k in ('state','file_count','total_bytes')},indent=2))

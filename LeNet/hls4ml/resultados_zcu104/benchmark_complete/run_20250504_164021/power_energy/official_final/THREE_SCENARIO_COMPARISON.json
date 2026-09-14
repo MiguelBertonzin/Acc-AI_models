@@ -1,0 +1,71 @@
+{
+  "inference_only": {
+    "latency_ms": 0.36995614550000006,
+    "idle_power_w": 10.326239999999999,
+    "active_total_power_w": 10.603239999999998,
+    "dynamic_power_w": 0.2769999999999985,
+    "throughput_fps": 2785.8089098319692,
+    "total_energy_mj_per_inference": 3.806211132184931,
+    "dynamic_energy_mj_per_inference": 0.09945060414174593,
+    "throughput_t_ci95": [
+      2771.7843577595945,
+      2799.833461904344
+    ],
+    "dynamic_power_t_ci95": [
+      0.23536796917439107,
+      0.318632030825606
+    ],
+    "dynamic_energy_t_ci95": [
+      0.08431140977412992,
+      0.11458979850936195
+    ]
+  },
+  "saturated_sustained_serial": {
+    "latency_ms": null,
+    "idle_power_w": 10.31424,
+    "active_total_power_w": 10.600906666666669,
+    "dynamic_power_w": 0.2866666666666681,
+    "throughput_fps": 2784.801482070341,
+    "total_energy_mj_per_inference": 3.806750504823328,
+    "dynamic_energy_mj_per_inference": 0.10293468888526265,
+    "throughput_t_ci95": [
+      2770.9086697453267,
+      2798.6942943953554
+    ],
+    "dynamic_power_t_ci95": [
+      0.26395396167422075,
+      0.3093793716591155
+    ],
+    "dynamic_energy_t_ci95": [
+      0.0949128832878605,
+      0.1109564944826648
+    ]
+  },
+  "end_to_end": {
+    "latency_ms": 1.0969730980999999,
+    "idle_power_w": 10.307239999999998,
+    "active_total_power_w": 10.544185714285716,
+    "dynamic_power_w": 0.23694571428571648,
+    "throughput_fps": 913.2931266792024,
+    "total_energy_mj_per_inference": 11.545270181139909,
+    "dynamic_energy_mj_per_inference": 0.25944185099961337,
+    "throughput_t_ci95": [
+      911.2082283477608,
+      915.3780250106439
+    ],
+    "dynamic_power_t_ci95": [
+      0.22373469323300502,
+      0.25015673533842797
+    ],
+    "dynamic_energy_t_ci95": [
+      0.24496606683694197,
+      0.27391763516228473
+    ]
+  },
+  "saturated_vs_inference_only": {
+    "throughput_percent": -0.036162845128129284,
+    "active_power_percent": -0.0220058522991895,
+    "dynamic_power_percent": 3.4897713598085467,
+    "dynamic_energy_percent": 3.503331903897622
+  }
+}

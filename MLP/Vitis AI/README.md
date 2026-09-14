@@ -4,9 +4,9 @@ Este diretório contém todo o fluxo reproduzível de conversão da MLP Iris par
 um `.xmodel` executável pela DPU da ZCU104. A coleta na placa deve seguir
 [`../METODOLOGIA_BENCHMARK_MLP_IRIS.md`](../METODOLOGIA_BENCHMARK_MLP_IRIS.md).
 
-## Guia para continuar no ChatGPT Web
+## Documentação técnica
 
-Use [`README_CHATGPT_WEB_ZCU104_XMODEL.md`](README_CHATGPT_WEB_ZCU104_XMODEL.md) como mensagem inicial de um chat dedicado à implantação, validação e benchmark do XModel na ZCU104.
+Este diretório reúne os scripts de implantação, validação e benchmark do XModel na ZCU104. Os dados físicos estão em [`results/zcu104_final_20260909T204251Z/`](results/zcu104_final_20260909T204251Z/) e os valores consolidados constam em [`../../README_RESULTADOS_VITIS_AI_HLS4ML.md`](../../README_RESULTADOS_VITIS_AI_HLS4ML.md).
 
 ## Resultado final
 

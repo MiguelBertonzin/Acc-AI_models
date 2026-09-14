@@ -1,0 +1,36 @@
+{
+  "n_unique_samples": 30,
+  "fpga_hls_raw_matches": 30,
+  "fpga_hls_class_matches": 30,
+  "correct_predictions": 29,
+  "accuracy": 0.9666666666666667,
+  "wilson_95_low": 0.8332960900859082,
+  "wilson_95_high": 0.9940914096183874,
+  "f1_macro": 0.9665831244778613,
+  "mcc": 0.9515873026942034,
+  "cohen_kappa": 0.9499999999999998,
+  "confusion_matrix": [
+    [
+      10,
+      0,
+      0
+    ],
+    [
+      0,
+      9,
+      1
+    ],
+    [
+      0,
+      0,
+      10
+    ]
+  ],
+  "kernel_cycles_min": 6,
+  "kernel_cycles_max": 6,
+  "kernel_cycles_mean": 6.0,
+  "kernel_clock_mhz": 99.999,
+  "kernel_latency_ns": 60.0,
+  "bitstream": "mlp_iris_zcu104.bit",
+  "hwh": "mlp_iris_zcu104.hwh"
+}

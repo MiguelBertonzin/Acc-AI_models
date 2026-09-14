@@ -13,7 +13,7 @@ OUTPUT_JSON = ROOT / "manifests/flow_manifest.json"
 OUTPUT_TXT = ROOT / "manifests/SHA256SUMS.txt"
 INCLUDE_ROOTS = [
     ROOT / "README.md",
-    ROOT / "README_CHATGPT_WEB_ZCU104_XMODEL.md",
+    ROOT / "README.md",
     ROOT / "source",
     ROOT / "config",
     ROOT / "docker",

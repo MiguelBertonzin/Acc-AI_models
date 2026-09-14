@@ -13,7 +13,7 @@ OUTPUT_JSON = ROOT / "manifests/host_flow_manifest.json"
 OUTPUT_TXT = ROOT / "manifests/HOST_FLOW_SHA256SUMS.txt"
 INCLUDE_ROOTS = [
     ROOT / "README.md",
-    ROOT / "HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt",
+    ROOT / "README.md",
     ROOT / "config",
     ROOT / "docker",
     ROOT / "scripts",

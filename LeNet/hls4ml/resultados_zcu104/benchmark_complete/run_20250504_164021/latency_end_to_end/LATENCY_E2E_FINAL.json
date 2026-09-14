@@ -1,0 +1,43 @@
+{
+  "boundary": "MNIST uint8 image already in RAM -> float32 / 255 -> Q22.12 -> copy PynqBuffer -> flush -> DMA MM2S -> FPGA LeNet -> DMA S2MM -> invalidate -> decode logits -> argmax -> class",
+  "dataset_loading_from_disk_included": false,
+  "batch": 1,
+  "warmups": 200,
+  "campaigns": 5,
+  "runs_per_campaign": 20000,
+  "total_latency_samples": 100000,
+  "class_mismatches": 0,
+  "global_descriptive_ms": {
+    "n": 100000,
+    "mean": 1.0969730980999999,
+    "median": 1.09458,
+    "std_sample": 0.028269046943095323,
+    "cv_percent": 2.577004576690022,
+    "min": 1.06408,
+    "max": 5.1926,
+    "p90": 1.10969,
+    "p95": 1.1159904999999999,
+    "p99": 1.1701901
+  },
+  "campaign_mean_ms": {
+    "n": 5,
+    "mean": 1.0969730980999999,
+    "median": 1.099892046,
+    "std_sample": 0.008009798849467703,
+    "cv_percent": 0.7301727693542336,
+    "min": 1.0829386435000001,
+    "max": 1.1029351120000002,
+    "p90": 1.1020114916000001,
+    "p95": 1.1024733018000001,
+    "p99": 1.1028427499600002,
+    "t_ci95": [
+      1.087027619235762,
+      1.1069185769642378
+    ],
+    "bootstrap_ci95": [
+      1.0898668075,
+      1.1015496814
+    ]
+  },
+  "outliers_removed": false
+}

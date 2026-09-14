@@ -1,15 +1,10 @@
 {
-  "root": "/home/miguel/Downloads/Plano testes TCC/resnet8/Vitis AI",
+  "root": "/home/miguel/Downloads/Plano testes TCC/Arquivos Github/resnet8/Vitis AI",
   "files": [
     {
-      "path": "HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt",
-      "bytes": 29415,
-      "sha256": "d82e5057e92570124015878d7cc026119a644ee2232522367acd45e5a3adb32c"
-    },
-    {
       "path": "README.md",
-      "bytes": 4494,
-      "sha256": "f14ec94d462c449e972236696e3a4ca92a7ccf37f488e53a445c73df7086eb04"
+      "bytes": 19674,
+      "sha256": "871da242e3b9bb83ad3949db4f79597b2ec06428678209f0048e7f4aefa9b1ad"
     },
     {
       "path": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/md5sum.txt",
@@ -52,11 +47,6 @@
       "sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671"
     },
     {
-      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/cifar10_test_uint8.npz",
-      "bytes": 28267769,
-      "sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467"
-    },
-    {
       "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/quantized_test_outputs.npz",
       "bytes": 149660,
       "sha256": "072e6cb3e3356664cf096f8f00fd1263650ffa8966bdf2192676fd97a7da14d6"
@@ -95,11 +85,6 @@
       "path": "data/prepared/cifar10_calibration_train_uint8.npz",
       "bytes": 2815856,
       "sha256": "1ebfa046e925aa3c3e77d3694b45ea8c682a9587193463c57ac8c87524ba8504"
-    },
-    {
-      "path": "data/prepared/cifar10_test_uint8.npz",
-      "bytes": 28267769,
-      "sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467"
     },
     {
       "path": "data/prepared/keras3_conversion_probe.npz",
@@ -223,8 +208,8 @@
     },
     {
       "path": "scripts/09_generate_manifest.py",
-      "bytes": 2147,
-      "sha256": "3152cb8731fd64b8ce147f9ffa951328c100bc40e07891a9669041926573d4ed"
+      "bytes": 2117,
+      "sha256": "832b1c4a8deacbf3570d711c4d268e61e54ae2c4c8450a6df30c8896a61b6caa"
     }
   ]
 }

@@ -1,0 +1,63 @@
+{
+  "boundary": "prepared PynqBuffer -> recv transfer -> send transfer -> wait send -> wait recv",
+  "includes": [
+    "PYNQ DMA transfer setup",
+    "MM2S",
+    "FPGA LeNet",
+    "S2MM",
+    "DMA waits"
+  ],
+  "excludes": [
+    "uint8 to float preprocessing",
+    "division by 255",
+    "Q22.12 conversion",
+    "copy to input buffer",
+    "input flush",
+    "output invalidate",
+    "logit decode",
+    "argmax"
+  ],
+  "warmups": 200,
+  "campaigns": 5,
+  "runs_per_campaign": 20000,
+  "total_latency_samples": 100000,
+  "global_descriptive_ms": {
+    "n": 100000,
+    "mean": 0.3699561455,
+    "median": 0.37016,
+    "std_sample": 0.006411047101923303,
+    "cv_percent": 1.732920828564342,
+    "min": 0.34323,
+    "max": 0.66923,
+    "p90": 0.37187,
+    "p95": 0.38184,
+    "p99": 0.38579009999999997
+  },
+  "campaign_mean_ms": {
+    "n": 5,
+    "mean": 0.36995614550000006,
+    "median": 0.37008183,
+    "std_sample": 0.00037533573137774116,
+    "cv_percent": 0.10145411447902036,
+    "min": 0.3694938005,
+    "max": 0.3703592825,
+    "p90": 0.3703010833,
+    "p95": 0.3703301829,
+    "p99": 0.37035346258,
+    "t_ci95": [
+      0.36949010463510884,
+      0.37042218636489127
+    ],
+    "bootstrap_ci95": [
+      0.3696654432,
+      0.3702455928
+    ]
+  },
+  "hls_estimate": {
+    "cycles_min": 9412,
+    "cycles_max": 9460,
+    "latency_us_min": 94.12,
+    "latency_us_max": 94.6
+  },
+  "outliers_removed": false
+}

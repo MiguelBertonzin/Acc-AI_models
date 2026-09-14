@@ -25,7 +25,7 @@ def main():
  for p in sorted(ROOT.rglob('*')):
   if not p.is_file() or any(part in EXCLUDE for part in p.relative_to(ROOT).parts): continue
   files.append({'path':p.relative_to(ROOT).as_posix(),'bytes':p.stat().st_size,'sha256':sha(p),'role':role(p)})
- m={'schema_version':1,'generated_utc':datetime.now(timezone.utc).isoformat(),'flow':'hls4ml MLP Iris ap_fixed<16,6> RF=1 io_parallel Latency 100 MHz','board':'ZCU104','status':'host_ready_board_pending','file_count':len(files),'files':files}
+ m={'schema_version':1,'generated_utc':datetime.now(timezone.utc).isoformat(),'flow':'hls4ml MLP Iris ap_fixed<16,6> RF=1 io_parallel Latency 100 MHz','board':'ZCU104','status':'completed_with_zcu104_results','file_count':len(files),'files':files}
  mp=OUT/'flow_manifest.json'; mp.write_text(json.dumps(m,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
  (OUT/'SHA256SUMS.txt').write_text(''.join(f"{x['sha256']}  {x['path']}\n" for x in files),encoding='utf-8')
  print(json.dumps({'manifest':str(mp),'file_count':len(files),'bytes':sum(x['bytes'] for x in files)},indent=2))

@@ -1,0 +1,26 @@
+{
+  "n_unique_images": 10000,
+  "correct": 9899,
+  "accuracy_percent": 98.99,
+  "wilson_ci95_percent": [
+    98.77434785006571,
+    99.16802798957538
+  ],
+  "fpga_hls_top1_agreement_percent": 100.0,
+  "fpga_keras_top1_agreement_percent": 99.99,
+  "fpga_hls_logit_mae": 0.0,
+  "fpga_hls_logit_max_abs_error": 0.0,
+  "exact_10_logits_images": 10000,
+  "exact_raw_images": 10000,
+  "raw_word_mismatches": 0,
+  "raw_words_compared": 100000,
+  "padding_errors": 0,
+  "macro_precision": 0.9898047147900856,
+  "macro_recall": 0.9898530752010318,
+  "macro_f1": 0.9898171454416245,
+  "mcc": 0.9887761452506671,
+  "cohen_kappa": 0.9887734745258243,
+  "keras_accuracy_percent": 98.98,
+  "hls_accuracy_percent": 98.99,
+  "outliers_removed": false
+}

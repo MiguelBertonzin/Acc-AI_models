@@ -1,0 +1,12 @@
+{
+  "unique_images": 100,
+  "repetitions_per_image": 30,
+  "total_inferences": 3000,
+  "execution_failures": 0,
+  "raw_mismatches": 0,
+  "class_mismatches": 0,
+  "padding_errors": 0,
+  "first_failures": [],
+  "accuracy_observations_added": 0,
+  "purpose": "Hardware determinism/integrity only; repetitions are not additional accuracy observations."
+}

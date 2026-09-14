@@ -1,0 +1,84 @@
+{
+  "name": "sustained_end_to_end",
+  "windows": 8,
+  "inferences_per_window": 9000,
+  "runs": [
+    {
+      "window": 1,
+      "start_index": 0,
+      "last_index": 8999,
+      "n_inferences": 9000,
+      "elapsed_s": 9.95251517,
+      "fps": 904.2940248037823
+    },
+    {
+      "window": 2,
+      "start_index": 997,
+      "last_index": 9996,
+      "n_inferences": 9000,
+      "elapsed_s": 9.95634944,
+      "fps": 903.9457739241421
+    },
+    {
+      "window": 3,
+      "start_index": 1994,
+      "last_index": 993,
+      "n_inferences": 9000,
+      "elapsed_s": 9.96135837,
+      "fps": 903.4912374104257
+    },
+    {
+      "window": 4,
+      "start_index": 2991,
+      "last_index": 1990,
+      "n_inferences": 9000,
+      "elapsed_s": 9.96177501,
+      "fps": 903.453449908823
+    },
+    {
+      "window": 5,
+      "start_index": 3988,
+      "last_index": 2987,
+      "n_inferences": 9000,
+      "elapsed_s": 9.96293556,
+      "fps": 903.3482095512018
+    },
+    {
+      "window": 6,
+      "start_index": 4985,
+      "last_index": 3984,
+      "n_inferences": 9000,
+      "elapsed_s": 9.96264999,
+      "fps": 903.3741031787469
+    },
+    {
+      "window": 7,
+      "start_index": 5982,
+      "last_index": 4981,
+      "n_inferences": 9000,
+      "elapsed_s": 9.95564594,
+      "fps": 904.0096498248912
+    },
+    {
+      "window": 8,
+      "start_index": 6979,
+      "last_index": 5978,
+      "n_inferences": 9000,
+      "elapsed_s": 9.98545846,
+      "fps": 901.3106444789115
+    }
+  ],
+  "fps_statistics": {
+    "n": 8,
+    "mean": 903.4033866351156,
+    "median": 903.4723436596244,
+    "std_sample": 0.9140702714403515,
+    "cv_percent": 0.10118074438983082,
+    "min": 901.3106444789115,
+    "max": 904.2940248037823,
+    "p90": 904.0949623185585,
+    "p95": 904.1944935611705,
+    "p99": 904.27411855526
+  },
+  "outliers_removed": false
+}

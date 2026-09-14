@@ -1,4 +1,0 @@
-# Instalar um wheel tflite_runtime compatível com AArch64, Python 3.9 e glibc 2.34.
-# O benchmark também funciona com tensorflow.lite caso o TensorFlow completo exista.
-numpy==1.21.2
-

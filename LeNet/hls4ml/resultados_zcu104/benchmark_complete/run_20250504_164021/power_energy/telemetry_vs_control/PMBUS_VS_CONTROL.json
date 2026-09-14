@@ -1,0 +1,290 @@
+{
+  "purpose": "Separate the effect of multiprocessing/file I/O from the specific PMBus power read.",
+  "sampling_interval_s": 2.0,
+  "control_process": "same timing and CSV flush without get_rails() access",
+  "results": {
+    "dma_fpga": {
+      "pairs": [
+        {
+          "pair": 1,
+          "fps_control": 2792.872076572126,
+          "fps_pmbus": 2771.7763512700994,
+          "pmbus_delta_percent": -0.755341624093242
+        },
+        {
+          "pair": 2,
+          "fps_control": 2782.7398418598964,
+          "fps_pmbus": 2783.454384472196,
+          "pmbus_delta_percent": 0.02567766492400647
+        },
+        {
+          "pair": 3,
+          "fps_control": 2792.1375806965902,
+          "fps_pmbus": 2796.951363569504,
+          "pmbus_delta_percent": 0.1724049311249365
+        },
+        {
+          "pair": 4,
+          "fps_control": 2796.584876268845,
+          "fps_pmbus": 2799.6961307809015,
+          "pmbus_delta_percent": 0.1112519251054378
+        },
+        {
+          "pair": 5,
+          "fps_control": 2795.972757729018,
+          "fps_pmbus": 2801.4683602255946,
+          "pmbus_delta_percent": 0.19655422183155746
+        }
+      ],
+      "mean_delta_percent": -0.04989057622146076,
+      "std_delta_percent": 0.3998402733657805,
+      "t_ci95_percent": [
+        -0.5463578486917027,
+        0.4465766962487812
+      ],
+      "ci95_includes_zero": true,
+      "max_abs_pair_delta_percent": 0.755341624093242,
+      "outliers_removed": false
+    },
+    "e2e": {
+      "pairs": [
+        {
+          "pair": 1,
+          "fps_control": 913.2957272316885,
+          "fps_pmbus": 908.7974395791362,
+          "pmbus_delta_percent": -0.49253352648295223
+        },
+        {
+          "pair": 2,
+          "fps_control": 909.7506708452169,
+          "fps_pmbus": 909.3580941142,
+          "pmbus_delta_percent": -0.043152123279244226
+        },
+        {
+          "pair": 3,
+          "fps_control": 913.1093798791746,
+          "fps_pmbus": 914.5804482003919,
+          "pmbus_delta_percent": 0.1611053783514782
+        },
+        {
+          "pair": 4,
+          "fps_control": 912.5328118726092,
+          "fps_pmbus": 909.4108513108605,
+          "pmbus_delta_percent": -0.342120362263143
+        },
+        {
+          "pair": 5,
+          "fps_control": 910.119478321052,
+          "fps_pmbus": 909.6385900818348,
+          "pmbus_delta_percent": -0.05283792410468724
+        }
+      ],
+      "mean_delta_percent": -0.1539077115557097,
+      "std_delta_percent": 0.26067536971499256,
+      "t_ci95_percent": [
+        -0.47757893334927237,
+        0.16976351023785297
+      ],
+      "ci95_includes_zero": true,
+      "max_abs_pair_delta_percent": 0.49253352648295223,
+      "outliers_removed": false
+    }
+  },
+  "previous_direct_comparisons": {
+    "1Hz": {
+      "dma_fpga": {
+        "pairs": [
+          {
+            "pair": 1,
+            "fps_without_telemetry": 2761.0085921394234,
+            "fps_with_telemetry": 2796.1347631102144,
+            "delta_percent": 1.272222443305493
+          },
+          {
+            "pair": 2,
+            "fps_without_telemetry": 2772.396866254867,
+            "fps_with_telemetry": 2793.53514230943,
+            "delta_percent": 0.7624549108338208
+          },
+          {
+            "pair": 3,
+            "fps_without_telemetry": 2774.9440423614396,
+            "fps_with_telemetry": 2787.3073493295233,
+            "delta_percent": 0.44553355957270835
+          },
+          {
+            "pair": 4,
+            "fps_without_telemetry": 2773.578571565729,
+            "fps_with_telemetry": 2789.593652415935,
+            "delta_percent": 0.5774157982899819
+          },
+          {
+            "pair": 5,
+            "fps_without_telemetry": 2778.30359929648,
+            "fps_with_telemetry": 2786.2823712313407,
+            "delta_percent": 0.28718142743222597
+          }
+        ],
+        "fps_without_mean": 2772.046334323588,
+        "fps_with_mean": 2790.5706556792884,
+        "paired_delta_percent_mean": 0.668961627886846,
+        "paired_delta_percent_t_ci95": [
+          0.19748827479752162,
+          1.1404349809761705
+        ],
+        "ci95_includes_zero": false,
+        "outliers_removed": false
+      },
+      "e2e": {
+        "pairs": [
+          {
+            "pair": 1,
+            "fps_without_telemetry": 914.9868756417527,
+            "fps_with_telemetry": 910.8286901892691,
+            "delta_percent": -0.4544530160137117
+          },
+          {
+            "pair": 2,
+            "fps_without_telemetry": 911.654611700729,
+            "fps_with_telemetry": 909.3615626483642,
+            "delta_percent": -0.2515260739028191
+          },
+          {
+            "pair": 3,
+            "fps_without_telemetry": 911.3887475102721,
+            "fps_with_telemetry": 913.1881991355535,
+            "delta_percent": 0.1974406234658055
+          },
+          {
+            "pair": 4,
+            "fps_without_telemetry": 911.8772319499743,
+            "fps_with_telemetry": 910.7933741858637,
+            "delta_percent": -0.11886005332021332
+          },
+          {
+            "pair": 5,
+            "fps_without_telemetry": 911.979971363383,
+            "fps_with_telemetry": 909.3968164012067,
+            "delta_percent": -0.28324689612586607
+          }
+        ],
+        "fps_without_mean": 912.3774876332224,
+        "fps_with_mean": 910.7137285120514,
+        "paired_delta_percent_mean": -0.18212908317936094,
+        "paired_delta_percent_t_ci95": [
+          -0.48454323315381326,
+          0.12028506679509138
+        ],
+        "ci95_includes_zero": true,
+        "outliers_removed": false
+      }
+    },
+    "0.5Hz": {
+      "dma_fpga": {
+        "sampler_interval_s": 2.0,
+        "pairs": [
+          {
+            "pair": 1,
+            "fps_without_telemetry": 2750.7291917838534,
+            "fps_with_telemetry": 2789.813746957788,
+            "delta_percent": 1.4208797903725534
+          },
+          {
+            "pair": 2,
+            "fps_without_telemetry": 2773.788717375054,
+            "fps_with_telemetry": 2799.7106373069364,
+            "delta_percent": 0.9345311619989971
+          },
+          {
+            "pair": 3,
+            "fps_without_telemetry": 2773.078891882944,
+            "fps_with_telemetry": 2803.79895833211,
+            "delta_percent": 1.1077963392634338
+          },
+          {
+            "pair": 4,
+            "fps_without_telemetry": 2769.9077005816193,
+            "fps_with_telemetry": 2788.2096747994897,
+            "delta_percent": 0.6607431075781767
+          },
+          {
+            "pair": 5,
+            "fps_without_telemetry": 2773.4101877520743,
+            "fps_with_telemetry": 2781.3947705889327,
+            "delta_percent": 0.2878976529371746
+          }
+        ],
+        "fps_without_mean": 2768.182937875109,
+        "fps_with_mean": 2792.585557597052,
+        "paired_delta_percent_mean": 0.8823696104300671,
+        "paired_delta_percent_std": 0.431869907046112,
+        "paired_delta_percent_t_ci95": [
+          0.3461322949433028,
+          1.4186069259168315
+        ],
+        "ci95_includes_zero": false,
+        "all_pair_deltas_percent": [
+          1.4208797903725534,
+          0.9345311619989971,
+          1.1077963392634338,
+          0.6607431075781767,
+          0.2878976529371746
+        ],
+        "outliers_removed": false
+      },
+      "e2e": {
+        "sampler_interval_s": 2.0,
+        "pairs": [
+          {
+            "pair": 1,
+            "fps_without_telemetry": 906.3782001625405,
+            "fps_with_telemetry": 911.4007174993035,
+            "delta_percent": 0.5541304210386233
+          },
+          {
+            "pair": 2,
+            "fps_without_telemetry": 910.154091342824,
+            "fps_with_telemetry": 912.8767250540186,
+            "delta_percent": 0.29913986401770565
+          },
+          {
+            "pair": 3,
+            "fps_without_telemetry": 909.4495266272015,
+            "fps_with_telemetry": 912.9809030790368,
+            "delta_percent": 0.3882982340902119
+          },
+          {
+            "pair": 4,
+            "fps_without_telemetry": 908.9293602097335,
+            "fps_with_telemetry": 910.5701514566103,
+            "delta_percent": 0.18051911608381044
+          },
+          {
+            "pair": 5,
+            "fps_without_telemetry": 907.7085244792038,
+            "fps_with_telemetry": 911.8475111571267,
+            "delta_percent": 0.4559819111864982
+          }
+        ],
+        "fps_without_mean": 908.5239405643006,
+        "fps_with_mean": 911.9352016492192,
+        "paired_delta_percent_mean": 0.3756139092833699,
+        "paired_delta_percent_std": 0.14352552972193133,
+        "paired_delta_percent_t_ci95": [
+          0.19740342620452314,
+          0.5538243923622167
+        ],
+        "ci95_includes_zero": false,
+        "all_pair_deltas_percent": [
+          0.5541304210386233,
+          0.29913986401770565,
+          0.3882982340902119,
+          0.18051911608381044,
+          0.4559819111864982
+        ],
+        "outliers_removed": false
+      }
+    }
+  },
+  "outliers_removed": false
+}

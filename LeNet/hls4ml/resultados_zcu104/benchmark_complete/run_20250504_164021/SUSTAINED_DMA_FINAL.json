@@ -1,0 +1,77 @@
+{
+  "name": "sustained_serial_dma_fpga",
+  "interpretation": "Sustained serial host-driven DMA+FPGA throughput; not claimed as pure HLS kernel saturation.",
+  "windows": 8,
+  "inferences_per_window": 28000,
+  "runs": [
+    {
+      "window": 1,
+      "input_index": 0,
+      "n_inferences": 28000,
+      "elapsed_s": 10.08375358,
+      "fps": 2776.743776795069
+    },
+    {
+      "window": 2,
+      "input_index": 1237,
+      "n_inferences": 28000,
+      "elapsed_s": 9.98520343,
+      "fps": 2804.149178961695
+    },
+    {
+      "window": 3,
+      "input_index": 2474,
+      "n_inferences": 28000,
+      "elapsed_s": 10.08743646,
+      "fps": 2775.7299994928544
+    },
+    {
+      "window": 4,
+      "input_index": 3711,
+      "n_inferences": 28000,
+      "elapsed_s": 10.08411647,
+      "fps": 2776.6438520716533
+    },
+    {
+      "window": 5,
+      "input_index": 4948,
+      "n_inferences": 28000,
+      "elapsed_s": 10.08885596,
+      "fps": 2775.339454841419
+    },
+    {
+      "window": 6,
+      "input_index": 6185,
+      "n_inferences": 28000,
+      "elapsed_s": 10.02790774,
+      "fps": 2792.207579684015
+    },
+    {
+      "window": 7,
+      "input_index": 7422,
+      "n_inferences": 28000,
+      "elapsed_s": 10.09238163,
+      "fps": 2774.3699184708694
+    },
+    {
+      "window": 8,
+      "input_index": 8659,
+      "n_inferences": 28000,
+      "elapsed_s": 10.0831971,
+      "fps": 2776.8970220764604
+    }
+  ],
+  "fps_statistics": {
+    "n": 8,
+    "mean": 2781.5100977992543,
+    "median": 2776.6938144333612,
+    "std_sample": 10.804174308116403,
+    "cv_percent": 0.38842836905983996,
+    "min": 2774.3699184708694,
+    "max": 2804.149178961695,
+    "p90": 2795.7900594673188,
+    "p95": 2799.969619214507,
+    "p99": 2803.3132670122573
+  },
+  "outliers_removed": false
+}

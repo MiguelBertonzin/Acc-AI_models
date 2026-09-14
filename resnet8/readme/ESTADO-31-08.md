@@ -56,7 +56,7 @@ resnet8/
 ├── hls4ml/
 ├── hardware/src/Accel_dma_wrapper.vhd
 ├── scripts modelo/remove_softmax.py
-├── README_CHATGPT_WEB_RESNET8_ZCU104_VIVADO.md
+├── RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt
 ├── RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt
 └── Vitis AI/
 ```
@@ -611,7 +611,7 @@ Portanto:
 - não usar padrões ambíguos ao localizar o VLNV no Vivado;
 - sempre confirmar o VLNV completo da instância `myproject_0`.
 
-O documento `README_CHATGPT_WEB_RESNET8_ZCU104_VIVADO.md` foi escrito antes da integração física do IP 1.1. Ele é útil como handoff e procedimento de construção, mas seu estado de “ainda não implementado” ficou desatualizado depois das campanhas na placa.
+O documento `RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt` foi escrito antes da integração física do IP 1.1. Ele é útil como handoff e procedimento de construção, mas seu estado de “ainda não implementado” ficou desatualizado depois das campanhas na placa.
 
 ## 12. Arquitetura do sistema na ZCU104
 
@@ -1100,7 +1100,7 @@ Os números pós-route do IP 2.2 não devem ser reutilizados para preencher essa
 ### 20.2 Documentação temporalmente desatualizada
 
 - `RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt` descreve o projeto antigo 2.2.
-- `README_CHATGPT_WEB_RESNET8_ZCU104_VIVADO.md` foi escrito antes da integração física do 1.1.
+- `RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt` foi escrito antes da integração física do 1.1.
 - Este arquivo, `ESTADO-31-08.md`, deve ser usado como referência de estado consolidado até 31/08/2026.
 
 ### 20.3 Organização da pasta
@@ -1186,7 +1186,7 @@ hls4ml/reports/VITIS_HLS_VS_VIVADO_IP_V1_1.md
 
 ```text
 hardware/src/Accel_dma_wrapper.vhd
-README_CHATGPT_WEB_RESNET8_ZCU104_VIVADO.md
+RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt
 RESNET8_ZCU104_BLOCK_DESIGN_REPLICATION_GUIDE.txt
 ```
 

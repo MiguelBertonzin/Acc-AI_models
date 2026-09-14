@@ -1,4 +1,4 @@
-# LeNet/MNIST — início do fluxo hls4ml para ZCU104
+# LeNet/MNIST — fluxo hls4ml para ZCU104
 
 ## Configuração inicial congelada
 
@@ -34,7 +34,7 @@ ReuseFactors:
 
 Os fatores foram conferidos com `VitisBackend.get_valid_reuse_factors()`. A contagem de 444 usa o limite estrutural do backend, `ceil(n_in*n_out/min(n_in, RF))`, e não é uma previsão de DSP: o mapeamento real depende da largura fixa e deve ser obtido na síntese. Em particular, aumentar RF acima de `n_in` não reduz esse limite e apenas pode aumentar os ciclos.
 
-## Estado atual: candidato RF<=64 validado e sintetizado
+## Estado da implementação
 
 O candidato `5/50/64/60/42`, Q22.12, já passou pelas seguintes etapas:
 
@@ -46,7 +46,7 @@ O candidato `5/50/64/60/42`, Q22.12, já passou pelas seguintes etapas:
 | Vivado `synth_design` + `opt_design` | concluído sem erros |
 | Utilização Vivado | LUT 61,38%; FF 17,59%; DSP 43,17%; BRAM 36,54%; URAM 0% |
 
-O Vitis HLS havia estimado 121% de LUT, mas o Vivado pós-síntese mediu 61,38%. A comparação auditável está em `reports/cap64_q22_12_rate_balanced/HLS_VS_VIVADO_UTILIZATION.md`. Ainda falta place-and-route OOC e, depois, a implementação do block design completo.
+O Vitis HLS estimou 121% de LUT, enquanto o Vivado pós-síntese mediu 61,38%. A comparação auditável está em `reports/cap64_q22_12_rate_balanced/HLS_VS_VIVADO_UTILIZATION.md`. A implementação do sistema completo, o fechamento de timing, a geração do bitstream e a validação física na ZCU104 foram concluídos posteriormente. Os resultados estão em `resultados_zcu104/`.
 
 ## Estudo do ReuseFactor
 
@@ -99,8 +99,8 @@ Não serão alteradas simultaneamente precisão e ReuseFactor ao comparar candid
 - `builds/cap64_q22_12_rate_balanced/`: C++ gerado e evidências da validação de 10.000 imagens;
 - `reports/cap64_q22_12_rate_balanced/`: relatórios e logs do Vitis HLS e Vivado;
 - `ip_repo/lenet_mnist_cap64_hls_v1_0/`: IP exportado para o catálogo do Vivado;
-- `README_CHATGPT_WEB_LENET_ZCU104_VIVADO.md`: guia completo para integração
-  PS–DMA–wrapper–LeNet no Vivado e continuidade assistida pelo ChatGPT Web.
+- `README_FINAL_LENET_ZCU104_VIVADO_PYNQ.md`: guia completo para integração
+  PS–DMA–wrapper–LeNet no Vivado e execução no PYNQ.
 
 ## Comandos iniciais
 

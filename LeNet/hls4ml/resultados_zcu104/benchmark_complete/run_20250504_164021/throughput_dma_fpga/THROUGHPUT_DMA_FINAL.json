@@ -1,0 +1,82 @@
+{
+  "boundary": "prepared PynqBuffer -> serial DMA MM2S -> FPGA LeNet -> DMA S2MM -> waits",
+  "batch": 1,
+  "measurement_method": "single wall-clock timer around the complete inference loop; no per-inference timing",
+  "warmups_per_campaign": 200,
+  "campaigns": 5,
+  "inferences_per_campaign": 100000,
+  "total_measured_inferences": 500000,
+  "runs": [
+    {
+      "campaign": 1,
+      "input_index": 0,
+      "n_inferences": 100000,
+      "elapsed_s": 35.95337922,
+      "fps": 2781.379724784601,
+      "final_prediction_fpga": 7,
+      "final_prediction_hls": 7,
+      "dma_error": false
+    },
+    {
+      "campaign": 2,
+      "input_index": 123,
+      "n_inferences": 100000,
+      "elapsed_s": 35.97583948,
+      "fps": 2779.6432674098646,
+      "final_prediction_fpga": 6,
+      "final_prediction_hls": 6,
+      "dma_error": false
+    },
+    {
+      "campaign": 3,
+      "input_index": 2048,
+      "n_inferences": 100000,
+      "elapsed_s": 35.85141223,
+      "fps": 2789.2904011273868,
+      "final_prediction_fpga": 7,
+      "final_prediction_hls": 7,
+      "dma_error": false
+    },
+    {
+      "campaign": 4,
+      "input_index": 5678,
+      "n_inferences": 100000,
+      "elapsed_s": 35.48258268,
+      "fps": 2818.284139625656,
+      "final_prediction_fpga": 8,
+      "final_prediction_hls": 8,
+      "dma_error": false
+    },
+    {
+      "campaign": 5,
+      "input_index": 9999,
+      "n_inferences": 100000,
+      "elapsed_s": 35.84877752,
+      "fps": 2789.495400344129,
+      "final_prediction_fpga": 6,
+      "final_prediction_hls": 6,
+      "dma_error": false
+    }
+  ],
+  "fps_statistics": {
+    "n": 5,
+    "mean": 2791.6185866583273,
+    "median": 2789.2904011273868,
+    "std_sample": 15.566170423522053,
+    "cv_percent": 0.5576037678612588,
+    "min": 2779.6432674098646,
+    "max": 2818.284139625656,
+    "p90": 2806.7686439130453,
+    "p95": 2812.5263917693505,
+    "p99": 2817.1325900543948,
+    "t_ci95": [
+      2772.290633253536,
+      2810.946540063119
+    ],
+    "bootstrap_ci95": [
+      2782.267277103264,
+      2805.1455088011394
+    ]
+  },
+  "outliers_removed": false
+}

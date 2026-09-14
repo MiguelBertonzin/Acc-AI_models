@@ -203,7 +203,7 @@ Os scripts de compilação e empacotamento recusam diretórios de saída não va
 - `manifests/HOST_FLOW_SHA256SUMS.txt`: checksums do fluxo completo;
 - `artifacts/deploy/lenet_mnist_zcu104_vai3_5/SHA256SUMS.txt`: checksums do pacote da placa.
 
-## Estado atual e trabalho ainda pendente na placa
+## Estado da implementação
 
 | Etapa | Estado | Evidência |
 |---|---|---|
@@ -215,11 +215,11 @@ Os scripts de compilação e empacotamento recusam diretórios de saída não va
 | AI Compiler para B4096 | concluída | retorno 0 em `reports/compilation.json` |
 | Inspeção estrutural do XModel | concluída | um subgrafo DPU em `reports/xmodel_inspection.json` |
 | Integridade do pacote de deploy | concluída | todos os SHA-256 verificados |
-| Compatibilidade com o DPU físico | pendente | depende de `xdputil query` na ZCU104 |
-| Smoke test VART | pendente | executar `01_smoke_inference.py` na placa |
-| Validação das 10.000 imagens no DPU | pendente | executar `02_validate_accuracy.py` na placa |
-| Benchmark estatístico definitivo | pendente | deve ser implementado/executado após a validação funcional |
-| Potência e energia da ZCU104 | pendente | depende da descoberta e validação do rail PMBus disponível |
+| Compatibilidade com o DPU físico | concluída | dois núcleos `DPUCZDX8G_ISA1_B4096` identificados |
+| Smoke test VART | concluído | execução confirmada na ZCU104 |
+| Validação das 10.000 imagens no DPU | concluída | 98,95% e concordância integral com a referência INT8 |
+| Benchmark estatístico definitivo | concluído | campanhas preservadas em `results/zcu104_physical_20260908/` |
+| Potência e energia da ZCU104 | concluída | telemetria e agregados preservados com os resultados físicos |
 
 O script `02_validate_accuracy.py` é uma validação funcional de uma passagem. Ele não substitui a campanha definitiva de 100 ciclos e não deve fornecer os números principais de desempenho do TCC.
 
@@ -310,20 +310,6 @@ Requisitos:
 
 As potências não têm automaticamente o mesmo limite físico: CPU usa RAPL package, GPU usa sensor da placa e ZCU104 deve declarar o rail PMBus. Energia só deve ser colocada lado a lado junto do escopo de cada sensor.
 
-## Referências de alto nível para a futura tabela
+## Resultados físicos
 
-Resultado principal já medido com 10.000 imagens × 100 ciclos, batch 1:
-
-| Métrica | CPU float32 | GPU float32 | ZCU104 Vitis AI INT8 |
-|---|---:|---:|---:|
-| Acurácia host | 98,98% | 98,98% | 98,95% antes do DPU |
-| Latência média | 0,3872 ms | 0,2395 ms | pendente |
-| Mediana | 0,3423 ms | 0,2085 ms | pendente |
-| p95 | 0,6395 ms | 0,4143 ms | pendente |
-| FPS efetivo global | 2.289,4858 | 2.826,7257 | pendente |
-| Potência ativa | 39,7820 W package | 28,2483 W placa | pendente, rail a identificar |
-| Energia total/inferência | 17,3548 mJ | 9,9970 mJ | pendente |
-
-Esses números são referências, não metas que o DPU precisa superar. A tabela final deve preservar as fronteiras, a precisão e o escopo físico dos sensores.
-
-O documento `HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt` contém o roteiro detalhado a ser enviado ao ChatGPT Web para conduzir diagnóstico, validação e coleta sem perder comparabilidade.
+A execução na ZCU104 obteve 98,95% de acurácia e concordância integral com a referência INT8. No cenário de inferência, a menor latência média foi 0,2256 ms com uma thread e a maior vazão foi 5.291,79 inferências por segundo com duas threads. No cenário saturado, o melhor resultado foi 9.292,01 inferências por segundo com três threads. Os dados completos estão em `results/zcu104_physical_20260908/` e a síntese comparativa está em `../../README_RESULTADOS_VITIS_AI_HLS4ML.md`.

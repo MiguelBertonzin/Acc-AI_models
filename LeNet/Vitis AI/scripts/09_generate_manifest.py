@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_JSON = ROOT / "manifests/host_flow_manifest.json"
 OUTPUT_TXT = ROOT / "manifests/HOST_FLOW_SHA256SUMS.txt"
 INCLUDE_ROOTS = [
-    ROOT / "README.md", ROOT / "HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt", ROOT / "run_full_flow.sh",
+    ROOT / "README.md", ROOT / "README.md", ROOT / "run_full_flow.sh",
     ROOT / "config", ROOT / "docker", ROOT / "scripts", ROOT / "board",
     ROOT / "models/float", ROOT / "data/prepared", ROOT / "artifacts/quantized",
     ROOT / "artifacts/compiled", ROOT / "artifacts/deploy", ROOT / "reports", ROOT / "results", ROOT / "logs",

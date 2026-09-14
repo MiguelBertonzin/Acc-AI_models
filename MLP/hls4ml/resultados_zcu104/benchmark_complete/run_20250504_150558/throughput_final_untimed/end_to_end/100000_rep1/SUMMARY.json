@@ -1,0 +1,44 @@
+{
+  "scenario": "end_to_end",
+  "n_inferences": 100000,
+  "repetition": 1,
+  "duration_s": 21.89117634,
+  "throughput_ips": 4568.050544514503,
+  "cpu_util_percent": 25.618698441796518,
+  "prediction_mismatches_hls": 0,
+  "invocation_delta": 100000,
+  "invocation_count_matches": true,
+  "cpufreq_before": {
+    "policy0": {
+      "scaling_governor": "userspace",
+      "scaling_cur_freq": "1199999",
+      "cpuinfo_cur_freq": "1199999",
+      "scaling_min_freq": "299999",
+      "scaling_max_freq": "1199999"
+    }
+  },
+  "cpufreq_after": {
+    "policy0": {
+      "scaling_governor": "userspace",
+      "scaling_cur_freq": "1199999",
+      "cpuinfo_cur_freq": "1199999",
+      "scaling_min_freq": "299999",
+      "scaling_max_freq": "1199999"
+    }
+  },
+  "loadavg_before": [
+    0.7451171875,
+    0.3994140625,
+    0.443359375
+  ],
+  "loadavg_after": [
+    0.818359375,
+    0.439453125,
+    0.45703125
+  ],
+  "per_inference_timing": false,
+  "telemetry": false,
+  "batch": 1,
+  "execution": "serial_synchronous",
+  "outliers_removed": false
+}

@@ -1,0 +1,111 @@
+{
+  "scenario": "inference_batch1",
+  "repetition": 0,
+  "idle": {
+    "duration_requested_s": 5.0,
+    "n_samples": 6,
+    "power_W": {
+      "n": 6,
+      "mean": 9.989166666666668,
+      "median": 9.9435,
+      "std_sample": 0.10962739925158627,
+      "cv_percent": 1.0974629106690874,
+      "min": 9.937,
+      "max": 10.212,
+      "p90": 10.087,
+      "p95": 10.1495,
+      "p99": 10.1995
+    },
+    "actual_interval_s": {
+      "n": 5,
+      "mean": 0.9999020859999291,
+      "median": 0.999825740000233,
+      "std_sample": 0.00018373688533578178,
+      "cv_percent": 0.01837548775108714,
+      "min": 0.9996982099996785,
+      "max": 1.0001070999996955,
+      "p90": 1.000098639999851,
+      "p95": 1.0001028699997732,
+      "p99": 1.000106253999711
+    },
+    "temperature": {
+      "temp_C::irps5401:temp1": {
+        "n": 6,
+        "mean": 36.0,
+        "median": 36.0,
+        "std_sample": 0.0,
+        "cv_percent": 0.0,
+        "min": 36.0,
+        "max": 36.0,
+        "p90": 36.0,
+        "p95": 36.0,
+        "p99": 36.0
+      }
+    }
+  },
+  "active": {
+    "n_inferences": 203336,
+    "active_duration_s": 30.000097019999885,
+    "throughput_during_telemetry_ips": 6777.84474711678,
+    "n_power_samples": 23,
+    "power_active_W": {
+      "n": 23,
+      "mean": 10.16117391304348,
+      "median": 10.162,
+      "std_sample": 0.016837869045461015,
+      "cv_percent": 0.16570791120745346,
+      "min": 10.112,
+      "max": 10.187,
+      "p90": 10.175,
+      "p95": 10.185799999999999,
+      "p99": 10.187
+    },
+    "power_idle_mean_W": 9.989166666666668,
+    "power_dynamic_mean_W": 0.17200724637681297,
+    "energy_total_mJ_per_inf": 1.4991747807982663,
+    "energy_dynamic_mJ_per_inf": 0.025377867566232313,
+    "integrated_total_energy_J": 304.8404547732639,
+    "integrated_dynamic_energy_J": 5.164485624314962,
+    "integrated_total_mJ_per_inf": 1.499195689761104,
+    "integrated_dynamic_mJ_per_inf": 0.025398776529069925,
+    "actual_sample_interval_s": {
+      "n": 22,
+      "mean": 1.3318844777272716,
+      "median": 1.3719663849999506,
+      "std_sample": 0.6179897390765802,
+      "cv_percent": 46.39965022575518,
+      "min": 0.4160305899999912,
+      "max": 2.641501959999914,
+      "p90": 2.0371997489999103,
+      "p95": 2.279625636500009,
+      "p99": 2.568112172199935
+    },
+    "temperature": {
+      "temp_C::irps5401:temp1": {
+        "n": 23,
+        "mean": 35.95652173913044,
+        "median": 36.0,
+        "std_sample": 0.20851441405707477,
+        "cv_percent": 0.5799070765795308,
+        "min": 35.0,
+        "max": 36.0,
+        "p90": 36.0,
+        "p95": 36.0,
+        "p99": 36.0
+      }
+    }
+  },
+  "pure_performance_throughput_ips": 6427.1469515646995,
+  "telemetry_overhead_percent": 5.456508123977198,
+  "cpu_util_percent": 27.722269263336155,
+  "prediction_mismatches_hls": 0,
+  "invocation_counter_before": 3171379,
+  "invocation_counter_after": 3374715,
+  "invocation_delta": 203336,
+  "power_sensor": "12V_power",
+  "power_sampling_target_hz": 1.0,
+  "outliers_removed": false,
+  "calibration_only": true,
+  "exclude_from_final_results": true,
+  "exclusion_reason": "Thread-based telemetry lost the nominal 1 Hz cadence under benchmark load (23 samples in ~30 s). Telemetry methodology replaced by a separate process."
+}

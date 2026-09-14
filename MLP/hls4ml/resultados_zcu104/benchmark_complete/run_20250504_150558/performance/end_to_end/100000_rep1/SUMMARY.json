@@ -1,0 +1,63 @@
+{
+  "scenario": "end_to_end",
+  "n_inferences": 100000,
+  "repetition": 1,
+  "duration_s": 24.57080658,
+  "throughput_effective_ips": 4069.8704649523966,
+  "primary_latency_ms": {
+    "n": 100000,
+    "mean": 0.22443796570000002,
+    "median": 0.22151,
+    "std_sample": 0.009794974109297151,
+    "cv_percent": 4.364223351761181,
+    "min": 0.2179,
+    "max": 1.50402,
+    "p90": 0.23627,
+    "p95": 0.24534,
+    "p99": 0.24738
+  },
+  "primary_latency_equivalent_ips": 4455.574157790541,
+  "accelerator_latency_ms": {
+    "n": 100000,
+    "mean": 0.053341976999999985,
+    "median": 0.05315,
+    "std_sample": 0.0019677676353080068,
+    "cv_percent": 3.6889664500211667,
+    "min": 0.05172,
+    "max": 0.20498,
+    "p90": 0.05363,
+    "p95": 0.05381,
+    "p99": 0.06465
+  },
+  "batch1_call_latency_ms": {
+    "n": 100000,
+    "mean": 0.13682028430000004,
+    "median": 0.13542,
+    "std_sample": 0.005659894763178978,
+    "cv_percent": 4.13673658999916,
+    "min": 0.13322,
+    "max": 0.94101,
+    "p90": 0.14527,
+    "p95": 0.14612,
+    "p99": 0.14936
+  },
+  "passage_throughput_ips": {
+    "n": 3333,
+    "mean": 4072.990839907118,
+    "median": 4109.071185549218,
+    "std_sample": 108.45294549518007,
+    "cv_percent": 2.662734824555934,
+    "min": 3238.5587118308868,
+    "max": 4135.187551431395,
+    "p90": 4119.484833709607,
+    "p95": 4122.231303436638,
+    "p99": 4127.063594316346
+  },
+  "passage_drift_percent": 1.7094003412856484,
+  "cpu_util_percent": 25.574038167159916,
+  "prediction_mismatches_hls": 0,
+  "invocation_before": 1212656,
+  "invocation_after": 1312656,
+  "invocation_delta": 100000,
+  "outliers_removed": false
+}

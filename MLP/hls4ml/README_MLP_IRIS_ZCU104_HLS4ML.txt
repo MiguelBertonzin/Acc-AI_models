@@ -1964,7 +1964,7 @@ Preservar também:
 ```text
 COMPARACAO_RECURSOS_VITIS_VIVADO.md
 RESULTADOS_IP.md
-README_CHATGPT_WEB_ZCU104_IP.md
+README_MLP_IRIS_ZCU104_HLS4ML.md
 vivado_ooc_post_route.tcl
 manifests/
 docs/
@@ -2188,7 +2188,7 @@ cp -a COMPARACAO_RECURSOS_VITIS_VIVADO.md \
 cp -a RESULTADOS_IP.md \
   "$DEST/pc_project_snapshot/" 2>/dev/null || true
 
-cp -a README_CHATGPT_WEB_ZCU104_IP.md \
+cp -a README_MLP_IRIS_ZCU104_HLS4ML.md \
   "$DEST/pc_project_snapshot/" 2>/dev/null || true
 
 cp -a vivado_ooc_post_route.tcl \

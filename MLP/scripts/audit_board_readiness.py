@@ -34,7 +34,7 @@ def main():
   add(r,platform.lower()+'_five_campaigns',counts==(5,5),f'30k={counts[0]}, 100k={counts[1]}')
  # Links Markdown locais, exceto documentos brutos gerados por campanha.
  broken=[];checked=0
- for md in [ROOT/'README.md',ROOT/'CPU/README.md',ROOT/'GPU/README.md',ROOT/'Vitis AI/README.md',ROOT/'Vitis AI/README_CHATGPT_WEB_ZCU104_XMODEL.md',ROOT/'hls4ml/README.md',ROOT/'hls4ml/README_CHATGPT_WEB_ZCU104_IP.md']:
+ for md in [ROOT/'README.md',ROOT/'CPU/README.md',ROOT/'GPU/README.md',ROOT/'Vitis AI/README.md',ROOT/'Vitis AI/README.md',ROOT/'hls4ml/README.md',ROOT/'hls4ml/README_MLP_IRIS_ZCU104_HLS4ML.md']:
   for raw in re.findall(r'\]\(([^)]+)\)',md.read_text(encoding='utf-8')):
    target=raw.strip('<>').split('#',1)[0]
    if not target or '://' in target or target.startswith('mailto:'):continue

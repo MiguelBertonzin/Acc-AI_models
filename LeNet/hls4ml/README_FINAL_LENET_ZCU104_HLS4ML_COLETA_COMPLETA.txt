@@ -2534,7 +2534,7 @@ Gerar hashes:
 
 # 42. Copiar este README/TXT para o workspace
 
-Depois de baixar os dois arquivos entregues pelo ChatGPT, colocá-los em:
+Depois de gerar os dois arquivos, colocá-los em:
 
 ```text
 /home/miguel/Downloads/Plano testes TCC/LeNet/hls4ml/

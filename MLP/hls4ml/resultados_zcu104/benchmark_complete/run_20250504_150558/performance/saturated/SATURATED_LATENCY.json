@@ -1,0 +1,16 @@
+{
+  "n": 50000,
+  "mean": 0.0541685296,
+  "median": 0.05393,
+  "std_sample": 0.006200517608256269,
+  "cv_percent": 11.446715748134816,
+  "min": 0.05292,
+  "max": 0.94552,
+  "p90": 0.0543,
+  "p95": 0.05446,
+  "p99": 0.06362010000000001,
+  "equivalent_rate_ips": 18460.90354278326,
+  "kernel_cycles_reference": 6,
+  "kernel_latency_reference_ns": 60.0,
+  "outliers_removed": false
+}

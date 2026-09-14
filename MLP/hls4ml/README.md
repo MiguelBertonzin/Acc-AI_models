@@ -12,15 +12,15 @@ Configuração inicial do acelerador:
 - interface `io_parallel`;
 - softmax mantida no hardware, como no modelo Keras original.
 
-A metodologia normativa da futura coleta física é [`../METODOLOGIA_BENCHMARK_MLP_IRIS.md`](../METODOLOGIA_BENCHMARK_MLP_IRIS.md).
+A metodologia adotada na coleta física está descrita em [`../METODOLOGIA_BENCHMARK_MLP_IRIS.md`](../METODOLOGIA_BENCHMARK_MLP_IRIS.md).
 
 O hls4ml usa tipos auxiliares `ap_fixed<18,8>` nas tabelas da softmax. Pesos,
 biases, entradas, acumuladores e resultados seguem a precisão padrão
 `ap_fixed<16,6>`.
 
-## Guia para continuar no ChatGPT Web
+## Documentação técnica
 
-Use [`README_CHATGPT_WEB_ZCU104_IP.md`](README_CHATGPT_WEB_ZCU104_IP.md) como mensagem inicial de um chat dedicado ao wrapper AXI, block design Tcl, bitstream, PYNQ e benchmark físico na ZCU104.
+O procedimento completo de integração, validação e coleta física está descrito em [`README_MLP_IRIS_ZCU104_HLS4ML.md`](README_MLP_IRIS_ZCU104_HLS4ML.md).
 
 ## Gerar e exportar o IP
 
@@ -73,8 +73,8 @@ python3 hls4ml/scripts/generate_flow_manifest.py
 (cd hls4ml && sha256sum -c manifests/SHA256SUMS.txt)
 ```
 
-O inventário [`manifests/flow_manifest.json`](manifests/flow_manifest.json) fixa por SHA-256 747 arquivos do fluxo. Todo artefato específico de hls4ml, incluindo futuros Tcl, bitstream, HWH, notebooks e campanhas da placa, deve permanecer dentro desta pasta.
+O inventário [`manifests/flow_manifest.json`](manifests/flow_manifest.json) registra os arquivos do fluxo e seus hashes SHA-256. Os arquivos Tcl, bitstream, HWH, notebooks e resultados da placa permanecem nesta pasta.
 
-## Barreira antes da placa
+## Estado da implementação
 
-No host estão aprovados: conversão, C simulation, síntese HLS, RTL co-sim, exportação do IP e Vivado OOC pós-route a 100 MHz. Na placa ainda faltam wrapper AXI, block design, implementação completa, bitstream/HWH, teste golden e cinco campanhas de 30k + cinco de 100k. Essas etapas devem seguir o guia ChatGPT Web e não devem alterar o IP original.
+A conversão, a simulação C, a síntese HLS, a co-simulação RTL, a exportação do IP, a implementação no Vivado, a geração do bitstream e as campanhas físicas na ZCU104 foram concluídas. Os dados brutos estão em [`resultados_zcu104/`](resultados_zcu104/) e os valores consolidados constam em [`../../README_RESULTADOS_VITIS_AI_HLS4ML.md`](../../README_RESULTADOS_VITIS_AI_HLS4ML.md).

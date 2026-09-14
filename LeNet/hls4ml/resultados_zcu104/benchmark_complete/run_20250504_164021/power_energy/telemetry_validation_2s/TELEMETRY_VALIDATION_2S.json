@@ -1,0 +1,348 @@
+{
+  "rail": "12V",
+  "sampling_interval_s": 2.0,
+  "sampling_frequency_hz": 0.5,
+  "results": {
+    "dma_fpga": {
+      "sampler_interval_s": 2.0,
+      "pairs": [
+        {
+          "pair": 1,
+          "fps_without_telemetry": 2750.7291917838534,
+          "fps_with_telemetry": 2789.813746957788,
+          "delta_percent": 1.4208797903725534
+        },
+        {
+          "pair": 2,
+          "fps_without_telemetry": 2773.788717375054,
+          "fps_with_telemetry": 2799.7106373069364,
+          "delta_percent": 0.9345311619989971
+        },
+        {
+          "pair": 3,
+          "fps_without_telemetry": 2773.078891882944,
+          "fps_with_telemetry": 2803.79895833211,
+          "delta_percent": 1.1077963392634338
+        },
+        {
+          "pair": 4,
+          "fps_without_telemetry": 2769.9077005816193,
+          "fps_with_telemetry": 2788.2096747994897,
+          "delta_percent": 0.6607431075781767
+        },
+        {
+          "pair": 5,
+          "fps_without_telemetry": 2773.4101877520743,
+          "fps_with_telemetry": 2781.3947705889327,
+          "delta_percent": 0.2878976529371746
+        }
+      ],
+      "fps_without_mean": 2768.182937875109,
+      "fps_with_mean": 2792.585557597052,
+      "paired_delta_percent_mean": 0.8823696104300671,
+      "paired_delta_percent_std": 0.431869907046112,
+      "paired_delta_percent_t_ci95": [
+        0.3461322949433028,
+        1.4186069259168315
+      ],
+      "ci95_includes_zero": false,
+      "all_pair_deltas_percent": [
+        1.4208797903725534,
+        0.9345311619989971,
+        1.1077963392634338,
+        0.6607431075781767,
+        0.2878976529371746
+      ],
+      "outliers_removed": false
+    },
+    "e2e": {
+      "sampler_interval_s": 2.0,
+      "pairs": [
+        {
+          "pair": 1,
+          "fps_without_telemetry": 906.3782001625405,
+          "fps_with_telemetry": 911.4007174993035,
+          "delta_percent": 0.5541304210386233
+        },
+        {
+          "pair": 2,
+          "fps_without_telemetry": 910.154091342824,
+          "fps_with_telemetry": 912.8767250540186,
+          "delta_percent": 0.29913986401770565
+        },
+        {
+          "pair": 3,
+          "fps_without_telemetry": 909.4495266272015,
+          "fps_with_telemetry": 912.9809030790368,
+          "delta_percent": 0.3882982340902119
+        },
+        {
+          "pair": 4,
+          "fps_without_telemetry": 908.9293602097335,
+          "fps_with_telemetry": 910.5701514566103,
+          "delta_percent": 0.18051911608381044
+        },
+        {
+          "pair": 5,
+          "fps_without_telemetry": 907.7085244792038,
+          "fps_with_telemetry": 911.8475111571267,
+          "delta_percent": 0.4559819111864982
+        }
+      ],
+      "fps_without_mean": 908.5239405643006,
+      "fps_with_mean": 911.9352016492192,
+      "paired_delta_percent_mean": 0.3756139092833699,
+      "paired_delta_percent_std": 0.14352552972193133,
+      "paired_delta_percent_t_ci95": [
+        0.19740342620452314,
+        0.5538243923622167
+      ],
+      "ci95_includes_zero": false,
+      "all_pair_deltas_percent": [
+        0.5541304210386233,
+        0.29913986401770565,
+        0.3882982340902119,
+        0.18051911608381044,
+        0.4559819111864982
+      ],
+      "outliers_removed": false
+    }
+  },
+  "raw_runs": [
+    {
+      "scenario": "dma_fpga",
+      "pair": 1,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 56000,
+      "reference_index": 0,
+      "elapsed_s": 20.35823816,
+      "fps": 2750.7291917838534,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 1,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 56000,
+      "reference_index": 0,
+      "elapsed_s": 20.07302461,
+      "fps": 2789.813746957788,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/dma_fpga_pair_1_with_telemetry.csv"
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 2,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 56000,
+      "reference_index": 1777,
+      "elapsed_s": 20.00206709,
+      "fps": 2799.7106373069364,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/dma_fpga_pair_2_with_telemetry.csv"
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 2,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 56000,
+      "reference_index": 1777,
+      "elapsed_s": 20.18899264,
+      "fps": 2773.788717375054,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 3,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 56000,
+      "reference_index": 3554,
+      "elapsed_s": 20.19416042,
+      "fps": 2773.078891882944,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 3,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 56000,
+      "reference_index": 3554,
+      "elapsed_s": 19.97290135,
+      "fps": 2803.79895833211,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/dma_fpga_pair_3_with_telemetry.csv"
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 4,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 56000,
+      "reference_index": 5331,
+      "elapsed_s": 20.08457273,
+      "fps": 2788.2096747994897,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/dma_fpga_pair_4_with_telemetry.csv"
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 4,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 56000,
+      "reference_index": 5331,
+      "elapsed_s": 20.21728016,
+      "fps": 2769.9077005816193,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 5,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 56000,
+      "reference_index": 7108,
+      "elapsed_s": 20.19174814,
+      "fps": 2773.4101877520743,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "dma_fpga",
+      "pair": 5,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 56000,
+      "reference_index": 7108,
+      "elapsed_s": 20.13378345,
+      "fps": 2781.3947705889327,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/dma_fpga_pair_5_with_telemetry.csv"
+    },
+    {
+      "scenario": "e2e",
+      "pair": 1,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 18000,
+      "reference_index": 0,
+      "elapsed_s": 19.85925963,
+      "fps": 906.3782001625405,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "e2e",
+      "pair": 1,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 18000,
+      "reference_index": 0,
+      "elapsed_s": 19.74981987,
+      "fps": 911.4007174993035,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/e2e_pair_1_with_telemetry.csv"
+    },
+    {
+      "scenario": "e2e",
+      "pair": 2,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 18000,
+      "reference_index": 1999,
+      "elapsed_s": 19.71788688,
+      "fps": 912.8767250540186,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/e2e_pair_2_with_telemetry.csv"
+    },
+    {
+      "scenario": "e2e",
+      "pair": 2,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 18000,
+      "reference_index": 1999,
+      "elapsed_s": 19.77687094,
+      "fps": 910.154091342824,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "e2e",
+      "pair": 3,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 18000,
+      "reference_index": 3998,
+      "elapsed_s": 19.79219239,
+      "fps": 909.4495266272015,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "e2e",
+      "pair": 3,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 18000,
+      "reference_index": 3998,
+      "elapsed_s": 19.71563692,
+      "fps": 912.9809030790368,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/e2e_pair_3_with_telemetry.csv"
+    },
+    {
+      "scenario": "e2e",
+      "pair": 4,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 18000,
+      "reference_index": 5997,
+      "elapsed_s": 19.76783444,
+      "fps": 910.5701514566103,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/e2e_pair_4_with_telemetry.csv"
+    },
+    {
+      "scenario": "e2e",
+      "pair": 4,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 18000,
+      "reference_index": 5997,
+      "elapsed_s": 19.80351916,
+      "fps": 908.9293602097335,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "e2e",
+      "pair": 5,
+      "with_telemetry": false,
+      "sampler_interval_s": null,
+      "n_inferences": 18000,
+      "reference_index": 7996,
+      "elapsed_s": 19.83015419,
+      "fps": 907.7085244792038,
+      "telemetry_csv": null
+    },
+    {
+      "scenario": "e2e",
+      "pair": 5,
+      "with_telemetry": true,
+      "sampler_interval_s": 2.0,
+      "n_inferences": 18000,
+      "reference_index": 7996,
+      "elapsed_s": 19.74014271,
+      "fps": 911.8475111571267,
+      "telemetry_csv": "/home/xilinx/jupyter_notebooks/lenet_mnist/results_zcu104/benchmark_complete/run_20250504_164021/power_energy/telemetry_validation_2s/e2e_pair_5_with_telemetry.csv"
+    }
+  ],
+  "previous_1s_validation": {
+    "dma_fpga_delta_percent_mean": 0.668961627886846,
+    "dma_fpga_ci95": [
+      0.19748827479752162,
+      1.1404349809761705
+    ],
+    "dma_fpga_ci95_includes_zero": false,
+    "e2e_delta_percent_mean": -0.18212908317936094,
+    "e2e_ci95": [
+      -0.48454323315381326,
+      0.12028506679509138
+    ],
+    "e2e_ci95_includes_zero": true
+  },
+  "outliers_removed": false
+}

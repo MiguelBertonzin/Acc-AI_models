@@ -1,0 +1,111 @@
+{
+  "scenario": "saturated",
+  "repetition": 4,
+  "idle": {
+    "requested_duration_s": 5.0,
+    "measured_duration_s": 5.005054239999481,
+    "n_samples": 5,
+    "power_W": {
+      "n": 5,
+      "mean": 9.9646,
+      "median": 9.962,
+      "std_sample": 0.013557285864066128,
+      "cv_percent": 0.13605449154071542,
+      "min": 9.95,
+      "max": 9.987,
+      "p90": 9.977,
+      "p95": 9.982,
+      "p99": 9.986
+    },
+    "actual_interval_s": {
+      "n": 5,
+      "mean": 0.9999605560000419,
+      "median": 0.9999118799996722,
+      "std_sample": 0.00021160981423599221,
+      "cv_percent": 0.021161816130273778,
+      "min": 0.9997616199998447,
+      "max": 1.0002514300003895,
+      "p90": 1.00019069400023,
+      "p95": 1.0002210620003098,
+      "p99": 1.0002453564003735
+    },
+    "temperature": {
+      "temp_C::irps5401:temp1": {
+        "n": 5,
+        "mean": 36.0,
+        "median": 36.0,
+        "std_sample": 0.0,
+        "cv_percent": 0.0,
+        "min": 36.0,
+        "max": 36.0,
+        "p90": 36.0,
+        "p95": 36.0,
+        "p99": 36.0
+      }
+    },
+    "window_start_perf_s": 5509.49474273,
+    "window_end_perf_s": 5514.49979697
+  },
+  "active": {
+    "n_inferences": 557514,
+    "active_duration_s": 30.000026020000405,
+    "throughput_during_telemetry_ips": 18583.78388166453,
+    "n_power_samples": 30,
+    "power_active_W": {
+      "n": 30,
+      "mean": 10.130266666666667,
+      "median": 10.125,
+      "std_sample": 0.015935069399962153,
+      "cv_percent": 0.15730157876688491,
+      "min": 10.112,
+      "max": 10.187,
+      "p90": 10.15,
+      "p95": 10.156600000000001,
+      "p99": 10.17975
+    },
+    "power_idle_mean_W": 9.9646,
+    "power_dynamic_mean_W": 0.16566666666666663,
+    "energy_total_mJ_per_inf": 0.5451132412630765,
+    "energy_dynamic_mJ_per_inf": 0.00891458207443532,
+    "integrated_total_energy_J": 303.8292818400107,
+    "integrated_dynamic_energy_J": 4.892786500952945,
+    "integrated_total_mJ_per_inf": 0.544971573521043,
+    "integrated_dynamic_mJ_per_inf": 0.008776078270595797,
+    "actual_sample_interval_s": {
+      "n": 30,
+      "mean": 0.9999985989999913,
+      "median": 0.999918980000075,
+      "std_sample": 0.0001760028968211795,
+      "cv_percent": 0.017600314340158494,
+      "min": 0.9997733499994865,
+      "max": 1.0003467899996394,
+      "p90": 1.0002545680001276,
+      "p95": 1.0003344279999056,
+      "p99": 1.000344113299725
+    },
+    "temperature": {
+      "temp_C::irps5401:temp1": {
+        "n": 30,
+        "mean": 36.2,
+        "median": 36.0,
+        "std_sample": 0.40683810217248617,
+        "cv_percent": 1.1238621606974757,
+        "min": 36.0,
+        "max": 37.0,
+        "p90": 37.0,
+        "p95": 37.0,
+        "p99": 37.0
+      }
+    },
+    "outliers_removed": false
+  },
+  "cpu_util_percent": 25.229357798165136,
+  "prediction_mismatches_hls": 0,
+  "invocation_delta": 557514,
+  "invocation_count_matches": true,
+  "power_sensor": "12V_power",
+  "sampling_method": "multiprocessing",
+  "sampling_target_hz": 1.0,
+  "telemetry_throughput_correction": false,
+  "outliers_removed": false
+}
