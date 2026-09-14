@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Ferramentas AMD/Xilinx: temporários recriáveis
+.Xil/
+.ipcache/
+.autopilot/
+xsim.dir/
+*.wdb
+*.wcfg
+*.jou
+*.str
+
+# Caches de datasets e sistema
+**/data/cache/
+.DS_Store
+Thumbs.db
+
+# Segredos e configuração local
+.env
+.env.*
+*.pem
+*.key
+

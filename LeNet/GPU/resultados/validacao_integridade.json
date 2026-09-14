@@ -1,0 +1,38 @@
+{
+  "device": "GPU",
+  "status": "valid",
+  "total_timed_inferences": 1110000,
+  "latency_shapes": {
+    "100": [
+      100,
+      100
+    ],
+    "1000": [
+      100,
+      1000
+    ],
+    "10000": [
+      100,
+      10000
+    ]
+  },
+  "all_latencies_finite": true,
+  "pass_rows": {
+    "100": 100,
+    "1000": 100,
+    "10000": 100
+  },
+  "aggregate_rows": 12,
+  "correct_full_test": 9898,
+  "accuracy_percent": 98.98,
+  "prediction_sha256": "2e1bd57ae813232b84b89428876c305a3cd6f07dd5b2f8f8566f808aec004beb",
+  "unique_prediction_hashes_per_size": {
+    "100": 1,
+    "1000": 1,
+    "10000": 1
+  },
+  "outliers_removed": false,
+  "telemetry_errors": [],
+  "nvidia_smi_samples": 4030,
+  "power_scope": "GPU board sensor; excludes host"
+}

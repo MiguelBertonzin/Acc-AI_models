@@ -1,0 +1,214 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+  "model_sha256": "3412600f3ea4abad6f7cc6487b462e1d79121b1ce34097220bdb7a1060911421",
+  "samples": 10000,
+  "correct": 9895,
+  "accuracy": 0.9895,
+  "accuracy_percent": 98.95,
+  "wilson_95": [
+    0.9873057978310227,
+    0.991318267764085
+  ],
+  "float_correct": 9898,
+  "float_accuracy_percent": 98.98,
+  "accuracy_delta_quantized_minus_float_pp": -0.029999999999996696,
+  "accuracy_drop_pp": 0.029999999999996696,
+  "maximum_accepted_accuracy_drop_pp": 1.0,
+  "float_argmax_agreement": 9995,
+  "float_argmax_agreement_percent": 99.95,
+  "logit_mean_absolute_error": 0.10756246745586395,
+  "logit_root_mean_squared_error": 0.13973666727542877,
+  "logit_max_absolute_error": 1.2333946228027344,
+  "per_class": [
+    {
+      "class": 0,
+      "samples": 980,
+      "correct": 973,
+      "accuracy_percent": 99.28571428571429
+    },
+    {
+      "class": 1,
+      "samples": 1135,
+      "correct": 1131,
+      "accuracy_percent": 99.64757709251101
+    },
+    {
+      "class": 2,
+      "samples": 1032,
+      "correct": 1025,
+      "accuracy_percent": 99.32170542635659
+    },
+    {
+      "class": 3,
+      "samples": 1010,
+      "correct": 1001,
+      "accuracy_percent": 99.10891089108911
+    },
+    {
+      "class": 4,
+      "samples": 982,
+      "correct": 979,
+      "accuracy_percent": 99.69450101832994
+    },
+    {
+      "class": 5,
+      "samples": 892,
+      "correct": 883,
+      "accuracy_percent": 98.99103139013452
+    },
+    {
+      "class": 6,
+      "samples": 958,
+      "correct": 948,
+      "accuracy_percent": 98.95615866388309
+    },
+    {
+      "class": 7,
+      "samples": 1028,
+      "correct": 1005,
+      "accuracy_percent": 97.76264591439688
+    },
+    {
+      "class": 8,
+      "samples": 974,
+      "correct": 957,
+      "accuracy_percent": 98.25462012320328
+    },
+    {
+      "class": 9,
+      "samples": 1009,
+      "correct": 993,
+      "accuracy_percent": 98.41427155599604
+    }
+  ],
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      973,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      3,
+      1
+    ],
+    [
+      0,
+      1131,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1025,
+      0,
+      1,
+      0,
+      2,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1001,
+      0,
+      3,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      979,
+      0,
+      2,
+      0,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      0,
+      4,
+      0,
+      883,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      0,
+      1,
+      4,
+      948,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      4,
+      7,
+      0,
+      0,
+      0,
+      0,
+      1005,
+      1,
+      11
+    ],
+    [
+      3,
+      0,
+      2,
+      1,
+      0,
+      4,
+      0,
+      3,
+      957,
+      4
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      6,
+      3,
+      1,
+      1,
+      2,
+      993
+    ]
+  ],
+  "outputs": "results/quantized_test_outputs.npz",
+  "outputs_sha256": "cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32",
+  "batch_size": 256,
+  "preprocessing": "uint8 -> float32; divide by 255.0; add channels_last dimension",
+  "softmax": false,
+  "decision": "argmax of quantized logits"
+}

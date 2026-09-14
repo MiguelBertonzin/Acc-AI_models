@@ -1,0 +1,90 @@
+{
+  "xmodel": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/resnet8_no_softmax.xmodel",
+  "xmodel_sha256": "bfacc85783958ff0d734e5c7e44f126a6fd4af9b6b1f20e4d9b2f7ae96fa7802",
+  "graph": "functional",
+  "subgraph_count": 3,
+  "dpu_subgraph_count": 1,
+  "subgraphs": [
+    {
+      "name": "subgraph_input_layer",
+      "device": "USER",
+      "ops": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "quant_input_layer",
+          "dims": [
+            1,
+            32,
+            32,
+            3
+          ],
+          "dtype": "xint8",
+          "fix_point": 6
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_add",
+      "device": "DPU",
+      "ops": 36,
+      "inputs": [
+        {
+          "name": "quant_input_layer",
+          "dims": [
+            1,
+            32,
+            32,
+            3
+          ],
+          "dtype": "xint8",
+          "fix_point": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_dense_fix",
+          "dims": [
+            1,
+            1,
+            1,
+            10
+          ],
+          "dtype": "xint8",
+          "fix_point": 2
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_dense_fix_",
+      "device": "CPU",
+      "ops": 1,
+      "inputs": [
+        {
+          "name": "quant_dense_fix",
+          "dims": [
+            1,
+            1,
+            1,
+            10
+          ],
+          "dtype": "xint8",
+          "fix_point": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_dense_fix_",
+          "dims": [
+            1,
+            1,
+            1,
+            10
+          ],
+          "dtype": "float32",
+          "fix_point": null
+        }
+      ]
+    }
+  ]
+}

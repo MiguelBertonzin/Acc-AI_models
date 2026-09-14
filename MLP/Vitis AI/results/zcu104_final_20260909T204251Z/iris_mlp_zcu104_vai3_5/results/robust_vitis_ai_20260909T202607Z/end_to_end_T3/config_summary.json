@@ -1,0 +1,147 @@
+{
+  "metrics": {
+    "scenario": "end_to_end",
+    "threads_runners": 3,
+    "physical_dpu_cores": 2,
+    "inferences": 10000,
+    "blocks": 10,
+    "samples_per_block": 1000,
+    "benchmark_wall_s": 6.6177477,
+    "throughput_effective_inf_s": 1511.0881304828229,
+    "block_throughput_arithmetic_mean_inf_s": 1512.8443567030388,
+    "latency": {
+      "count": 10000,
+      "mean_ms": 1.807040225,
+      "median_ms": 1.6175950000000001,
+      "std_sample_ms": 1.0057680856129125,
+      "cv_percent": 55.65831195666453,
+      "minimum_ms": 0.64616,
+      "maximum_ms": 10.02874,
+      "p90_ms": 3.11731,
+      "p95_ms": 3.9091889999999974,
+      "p99_ms": 5.7000925000000215,
+      "mean_ci95_lower_ms": 1.752121554925032,
+      "mean_ci95_upper_ms": 1.8619588950749684,
+      "ci_unit": "means of 10 blocks of 1000 completed inferences",
+      "ci_blocks": 10
+    },
+    "determinism": {
+      "checked": true,
+      "passed": true,
+      "divergences": 0,
+      "divergent_positions_first100": []
+    }
+  },
+  "power": {
+    "status": "measured",
+    "scope": "ZCU104 board-input ~12V rail via INA226 hwmon0",
+    "sensor_path": "/sys/class/hwmon/hwmon0/power1_input",
+    "sensor_iio_sampling_frequency_hz": 114,
+    "telemetry_interval_ms": 10,
+    "baseline": {
+      "status": "measured",
+      "bracketed": true,
+      "samples_inside": 500,
+      "duration_s": 5.00104043,
+      "mean": 14.434479375196837,
+      "median_samples_inside": 14.437,
+      "std_sample_inside": 0.01691505821417014,
+      "minimum_samples_inside": 14.4,
+      "maximum_samples_inside": 14.6,
+      "max_sample_gap_ms": 10.00615,
+      "integral": 72.18741494136052
+    },
+    "benchmark": {
+      "status": "measured",
+      "bracketed": true,
+      "samples_inside": 433,
+      "duration_s": 6.6177477,
+      "mean": 14.706338489744812,
+      "median_samples_inside": 14.712,
+      "std_sample_inside": 0.03295730617709475,
+      "minimum_samples_inside": 14.625,
+      "maximum_samples_inside": 15.0,
+      "max_sample_gap_ms": 34.59561,
+      "integral": 97.3228377159302
+    },
+    "current_benchmark": {
+      "status": "measured",
+      "bracketed": true,
+      "samples_inside": 433,
+      "duration_s": 6.6177477,
+      "mean": 1.2290923594960457,
+      "median_samples_inside": 1.229,
+      "std_sample_inside": 0.002682730436862668,
+      "minimum_samples_inside": 1.222,
+      "maximum_samples_inside": 1.259,
+      "max_sample_gap_ms": 34.59561,
+      "integral": 8.13382313514253
+    },
+    "voltage_benchmark": {
+      "status": "measured",
+      "bracketed": true,
+      "samples_inside": 433,
+      "duration_s": 6.6177477,
+      "mean": 11.961836534208711,
+      "median_samples_inside": 11.962,
+      "std_sample_inside": 0.0006526545808323275,
+      "minimum_samples_inside": 11.957,
+      "maximum_samples_inside": 11.963,
+      "max_sample_gap_ms": 34.59561,
+      "integral": 79.16041621203567
+    },
+    "idle_mean_power_w": 14.434479375196837,
+    "active_mean_power_w": 14.706338489744812,
+    "dynamic_mean_power_w": 0.2718591145479756,
+    "idle_energy_j": 95.5237426859063,
+    "total_energy_j": 97.3228377159302,
+    "dynamic_energy_j": 1.7990950300239064,
+    "idle_mj_per_inference": 9.55237426859063,
+    "total_mj_per_inference": 9.73228377159302,
+    "dynamic_mj_per_inference": 0.17990950300239064
+  },
+  "metadata": {
+    "created_utc": "2026-09-09T20:30:17.833590+00:00",
+    "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+    "protocol": "MLP robust Vitis AI equivalent to LeNet 12x10000 campaign",
+    "scenario": "end_to_end",
+    "threads_runners": 3,
+    "physical_dpu_cores": 2,
+    "batch": 1,
+    "warmup_per_runner": 100,
+    "baseline_seconds": 5.0,
+    "telemetry_ms": 10,
+    "seed": 20260831,
+    "outliers_removed": 0,
+    "timing_boundary": "normalized float input -> quantization -> input copy -> execute_async+wait -> output copy -> dequantization -> software softmax -> argmax",
+    "standard_scaler_inside_end_to_end": false,
+    "softmax_inside_end_to_end": true,
+    "temperature_pre": {
+      "ps_temp_c": 43.706999752608,
+      "remote_temp_c": 44.795011837488,
+      "pl_temp_c": 43.90905913979999
+    },
+    "temperature_after_warmup": {
+      "ps_temp_c": 42.929848263408,
+      "remote_temp_c": 43.862430050448,
+      "pl_temp_c": 43.706999752608
+    },
+    "temperature_after_benchmark": {
+      "ps_temp_c": 43.98677428872,
+      "remote_temp_c": 45.059243343816,
+      "pl_temp_c": 42.696702816648
+    },
+    "xmodel_sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+    "test_data_sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+    "reference_sha256": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e",
+    "script_sha256": "02ff166a1a1a21e349822f0c95edd16c48b49918b55b175a06b7f37f11294c84",
+    "xdputil_query_before_any_runner": {
+      "command": [
+        "xdputil",
+        "query"
+      ],
+      "returncode": 0,
+      "output": "{\n    \"DPU IP Spec\":{\n        \"DPU Core Count\":2,\n        \"IP version\":\"v4.1.0\",\n        \"generation timestamp\":\"2022-12-06 16-30-00\",\n        \"git commit id\":\"8a36f42\",\n        \"git commit time\":2022120616,\n        \"regmap\":\"1to1 version\"\n    },\n    \"VAI Version\":{\n        \"libvaip-core.so\":\"Xilinx vaip Version: 1.0.0-a176db67b19f94b0a31f9d24ef80322efe4494ad  2022-12-26-13:22:58 \",\n        \"libvart-runner.so\":\"Xilinx vart-runner Version: 3.0.0-2efa5fe1e56c2b2c8a7e71e9fc1636242dd50a9f  2022-12-26-13:01:39 \",\n        \"libvitis_ai_library-dpu_task.so\":\"Xilinx vitis_ai_library dpu_task Version: 3.0.0-1cccff04dc341c4a6287226828f90aed56005f4f  2022-12-20 10:29:01 [UTC] \",\n        \"libxir.so\":\"Xilinx xir Version: xir-9204ac72103092a7b253a0c23ec7471481656940 2022-12-26-12:56:35\",\n        \"target_factory\":\"target-factory.3.0.0 860ed0499ab009084e2df3004eeb9ae710c26351\"\n    },\n    \"kernels\":[\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80000000\",\n            \"cu_handle\":\"0xaaaaf0dc7150\",\n            \"cu_idx\":0,\n            \"cu_mask\":2,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_1\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 0\"\n        },\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80001000\",\n            \"cu_handle\":\"0xaaaaf0dc6a80\",\n            \"cu_idx\":1,\n            \"cu_mask\":1,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_2\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 1\"\n        }\n    ]\n}\n"
+    }
+  }
+}

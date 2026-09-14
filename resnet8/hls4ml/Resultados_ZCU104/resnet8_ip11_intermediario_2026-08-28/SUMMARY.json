@@ -1,0 +1,130 @@
+{
+  "created_utc": "2025-05-04T10:44:25.204916+00:00",
+  "platform": "AMD Xilinx ZCU104",
+  "model": "ResNet8 CIFAR-10 hls4ml",
+  "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+  "batch": 1,
+  "subset_images": 5000,
+  "cycles": 20,
+  "timed_inferences_per_scenario": 100000,
+  "warmup": 100,
+  "seed": 20260825,
+  "inference_only": {
+    "latency": {
+      "samples": 100000,
+      "mean_ms": 0.8451455037820339,
+      "median_ms": 0.8456000089645386,
+      "std_ms": 0.014822770201774497,
+      "cv_percent": 1.7538719824506506,
+      "p95_ms": 0.8591600060462952,
+      "p99_ms": 0.8759306108951566,
+      "min_ms": 0.8276100158691406,
+      "max_ms": 4.554210186004639,
+      "cycle_means": {
+        "mean": 0.8451455026865006,
+        "sd": 0.0009529528830675622,
+        "cv_percent": 0.11275607336705569,
+        "ci95_low": 0.8447278603454424,
+        "ci95_high": 0.8455631450275587,
+        "bootstrap_ci95_low": 0.8447519360482693,
+        "bootstrap_ci95_high": 0.8455568114668132,
+        "first5_mean": 0.845909309387207,
+        "last5_mean": 0.8447986721992493,
+        "drift_percent": -0.13129506622432632
+      }
+    },
+    "path_fps": {
+      "mean": 1183.2296380785222,
+      "sd": 1.3335484532790132,
+      "cv_percent": 0.11270411172632538,
+      "ci95_low": 1182.6451954393972,
+      "ci95_high": 1183.8140807176471,
+      "bootstrap_ci95_low": 1182.6562937298145,
+      "bootstrap_ci95_high": 1183.786546288513,
+      "first5_mean": 1182.161351073777,
+      "last5_mean": 1183.7156325059411,
+      "drift_percent": 0.13147794340868182
+    },
+    "effective_fps": {
+      "mean": 901.0840920065248,
+      "sd": 1.3812547830767403,
+      "cv_percent": 0.1532881109909483,
+      "ci95_low": 900.4787415307018,
+      "ci95_high": 901.6894424823478,
+      "bootstrap_ci95_low": 900.4832278362951,
+      "bootstrap_ci95_high": 901.6732192832407,
+      "first5_mean": 900.0366994518296,
+      "last5_mean": 901.8136972762135,
+      "drift_percent": 0.19743615182205174
+    }
+  },
+  "end_to_end": {
+    "latency": {
+      "samples": 100000,
+      "mean_ms": 1.5976999370241165,
+      "median_ms": 1.593000054359436,
+      "std_ms": 0.041180215298286534,
+      "cv_percent": 2.5774686688032924,
+      "p95_ms": 1.6154600381851196,
+      "p99_ms": 1.669924768209455,
+      "min_ms": 1.5728399753570557,
+      "max_ms": 3.8883700370788574,
+      "cycle_means": {
+        "mean": 1.5976999282836915,
+        "sd": 0.002860380622008957,
+        "cv_percent": 0.17903115418435825,
+        "ci95_low": 1.5964463342387818,
+        "ci95_high": 1.598953522328601,
+        "bootstrap_ci95_low": 1.596465989947319,
+        "bootstrap_ci95_high": 1.5989048919081688,
+        "first5_mean": 1.5986770629882812,
+        "last5_mean": 1.5983349561691285,
+        "drift_percent": -0.021399369958634763
+      }
+    },
+    "effective_fps": {
+      "mean": 620.7027794137052,
+      "sd": 1.1053539725903279,
+      "cv_percent": 0.1780810412407703,
+      "ci95_low": 620.2183455775596,
+      "ci95_high": 621.1872132498509,
+      "bootstrap_ci95_low": 620.2307883907247,
+      "bootstrap_ci95_high": 621.1845080311069,
+      "first5_mean": 620.3238577912966,
+      "last5_mean": 620.4545997544662,
+      "drift_percent": 0.021076404127857877
+    }
+  },
+  "saturated": {
+    "fps": {
+      "mean": 1200.9402231905733,
+      "sd": 3.2371184695009956,
+      "cv_percent": 0.2695486758617217,
+      "ci95_low": 1198.697055757196,
+      "ci95_high": 1203.1833906239506,
+      "bootstrap_ci95_low": 1199.0859853898462,
+      "bootstrap_ci95_high": 1203.237847526764,
+      "first5_mean": 1200.648309703625,
+      "last5_mean": 1201.2321366775218,
+      "drift_percent": 0.048625977247314295
+    }
+  },
+  "environment": {
+    "python": "3.10.4 (main, Apr  2 2022, 09:04:19) [GCC 11.2.0]",
+    "numpy": "1.21.5",
+    "pynq": "3.1.1",
+    "kernel": "6.6.10-xilinx-v2024.1-gfc1c20f0a1a9",
+    "bit_sha256": "4e7f65c0fe6cd3356f22a0823b9f39557c550e7150d0c52fb155d406f8344e59",
+    "hwh_sha256": "e9de495557b715ff5036e9202aa76e79b8d0681491e3345b9e3d2d8993f95ca3",
+    "dataset_sha256": "b206f77a57d4a7927e619536d95a3f9f5c64f6ffe8d1a094dddba81bf45296c2"
+  },
+  "methodology": {
+    "outlier_removal": false,
+    "inference_only_latency": "PynqBuffer already contains packed input; timer covers DMA MM2S + accelerator + DMA S2MM + wait.",
+    "effective_fps": "Full wall-time of cycle including input buffer copy, decode, argmax and Python loop.",
+    "saturated_fps": "Same already-packed input repeatedly; only DMA + accelerator + DMA in loop.",
+    "end_to_end": "Normalization + quantization/packing + DMA + accelerator + decode + argmax.",
+    "ci": "95% CI over cycle/window-level observations.",
+    "bootstrap": "10000 bootstrap resamples."
+  }
+}

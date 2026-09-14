@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-09-09T20:18:41.598924+00:00",
+  "benchmark_start_unix": 1788985047.7160757,
+  "benchmark_end_unix": 1788985121.2830322,
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+  "protocol": "METODOLOGIA_BENCHMARK_MLP_IRIS.md + revision for exact stated boundaries",
+  "batch": 1,
+  "serial_synchronous": true,
+  "one_inference_in_flight": true,
+  "warmup": 200,
+  "baseline_seconds": 5.0,
+  "baseline_after_warmup": true,
+  "telemetry_ms": 100,
+  "seed_benchmark": 20260831,
+  "seed_warmup": 1534033285,
+  "samples_per_passage": 30,
+  "outliers_removed": 0,
+  "xmodel_sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+  "test_data_sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+  "reference_sha256": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e",
+  "temperature_preflight": {
+    "ps_temp_c": 44.421979122672,
+    "remote_temp_c": 45.649878475608,
+    "pl_temp_c": 43.271794918656
+  },
+  "temperature_after_warmup": {
+    "ps_temp_c": 44.468608212024,
+    "remote_temp_c": 44.26654882483199,
+    "pl_temp_c": 43.83134399088
+  },
+  "temperature_after_benchmark": {
+    "ps_temp_c": 43.675913693039995,
+    "remote_temp_c": 45.261302731008,
+    "pl_temp_c": 44.872726986408004
+  },
+  "timing_boundaries": {
+    "accelerator": "INT8 input copied to persistent DPU buffer before t0; t0 -> runner.execute_async + runner.wait -> t1; excludes input copy, output copy, dequantization, softmax and argmax",
+    "device_call": "normalized input -> input quantization -> DPU execute/wait -> output dequantization",
+    "application_end_to_end": "normalized input -> input quantization -> DPU -> dequantization -> software softmax -> argmax",
+    "standard_scaler_inside_application_e2e": false,
+    "softmax_inside_application_e2e": true
+  },
+  "xdputil_query_before_runner": {
+    "command": [
+      "xdputil",
+      "query"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"DPU IP Spec\":{\n        \"DPU Core Count\":2,\n        \"IP version\":\"v4.1.0\",\n        \"generation timestamp\":\"2022-12-06 16-30-00\",\n        \"git commit id\":\"8a36f42\",\n        \"git commit time\":2022120616,\n        \"regmap\":\"1to1 version\"\n    },\n    \"VAI Version\":{\n        \"libvaip-core.so\":\"Xilinx vaip Version: 1.0.0-a176db67b19f94b0a31f9d24ef80322efe4494ad  2022-12-26-13:22:58 \",\n        \"libvart-runner.so\":\"Xilinx vart-runner Version: 3.0.0-2efa5fe1e56c2b2c8a7e71e9fc1636242dd50a9f  2022-12-26-13:01:39 \",\n        \"libvitis_ai_library-dpu_task.so\":\"Xilinx vitis_ai_library dpu_task Version: 3.0.0-1cccff04dc341c4a6287226828f90aed56005f4f  2022-12-20 10:29:01 [UTC] \",\n        \"libxir.so\":\"Xilinx xir Version: xir-9204ac72103092a7b253a0c23ec7471481656940 2022-12-26-12:56:35\",\n        \"target_factory\":\"target-factory.3.0.0 860ed0499ab009084e2df3004eeb9ae710c26351\"\n    },\n    \"kernels\":[\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80000000\",\n            \"cu_handle\":\"0xaaab034f3aa0\",\n            \"cu_idx\":0,\n            \"cu_mask\":2,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_1\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 0\"\n        },\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80001000\",\n            \"cu_handle\":\"0xaaab034f33d0\",\n            \"cu_idx\":1,\n            \"cu_mask\":1,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_2\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 1\"\n        }\n    ]\n}\n"
+  },
+  "xdputil_status_after": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": null,
+    "output": "TimeoutExpired(['xdputil', 'status'], 60)"
+  }
+}

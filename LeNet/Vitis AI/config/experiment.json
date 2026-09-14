@@ -1,0 +1,23 @@
+{
+  "experiment": "lenet_mnist_no_softmax_vitis_ai",
+  "date_started": "2026-09-03",
+  "target_board": "AMD/Xilinx ZCU104",
+  "vitis_ai_version": "3.5",
+  "docker_image": "xilinx/vitis-ai-tensorflow2-cpu:ubuntu2004-3.5.0.300",
+  "framework": "TensorFlow 2.12 / Keras 2",
+  "quantization": "PTQ INT8 pof2s",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "arch": "config/arch_zcu104_vai3.5.json",
+  "source_model": "models/float/lenet_mnist_keras3_no_softmax.h5",
+  "keras2_model": "models/float/lenet_mnist_keras2_vai3_5_no_softmax.h5",
+  "quantized_model": "artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+  "calibration_samples": 10000,
+  "calibration_source": "MNIST training split",
+  "calibration_selection": "1000 images per class without replacement",
+  "test_samples": 10000,
+  "input_shape": [1, 28, 28, 1],
+  "input_preprocessing": "uint8 to float32, divide by 255.0",
+  "seed": 20260825,
+  "softmax": false,
+  "important_constraint": "The XModel is valid only for a DPU matching the target fingerprint."
+}

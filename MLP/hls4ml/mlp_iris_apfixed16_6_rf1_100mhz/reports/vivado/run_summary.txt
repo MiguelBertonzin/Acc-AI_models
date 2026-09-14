@@ -1,0 +1,6 @@
+part=xczu7ev-ffvc1156-2-e
+top=mlp_iris
+clock_period_ns=10.0
+wns_ns=2.886
+data_path_delay_ns=7.094
+requirement_ns=10.000

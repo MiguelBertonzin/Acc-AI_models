@@ -1,0 +1,41 @@
+{
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+  "machine": "aarch64",
+  "python": "3.9.9 (main, Nov 15 2021, 18:05:17) \n[GCC 11.2.0]",
+  "imports": {
+    "xir": {
+      "available": true,
+      "version": null,
+      "path": "/usr/lib/python3.9/site-packages/xir.so"
+    },
+    "vart": {
+      "available": true,
+      "version": null,
+      "path": "/usr/lib/python3.9/site-packages/vart.so"
+    }
+  },
+  "xdputil_query": {
+    "command": [
+      "xdputil",
+      "query"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"DPU IP Spec\":{\n        \"DPU Core Count\":2,\n        \"IP version\":\"v4.1.0\",\n        \"generation timestamp\":\"2022-12-06 16-30-00\",\n        \"git commit id\":\"8a36f42\",\n        \"git commit time\":2022120616,\n        \"regmap\":\"1to1 version\"\n    },\n    \"VAI Version\":{\n        \"libvaip-core.so\":\"Xilinx vaip Version: 1.0.0-a176db67b19f94b0a31f9d24ef80322efe4494ad  2022-12-26-13:22:58 \",\n        \"libvart-runner.so\":\"Xilinx vart-runner Version: 3.0.0-2efa5fe1e56c2b2c8a7e71e9fc1636242dd50a9f  2022-12-26-13:01:39 \",\n        \"libvitis_ai_library-dpu_task.so\":\"Xilinx vitis_ai_library dpu_task Version: 3.0.0-1cccff04dc341c4a6287226828f90aed56005f4f  2022-12-20 10:29:01 [UTC] \",\n        \"libxir.so\":\"Xilinx xir Version: xir-9204ac72103092a7b253a0c23ec7471481656940 2022-12-26-12:56:35\",\n        \"target_factory\":\"target-factory.3.0.0 860ed0499ab009084e2df3004eeb9ae710c26351\"\n    },\n    \"kernels\":[\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80000000\",\n            \"cu_handle\":\"0xaaab04e64050\",\n            \"cu_idx\":0,\n            \"cu_mask\":2,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_1\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 0\"\n        },\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80001000\",\n            \"cu_handle\":\"0xaaab04e7acc0\",\n            \"cu_idx\":1,\n            \"cu_mask\":1,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_2\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 1\"\n        }\n    ]\n}\n"
+  },
+  "xdputil_status": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x0\",\n                \"dpu0_base_addr_1\":\"0x0\",\n                \"dpu0_base_addr_2\":\"0x0\",\n                \"dpu0_base_addr_3\":\"0x0\",\n                \"dpu0_base_addr_4\":\"0x0\",\n                \"dpu0_base_addr_5\":\"0x0\",\n                \"dpu0_base_addr_6\":\"0x0\",\n                \"dpu0_base_addr_7\":\"0x0\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x0\",\n                \"AP status\":\"idle\",\n                \"CONV END\":0,\n                \"CONV START\":0,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":0,\n                \"LOAD START\":0,\n                \"MISC END\":0,\n                \"MISC START\":0,\n                \"SAVE END\":0,\n                \"SAVE START\":0\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x0\",\n                \"dpu0_base_addr_1\":\"0x0\",\n                \"dpu0_base_addr_2\":\"0x0\",\n                \"dpu0_base_addr_3\":\"0x0\",\n                \"dpu0_base_addr_4\":\"0x0\",\n                \"dpu0_base_addr_5\":\"0x0\",\n                \"dpu0_base_addr_6\":\"0x0\",\n                \"dpu0_base_addr_7\":\"0x0\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x0\",\n                \"AP status\":\"idle\",\n                \"CONV END\":0,\n                \"CONV START\":0,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":0,\n                \"LOAD START\":0,\n                \"MISC END\":0,\n                \"MISC START\":0,\n                \"SAVE END\":0,\n                \"SAVE START\":0\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "uname": {
+    "command": [
+      "uname",
+      "-a"
+    ],
+    "returncode": 0,
+    "output": "Linux xilinx-zcu104-20222 5.15.36-xilinx-v2022.2 #1 SMP Mon Oct 3 07:50:07 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux\n"
+  }
+}

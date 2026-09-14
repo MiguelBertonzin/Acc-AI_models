@@ -1,0 +1,5 @@
+{
+  "captured_unix_s": 1788898555.4830937,
+  "warning": "Valores são brutos. Confirme datasheet/driver, unidade, escala, trilho e escopo antes de energia.",
+  "sensors": []
+}

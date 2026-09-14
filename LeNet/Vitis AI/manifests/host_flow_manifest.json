@@ -1,0 +1,250 @@
+{
+  "root": "/workspace",
+  "files": [
+    {
+      "path": "HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt",
+      "bytes": 31896,
+      "sha256": "f6c67f208856d86c220249a19ff1f81c16cd0507f5fbb55d9b0ec32d47e93f91"
+    },
+    {
+      "path": "README.md",
+      "bytes": 17554,
+      "sha256": "97581b090ab4e3673db51546f25795d68c4cca851b25c1b8819c6830b44d9ba2"
+    },
+    {
+      "path": "artifacts/compiled/lenet_mnist_zcu104_vai3_5/lenet_mnist_no_softmax.xmodel",
+      "bytes": 171444,
+      "sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5"
+    },
+    {
+      "path": "artifacts/compiled/lenet_mnist_zcu104_vai3_5/md5sum.txt",
+      "bytes": 33,
+      "sha256": "26a35ad15134859d699eba870af676613e919c508fc0afeea35de6f2f98db9fc"
+    },
+    {
+      "path": "artifacts/compiled/lenet_mnist_zcu104_vai3_5/meta.json",
+      "bytes": 180,
+      "sha256": "a3afd94b269f912e1312b0b17e56614c4c1ec0c38c9acadc956e4d997fd2b37f"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/00_inspect_dpu.py",
+      "bytes": 1740,
+      "sha256": "304e8de9519ecddbaa8a1865b9f7ec811adf2cd41cbf0228125283d9ade03912"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/01_smoke_inference.py",
+      "bytes": 3991,
+      "sha256": "bdf42ecf67fc02e68d28d7d3c8a8212d935669bc6cb7e153c2b81d4de3e698b6"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/02_validate_accuracy.py",
+      "bytes": 4697,
+      "sha256": "a8755dcfc120b05089448be11ba953b19d3c581150e804d60af33a312000e2ee"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/MANIFEST.json",
+      "bytes": 1370,
+      "sha256": "518df9138dfb1d9a72b0f0868fe32731d7cf0786eb6f76f0be0e87467eb031f0"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/SHA256SUMS.txt",
+      "bytes": 708,
+      "sha256": "4a45f7e26eb573e2a1dff8a3d68f0ff6801c3fca835c0c887fe454152e0df8a1"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/arch_zcu104_vai3.5.json",
+      "bytes": 39,
+      "sha256": "ed133f86ad4e2942ff3eacdabf42153bb4c6a0a95014deac4e30611298acf923"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/lenet_mnist_no_softmax.xmodel",
+      "bytes": 171444,
+      "sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/mnist_test_uint8.npz",
+      "bytes": 1657009,
+      "sha256": "be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd"
+    },
+    {
+      "path": "artifacts/deploy/lenet_mnist_zcu104_vai3_5/quantized_test_outputs.npz",
+      "bytes": 149939,
+      "sha256": "cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32"
+    },
+    {
+      "path": "artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+      "bytes": 259104,
+      "sha256": "3412600f3ea4abad6f7cc6487b462e1d79121b1ce34097220bdb7a1060911421"
+    },
+    {
+      "path": "board/00_inspect_dpu.py",
+      "bytes": 1740,
+      "sha256": "304e8de9519ecddbaa8a1865b9f7ec811adf2cd41cbf0228125283d9ade03912"
+    },
+    {
+      "path": "board/01_smoke_inference.py",
+      "bytes": 3991,
+      "sha256": "bdf42ecf67fc02e68d28d7d3c8a8212d935669bc6cb7e153c2b81d4de3e698b6"
+    },
+    {
+      "path": "board/02_validate_accuracy.py",
+      "bytes": 4697,
+      "sha256": "a8755dcfc120b05089448be11ba953b19d3c581150e804d60af33a312000e2ee"
+    },
+    {
+      "path": "config/arch_zcu104_vai3.5.json",
+      "bytes": 39,
+      "sha256": "ed133f86ad4e2942ff3eacdabf42153bb4c6a0a95014deac4e30611298acf923"
+    },
+    {
+      "path": "config/experiment.json",
+      "bytes": 1018,
+      "sha256": "c56dffef031d5243d4be11f9b8fe0985aae77f2715c08ed94bd12b8bae2235f7"
+    },
+    {
+      "path": "data/prepared/keras3_conversion_probe.npz",
+      "bytes": 78684,
+      "sha256": "fc708d3fab31a5263c04016255daa5684a59abc2173471ce947b4e0ad5aeb6e3"
+    },
+    {
+      "path": "data/prepared/mnist_calibration_train_uint8.npz",
+      "bytes": 1680888,
+      "sha256": "a2f4fb0aa43ea1415f01bcb291812cadc3979573ad322884da112f592185e650"
+    },
+    {
+      "path": "data/prepared/mnist_test_uint8.npz",
+      "bytes": 1657009,
+      "sha256": "be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd"
+    },
+    {
+      "path": "docker/run_vai.sh",
+      "bytes": 1022,
+      "sha256": "4cbc21211ceab1b894f4674ac0d78008eb2451e9df08ab687ffa95d42857b6a1"
+    },
+    {
+      "path": "logs/compiler/compile_lenet_mnist.log",
+      "bytes": 2470,
+      "sha256": "9bd72a939af01c811355ce8f756a71aa676d9dbf347d8b88f82c621d60c3d2b3"
+    },
+    {
+      "path": "models/float/lenet_mnist_keras2_vai3_5_no_softmax.h5",
+      "bytes": 203496,
+      "sha256": "8dea58ecbe193e25058fda3327c1f47cf06b3003e48f6a880ad6233e6ef1e22e"
+    },
+    {
+      "path": "models/float/lenet_mnist_keras3_no_softmax.h5",
+      "bytes": 206696,
+      "sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c"
+    },
+    {
+      "path": "reports/compilation.json",
+      "bytes": 1188,
+      "sha256": "efe8ef184c6e35a1490d86c38fe5165ef558071520fd792eccc1e81c1b00cc9a"
+    },
+    {
+      "path": "reports/float_validation.json",
+      "bytes": 3509,
+      "sha256": "2807a85d5cb4d31882895f5b2e7034ee258e1b781a29d88204d19b35956f18e7"
+    },
+    {
+      "path": "reports/keras2_conversion.json",
+      "bytes": 2392,
+      "sha256": "7c6df8bf59d08dd6e22568ba057466ef7205df7ad8167fbaf066ae44c9f07ec8"
+    },
+    {
+      "path": "reports/keras3_reference.json",
+      "bytes": 566,
+      "sha256": "c9793cc370798cefca56a00d59f27136b1ae0b8fcb8a3b8146780e99516040a2"
+    },
+    {
+      "path": "reports/mnist_preparation.json",
+      "bytes": 1138,
+      "sha256": "c0f622f904c8bc2cd687087c33a4f6703a4d04cece03fbe48d7108318cbc6b4d"
+    },
+    {
+      "path": "reports/quantization.json",
+      "bytes": 1161,
+      "sha256": "fc770f247b98148a5a865ce556f089bca2fe64c3aa56e443b8007c3419cfe993"
+    },
+    {
+      "path": "reports/quantized_validation.json",
+      "bytes": 3454,
+      "sha256": "60f28ef18925036e49faff3dddf91622d9c30a1c38355d6ed9234513938d145a"
+    },
+    {
+      "path": "reports/xmodel_inspection.json",
+      "bytes": 1680,
+      "sha256": "86cec491cefc9c8d5148c9ad048ca8dd4c3ef70804a879e06711c60c25943247"
+    },
+    {
+      "path": "results/float_test_outputs.npz",
+      "bytes": 385290,
+      "sha256": "891e982e0ed33ff74070334afe19def7f29c2eadfcaa0ee65deeb5482cf1306e"
+    },
+    {
+      "path": "results/quantized_test_outputs.npz",
+      "bytes": 149939,
+      "sha256": "cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32"
+    },
+    {
+      "path": "run_full_flow.sh",
+      "bytes": 759,
+      "sha256": "cae608aaf424913c35b3e12861b91ccc1c49ca9ad3c52b6358ef35ac0109e737"
+    },
+    {
+      "path": "scripts/00_export_keras3_reference.py",
+      "bytes": 2914,
+      "sha256": "da10758e9267f984796b3cb84dbd3e2b12a4443b970efe0bc8ccf1a869ab3267"
+    },
+    {
+      "path": "scripts/01_rebuild_keras2_model.py",
+      "bytes": 4810,
+      "sha256": "9ae3f4b9d8655d8385ce948ab18aa55c0230147c0d5f2692fe32eb5f0f971f40"
+    },
+    {
+      "path": "scripts/02_prepare_mnist.py",
+      "bytes": 3506,
+      "sha256": "5f8b2d3c234b78dbd7386d685a257f4a963e6f2a00c2aa6534878396b270aa04"
+    },
+    {
+      "path": "scripts/03_validate_float_model.py",
+      "bytes": 3448,
+      "sha256": "1954ee0fd6e571c90f2128406eec3cfeb1b21a8341dcb49156afa6f5dcf10677"
+    },
+    {
+      "path": "scripts/04_quantize_ptq.py",
+      "bytes": 3270,
+      "sha256": "ec3b3e64655157d5b6b2dffb48740b9cbf0f5054e59b8d53c02aea752d2b0b32"
+    },
+    {
+      "path": "scripts/05_validate_quantized_model.py",
+      "bytes": 4958,
+      "sha256": "d3ef0c540de1aa8721e2316c36bd192f44910a656a3ad4744c133dd6a48017d0"
+    },
+    {
+      "path": "scripts/06_compile_xmodel.py",
+      "bytes": 2811,
+      "sha256": "19456986a179ec612e229704585342eb137f0e8f00a0eef504204ffa296e6bd1"
+    },
+    {
+      "path": "scripts/07_inspect_xmodel.py",
+      "bytes": 2263,
+      "sha256": "ee425e3571b481fa2f3ad5368e7a2e78bcb821564f17722030e0eb34435bcb69"
+    },
+    {
+      "path": "scripts/08_package_deploy.py",
+      "bytes": 2516,
+      "sha256": "654d0e0f10a9ed5bfbcdaae753ef25c957d79635a776b56bdab878f856518e9d"
+    },
+    {
+      "path": "scripts/09_generate_manifest.py",
+      "bytes": 1746,
+      "sha256": "31c068900abc585c97f0fcff079b552fc669b52b4f19e6e9a760c74abd837d98"
+    },
+    {
+      "path": "scripts/common.py",
+      "bytes": 710,
+      "sha256": "e9a9ceedfad49682c9c133d906212f5bd2f9bf46140d64cab3dabf8907ac5110"
+    }
+  ]
+}

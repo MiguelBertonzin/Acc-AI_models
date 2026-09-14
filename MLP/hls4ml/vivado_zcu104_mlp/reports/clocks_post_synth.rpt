@@ -1,0 +1,46 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date              : Fri Sep  4 15:02:03 2026
+| Host              : ubuntu running 64-bit Ubuntu 24.04.3 LTS
+| Command           : report_clocks -file {/home/miguel/Downloads/Plano testes TCC/MLP/hls4ml/vivado_zcu104_mlp/reports/clocks_post_synth.rpt}
+| Design            : mlp_iris_bd_wrapper
+| Device            : xczu7ev-ffvc1156
+| Speed File        : -2  PRODUCTION 1.30 05-15-2022
+| Design State      : Synthesized
+| Temperature Grade : E
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+Clock Report
+
+
+Attributes
+  P: Propagated
+  G: Generated
+  A: Auto-derived
+  R: Renamed
+  V: Virtual
+  I: Inverted
+  S: Pin phase-shifted with Latency mode
+
+Clock     Period(ns)  Waveform(ns)   Attributes  Sources
+clk_pl_0  10.000      {0.000 5.000}  P           {mlp_iris_bd_i/zynq_ultra_ps_e_0/inst/PS8_i/PLCLK[0]}
+
+
+====================================================
+Generated Clocks
+====================================================
+
+
+
+====================================================
+User Uncertainty
+====================================================
+
+
+
+====================================================
+User Jitter
+====================================================
+
+

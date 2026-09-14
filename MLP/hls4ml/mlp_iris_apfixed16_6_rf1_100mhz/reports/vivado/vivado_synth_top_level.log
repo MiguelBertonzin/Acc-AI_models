@@ -1,0 +1,1236 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Thu Sep  3 14:51:45 2026
+# Process ID         : 80269
+# Current directory  : /tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W
+# Command line       : vivado -mode batch -source vivado_synth.tcl -nojournal -log vivado_synth.log
+# Log file           : /tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/vivado_synth.log
+# Journal file       : 
+# Running On         : ubuntu
+# Platform           : Ubuntu
+# Operating System   : Ubuntu 24.04.3 LTS
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700
+# CPU Frequency      : 1383.724 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 16434 MB
+# Swap memory        : 25769 MB
+# Total Virtual      : 42204 MB
+# Available Virtual  : 37573 MB
+#-----------------------------------------------------------
+source vivado_synth.tcl
+# set tcldir [file dirname [info script]]
+# source [file join $tcldir project.tcl]
+## variable project_name
+## set project_name "mlp_iris"
+## variable backend
+## set backend "vitis"
+## variable part
+## set part "xczu7ev-ffvc1156-2-e"
+## variable clock_period
+## set clock_period 10
+## variable clock_uncertainty
+## set clock_uncertainty 27%
+## variable version
+## set version "1.0.0"
+## variable maximum_size
+## set maximum_size 4096
+# add_files ${project_name}_prj/solution1/syn/verilog
+# synth_design -top ${project_name} -part $part
+Command: synth_design -top mlp_iris -part xczu7ev-ffvc1156-2-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 80292
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1803.141 ; gain = 325.840 ; free physical = 278 ; free virtual = 34928
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_11ns_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_11ns_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 11 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_11ns_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_11ns_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_10s_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_10s_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 10 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_10s_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_10s_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_8ns_24_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_8ns_24_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 8 - type: integer 
+	Parameter dout_WIDTH bound to: 24 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_8ns_24_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_8ns_24_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_10ns_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_10ns_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 10 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_10ns_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_10ns_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_9s_25_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_9s_25_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 9 - type: integer 
+	Parameter dout_WIDTH bound to: 25 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_9s_25_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_9s_25_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_9ns_25_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_9ns_25_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 9 - type: integer 
+	Parameter dout_WIDTH bound to: 25 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_9ns_25_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_9ns_25_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_11s_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_11s_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 11 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_11s_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_11s_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_12s_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_12s_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 12 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_12s_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_12s_26_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_8s_24_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_8s_24_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 8 - type: integer 
+	Parameter dout_WIDTH bound to: 24 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_8s_24_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_8s_24_1_1.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_7s_23_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_7s_23_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 7 - type: integer 
+	Parameter dout_WIDTH bound to: 23 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_7s_23_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_7s_23_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_16s_12ns_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_12ns_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 16 - type: integer 
+	Parameter din1_WIDTH bound to: 12 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_16s_12ns_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_16s_12ns_26_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s.v:9]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.v:7]
+	Parameter DataWidth bound to: 11 - type: integer 
+	Parameter AddressWidth bound to: 10 - type: integer 
+	Parameter AddressRange bound to: 1024 - type: integer 
+INFO: [Synth 8-3876] $readmem data file './mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.dat' is read successfully [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.v:40]
+INFO: [Synth 8-3876] $readmem data file './mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.dat' is read successfully [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb.v:7]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud.v:7]
+	Parameter DataWidth bound to: 18 - type: integer 
+	Parameter AddressWidth bound to: 10 - type: integer 
+	Parameter AddressRange bound to: 1024 - type: integer 
+INFO: [Synth 8-3876] $readmem data file './mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud.dat' is read successfully [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud.v:28]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud.v:7]
+INFO: [Synth 8-6157] synthesizing module 'mlp_iris_mul_18s_11ns_26_1_1' [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_18s_11ns_26_1_1.v:5]
+	Parameter ID bound to: 1 - type: integer 
+	Parameter NUM_STAGE bound to: 1 - type: integer 
+	Parameter din0_WIDTH bound to: 18 - type: integer 
+	Parameter din1_WIDTH bound to: 11 - type: integer 
+	Parameter dout_WIDTH bound to: 26 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_mul_18s_11ns_26_1_1' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_mul_18s_11ns_26_1_1.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'mlp_iris' (0#1) [/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/mlp_iris_prj/solution1/syn/verilog/mlp_iris.v:9]
+WARNING: [Synth 8-7129] Port reset in module mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1883.078 ; gain = 405.777 ; free physical = 285 ; free virtual = 34826
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1900.891 ; gain = 423.590 ; free physical = 283 ; free virtual = 34824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvc1156-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1917.801 ; gain = 440.500 ; free physical = 275 ; free virtual = 34816
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1917.801 ; gain = 440.500 ; free physical = 256 ; free virtual = 34806
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input   26 Bit       Adders := 6     
+	   3 Input   25 Bit       Adders := 1     
+	   3 Input   23 Bit       Adders := 5     
+	   3 Input   22 Bit       Adders := 1     
+	   5 Input   16 Bit       Adders := 5     
+	   4 Input   16 Bit       Adders := 3     
+	   9 Input   16 Bit       Adders := 6     
+	   8 Input   16 Bit       Adders := 4     
+	   7 Input   16 Bit       Adders := 1     
+	   2 Input   15 Bit       Adders := 6     
+	   3 Input   15 Bit       Adders := 3     
+	   2 Input   14 Bit       Adders := 2     
+	   3 Input   12 Bit       Adders := 1     
++---XORs : 
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	               64 Bit    Registers := 1     
+	               16 Bit    Registers := 19    
+	               15 Bit    Registers := 1     
+	               11 Bit    Registers := 6     
+	                1 Bit    Registers := 12    
++---ROMs : 
+	                    ROMs := 4     
++---Muxes : 
+	   2 Input   64 Bit        Muxes := 1     
+	   2 Input   16 Bit        Muxes := 1     
+	   2 Input   15 Bit        Muxes := 17    
+	   2 Input    1 Bit        Muxes := 3     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U2/tmp_product, operation Mode is: A*(B:0x3fe11).
+DSP Report: operator mul_16s_10s_26_1_1_U2/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U2/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U25/tmp_product, operation Mode is: A*(B:0x3d7).
+DSP Report: operator mul_16s_11ns_26_1_1_U25/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U25/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U6/tmp_product, operation Mode is: A*(B:0x178).
+DSP Report: operator mul_16s_10ns_26_1_1_U6/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U6/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U1/tmp_product, operation Mode is: A*(B:0x31d).
+DSP Report: operator mul_16s_11ns_26_1_1_U1/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U1/tmp_product.
+DSP Report: Generating DSP mul_16s_8s_24_1_1_U26/tmp_product, operation Mode is: A*(B:0x3ff89).
+DSP Report: operator mul_16s_8s_24_1_1_U26/tmp_product is absorbed into DSP mul_16s_8s_24_1_1_U26/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U12/tmp_product, operation Mode is: A*(B:0x32d).
+DSP Report: operator mul_16s_11ns_26_1_1_U12/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U12/tmp_product.
+DSP Report: Generating DSP mul_16s_12s_26_1_1_U23/tmp_product, operation Mode is: A*(B:0x3fb72).
+DSP Report: operator mul_16s_12s_26_1_1_U23/tmp_product is absorbed into DSP mul_16s_12s_26_1_1_U23/tmp_product.
+DSP Report: Generating DSP mul_16s_9s_25_1_1_U15/tmp_product, operation Mode is: A*(B:0x3ff4a).
+DSP Report: operator mul_16s_9s_25_1_1_U15/tmp_product is absorbed into DSP mul_16s_9s_25_1_1_U15/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U14/tmp_product, operation Mode is: A*(B:0x36f).
+DSP Report: operator mul_16s_11ns_26_1_1_U14/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U14/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U5/tmp_product, operation Mode is: A*(B:0x72).
+DSP Report: operator mul_16s_8ns_24_1_1_U5/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U5/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U7/tmp_product, operation Mode is: A*(B:0x3a9).
+DSP Report: operator mul_16s_11ns_26_1_1_U7/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U7/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U3/tmp_product, operation Mode is: A*(B:0x3fe4a).
+DSP Report: operator mul_16s_10s_26_1_1_U3/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U3/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U24/tmp_product, operation Mode is: A*(B:0x3fe95).
+DSP Report: operator mul_16s_10s_26_1_1_U24/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U24/tmp_product.
+DSP Report: Generating DSP mul_16s_7s_23_1_1_U28/tmp_product, operation Mode is: A*(B:0x3ffdd).
+DSP Report: operator mul_16s_7s_23_1_1_U28/tmp_product is absorbed into DSP mul_16s_7s_23_1_1_U28/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U9/tmp_product, operation Mode is: A*(B:0x3fe1a).
+DSP Report: operator mul_16s_10s_26_1_1_U9/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U9/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U27/tmp_product, operation Mode is: A*(B:0x270).
+DSP Report: operator mul_16s_11ns_26_1_1_U27/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U27/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U17/tmp_product, operation Mode is: A*(B:0x16c).
+DSP Report: operator mul_16s_10ns_26_1_1_U17/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U17/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U18/tmp_product, operation Mode is: A*(B:0x3fd2c).
+DSP Report: operator mul_16s_11s_26_1_1_U18/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U18/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U20/tmp_product, operation Mode is: A*(B:0x3fec7).
+DSP Report: operator mul_16s_10s_26_1_1_U20/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U20/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U8/tmp_product, operation Mode is: A*(B:0x123).
+DSP Report: operator mul_16s_10ns_26_1_1_U8/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U8/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U4/tmp_product, operation Mode is: A*(B:0x3fe96).
+DSP Report: operator mul_16s_10s_26_1_1_U4/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U4/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U13/tmp_product, operation Mode is: A*(B:0x1af).
+DSP Report: operator mul_16s_10ns_26_1_1_U13/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U13/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U11/tmp_product, operation Mode is: A*(B:0x3feb9).
+DSP Report: operator mul_16s_10s_26_1_1_U11/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U11/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U10/tmp_product, operation Mode is: A*(B:0x360).
+DSP Report: operator mul_16s_11ns_26_1_1_U10/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U10/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U16/tmp_product, operation Mode is: A*(B:0xb8).
+DSP Report: operator mul_16s_9ns_25_1_1_U16/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U16/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U21/tmp_product, operation Mode is: A*(B:0x3fe89).
+DSP Report: operator mul_16s_10s_26_1_1_U21/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U21/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U19/tmp_product, operation Mode is: A*(B:0x3fefb).
+DSP Report: operator mul_16s_10s_26_1_1_U19/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U19/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U22/tmp_product, operation Mode is: A*(B:0x3fee3).
+DSP Report: operator mul_16s_10s_26_1_1_U22/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U22/tmp_product.
+DSP Report: Generating DSP mul_16s_12ns_26_1_1_U90/tmp_product, operation Mode is: A*(B:0x43e).
+DSP Report: operator mul_16s_12ns_26_1_1_U90/tmp_product is absorbed into DSP mul_16s_12ns_26_1_1_U90/tmp_product.
+DSP Report: Generating DSP mul_16s_8s_24_1_1_U51/tmp_product, operation Mode is: A*(B:0x3ff87).
+DSP Report: operator mul_16s_8s_24_1_1_U51/tmp_product is absorbed into DSP mul_16s_8s_24_1_1_U51/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U100/tmp_product, operation Mode is: A*(B:0xb6).
+DSP Report: operator mul_16s_9ns_25_1_1_U100/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U100/tmp_product.
+DSP Report: Generating DSP mul_16s_8s_24_1_1_U82/tmp_product, operation Mode is: A*(B:0x3ff9a).
+DSP Report: operator mul_16s_8s_24_1_1_U82/tmp_product is absorbed into DSP mul_16s_8s_24_1_1_U82/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U98/tmp_product, operation Mode is: A*(B:0x243).
+DSP Report: operator mul_16s_11ns_26_1_1_U98/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U98/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U86/tmp_product, operation Mode is: A*(B:0x3fdb6).
+DSP Report: operator mul_16s_11s_26_1_1_U86/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U86/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U78/tmp_product, operation Mode is: A*(B:0x2e5).
+DSP Report: operator mul_16s_11ns_26_1_1_U78/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U78/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U99/tmp_product, operation Mode is: A*(B:0x14e).
+DSP Report: operator mul_16s_10ns_26_1_1_U99/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U99/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U59/tmp_product, operation Mode is: A*(B:0x4e).
+DSP Report: operator mul_16s_8ns_24_1_1_U59/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U59/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U61/tmp_product, operation Mode is: A*(B:0xd1).
+DSP Report: operator mul_16s_9ns_25_1_1_U61/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U61/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U80/tmp_product, operation Mode is: A*(B:0x217).
+DSP Report: operator mul_16s_11ns_26_1_1_U80/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U80/tmp_product.
+DSP Report: Generating DSP mul_16s_8s_24_1_1_U49/tmp_product, operation Mode is: A*(B:0x3ff96).
+DSP Report: operator mul_16s_8s_24_1_1_U49/tmp_product is absorbed into DSP mul_16s_8s_24_1_1_U49/tmp_product.
+DSP Report: Generating DSP mul_16s_9s_25_1_1_U96/tmp_product, operation Mode is: A*(B:0x3ff51).
+DSP Report: operator mul_16s_9s_25_1_1_U96/tmp_product is absorbed into DSP mul_16s_9s_25_1_1_U96/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U74/tmp_product, operation Mode is: A*(B:0x337).
+DSP Report: operator mul_16s_11ns_26_1_1_U74/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U74/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U64/tmp_product, operation Mode is: A*(B:0xf4).
+DSP Report: operator mul_16s_9ns_25_1_1_U64/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U64/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U54/tmp_product, operation Mode is: A*(B:0x3fd19).
+DSP Report: operator mul_16s_11s_26_1_1_U54/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U54/tmp_product.
+DSP Report: Generating DSP mul_16s_8s_24_1_1_U75/tmp_product, operation Mode is: A*(B:0x3ffb2).
+DSP Report: operator mul_16s_8s_24_1_1_U75/tmp_product is absorbed into DSP mul_16s_8s_24_1_1_U75/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U73/tmp_product, operation Mode is: A*(B:0x3fdfd).
+DSP Report: operator mul_16s_11s_26_1_1_U73/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U73/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U60/tmp_product, operation Mode is: A*(B:0x230).
+DSP Report: operator mul_16s_11ns_26_1_1_U60/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U60/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U83/tmp_product, operation Mode is: A*(B:0x3fe52).
+DSP Report: operator mul_16s_10s_26_1_1_U83/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U83/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U84/tmp_product, operation Mode is: A*(B:0x9a).
+DSP Report: operator mul_16s_9ns_25_1_1_U84/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U84/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U67/tmp_product, operation Mode is: A*(B:0xa1).
+DSP Report: operator mul_16s_9ns_25_1_1_U67/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U67/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U70/tmp_product, operation Mode is: A*(B:0x3fde3).
+DSP Report: operator mul_16s_11s_26_1_1_U70/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U70/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U95/tmp_product, operation Mode is: A*(B:0x29a).
+DSP Report: operator mul_16s_11ns_26_1_1_U95/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U95/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U97/tmp_product, operation Mode is: A*(B:0x6b).
+DSP Report: operator mul_16s_8ns_24_1_1_U97/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U97/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U53/tmp_product, operation Mode is: A*(B:0x274).
+DSP Report: operator mul_16s_11ns_26_1_1_U53/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U53/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U48/tmp_product, operation Mode is: A*(B:0x1e2).
+DSP Report: operator mul_16s_10ns_26_1_1_U48/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U48/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U65/tmp_product, operation Mode is: A*(B:0x3fd0a).
+DSP Report: operator mul_16s_11s_26_1_1_U65/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U65/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U93/tmp_product, operation Mode is: A*(B:0x4c).
+DSP Report: operator mul_16s_8ns_24_1_1_U93/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U93/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U76/tmp_product, operation Mode is: A*(B:0x3fe2b).
+DSP Report: operator mul_16s_10s_26_1_1_U76/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U76/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U89/tmp_product, operation Mode is: A*(B:0x251).
+DSP Report: operator mul_16s_11ns_26_1_1_U89/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U89/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U101/tmp_product, operation Mode is: A*(B:0x25c).
+DSP Report: operator mul_16s_11ns_26_1_1_U101/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U101/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U71/tmp_product, operation Mode is: A*(B:0x2f1).
+DSP Report: operator mul_16s_11ns_26_1_1_U71/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U71/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U55/tmp_product, operation Mode is: A*(B:0x6c).
+DSP Report: operator mul_16s_8ns_24_1_1_U55/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U55/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U62/tmp_product, operation Mode is: A*(B:0x3fe1a).
+DSP Report: operator mul_16s_10s_26_1_1_U62/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U62/tmp_product.
+DSP Report: Generating DSP mul_16s_7s_23_1_1_U85/tmp_product, operation Mode is: A*(B:0x3ffd3).
+DSP Report: operator mul_16s_7s_23_1_1_U85/tmp_product is absorbed into DSP mul_16s_7s_23_1_1_U85/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U63/tmp_product, operation Mode is: A*(B:0x8d).
+DSP Report: operator mul_16s_9ns_25_1_1_U63/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U63/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U79/tmp_product, operation Mode is: A*(B:0x2ad).
+DSP Report: operator mul_16s_11ns_26_1_1_U79/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U79/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U92/tmp_product, operation Mode is: A*(B:0x3fd70).
+DSP Report: operator mul_16s_11s_26_1_1_U92/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U92/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U87/tmp_product, operation Mode is: A*(B:0x1bb).
+DSP Report: operator mul_16s_10ns_26_1_1_U87/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U87/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U52/tmp_product, operation Mode is: A*(B:0x3fda3).
+DSP Report: operator mul_16s_11s_26_1_1_U52/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U52/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U58/tmp_product, operation Mode is: A*(B:0x1ed).
+DSP Report: operator mul_16s_10ns_26_1_1_U58/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U58/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U91/tmp_product, operation Mode is: A*(B:0x3fdab).
+DSP Report: operator mul_16s_11s_26_1_1_U91/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U91/tmp_product.
+DSP Report: Generating DSP mul_16s_9s_25_1_1_U77/tmp_product, operation Mode is: A*(B:0x3ff6e).
+DSP Report: operator mul_16s_9s_25_1_1_U77/tmp_product is absorbed into DSP mul_16s_9s_25_1_1_U77/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U94/tmp_product, operation Mode is: A*(B:0xe5).
+DSP Report: operator mul_16s_9ns_25_1_1_U94/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U94/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U50/tmp_product, operation Mode is: A*(B:0x111).
+DSP Report: operator mul_16s_10ns_26_1_1_U50/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U50/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U81/tmp_product, operation Mode is: A*(B:0x46).
+DSP Report: operator mul_16s_8ns_24_1_1_U81/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U81/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U56/tmp_product, operation Mode is: A*(B:0x65).
+DSP Report: operator mul_16s_8ns_24_1_1_U56/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U56/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U57/tmp_product, operation Mode is: A*(B:0x3feb7).
+DSP Report: operator mul_16s_10s_26_1_1_U57/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U57/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U68/tmp_product, operation Mode is: A*(B:0x386).
+DSP Report: operator mul_16s_11ns_26_1_1_U68/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U68/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U88/tmp_product, operation Mode is: A*(B:0x3fe6c).
+DSP Report: operator mul_16s_10s_26_1_1_U88/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U88/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U69/tmp_product, operation Mode is: A*(B:0xcb).
+DSP Report: operator mul_16s_9ns_25_1_1_U69/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U69/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U72/tmp_product, operation Mode is: A*(B:0x1e6).
+DSP Report: operator mul_16s_10ns_26_1_1_U72/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U72/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U66/tmp_product, operation Mode is: A*(B:0x1bc).
+DSP Report: operator mul_16s_10ns_26_1_1_U66/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U66/tmp_product.
+DSP Report: Generating DSP mul_16s_12s_26_1_1_U133/tmp_product, operation Mode is: A*(B:0x3fa97).
+DSP Report: operator mul_16s_12s_26_1_1_U133/tmp_product is absorbed into DSP mul_16s_12s_26_1_1_U133/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U119/tmp_product, operation Mode is: A*(B:0x3fe0a).
+DSP Report: operator mul_16s_10s_26_1_1_U119/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U119/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U137/tmp_product, operation Mode is: A*(B:0x3d4).
+DSP Report: operator mul_16s_11ns_26_1_1_U137/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U137/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U131/tmp_product, operation Mode is: A*(B:0x3fe13).
+DSP Report: operator mul_16s_10s_26_1_1_U131/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U131/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U129/tmp_product, operation Mode is: A*(B:0x3fc9b).
+DSP Report: operator mul_16s_11s_26_1_1_U129/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U129/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U121/tmp_product, operation Mode is: A*(B:0xe7).
+DSP Report: operator mul_16s_9ns_25_1_1_U121/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U121/tmp_product.
+DSP Report: Generating DSP mul_16s_9s_25_1_1_U141/tmp_product, operation Mode is: A*(B:0x3ff3a).
+DSP Report: operator mul_16s_9s_25_1_1_U141/tmp_product is absorbed into DSP mul_16s_9s_25_1_1_U141/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U126/tmp_product, operation Mode is: A*(B:0x51).
+DSP Report: operator mul_16s_8ns_24_1_1_U126/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U126/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U139/tmp_product, operation Mode is: A*(B:0x18a).
+DSP Report: operator mul_16s_10ns_26_1_1_U139/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U139/tmp_product.
+DSP Report: Generating DSP mul_16s_8ns_24_1_1_U134/tmp_product, operation Mode is: A*(B:0x66).
+DSP Report: operator mul_16s_8ns_24_1_1_U134/tmp_product is absorbed into DSP mul_16s_8ns_24_1_1_U134/tmp_product.
+DSP Report: Generating DSP mul_16s_12s_26_1_1_U120/tmp_product, operation Mode is: A*(B:0x3fb63).
+DSP Report: operator mul_16s_12s_26_1_1_U120/tmp_product is absorbed into DSP mul_16s_12s_26_1_1_U120/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U125/tmp_product, operation Mode is: A*(B:0x2d6).
+DSP Report: operator mul_16s_11ns_26_1_1_U125/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U125/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U130/tmp_product, operation Mode is: A*(B:0x3fd5e).
+DSP Report: operator mul_16s_11s_26_1_1_U130/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U130/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U127/tmp_product, operation Mode is: A*(B:0x3fec1).
+DSP Report: operator mul_16s_10s_26_1_1_U127/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U127/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U136/tmp_product, operation Mode is: A*(B:0x1de).
+DSP Report: operator mul_16s_10ns_26_1_1_U136/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U136/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U123/tmp_product, operation Mode is: A*(B:0x9c).
+DSP Report: operator mul_16s_9ns_25_1_1_U123/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U123/tmp_product.
+DSP Report: Generating DSP mul_16s_10ns_26_1_1_U128/tmp_product, operation Mode is: A*(B:0x159).
+DSP Report: operator mul_16s_10ns_26_1_1_U128/tmp_product is absorbed into DSP mul_16s_10ns_26_1_1_U128/tmp_product.
+DSP Report: Generating DSP mul_16s_10s_26_1_1_U122/tmp_product, operation Mode is: A*(B:0x3fe25).
+DSP Report: operator mul_16s_10s_26_1_1_U122/tmp_product is absorbed into DSP mul_16s_10s_26_1_1_U122/tmp_product.
+DSP Report: Generating DSP mul_16s_11s_26_1_1_U135/tmp_product, operation Mode is: A*(B:0x3fcd7).
+DSP Report: operator mul_16s_11s_26_1_1_U135/tmp_product is absorbed into DSP mul_16s_11s_26_1_1_U135/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U132/tmp_product, operation Mode is: A*(B:0x2a2).
+DSP Report: operator mul_16s_11ns_26_1_1_U132/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U132/tmp_product.
+DSP Report: Generating DSP mul_16s_9ns_25_1_1_U140/tmp_product, operation Mode is: A*(B:0x98).
+DSP Report: operator mul_16s_9ns_25_1_1_U140/tmp_product is absorbed into DSP mul_16s_9ns_25_1_1_U140/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U138/tmp_product, operation Mode is: A*(B:0x23d).
+DSP Report: operator mul_16s_11ns_26_1_1_U138/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U138/tmp_product.
+DSP Report: Generating DSP mul_16s_11ns_26_1_1_U124/tmp_product, operation Mode is: A*(B:0x2c3).
+DSP Report: operator mul_16s_11ns_26_1_1_U124/tmp_product is absorbed into DSP mul_16s_11ns_26_1_1_U124/tmp_product.
+DSP Report: Generating DSP mul_18s_11ns_26_1_1_U150/tmp_product, operation Mode is: A*B2.
+DSP Report: register mul_18s_11ns_26_1_1_U150/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U150/tmp_product.
+DSP Report: operator mul_18s_11ns_26_1_1_U150/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U150/tmp_product.
+DSP Report: Generating DSP mul_18s_11ns_26_1_1_U151/tmp_product, operation Mode is: A*B2.
+DSP Report: register mul_18s_11ns_26_1_1_U151/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U151/tmp_product.
+DSP Report: operator mul_18s_11ns_26_1_1_U151/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U151/tmp_product.
+DSP Report: Generating DSP mul_18s_11ns_26_1_1_U152/tmp_product, operation Mode is: A*B2.
+DSP Report: register mul_18s_11ns_26_1_1_U152/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U152/tmp_product.
+DSP Report: operator mul_18s_11ns_26_1_1_U152/tmp_product is absorbed into DSP mul_18s_11ns_26_1_1_U152/tmp_product.
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ap_rst in module mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2853.723 ; gain = 1376.422 ; free physical = 249 ; free virtual = 33936
+---------------------------------------------------------------------------------
+ Sort Area is  mul_18s_11ns_26_1_1_U150/tmp_product_6f : 0 0 : 1487 1487 : Used 1 time 0
+ Sort Area is  mul_18s_11ns_26_1_1_U151/tmp_product_71 : 0 0 : 1487 1487 : Used 1 time 0
+ Sort Area is  mul_18s_11ns_26_1_1_U152/tmp_product_72 : 0 0 : 1487 1487 : Used 1 time 0
+ Sort Area is  mul_16s_12ns_26_1_1_U90/tmp_product_29 : 0 0 : 593 593 : Used 1 time 0
+ Sort Area is  mul_16s_12s_26_1_1_U120/tmp_product_63 : 0 0 : 593 593 : Used 1 time 0
+ Sort Area is  mul_16s_12s_26_1_1_U133/tmp_product_5e : 0 0 : 593 593 : Used 1 time 0
+ Sort Area is  mul_16s_12s_26_1_1_U23/tmp_product_6 : 0 0 : 593 593 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U1/tmp_product_0 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U10/tmp_product_1a : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U101/tmp_product_3f : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U12/tmp_product_8 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U124/tmp_product_67 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U125/tmp_product_62 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U132/tmp_product_6a : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U137/tmp_product_5c : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U138/tmp_product_68 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U14/tmp_product_d : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U25/tmp_product_4 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U27/tmp_product_13 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U53/tmp_product_39 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U60/tmp_product_34 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U68/tmp_product_54 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U7/tmp_product_b : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U71/tmp_product_3e : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U74/tmp_product_2c : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U78/tmp_product_23 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U79/tmp_product_45 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U80/tmp_product_2f : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U89/tmp_product_40 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U95/tmp_product_3b : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11ns_26_1_1_U98/tmp_product_25 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U129/tmp_product_5a : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U130/tmp_product_61 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U135/tmp_product_6b : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U18/tmp_product_19 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U52/tmp_product_4f : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U54/tmp_product_2a : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U65/tmp_product_37 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U70/tmp_product_3c : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U73/tmp_product_35 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U86/tmp_product_24 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U91/tmp_product_4d : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_11s_26_1_1_U92/tmp_product_44 : 0 0 : 535 535 : Used 1 time 0
+ Sort Area is  mul_16s_7s_23_1_1_U28/tmp_product_15 : 0 0 : 380 380 : Used 1 time 0
+ Sort Area is  mul_16s_7s_23_1_1_U85/tmp_product_47 : 0 0 : 380 380 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U100/tmp_product_27 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U121/tmp_product_59 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U123/tmp_product_6e : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U140/tmp_product_69 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U16/tmp_product_21 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U61/tmp_product_30 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U63/tmp_product_46 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U64/tmp_product_2b : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U67/tmp_product_3d : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U69/tmp_product_52 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U84/tmp_product_32 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9ns_25_1_1_U94/tmp_product_4b : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9s_25_1_1_U141/tmp_product_58 : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9s_25_1_1_U15/tmp_product_e : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9s_25_1_1_U77/tmp_product_4c : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_9s_25_1_1_U96/tmp_product_2d : 0 0 : 271 271 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U128/tmp_product_6d : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U13/tmp_product_1c : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U136/tmp_product_5f : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U139/tmp_product_65 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U17/tmp_product_12 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U48/tmp_product_38 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U50/tmp_product_4a : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U58/tmp_product_4e : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U6/tmp_product_2 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U66/tmp_product_50 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U72/tmp_product_51 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U8/tmp_product_17 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U87/tmp_product_43 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10ns_26_1_1_U99/tmp_product_22 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U11/tmp_product_1b : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U119/tmp_product_5d : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U122/tmp_product_6c : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U127/tmp_product_60 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U131/tmp_product_5b : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U19/tmp_product_1f : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U2/tmp_product_5 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U20/tmp_product_18 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U21/tmp_product_20 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U22/tmp_product_1e : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U24/tmp_product_10 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U3/tmp_product_11 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U4/tmp_product_1d : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U57/tmp_product_55 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U62/tmp_product_48 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U76/tmp_product_41 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U83/tmp_product_33 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U88/tmp_product_53 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_10s_26_1_1_U9/tmp_product_14 : 0 0 : 263 263 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U126/tmp_product_66 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U134/tmp_product_64 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U5/tmp_product_c : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U55/tmp_product_49 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U56/tmp_product_56 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U59/tmp_product_31 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U81/tmp_product_57 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U93/tmp_product_42 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8ns_24_1_1_U97/tmp_product_3a : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8s_24_1_1_U26/tmp_product_9 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8s_24_1_1_U49/tmp_product_2e : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8s_24_1_1_U51/tmp_product_28 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8s_24_1_1_U75/tmp_product_36 : 0 0 : 183 183 : Used 1 time 0
+ Sort Area is  mul_16s_8s_24_1_1_U82/tmp_product_26 : 0 0 : 183 183 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++-----------------------------------------------------------------------+-----------------------+---------------+----------------+
+|Module Name                                                            | RTL Object            | Depth x Width | Implemented As | 
++-----------------------------------------------------------------------+-----------------------+---------------+----------------+
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q0_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q1_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q2_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | invert_table_U/q0_reg | 1024x15       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q0_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q1_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | exp_table_U/q2_reg    | 1024x11       | Block RAM      | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | invert_table_U/q0_reg | 1024x15       | Block RAM      | 
++-----------------------------------------------------------------------+-----------------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                                                            | DSP Mapping   | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe11) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x3d7)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x178)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x31d)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*(B:0x3ff89) | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x32d)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*(B:0x3fb72) | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*(B:0x3ff4a) | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x36f)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x72)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x3a9)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe4a) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe95) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_7s_23_1_1                                             | A*(B:0x3ffdd) | 16     | 7      | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe1a) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x270)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x16c)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fd2c) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fec7) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x123)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe96) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1af)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3feb9) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x360)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xb8)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe89) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fefb) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fee3) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12ns_26_1_1                                           | A*(B:0x43e)   | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*(B:0x3ff87) | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xb6)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*(B:0x3ff9a) | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x243)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fdb6) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2e5)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x14e)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x4e)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xd1)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x217)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*(B:0x3ff96) | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*(B:0x3ff51) | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x337)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xf4)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fd19) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*(B:0x3ffb2) | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fdfd) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x230)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe52) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0x9a)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xa1)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fde3) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x29a)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x6b)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x274)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1e2)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fd0a) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x4c)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe2b) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x251)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x25c)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2f1)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x6c)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe1a) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_7s_23_1_1                                             | A*(B:0x3ffd3) | 16     | 7      | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0x8d)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2ad)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fd70) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1bb)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fda3) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1ed)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fdab) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*(B:0x3ff6e) | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xe5)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x111)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x46)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x65)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3feb7) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x386)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe6c) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xcb)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1e6)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1bc)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*(B:0x3fa97) | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe0a) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x3d4)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe13) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fc9b) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0xe7)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*(B:0x3ff3a) | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x51)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x18a)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*(B:0x66)    | 16     | 8      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*(B:0x3fb63) | 16     | 12     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2d6)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fd5e) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fec1) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x1de)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0x9c)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*(B:0x159)   | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*(B:0x3fe25) | 16     | 10     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*(B:0x3fcd7) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2a2)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*(B:0x98)    | 16     | 9      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x23d)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*(B:0x2c3)   | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B2          | 18     | 12     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B2          | 18     | 12     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B2          | 18     | 12     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++-----------------------------------------------------------------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 2853.723 ; gain = 1376.422 ; free physical = 248 ; free virtual = 33936
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127/exp_table_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127/exp_table_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127/exp_table_U/q2_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127/invert_table_U/q0_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2853.723 ; gain = 1376.422 ; free physical = 248 ; free virtual = 33936
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 238 ; free virtual = 33926
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------------------------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                                                            | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 30     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 30     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 30     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 30     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 30     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*B         | 30     | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_7s_23_1_1                                             | A*B         | 30     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 30     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*B         | 30     | 18     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 30     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*B         | 30     | 18     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12ns_26_1_1                                           | A*B         | 15     | 11     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_7s_23_1_1                                             | A*B         | 15     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*B         | 15     | 18     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*B         | 15     | 18     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*B         | 15     | 18     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8s_24_1_1                                             | A*B         | 15     | 18     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*B         | 15     | 18     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*B         | 15     | 18     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10ns_26_1_1                                           | A*B         | 15     | 9      | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_10s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11ns_26_1_1                                           | A*B         | 15     | 10     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_11s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_12s_26_1_1                                            | A*B         | 15     | 18     | -      | -      | 28     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_8ns_24_1_1                                            | A*B         | 15     | 7      | -      | -      | 24     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9ns_25_1_1                                            | A*B         | 15     | 8      | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_mul_16s_9s_25_1_1                                             | A*B         | 15     | 18     | -      | -      | 25     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B'        | 30     | 11     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B'        | 30     | 11     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
+|mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s | A*B'        | 30     | 11     | -      | -      | 30     | 0    | 1    | -    | -    | -     | 0    | 0    | 
++-----------------------------------------------------------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY8   |   151|
+|3     |DSP48E2  |   108|
+|4     |LUT1     |     3|
+|5     |LUT2     |   723|
+|6     |LUT3     |   788|
+|7     |LUT4     |   449|
+|8     |LUT5     |   495|
+|9     |LUT6     |   491|
+|10    |RAMB18E2 |     3|
+|11    |FDRE     |   376|
+|12    |FDSE     |     1|
+|13    |IBUF     |    68|
+|14    |OBUF     |    54|
++------+---------+------+
+
+Report Instance Areas: 
++------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------+
+|      |Instance                                                                           |Module                                                                                    |Cells |
++------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------+
+|1     |top                                                                                |                                                                                          |  3711|
+|2     |  call_ret1_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s_fu_73  |mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s                  |   655|
+|3     |    mul_16s_10ns_26_1_1_U13                                                        |mlp_iris_mul_16s_10ns_26_1_1_68                                                           |     6|
+|4     |    mul_16s_10ns_26_1_1_U17                                                        |mlp_iris_mul_16s_10ns_26_1_1_69                                                           |    25|
+|5     |    mul_16s_10ns_26_1_1_U6                                                         |mlp_iris_mul_16s_10ns_26_1_1_70                                                           |     1|
+|6     |    mul_16s_10ns_26_1_1_U8                                                         |mlp_iris_mul_16s_10ns_26_1_1_71                                                           |    14|
+|7     |    mul_16s_10s_26_1_1_U11                                                         |mlp_iris_mul_16s_10s_26_1_1_72                                                            |    23|
+|8     |    mul_16s_10s_26_1_1_U19                                                         |mlp_iris_mul_16s_10s_26_1_1_73                                                            |    22|
+|9     |    mul_16s_10s_26_1_1_U2                                                          |mlp_iris_mul_16s_10s_26_1_1_74                                                            |     9|
+|10    |    mul_16s_10s_26_1_1_U20                                                         |mlp_iris_mul_16s_10s_26_1_1_75                                                            |    80|
+|11    |    mul_16s_10s_26_1_1_U21                                                         |mlp_iris_mul_16s_10s_26_1_1_76                                                            |    17|
+|12    |    mul_16s_10s_26_1_1_U22                                                         |mlp_iris_mul_16s_10s_26_1_1_77                                                            |    19|
+|13    |    mul_16s_10s_26_1_1_U24                                                         |mlp_iris_mul_16s_10s_26_1_1_78                                                            |    12|
+|14    |    mul_16s_10s_26_1_1_U3                                                          |mlp_iris_mul_16s_10s_26_1_1_79                                                            |    64|
+|15    |    mul_16s_10s_26_1_1_U4                                                          |mlp_iris_mul_16s_10s_26_1_1_80                                                            |    14|
+|16    |    mul_16s_10s_26_1_1_U9                                                          |mlp_iris_mul_16s_10s_26_1_1_81                                                            |     3|
+|17    |    mul_16s_11ns_26_1_1_U1                                                         |mlp_iris_mul_16s_11ns_26_1_1_82                                                           |     7|
+|18    |    mul_16s_11ns_26_1_1_U10                                                        |mlp_iris_mul_16s_11ns_26_1_1_83                                                           |     1|
+|19    |    mul_16s_11ns_26_1_1_U12                                                        |mlp_iris_mul_16s_11ns_26_1_1_84                                                           |    19|
+|20    |    mul_16s_11ns_26_1_1_U14                                                        |mlp_iris_mul_16s_11ns_26_1_1_85                                                           |     4|
+|21    |    mul_16s_11ns_26_1_1_U25                                                        |mlp_iris_mul_16s_11ns_26_1_1_86                                                           |    34|
+|22    |    mul_16s_11ns_26_1_1_U27                                                        |mlp_iris_mul_16s_11ns_26_1_1_87                                                           |     4|
+|23    |    mul_16s_11ns_26_1_1_U7                                                         |mlp_iris_mul_16s_11ns_26_1_1_88                                                           |     4|
+|24    |    mul_16s_11s_26_1_1_U18                                                         |mlp_iris_mul_16s_11s_26_1_1_89                                                            |    17|
+|25    |    mul_16s_12s_26_1_1_U23                                                         |mlp_iris_mul_16s_12s_26_1_1_90                                                            |    43|
+|26    |    mul_16s_7s_23_1_1_U28                                                          |mlp_iris_mul_16s_7s_23_1_1_91                                                             |    15|
+|27    |    mul_16s_8ns_24_1_1_U5                                                          |mlp_iris_mul_16s_8ns_24_1_1_92                                                            |    13|
+|28    |    mul_16s_8s_24_1_1_U26                                                          |mlp_iris_mul_16s_8s_24_1_1_93                                                             |    33|
+|29    |    mul_16s_9ns_25_1_1_U16                                                         |mlp_iris_mul_16s_9ns_25_1_1_94                                                            |    44|
+|30    |    mul_16s_9s_25_1_1_U15                                                          |mlp_iris_mul_16s_9s_25_1_1_95                                                             |    17|
+|31    |  call_ret3_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s_fu_91  |mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s                  |  1693|
+|32    |    mul_16s_10ns_26_1_1_U48                                                        |mlp_iris_mul_16s_10ns_26_1_1_17                                                           |     5|
+|33    |    mul_16s_10ns_26_1_1_U50                                                        |mlp_iris_mul_16s_10ns_26_1_1_18                                                           |    40|
+|34    |    mul_16s_10ns_26_1_1_U58                                                        |mlp_iris_mul_16s_10ns_26_1_1_19                                                           |    34|
+|35    |    mul_16s_10ns_26_1_1_U66                                                        |mlp_iris_mul_16s_10ns_26_1_1_20                                                           |     3|
+|36    |    mul_16s_10ns_26_1_1_U72                                                        |mlp_iris_mul_16s_10ns_26_1_1_21                                                           |     3|
+|37    |    mul_16s_10ns_26_1_1_U87                                                        |mlp_iris_mul_16s_10ns_26_1_1_22                                                           |    20|
+|38    |    mul_16s_10ns_26_1_1_U99                                                        |mlp_iris_mul_16s_10ns_26_1_1_23                                                           |     2|
+|39    |    mul_16s_10s_26_1_1_U57                                                         |mlp_iris_mul_16s_10s_26_1_1_24                                                            |     3|
+|40    |    mul_16s_10s_26_1_1_U62                                                         |mlp_iris_mul_16s_10s_26_1_1_25                                                            |    38|
+|41    |    mul_16s_10s_26_1_1_U76                                                         |mlp_iris_mul_16s_10s_26_1_1_26                                                            |    91|
+|42    |    mul_16s_10s_26_1_1_U83                                                         |mlp_iris_mul_16s_10s_26_1_1_27                                                            |     2|
+|43    |    mul_16s_10s_26_1_1_U88                                                         |mlp_iris_mul_16s_10s_26_1_1_28                                                            |     2|
+|44    |    mul_16s_11ns_26_1_1_U101                                                       |mlp_iris_mul_16s_11ns_26_1_1_29                                                           |     2|
+|45    |    mul_16s_11ns_26_1_1_U53                                                        |mlp_iris_mul_16s_11ns_26_1_1_30                                                           |    35|
+|46    |    mul_16s_11ns_26_1_1_U60                                                        |mlp_iris_mul_16s_11ns_26_1_1_31                                                           |   154|
+|47    |    mul_16s_11ns_26_1_1_U68                                                        |mlp_iris_mul_16s_11ns_26_1_1_32                                                           |     5|
+|48    |    mul_16s_11ns_26_1_1_U71                                                        |mlp_iris_mul_16s_11ns_26_1_1_33                                                           |    37|
+|49    |    mul_16s_11ns_26_1_1_U74                                                        |mlp_iris_mul_16s_11ns_26_1_1_34                                                           |     1|
+|50    |    mul_16s_11ns_26_1_1_U78                                                        |mlp_iris_mul_16s_11ns_26_1_1_35                                                           |     1|
+|51    |    mul_16s_11ns_26_1_1_U79                                                        |mlp_iris_mul_16s_11ns_26_1_1_36                                                           |     1|
+|52    |    mul_16s_11ns_26_1_1_U80                                                        |mlp_iris_mul_16s_11ns_26_1_1_37                                                           |     3|
+|53    |    mul_16s_11ns_26_1_1_U89                                                        |mlp_iris_mul_16s_11ns_26_1_1_38                                                           |     1|
+|54    |    mul_16s_11ns_26_1_1_U95                                                        |mlp_iris_mul_16s_11ns_26_1_1_39                                                           |     3|
+|55    |    mul_16s_11ns_26_1_1_U98                                                        |mlp_iris_mul_16s_11ns_26_1_1_40                                                           |     3|
+|56    |    mul_16s_11s_26_1_1_U52                                                         |mlp_iris_mul_16s_11s_26_1_1_41                                                            |    48|
+|57    |    mul_16s_11s_26_1_1_U54                                                         |mlp_iris_mul_16s_11s_26_1_1_42                                                            |    16|
+|58    |    mul_16s_11s_26_1_1_U65                                                         |mlp_iris_mul_16s_11s_26_1_1_43                                                            |    83|
+|59    |    mul_16s_11s_26_1_1_U70                                                         |mlp_iris_mul_16s_11s_26_1_1_44                                                            |     5|
+|60    |    mul_16s_11s_26_1_1_U73                                                         |mlp_iris_mul_16s_11s_26_1_1_45                                                            |     3|
+|61    |    mul_16s_11s_26_1_1_U86                                                         |mlp_iris_mul_16s_11s_26_1_1_46                                                            |     2|
+|62    |    mul_16s_11s_26_1_1_U91                                                         |mlp_iris_mul_16s_11s_26_1_1_47                                                            |    35|
+|63    |    mul_16s_11s_26_1_1_U92                                                         |mlp_iris_mul_16s_11s_26_1_1_48                                                            |    36|
+|64    |    mul_16s_12ns_26_1_1_U90                                                        |mlp_iris_mul_16s_12ns_26_1_1                                                              |    29|
+|65    |    mul_16s_7s_23_1_1_U85                                                          |mlp_iris_mul_16s_7s_23_1_1                                                                |     1|
+|66    |    mul_16s_8ns_24_1_1_U55                                                         |mlp_iris_mul_16s_8ns_24_1_1_49                                                            |    74|
+|67    |    mul_16s_8ns_24_1_1_U56                                                         |mlp_iris_mul_16s_8ns_24_1_1_50                                                            |    23|
+|68    |    mul_16s_8ns_24_1_1_U59                                                         |mlp_iris_mul_16s_8ns_24_1_1_51                                                            |    31|
+|69    |    mul_16s_8ns_24_1_1_U81                                                         |mlp_iris_mul_16s_8ns_24_1_1_52                                                            |    22|
+|70    |    mul_16s_8ns_24_1_1_U93                                                         |mlp_iris_mul_16s_8ns_24_1_1_53                                                            |   137|
+|71    |    mul_16s_8ns_24_1_1_U97                                                         |mlp_iris_mul_16s_8ns_24_1_1_54                                                            |     1|
+|72    |    mul_16s_8s_24_1_1_U49                                                          |mlp_iris_mul_16s_8s_24_1_1                                                                |     1|
+|73    |    mul_16s_8s_24_1_1_U51                                                          |mlp_iris_mul_16s_8s_24_1_1_55                                                             |     7|
+|74    |    mul_16s_8s_24_1_1_U75                                                          |mlp_iris_mul_16s_8s_24_1_1_56                                                             |    77|
+|75    |    mul_16s_8s_24_1_1_U82                                                          |mlp_iris_mul_16s_8s_24_1_1_57                                                             |     1|
+|76    |    mul_16s_9ns_25_1_1_U100                                                        |mlp_iris_mul_16s_9ns_25_1_1_58                                                            |     8|
+|77    |    mul_16s_9ns_25_1_1_U61                                                         |mlp_iris_mul_16s_9ns_25_1_1_59                                                            |     4|
+|78    |    mul_16s_9ns_25_1_1_U63                                                         |mlp_iris_mul_16s_9ns_25_1_1_60                                                            |    34|
+|79    |    mul_16s_9ns_25_1_1_U64                                                         |mlp_iris_mul_16s_9ns_25_1_1_61                                                            |     1|
+|80    |    mul_16s_9ns_25_1_1_U67                                                         |mlp_iris_mul_16s_9ns_25_1_1_62                                                            |    51|
+|81    |    mul_16s_9ns_25_1_1_U69                                                         |mlp_iris_mul_16s_9ns_25_1_1_63                                                            |     3|
+|82    |    mul_16s_9ns_25_1_1_U84                                                         |mlp_iris_mul_16s_9ns_25_1_1_64                                                            |    13|
+|83    |    mul_16s_9ns_25_1_1_U94                                                         |mlp_iris_mul_16s_9ns_25_1_1_65                                                            |   109|
+|84    |    mul_16s_9s_25_1_1_U77                                                          |mlp_iris_mul_16s_9s_25_1_1_66                                                             |   121|
+|85    |    mul_16s_9s_25_1_1_U96                                                          |mlp_iris_mul_16s_9s_25_1_1_67                                                             |    25|
+|86    |  call_ret5_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s_fu_115 |mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s                  |   686|
+|87    |    mul_16s_10ns_26_1_1_U128                                                       |mlp_iris_mul_16s_10ns_26_1_1                                                              |     2|
+|88    |    mul_16s_10ns_26_1_1_U136                                                       |mlp_iris_mul_16s_10ns_26_1_1_2                                                            |    34|
+|89    |    mul_16s_10ns_26_1_1_U139                                                       |mlp_iris_mul_16s_10ns_26_1_1_3                                                            |    58|
+|90    |    mul_16s_10s_26_1_1_U119                                                        |mlp_iris_mul_16s_10s_26_1_1                                                               |     5|
+|91    |    mul_16s_10s_26_1_1_U122                                                        |mlp_iris_mul_16s_10s_26_1_1_4                                                             |     1|
+|92    |    mul_16s_10s_26_1_1_U127                                                        |mlp_iris_mul_16s_10s_26_1_1_5                                                             |    33|
+|93    |    mul_16s_10s_26_1_1_U131                                                        |mlp_iris_mul_16s_10s_26_1_1_6                                                             |     2|
+|94    |    mul_16s_11ns_26_1_1_U124                                                       |mlp_iris_mul_16s_11ns_26_1_1                                                              |     3|
+|95    |    mul_16s_11ns_26_1_1_U125                                                       |mlp_iris_mul_16s_11ns_26_1_1_7                                                            |    34|
+|96    |    mul_16s_11ns_26_1_1_U132                                                       |mlp_iris_mul_16s_11ns_26_1_1_8                                                            |    13|
+|97    |    mul_16s_11ns_26_1_1_U137                                                       |mlp_iris_mul_16s_11ns_26_1_1_9                                                            |    75|
+|98    |    mul_16s_11ns_26_1_1_U138                                                       |mlp_iris_mul_16s_11ns_26_1_1_10                                                           |     1|
+|99    |    mul_16s_11s_26_1_1_U129                                                        |mlp_iris_mul_16s_11s_26_1_1                                                               |    77|
+|100   |    mul_16s_11s_26_1_1_U130                                                        |mlp_iris_mul_16s_11s_26_1_1_11                                                            |    34|
+|101   |    mul_16s_11s_26_1_1_U135                                                        |mlp_iris_mul_16s_11s_26_1_1_12                                                            |     2|
+|102   |    mul_16s_12s_26_1_1_U120                                                        |mlp_iris_mul_16s_12s_26_1_1                                                               |    33|
+|103   |    mul_16s_12s_26_1_1_U133                                                        |mlp_iris_mul_16s_12s_26_1_1_13                                                            |     4|
+|104   |    mul_16s_8ns_24_1_1_U126                                                        |mlp_iris_mul_16s_8ns_24_1_1                                                               |    56|
+|105   |    mul_16s_8ns_24_1_1_U134                                                        |mlp_iris_mul_16s_8ns_24_1_1_14                                                            |    33|
+|106   |    mul_16s_9ns_25_1_1_U121                                                        |mlp_iris_mul_16s_9ns_25_1_1                                                               |     1|
+|107   |    mul_16s_9ns_25_1_1_U123                                                        |mlp_iris_mul_16s_9ns_25_1_1_15                                                            |    24|
+|108   |    mul_16s_9ns_25_1_1_U140                                                        |mlp_iris_mul_16s_9ns_25_1_1_16                                                            |     1|
+|109   |    mul_16s_9s_25_1_1_U141                                                         |mlp_iris_mul_16s_9s_25_1_1                                                                |     4|
+|110   |  grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127         |mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s                    |   169|
+|111   |    exp_table_U                                                                    |mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb |   138|
+|112   |    invert_table_U                                                                 |mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud |     1|
+|113   |    mul_18s_11ns_26_1_1_U150                                                       |mlp_iris_mul_18s_11ns_26_1_1                                                              |     2|
+|114   |    mul_18s_11ns_26_1_1_U151                                                       |mlp_iris_mul_18s_11ns_26_1_1_0                                                            |     1|
+|115   |    mul_18s_11ns_26_1_1_U152                                                       |mlp_iris_mul_18s_11ns_26_1_1_1                                                            |     1|
++------+-----------------------------------------------------------------------------------+------------------------------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 13 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.535 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2881.543 ; gain = 1404.234 ; free physical = 237 ; free virtual = 33925
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2909.348 ; gain = 0.000 ; free physical = 361 ; free virtual = 34049
+INFO: [Netlist 29-17] Analyzing 328 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127/exp_table_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3072.625 ; gain = 0.000 ; free physical = 228 ; free virtual = 33931
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 177 instances were transformed.
+  BUFG => BUFGCE: 1 instance 
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 108 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 68 instances
+
+Synth Design complete | Checksum: ae5b8f9
+INFO: [Common 17-83] Releasing license: Synthesis
+63 Infos, 13 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 3072.625 ; gain = 1595.348 ; free physical = 228 ; free virtual = 33931
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2523.946; main = 2523.946; forked = 319.249
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3770.766; main = 3072.629; forked = 917.039
+# opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Command: opt_design -retarget -propconst -sweep -bram_power_opt -shift_register_opt
+Attempting to get a license for feature 'Implementation' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xczu7ev'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.34 . Memory (MB): peak = 3160.406 ; gain = 87.781 ; free physical = 227 ; free virtual = 33931
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:06 . Memory (MB): peak = 3728.707 ; gain = 568.301 ; free physical = 217 ; free virtual = 33464
+
+Starting Logic Optimization Task
+
+Phase 1 Initialization
+
+Phase 1.1 Core Generation And Design Setup
+Phase 1.1 Core Generation And Design Setup | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33205
+
+Phase 1.2 Setup Constraints And Sort Netlist
+Phase 1.2 Setup Constraints And Sort Netlist | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33205
+Phase 1 Initialization | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33205
+
+Phase 2 Timer Update And Timing Data Collection
+
+Phase 2.1 Timer Update
+Phase 2.1 Timer Update | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.5 ; elapsed = 00:00:00.16 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33204
+
+Phase 2.2 Timing Data Collection
+Phase 2.2 Timing Data Collection | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.5 ; elapsed = 00:00:00.17 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33204
+Phase 2 Timer Update And Timing Data Collection | Checksum: 191ae2e9a
+
+Time (s): cpu = 00:00:00.51 ; elapsed = 00:00:00.17 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33204
+
+Phase 3 Retarget
+INFO: [Opt 31-1851] Number of loadless carry chains removed were: 0
+INFO: [Opt 31-1834] Total Chains To Be Transformed Were: 0 AND Number of Transformed insts Created are: 0
+INFO: [Opt 31-1566] Pulled 2 inverters resulting in an inversion of 4 pins
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 3 Retarget | Checksum: 2372a0c39
+
+Time (s): cpu = 00:00:00.61 ; elapsed = 00:00:00.21 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33205
+Retarget | Checksum: 2372a0c39
+INFO: [Opt 31-389] Phase Retarget created 0 cells and removed 2 cells
+
+Phase 4 Constant propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Phase 4 Constant propagation | Checksum: 2eb89f2a0
+
+Time (s): cpu = 00:00:00.63 ; elapsed = 00:00:00.23 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 257 ; free virtual = 33204
+Constant propagation | Checksum: 2eb89f2a0
+INFO: [Opt 31-389] Phase Constant propagation created 0 cells and removed 0 cells
+
+Phase 5 Sweep
+INFO: [Constraints 18-11670] Building netlist checker database with flags, 0x8
+Done building netlist checker database: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Phase 5 Sweep | Checksum: 2d6ffd77d
+
+Time (s): cpu = 00:00:00.7 ; elapsed = 00:00:00.3 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Sweep | Checksum: 2d6ffd77d
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 0 cells
+
+Phase 6 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 6 Shift Register Optimization | Checksum: 2d6ffd77d
+
+Time (s): cpu = 00:00:00.7 ; elapsed = 00:00:00.3 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Shift Register Optimization | Checksum: 2d6ffd77d
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 7 Post Processing Netlist
+Phase 7 Post Processing Netlist | Checksum: 2d6ffd77d
+
+Time (s): cpu = 00:00:00.75 ; elapsed = 00:00:00.34 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Post Processing Netlist | Checksum: 2d6ffd77d
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 0 cells
+
+Phase 8 Finalization
+
+Phase 8.1 Finalizing Design Cores and Updating Shapes
+Phase 8.1 Finalizing Design Cores and Updating Shapes | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:00.43 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+
+Phase 8.2 Verifying Netlist Connectivity
+Phase 8.2 Verifying Netlist Connectivity | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:00.43 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Phase 8 Finalization | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:00.43 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |               0  |               2  |                                              0  |
+|  Constant propagation         |               0  |               0  |                                              0  |
+|  Sweep                        |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |               0  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+Ending Logic Optimization Task | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00.94 ; elapsed = 00:00:00.44 . Memory (MB): peak = 4011.582 ; gain = 0.000 ; free physical = 256 ; free virtual = 33204
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+WARNING: [Power 33-232] No user defined clocks were found in the design! Power estimation will be inaccurate until this is corrected.
+Resolution: Please specify clocks using create_clock/create_generated_clock for sequential elements. For pure combinatorial circuits, please specify a virtual clock, otherwise the vectorless estimation might be inaccurate
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+CRITICAL WARNING: [Power 33-333] The Vccint supply current exceeds the maximum limit of the selected package.  See the PCB design user guide for limit values.
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 3 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 6
+Ending PowerOpt Patch Enables Task | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 4227.664 ; gain = 0.000 ; free physical = 174 ; free virtual = 33127
+Ending Power Optimization Task | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:04 . Memory (MB): peak = 4227.664 ; gain = 216.082 ; free physical = 174 ; free virtual = 33127
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4227.664 ; gain = 0.000 ; free physical = 174 ; free virtual = 33127
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4227.664 ; gain = 0.000 ; free physical = 174 ; free virtual = 33127
+Ending Netlist Obfuscation Task | Checksum: 265bc7dc1
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4227.664 ; gain = 0.000 ; free physical = 174 ; free virtual = 33127
+INFO: [Common 17-83] Releasing license: Implementation
+25 Infos, 1 Warnings, 1 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:20 ; elapsed = 00:00:12 . Memory (MB): peak = 4227.664 ; gain = 1155.039 ; free physical = 174 ; free virtual = 33127
+# report_utilization -file vivado_synth.rpt
+INFO: [Common 17-206] Exiting Vivado at Thu Sep  3 14:52:14 2026...

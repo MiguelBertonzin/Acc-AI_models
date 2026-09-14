@@ -1,0 +1,455 @@
+{
+  "scenario": "end_to_end",
+  "threads": 3,
+  "samples_total": 10000,
+  "batch": 1,
+  "warmup_per_runner": 100,
+  "warmup_total_excluded": 300,
+  "blocks": 10,
+  "block_size": 1000,
+  "start_utc": "2026-09-08T19:14:40.297216+00:00",
+  "end_utc": "2026-09-08T19:14:46.666123+00:00",
+  "wall_time_s": 6.36891469,
+  "fps_global_weighted": 1570.126228209849,
+  "throughput_block_stats": {
+    "count": 10,
+    "mean": 1570.9047690052498,
+    "median": 1571.6542895299165,
+    "sample_sd_ddof1": 8.085977873144731,
+    "min": 1553.3689092094396,
+    "max": 1579.971223036132,
+    "ci95_mean": {
+      "n": 10,
+      "mean": 1570.9047690052498,
+      "sample_sd": 8.085977873144731,
+      "low": 1565.89312008815,
+      "high": 1575.9164179223496
+    }
+  },
+  "latency_ms": {
+    "count": 10000,
+    "mean": 1.820691489,
+    "median": 1.730345,
+    "sample_sd_ddof1": 0.5889065771859728,
+    "cv_percent": 32.345215031978036,
+    "p90": 2.55676,
+    "p95": 2.8804629999999998,
+    "p99": 3.592200700000001,
+    "min": 0.58279,
+    "max": 8.94091
+  },
+  "latency_mean_ci95_from_10_block_means_ms": {
+    "n": 10,
+    "mean": 1.820691489,
+    "sample_sd": 0.02562292468527032,
+    "low": 1.8048105275669557,
+    "high": 1.8365724504330445
+  },
+  "block_latency_means_ms": [
+    1.7585654,
+    1.83967264,
+    1.83202552,
+    1.8269819200000001,
+    1.7923786099999999,
+    1.8390987600000002,
+    1.8309055,
+    1.83442472,
+    1.82314554,
+    1.8297162800000002
+  ],
+  "block_fps": [
+    1553.3689092094396,
+    1569.9326745362055,
+    1562.8519102949886,
+    1570.7364264222683,
+    1569.1987377804728,
+    1572.5721526375646,
+    1578.3881039792839,
+    1572.9296541502047,
+    1579.971223036132,
+    1579.0978980059404
+  ],
+  "worker_counts": [
+    3334,
+    3333,
+    3333
+  ],
+  "per_thread": [
+    {
+      "thread_id": 0,
+      "count": 3334,
+      "latency_ms": {
+        "count": 3334,
+        "mean": 1.8236751229754051,
+        "median": 1.73688,
+        "sample_sd_ddof1": 0.5946315699611898,
+        "cv_percent": 32.606222592487995,
+        "p90": 2.557150000000001,
+        "p95": 2.9021179999999998,
+        "p99": 3.5744885000000006,
+        "min": 0.5869,
+        "max": 6.64385
+      },
+      "nominal_fps_from_sum_latency": 548.3432807749532
+    },
+    {
+      "thread_id": 1,
+      "count": 3333,
+      "latency_ms": {
+        "count": 3333,
+        "mean": 1.7957412511251123,
+        "median": 1.717,
+        "sample_sd_ddof1": 0.5353740915359091,
+        "cv_percent": 29.813543081469742,
+        "p90": 2.49894,
+        "p95": 2.7572959999999993,
+        "p99": 3.3268279999999995,
+        "min": 0.65735,
+        "max": 5.19344
+      },
+      "nominal_fps_from_sum_latency": 556.8731014969195
+    },
+    {
+      "thread_id": 2,
+      "count": 3333,
+      "latency_ms": {
+        "count": 3333,
+        "mean": 1.8426571977197719,
+        "median": 1.745,
+        "sample_sd_ddof1": 0.6319118914858847,
+        "cv_percent": 34.29351331695635,
+        "p90": 2.6101900000000002,
+        "p95": 2.9559719999999983,
+        "p99": 3.8604563999999977,
+        "min": 0.58279,
+        "max": 8.94091
+      },
+      "nominal_fps_from_sum_latency": 542.694539840328
+    }
+  ],
+  "idle_telemetry": {
+    "sample_count": 501,
+    "power_w": {
+      "count": 501,
+      "mean": 14.497576846307384,
+      "median": 14.487,
+      "sample_sd_ddof1": 0.0499067188145478,
+      "min": 14.462,
+      "max": 15.3
+    },
+    "current_a": {
+      "count": 501,
+      "mean": 1.204930139720559,
+      "median": 1.204,
+      "sample_sd_ddof1": 0.004181041709961663,
+      "min": 1.201,
+      "max": 1.272
+    },
+    "voltage_v": {
+      "count": 501,
+      "mean": 12.027996007984031,
+      "median": 12.028,
+      "sample_sd_ddof1": 0.0007183202850651906,
+      "min": 12.02,
+      "max": 12.03
+    },
+    "ps_temp_c": {
+      "count": 51,
+      "mean": 44.13915693366118,
+      "median": 44.095575497207996,
+      "sample_sd_ddof1": 0.6589586187491187,
+      "min": 42.618987667728,
+      "max": 46.038454220207996
+    },
+    "pl_temp_c": {
+      "count": 51,
+      "mean": 43.945326209296,
+      "median": 43.893516110015995,
+      "sample_sd_ddof1": 0.5915152477415193,
+      "min": 42.3547561614,
+      "max": 45.121415462952
+    },
+    "remote_temp_c": {
+      "count": 51,
+      "mean": 45.12994889106871,
+      "median": 45.199130611872,
+      "sample_sd_ddof1": 0.6754930912823046,
+      "min": 43.44276824628,
+      "max": 46.566917232864
+    },
+    "sampler_read_duration_ms": {
+      "mean": 1.6333611776447106,
+      "median": 1.36974,
+      "p95": 3.93891,
+      "max": 4.64977
+    },
+    "sampler_interval_ms": {
+      "mean": 10.0002014,
+      "median": 9.99989,
+      "p95": 10.001850999999998,
+      "max": 10.10707
+    }
+  },
+  "active_telemetry": {
+    "sample_count": 568,
+    "power_w": {
+      "count": 568,
+      "mean": 14.840047535211266,
+      "median": 14.85,
+      "sample_sd_ddof1": 0.049666040203238074,
+      "min": 14.462,
+      "max": 14.925
+    },
+    "current_a": {
+      "count": 568,
+      "mean": 1.2339595070422538,
+      "median": 1.234,
+      "sample_sd_ddof1": 0.003954786054537429,
+      "min": 1.203,
+      "max": 1.241
+    },
+    "voltage_v": {
+      "count": 568,
+      "mean": 12.024795774647888,
+      "median": 12.025,
+      "sample_sd_ddof1": 0.0008772148678834519,
+      "min": 12.023,
+      "max": 12.028
+    },
+    "ps_temp_c": {
+      "count": 57,
+      "mean": 44.32681215083663,
+      "median": 44.297634884400004,
+      "sample_sd_ddof1": 0.5841062540609206,
+      "min": 42.821047054919994,
+      "max": 45.8519378628
+    },
+    "pl_temp_c": {
+      "count": 57,
+      "mean": 44.25782291337431,
+      "median": 44.251005795047995,
+      "sample_sd_ddof1": 0.6493618908373846,
+      "min": 43.023106442112,
+      "max": 45.914109981936
+    },
+    "remote_temp_c": {
+      "count": 57,
+      "mean": 45.78158520167243,
+      "median": 45.727593624528005,
+      "sample_sd_ddof1": 0.721831717341456,
+      "min": 44.188833675912,
+      "max": 47.701558407095995
+    },
+    "sampler_read_duration_ms": {
+      "mean": 8.167983257042252,
+      "median": 6.681125,
+      "p95": 23.9384995,
+      "max": 29.48925
+    },
+    "sampler_interval_ms": {
+      "mean": 11.410215485008818,
+      "median": 10.08343,
+      "p95": 23.994937999999998,
+      "max": 29.54395
+    }
+  },
+  "power_energy_overall": {
+    "samples_in_interval": 556,
+    "bracketed": true,
+    "coverage_fraction": 0.995661623471989,
+    "max_sample_gap_ms": 29.54395,
+    "energy_j": 94.53767855443985,
+    "mean_power_w": 14.843608865239776,
+    "idle_mean_power_w": 14.497576846307384,
+    "dynamic_mean_power_w": 0.34603201893239266,
+    "dynamic_energy_j": 2.2038484085888683,
+    "total_energy_mj_per_inference": 9.453767855443985,
+    "dynamic_energy_mj_per_inference": 0.22038484085888685
+  },
+  "accuracy": {
+    "unique_images": 10000,
+    "correct": 9895,
+    "accuracy_percent": 98.95,
+    "wilson95_percent": [
+      98.73057978310227,
+      99.1318267764085
+    ],
+    "host_int8_argmax_agreement": 10000,
+    "host_int8_argmax_agreement_percent": 100.0,
+    "divergence_count": 0,
+    "prediction_sha256_run_order": "4fa14c6b6ee5303a87ac8568cb539cc116097985b479d1f0d6084947145fe5ea",
+    "confusion_matrix_rows_true_columns_predicted": [
+      [
+        973,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        1131,
+        0,
+        1,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1025,
+        0,
+        1,
+        0,
+        2,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        1001,
+        0,
+        3,
+        0,
+        0,
+        4,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        979,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        4,
+        0,
+        883,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        2,
+        1,
+        0,
+        0,
+        1,
+        4,
+        948,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        4,
+        7,
+        0,
+        0,
+        0,
+        0,
+        1005,
+        1,
+        11
+      ],
+      [
+        3,
+        0,
+        2,
+        1,
+        0,
+        4,
+        0,
+        3,
+        957,
+        4
+      ],
+      [
+        1,
+        1,
+        0,
+        1,
+        6,
+        3,
+        1,
+        1,
+        2,
+        993
+      ]
+    ],
+    "raw_output_distribution": {
+      "count_values": 100000,
+      "count_minus128": 0,
+      "count_plus127": 0,
+      "min": -104,
+      "max": 105,
+      "mean": -8.21549,
+      "sample_sd_ddof1": 27.00977729157709
+    },
+    "dpu_vs_host_fakequant_logits": {
+      "mae": 0.0,
+      "rmse": 0.0,
+      "max_abs": 0.0
+    }
+  },
+  "dpu_status_before": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x7138000\",\n                \"dpu0_base_addr_2\":\"0x5d8e000\",\n                \"dpu0_base_addr_3\":\"0x60d4000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e4\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x702d000\",\n                \"dpu0_base_addr_2\":\"0x713b000\",\n                \"dpu0_base_addr_3\":\"0x6b2c000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e4\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "dpu_status_after": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x63f1000\",\n                \"dpu0_base_addr_2\":\"0x59b0000\",\n                \"dpu0_base_addr_3\":\"0x2888000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e4\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x70eb000\",\n                \"dpu0_base_addr_2\":\"0x6683000\",\n                \"dpu0_base_addr_3\":\"0x6462000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e4\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "latency_boundary": "t0 -> uint8->float32 /255 -> quantizacao -> copia -> execute_async+wait -> dequantizacao -> argmax -> t1",
+  "throughput_scope": "tempo global do primeiro inicio de bloco ao termino do ultimo bloco; exclui criacao de runner, warm-up, baseline idle e escrita em disco",
+  "telemetry_paths": {
+    "power": "/sys/class/hwmon/hwmon0/power1_input",
+    "current": "/sys/class/hwmon/hwmon0/curr1_input",
+    "voltage": "/sys/class/hwmon/hwmon0/in2_input",
+    "ams": "/sys/bus/iio/devices/iio:device0",
+    "requested_interval_s": 0.01,
+    "known_iio_sampling_frequency_hz": 114
+  },
+  "system_after": {
+    "VmSize": "468068 kB",
+    "VmHWM": "280336 kB",
+    "VmRSS": "280336 kB",
+    "Threads": "1",
+    "loadavg_1_5_15": [
+      0.6,
+      0.2,
+      0.07
+    ]
+  }
+}

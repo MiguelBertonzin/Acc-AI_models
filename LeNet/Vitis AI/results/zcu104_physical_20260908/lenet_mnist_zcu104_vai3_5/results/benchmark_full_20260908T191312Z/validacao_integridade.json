@@ -1,0 +1,67 @@
+{
+  "configurations_expected": 12,
+  "configurations_completed": 12,
+  "all_samples_10000": true,
+  "all_latencies_count_10000": true,
+  "all_positive_fps": true,
+  "all_power_bracketed": true,
+  "accuracy_configs": [
+    {
+      "scenario": "inference_only",
+      "threads": 1,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "inference_only",
+      "threads": 2,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "inference_only",
+      "threads": 3,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "inference_only",
+      "threads": 4,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "end_to_end",
+      "threads": 1,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "end_to_end",
+      "threads": 2,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "end_to_end",
+      "threads": 3,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    },
+    {
+      "scenario": "end_to_end",
+      "threads": 4,
+      "correct": 9895,
+      "agreement": 10000,
+      "divergences": 0
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,325 @@
+{
+  "scenario": "saturated",
+  "threads": 4,
+  "samples_total": 10000,
+  "batch": 1,
+  "warmup_per_runner": 100,
+  "warmup_total_excluded": 400,
+  "blocks": 10,
+  "block_size": 1000,
+  "start_utc": "2026-09-08T19:15:37.710079+00:00",
+  "end_utc": "2026-09-08T19:15:38.917572+00:00",
+  "wall_time_s": 1.20749723,
+  "fps_global_weighted": 8281.592496903699,
+  "throughput_block_stats": {
+    "count": 10,
+    "mean": 8319.210305096012,
+    "median": 8323.101135807063,
+    "sample_sd_ddof1": 326.847859275082,
+    "min": 7699.778254086061,
+    "max": 8718.411017281634,
+    "ci95_mean": {
+      "n": 10,
+      "mean": 8319.210305096012,
+      "sample_sd": 326.847859275082,
+      "low": 8116.631625597936,
+      "high": 8521.788984594088
+    }
+  },
+  "latency_ms": {
+    "count": 10000,
+    "mean": 0.419939531,
+    "median": 0.37329500000000004,
+    "sample_sd_ddof1": 0.20920962844533103,
+    "cv_percent": 49.81898892612971,
+    "p90": 0.620141,
+    "p95": 0.7455404999999999,
+    "p99": 1.0934352000000005,
+    "min": 0.20782,
+    "max": 7.24762
+  },
+  "latency_mean_ci95_from_10_block_means_ms": {
+    "n": 10,
+    "mean": 0.419939531,
+    "sample_sd": 0.018747232620132066,
+    "low": 0.40832008935258407,
+    "high": 0.4315589726474159
+  },
+  "block_latency_means_ms": [
+    0.43475612,
+    0.40153040999999995,
+    0.38832487,
+    0.41648902000000004,
+    0.41487627,
+    0.4237278500000001,
+    0.44529207,
+    0.43751996,
+    0.43571648,
+    0.40116225999999994
+  ],
+  "block_fps": [
+    8125.24512848897,
+    8639.750732823657,
+    8718.411017281634,
+    8200.450499948665,
+    8437.971919948286,
+    8394.431503495567,
+    8018.68031766804,
+    7699.778254086061,
+    8251.770768118558,
+    8705.612909100691
+  ],
+  "worker_counts": [
+    2500,
+    2500,
+    2500,
+    2500
+  ],
+  "per_thread": [
+    {
+      "thread_id": 0,
+      "count": 2500,
+      "latency_ms": {
+        "count": 2500,
+        "mean": 0.423124488,
+        "median": 0.378355,
+        "sample_sd_ddof1": 0.1714348409671057,
+        "cv_percent": 40.51640730543246,
+        "p90": 0.6047649999999999,
+        "p95": 0.7422409999999999,
+        "p99": 1.0549931000000001,
+        "min": 0.21222,
+        "max": 1.98782
+      },
+      "nominal_fps_from_sum_latency": 2363.3706588969626
+    },
+    {
+      "thread_id": 1,
+      "count": 2500,
+      "latency_ms": {
+        "count": 2500,
+        "mean": 0.397649524,
+        "median": 0.36869,
+        "sample_sd_ddof1": 0.1444354668410985,
+        "cv_percent": 36.32230346668251,
+        "p90": 0.575885,
+        "p95": 0.6557284999999999,
+        "p99": 0.8434864999999994,
+        "min": 0.21453,
+        "max": 2.64522
+      },
+      "nominal_fps_from_sum_latency": 2514.7773092770008
+    },
+    {
+      "thread_id": 2,
+      "count": 2500,
+      "latency_ms": {
+        "count": 2500,
+        "mean": 0.43331795600000006,
+        "median": 0.373065,
+        "sample_sd_ddof1": 0.233173204285271,
+        "cv_percent": 53.81111053825588,
+        "p90": 0.66762,
+        "p95": 0.8346804999999998,
+        "p99": 1.182914199999999,
+        "min": 0.20782,
+        "max": 3.77317
+      },
+      "nominal_fps_from_sum_latency": 2307.774201722672
+    },
+    {
+      "thread_id": 3,
+      "count": 2500,
+      "latency_ms": {
+        "count": 2500,
+        "mean": 0.4256661560000001,
+        "median": 0.37224,
+        "sample_sd_ddof1": 0.26417212855913974,
+        "cv_percent": 62.060872079090004,
+        "p90": 0.6396309999999998,
+        "p95": 0.7955594999999995,
+        "p99": 1.2076804,
+        "min": 0.20874,
+        "max": 7.24762
+      },
+      "nominal_fps_from_sum_latency": 2349.258887286308
+    }
+  ],
+  "idle_telemetry": {
+    "sample_count": 501,
+    "power_w": {
+      "count": 501,
+      "mean": 14.490840319361274,
+      "median": 14.487,
+      "sample_sd_ddof1": 0.04494047675645879,
+      "min": 14.45,
+      "max": 15.325
+    },
+    "current_a": {
+      "count": 501,
+      "mean": 1.204315369261477,
+      "median": 1.204,
+      "sample_sd_ddof1": 0.0036094796457901332,
+      "min": 1.201,
+      "max": 1.274
+    },
+    "voltage_v": {
+      "count": 501,
+      "mean": 12.028407185628742,
+      "median": 12.028,
+      "sample_sd_ddof1": 0.000886492111342453,
+      "min": 12.026,
+      "max": 12.03
+    },
+    "ps_temp_c": {
+      "count": 51,
+      "mean": 44.115385241050355,
+      "median": 44.173290646128,
+      "sample_sd_ddof1": 0.7115861708921489,
+      "min": 42.43247131032,
+      "max": 45.556620296904
+    },
+    "pl_temp_c": {
+      "count": 51,
+      "mean": 44.035536735101175,
+      "median": 44.095575497207996,
+      "sample_sd_ddof1": 0.5965124018527452,
+      "min": 42.479100399672,
+      "max": 44.965985165111995
+    },
+    "remote_temp_c": {
+      "count": 51,
+      "mean": 45.189682887885645,
+      "median": 45.230216671440004,
+      "sample_sd_ddof1": 0.6708043099012911,
+      "min": 43.75362884196,
+      "max": 47.359611751848
+    },
+    "sampler_read_duration_ms": {
+      "mean": 1.6270342714570858,
+      "median": 1.36103,
+      "p95": 3.94289,
+      "max": 4.77551
+    },
+    "sampler_interval_ms": {
+      "mean": 10.000204000000002,
+      "median": 10.000385000000001,
+      "p95": 10.029394,
+      "max": 10.14429
+    }
+  },
+  "active_telemetry": {
+    "sample_count": 127,
+    "power_w": {
+      "count": 127,
+      "mean": 15.08674803149606,
+      "median": 15.137,
+      "sample_sd_ddof1": 0.18151098477860944,
+      "min": 14.462,
+      "max": 15.262
+    },
+    "current_a": {
+      "count": 127,
+      "mean": 1.2546929133858271,
+      "median": 1.259,
+      "sample_sd_ddof1": 0.015833213939912546,
+      "min": 1.202,
+      "max": 1.269
+    },
+    "voltage_v": {
+      "count": 127,
+      "mean": 12.022236220472443,
+      "median": 12.022,
+      "sample_sd_ddof1": 0.0021983279826401823,
+      "min": 12.02,
+      "max": 12.03
+    },
+    "ps_temp_c": {
+      "count": 13,
+      "mean": 44.61327795078277,
+      "median": 44.499694271592,
+      "sample_sd_ddof1": 0.8805366354702291,
+      "min": 43.116364620816,
+      "max": 46.411486935023994
+    },
+    "pl_temp_c": {
+      "count": 13,
+      "mean": 44.01427349526092,
+      "median": 43.940145199368004,
+      "sample_sd_ddof1": 0.5905722011933673,
+      "min": 43.209622799520005,
+      "max": 45.043700314032
+    },
+    "remote_temp_c": {
+      "count": 13,
+      "mean": 45.65226971095938,
+      "median": 45.820851803231996,
+      "sample_sd_ddof1": 0.5571999555742744,
+      "min": 44.795011837488,
+      "max": 46.520288143512
+    },
+    "sampler_read_duration_ms": {
+      "mean": 4.4570859055118115,
+      "median": 3.72128,
+      "p95": 13.79825499999999,
+      "max": 17.45696
+    },
+    "sampler_interval_ms": {
+      "mean": 10.419295158730158,
+      "median": 10.010819999999999,
+      "p95": 13.8878825,
+      "max": 17.5307
+    }
+  },
+  "power_energy_overall": {
+    "samples_in_interval": 115,
+    "bracketed": true,
+    "coverage_fraction": 0.9875778100128644,
+    "max_sample_gap_ms": 17.5307,
+    "energy_j": 18.27458970759789,
+    "mean_power_w": 15.134270500643625,
+    "idle_mean_power_w": 14.490840319361274,
+    "dynamic_mean_power_w": 0.6434301812823513,
+    "dynamic_energy_j": 0.776940161596837,
+    "total_energy_mj_per_inference": 1.827458970759789,
+    "dynamic_energy_mj_per_inference": 0.0776940161596837
+  },
+  "accuracy": null,
+  "dpu_status_before": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x70cf000\",\n                \"dpu0_base_addr_2\":\"0x63e9000\",\n                \"dpu0_base_addr_3\":\"0x5d21000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e2\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x702c000\",\n                \"dpu0_base_addr_2\":\"0x70e0000\",\n                \"dpu0_base_addr_3\":\"0x70e1000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e2\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "dpu_status_after": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x66bc000\",\n                \"dpu0_base_addr_2\":\"0x2dd6000\",\n                \"dpu0_base_addr_3\":\"0x63f3000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e2\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x586b000\",\n                \"dpu0_base_addr_2\":\"0x6b2d000\",\n                \"dpu0_base_addr_3\":\"0x6bef000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e2\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "latency_boundary": "mesma entrada INT8/buffers reutilizados; t0 -> execute_async + wait -> t1; sem preprocessamento/argmax",
+  "throughput_scope": "tempo global do primeiro inicio de bloco ao termino do ultimo bloco; exclui criacao de runner, warm-up, baseline idle e escrita em disco",
+  "telemetry_paths": {
+    "power": "/sys/class/hwmon/hwmon0/power1_input",
+    "current": "/sys/class/hwmon/hwmon0/curr1_input",
+    "voltage": "/sys/class/hwmon/hwmon0/in2_input",
+    "ams": "/sys/bus/iio/devices/iio:device0",
+    "requested_interval_s": 0.01,
+    "known_iio_sampling_frequency_hz": 114
+  },
+  "system_after": {
+    "VmSize": "467488 kB",
+    "VmHWM": "336396 kB",
+    "VmRSS": "336336 kB",
+    "Threads": "1",
+    "loadavg_1_5_15": [
+      1.01,
+      0.36,
+      0.13
+    ]
+  }
+}

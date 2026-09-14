@@ -1,0 +1,100 @@
+{
+  "inferences": 30000,
+  "passages": 1000,
+  "full_passages": 1000,
+  "final_passage_samples": 0,
+  "inference_only": {
+    "mean_ms": 0.1127254569,
+    "mean_ci95_lower_ms": 0.11132158506067692,
+    "mean_ci95_upper_ms": 0.11412932873932309,
+    "median_ms": 0.103344,
+    "std_sample_ms": 0.030529474948835334,
+    "cv_percent": 27.083035002393796,
+    "p90_ms": 0.13399350000000002,
+    "p95_ms": 0.16293584999999997,
+    "p99_ms": 0.2367577499999997,
+    "minimum_ms": 0.095146,
+    "maximum_ms": 1.165293,
+    "ci_unit": "médias das passagens completas",
+    "ci_passages": 1000
+  },
+  "end_to_end": {
+    "mean_ms": 0.13606072816666667,
+    "mean_ci95_lower_ms": 0.13434408560312186,
+    "mean_ci95_upper_ms": 0.13777737073021143,
+    "median_ms": 0.124274,
+    "std_sample_ms": 0.037589914293455005,
+    "cv_percent": 27.627306424091376,
+    "p90_ms": 0.16257100000000002,
+    "p95_ms": 0.20200405,
+    "p99_ms": 0.2868511799999998,
+    "minimum_ms": 0.114025,
+    "maximum_ms": 1.356246,
+    "ci_unit": "médias das passagens completas",
+    "ci_passages": 1000
+  },
+  "passage_time_total_s": 4.10591896,
+  "benchmark_telemetry_window_s": 4.292719631,
+  "throughput_effective_fps": 7306.525114660324,
+  "end_to_end_effective_mean_ms": 0.13686396533333334,
+  "process_cpu_time_s": 4.790000000000001,
+  "process_cpu_time_per_inference_us": 159.66666666666669,
+  "process_context_switches_voluntary": 30655,
+  "process_context_switches_involuntary": 70,
+  "power_w": 50.65810671956668,
+  "energy_per_inference_j": 0.007249025233333333,
+  "power_energy_status": "disponível via RAPL sysfs",
+  "rapl": {
+    "available": true,
+    "source": "Linux powercap intel-rapl (MSR), cumulative energy_uj",
+    "primary_domain": "package",
+    "idle": {
+      "duration_s": 5.000458184,
+      "domains": {
+        "package": {
+          "name": "package-0",
+          "energy_j": 57.404577,
+          "average_power_w": 11.479863422051567
+        },
+        "core": {
+          "name": "core",
+          "energy_j": 15.61733,
+          "average_power_w": 3.123179801797139
+        },
+        "uncore": {
+          "name": "uncore",
+          "energy_j": 0.0,
+          "average_power_w": 0.0
+        }
+      }
+    },
+    "benchmark": {
+      "duration_s": 4.292911265,
+      "domains": {
+        "package": {
+          "name": "package-0",
+          "energy_j": 217.470757,
+          "average_power_w": 50.65810671956668
+        },
+        "core": {
+          "name": "core",
+          "energy_j": 180.334561,
+          "average_power_w": 42.00752120600844
+        },
+        "uncore": {
+          "name": "uncore",
+          "energy_j": 0.0,
+          "average_power_w": 0.0
+        }
+      }
+    },
+    "idle_package_power_w": 11.479863422051567,
+    "dynamic_package_power_w": 39.17824329751512,
+    "total_energy_per_inference_j": 0.007249025233333333,
+    "dynamic_energy_j": 168.18872199481336,
+    "dynamic_energy_per_inference_j": 0.005606290733160445,
+    "counter_sampling_interval_ms": 100,
+    "boundary_reads_used_for_energy": true
+  },
+  "outliers_removed": false
+}

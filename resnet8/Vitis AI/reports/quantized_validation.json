@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5",
+  "model_sha256": "34ee6c9530aeb506300d481de966e858f632f397fd7178978f079d46b48ab91b",
+  "samples": 10000,
+  "correct": 7396,
+  "accuracy": 0.7396,
+  "accuracy_percent": 73.96,
+  "wilson_95": [
+    0.7309077952792274,
+    0.7481081927015444
+  ],
+  "float_argmax_agreement": 9375,
+  "float_argmax_agreement_percent": 93.75,
+  "outputs": "results/quantized_test_outputs.npz",
+  "outputs_sha256": "072e6cb3e3356664cf096f8f00fd1263650ffa8966bdf2192676fd97a7da14d6",
+  "batch_size": 256,
+  "preprocessing": "uint8 to float32, divide by 255.0",
+  "softmax": false,
+  "decision": "argmax of quantized logits"
+}

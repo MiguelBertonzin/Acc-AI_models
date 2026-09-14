@@ -1,0 +1,45 @@
+{
+  "package": "lenet_mnist_zcu104_vai3_5",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "board": "ZCU104",
+  "vitis_ai": "3.5 host toolchain",
+  "required_before_run": "xdputil query must report a matching DPU fingerprint",
+  "test_samples": 10000,
+  "files": [
+    {
+      "path": "lenet_mnist_no_softmax.xmodel",
+      "bytes": 171444,
+      "sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5"
+    },
+    {
+      "path": "mnist_test_uint8.npz",
+      "bytes": 1657009,
+      "sha256": "be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd"
+    },
+    {
+      "path": "quantized_test_outputs.npz",
+      "bytes": 149939,
+      "sha256": "cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32"
+    },
+    {
+      "path": "00_inspect_dpu.py",
+      "bytes": 1740,
+      "sha256": "304e8de9519ecddbaa8a1865b9f7ec811adf2cd41cbf0228125283d9ade03912"
+    },
+    {
+      "path": "01_smoke_inference.py",
+      "bytes": 3991,
+      "sha256": "bdf42ecf67fc02e68d28d7d3c8a8212d935669bc6cb7e153c2b81d4de3e698b6"
+    },
+    {
+      "path": "02_validate_accuracy.py",
+      "bytes": 4697,
+      "sha256": "a8755dcfc120b05089448be11ba953b19d3c581150e804d60af33a312000e2ee"
+    },
+    {
+      "path": "arch_zcu104_vai3.5.json",
+      "bytes": 39,
+      "sha256": "ed133f86ad4e2942ff3eacdabf42153bb4c6a0a95014deac4e30611298acf923"
+    }
+  ]
+}

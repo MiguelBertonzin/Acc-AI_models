@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "source": "models/float/resnet8_cifar10_keras3_no_softmax.h5",
+  "source_sha256": "047c190c70ea5901d2390af47b04f9d1e015c66cd7ff8bfc2a1e4f084154761e",
+  "output": "models/float/resnet8_cifar10_keras2_vai3_5_no_softmax.h5",
+  "output_sha256": "6632bdf0dd8becd7afcb9dbb623be2c090ef500e57343cbee2c751729cdbce3f",
+  "probe": "data/prepared/keras3_conversion_probe.npz",
+  "probe_sha256": "f0c1be5bc586652c938ee0300c3b739310e8ed4595d50684aec3df97894758a7",
+  "parameters": 78714,
+  "layers": 31,
+  "input_shape": [
+    null,
+    32,
+    32,
+    3
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "last_activation": "linear",
+  "samples": 32,
+  "max_abs_error": 1.2874603271484375e-05,
+  "mean_abs_error": 3.524986141201225e-06,
+  "argmax_matches": 32,
+  "argmax_total": 32,
+  "atol": 2e-05
+}

@@ -1,0 +1,850 @@
+RESULTADOS FINAIS — MLP, LeNet e ResNet8
+Transcrição das tabelas consolidadas na conversa — 11/09/2026
+
+Convenções: latências em ms; throughput em inferências/s; potência em W;
+energia em mJ/inferência, salvo indicação diferente.
+DP = desvio-padrão; CV = coeficiente de variação;
+IC95% = intervalo de confiança de 95%; E2E = ponta a ponta.
+
+Escopos energéticos: CPU = pacote RAPL; GPU = placa NVIDIA;
+hls4ml = PMBus 12V_power; Vitis AI = sensor da ZCU104 identificado em
+cada experimento. Esses escopos não abrangem necessariamente os mesmos
+componentes. Os arquivos de origem foram consultados somente em leitura.
+
+======================================================================
+1. MLP — IRIS
+======================================================================
+
+Rede 4 → 8 → 8 → 3, 139 parâmetros, quatro atributos, três classes.
+Acurácia avaliada em 30 amostras únicas.
+
+1.1. MLP — VITIS AI
+
+INT8, Vitis AI 3.5, DPUCZDX8G B4096. A campanha serial é a referência
+indicada pelo relatório para comparação entre plataformas. A matriz
+com múltiplas threads caracteriza os outros cenários.
+Fonte: MLP/Vitis AI/README_MLP_Iris_Vitis_AI_ZCU104.md
+
+| Validação/configuração | Resultado |
+|---|---:|
+| Acurácia float | 96,6667% — 29/30 |
+| Acurácia INT8/DPU | 96,6667% — 29/30 |
+| Concordância de classes com referência INT8 | 100% — 30/30 |
+| Divergências nas campanhas seriais | 0 |
+| Calibração | 120 amostras de treino |
+| Amostras de teste usadas na calibração | 0 |
+| Subgrafos DPU | 1 |
+| Entrada | INT8 [1,4], fix point 5 |
+| Saída | INT8 [1,3], fix point 3 |
+| Softmax no grafo DPU | Removida; decisão por argmax |
+| Tamanho do XModel | 109.221 bytes |
+| Erro máximo/médio dos logits INT8 × float, no host | 0,22719145 / 0,04820604 |
+| Erro máximo/médio das probabilidades, no host | 0,03152779 / 0,00365869 |
+
+Campanhas seriais: cinco repetições por tamanho.
+
+| Métrica | 30.000 × 5 — média | 100.000 × 5 — média | IC95% de 100.000 × 5 |
+|---|---:|---:|---|
+| Throughput | 1.356,195 | 1.361,742 | 1.357,623–1.365,860 |
+| Latência DPU | 0,179928 | 0,179200 | 0,178013–0,180387 |
+| Latência device | 0,488950 | 0,487121 | 0,485508–0,488734 |
+| Latência E2E | 0,693816 | 0,691112 | 0,688838–0,693386 |
+| P95 DPU, média entre campanhas | 0,192690 | 0,192400 | 0,190524–0,194276 |
+| P99 DPU, média entre campanhas | 0,226661 | 0,231546 | 0,223929–0,239163 |
+| Potência ociosa | 14,447702 | 14,421743 | 14,415667–14,427819 |
+| Potência ativa | 14,657245 | 14,631050 | 14,625719–14,636381 |
+| Potência dinâmica | 0,209543 | 0,209307 | 0,204293–0,214322 |
+| Energia total | 10,807730 | 10,744417 | 10,709767–10,779067 |
+| Energia dinâmica | 0,154517 | 0,153707 | 0,149920–0,157495 |
+
+| Dispersão entre as cinco campanhas de 100.000 | DP | CV |
+|---|---:|---:|
+| Throughput | 3,317 | 0,244% |
+| Latência DPU | 0,000956 | 0,534% |
+| Latência device | 0,001299 | 0,267% |
+| Latência E2E | 0,001831 | 0,265% |
+| P95 DPU | 0,001511 | 0,785% |
+| P99 DPU | 0,006135 | 2,649% |
+| Potência ociosa | 0,004893 | 0,034% |
+| Potência ativa | 0,004294 | 0,029% |
+| Potência dinâmica | 0,004038 | 1,929% |
+| Energia total | 0,027906 | 0,260% |
+| Energia dinâmica | 0,003050 | 1,985% |
+
+Matriz robusta completa. T = threads/runners, não núcleos físicos.
+
+| Cenário | T | Throughput | Latência média | Mediana | P95 | P99 |
+|---|---:|---:|---:|---:|---:|---:|
+| Inference-only | 1 | 3.462,664 | 0,176710 | 0,170290 | 0,226818 | 0,254843 |
+| Inference-only | 2 | 4.894,829 | 0,271703 | 0,237120 | 0,385523 | 0,441383 |
+| Inference-only | 3 | 4.231,657 | 0,377215 | 0,254440 | 0,695084 | 1,395617 |
+| Inference-only | 4 | 4.060,092 | 0,600500 | 0,422950 | 1,559822 | 3,448956 |
+| E2E | 1 | 1.412,794 | 0,693515 | 0,689050 | 0,745040 | 0,827690 |
+| E2E | 2 | 1.597,396 | 1,197868 | 1,201280 | 1,237015 | 2,912472 |
+| E2E | 3 | 1.511,088 | 1,807040 | 1,617595 | 3,909189 | 5,700093 |
+| E2E | 4 | 1.570,833 | 1,847936 | 1,204255 | 2,163321 | 5,623213 |
+| Saturado | 1 | 5.484,878 | 0,169353 | 0,166660 | 0,186461 | 0,206042 |
+| Saturado | 2 | 8.917,201 | 0,207781 | 0,206970 | 0,268893 | 0,311944 |
+| Saturado | 3 | 10.470,977 | 0,264071 | 0,239340 | 0,386975 | 0,547558 |
+| Saturado | 4 | 9.639,873 | 0,365382 | 0,321700 | 0,708038 | 1,208060 |
+
+| Cenário | T | Potência ociosa | Potência ativa | Potência dinâmica | Energia total | Energia dinâmica |
+|---|---:|---:|---:|---:|---:|---:|
+| Inference-only | 1 | 14,4360 | 14,6507 | 0,214722 | 4,231053 | 0,062011 |
+| Inference-only | 2 | 14,4369 | 14,8138 | 0,376878 | 3,026410 | 0,076995 |
+| Inference-only | 3 | 14,4407 | 14,7621 | 0,321487 | 3,488503 | 0,075972 |
+| Inference-only | 4 | 14,4369 | 14,7875 | 0,350546 | 3,642156 | 0,086339 |
+| E2E | 1 | 14,4364 | 14,6690 | 0,232573 | 10,382938 | 0,164619 |
+| E2E | 2 | 14,4362 | 14,6892 | 0,253037 | 9,195714 | 0,158406 |
+| E2E | 3 | 14,4345 | 14,7063 | 0,271859 | 9,732284 | 0,179910 |
+| E2E | 4 | 14,4315 | 14,6878 | 0,256299 | 9,350348 | 0,163161 |
+| Saturado | 1 | 14,4322 | 14,6610 | 0,228746 | 2,672981 | 0,041705 |
+| Saturado | 2 | 14,4360 | 14,8257 | 0,389617 | 1,662591 | 0,043693 |
+| Saturado | 3 | 14,4350 | 14,9041 | 0,469125 | 1,423372 | 0,044802 |
+| Saturado | 4 | 14,4359 | 14,8774 | 0,441535 | 1,543322 | 0,045803 |
+
+1.2. MLP — HLS4ML
+
+Coleta física: 10/09/2026. ZCU104, 100 MHz, ap_fixed<16,6>, RF = 1,
+estratégia Latency, AXI4-Lite, softmax no hardware.
+Fonte: MLP/hls4ml/README_MLP_IRIS_ZCU104_HLS4ML.md
+
+| Validação | Resultado |
+|---|---:|
+| Acurácia física | 96,6667% — 29/30 |
+| IC95% Wilson | 83,33%–99,41% |
+| Macro F1 | 0,966583 |
+| MCC | 0,951587 |
+| Kappa | 0,950000 |
+| Classes FPGA × HLS iguais | 30/30 |
+| Saídas RAW FPGA × HLS exatas | 30/30 |
+| Teste de determinismo | 3.000 execuções |
+| Mismatches RAW/classes; erros de valid | 0 |
+| Latência física observada | 6 ciclos ≈ 60 ns |
+| Latência estimada HLS | 5 ciclos = 50 ns |
+| Intervalo de iniciação HLS | 1 ciclo |
+
+| Métrica de desempenho | Inference batch 1 | E2E | Saturado |
+|---|---:|---:|---:|
+| Amostras de latência | 500.000 | 500.000 | 50.000 |
+| Latência média | 0,052497 | 0,224716 | 0,054169 |
+| Mediana | 0,052310 | 0,221350 | 0,053930 |
+| DP das latências | 0,001884 | 0,009931 | 0,006201 |
+| CV das latências | 3,5890% | 4,4195% | 11,4467% |
+| P90 | 0,052750 | 0,244100 | 0,054300 |
+| P95 | 0,052910 | 0,245390 | 0,054460 |
+| P99 | 0,063580 | 0,248820 | 0,063620 |
+| Mínimo | 0,050890 | 0,217740 | 0,052920 |
+| Máximo | 0,203800 | 1,656380 | 0,945520 |
+| Throughput principal medido | 7.251,484 | 4.558,025 | 17.507,644 |
+| IC95% throughput | 7.217,400–7.285,567 | 4.543,693–4.572,357 | 17.449,288–17.566,000 |
+
+O E2E começa com atributos float já normalizados. Latência individual
+e throughput principal foram coletados separadamente; o throughput
+final evita a instrumentação de cada chamada.
+
+| Métrica energética | Inference batch 1 | E2E | Saturado |
+|---|---:|---:|---:|
+| Throughput na janela energética | 7.168,963 | 4.519,831 | 18.337,803 |
+| Potência ociosa | 9,954800 | 9,951320 | 9,954320 |
+| Potência ativa | 10,152207 | 10,153007 | 10,132727 |
+| Potência dinâmica | 0,197407 | 0,201687 | 0,178407 |
+| Energia total | 1,416150 | 2,246334 | 0,552614 |
+| IC95% energia total | 1,409121–1,423179 | 2,239229–2,253439 | 0,544929–0,560299 |
+| DP energia total | 0,005661 | 0,005722 | 0,006190 |
+| CV energia total | 0,3997% | 0,2547% | 1,1201% |
+| Energia dinâmica | 0,027540 | 0,044624 | 0,009735 |
+| IC95% energia dinâmica | 0,025424–0,029655 | 0,043298–0,045951 | 0,008930–0,010539 |
+| DP energia dinâmica | 0,001704 | 0,001068 | 0,000648 |
+| CV energia dinâmica | 6,1865% | 2,3936% | 6,6561% |
+| Energia total por integração, verificação | 1,415720 | 2,245661 | 0,552472 |
+| Energia dinâmica por integração, verificação | 0,027118 | 0,043958 | 0,009594 |
+| Utilização CPU durante energia | 25,5096% | 25,6406% | 25,2927% |
+| Temperatura do sensor/regulador | 36,0133 °C | 36,0333 °C | 36,1333 °C |
+| Intervalo médio da telemetria | ≈1 s | ≈1 s | ≈1 s |
+| Mismatches | 0 | 0 | 0 |
+
+Recursos do sistema integrado pós-route:
+Fonte: MLP/hls4ml/vivado_zcu104_mlp/reports/utilization_post_route.rpt
+Timing: MLP/hls4ml/vivado_zcu104_mlp/README.md
+
+| Recurso/timing | Resultado final |
+|---|---:|
+| LUT | 2.633 — 1,14% |
+| FF | 1.391 — 0,30% |
+| CLB | 502 — 1,74% |
+| DSP | 108 — 6,25% |
+| BRAM tiles | 1,5 — 0,48% |
+| RAMB18 | 3 |
+| URAM | 0 |
+| WNS / TNS | +3,098 ns / 0 ns |
+| WHS / THS | +0,019 ns / 0 ns |
+| Pulse Width Slack | +3,500 ns |
+| Endpoints com falha de setup/hold | 0 / 0 |
+
+1.3. MLP — GPU
+
+RTX 3050 OEM, 8 GB, FP32, batch 1, serial síncrono, 200 warm-ups,
+cinco campanhas por tamanho.
+Fontes: MLP/GPU/replicas/RESUMO_5_CAMPANHAS.md
+        MLP/GPU/replicas/campanhas_gpu.csv
+
+| Métrica | 30.000 × 5 | 100.000 × 5 |
+|---|---:|---:|
+| Acurácia | 96,6667% — 29/30 | 96,6667% — 29/30 |
+| Latência inference-only média | 0,176134 | 0,168663 |
+| IC95% | 0,168712–0,183557 | 0,157735–0,179591 |
+| DP entre campanhas | 0,005978 | 0,008801 |
+| CV entre campanhas | 3,39% | 5,22% |
+| E2E efetiva média | 0,264565 | 0,255899 |
+| IC95% E2E | 0,251554–0,277577 | 0,244343–0,267455 |
+| DP E2E entre campanhas | 0,010479 | 0,009307 |
+| CV E2E entre campanhas | 3,96% | 3,64% |
+| Throughput efetivo | 3.784,455 | 3.911,809 |
+| IC95% throughput | 3.601,305–3.967,605 | 3.740,498–4.083,121 |
+| DP throughput | 147,504 | 137,969 |
+| CV throughput | 3,90% | 3,53% |
+| Energia total | 7,875803 | 7,521092 |
+| IC95% energia | 7,568369–8,183238 | 7,034751–8,007433 |
+| DP energia | 0,247599 | 0,391685 |
+| CV energia | 3,14% | 5,21% |
+
+Complemento calculado: média aritmética das estatísticas das cinco
+campanhas de 100.000. P95 médio é média dos cinco P95, não o percentil
+de todas as latências reunidas. Nenhum arquivo de origem foi alterado.
+
+| Estatística média por campanha | Inference-only | E2E cronometrado individualmente |
+|---|---:|---:|
+| Latência média | 0,168663 | 0,254885 |
+| Mediana média | 0,157034 | 0,252199 |
+| DP intracampanha médio | 0,038945 | 0,051470 |
+| CV intracampanha médio | 22,8615% | 20,0712% |
+| P90 médio | 0,201826 | 0,292172 |
+| P95 médio | 0,233292 | 0,324323 |
+| P99 médio | 0,325810 | 0,440829 |
+| Média dos mínimos | 0,137258 | 0,176705 |
+| Média dos máximos | 1,776940 | 2,522867 |
+
+| Telemetria — média das cinco campanhas de 100.000 | Resultado |
+|---|---:|
+| Potência ativa, sensor instantâneo | 28,660731 W |
+| Potência ociosa | 28,402560 W |
+| Incremento ativo − ocioso, calculado | ≈0,258172 W |
+| Potência do sensor com média de 1 s | 28,654418 W |
+| Energia dinâmica | 0,068478 mJ/inf |
+| Energia total por campanha | 752,109203 J |
+| Energia dinâmica por campanha | 6,847771 J |
+| Duração da janela energética | 26,230631 s |
+| Utilização GPU | 9,8802% |
+| Utilização de memória | 0,4662% |
+| Memória usada | 735,2717 MiB |
+| Clock SM | 1.755 MHz |
+| Clock de memória | 6.801 MHz |
+| Temperatura média | 50,9300 °C |
+| Média dos máximos de temperatura | 51,6000 °C |
+| Ventoinha média | 25,8839% |
+| Intervalo observado de telemetria | 101,3121 ms |
+| Amostras de telemetria por campanha, média | 258,8 |
+
+A energia dinâmica MLP/GPU tem baixa confiança: a diferença de potência
+em relação ao baseline é pequena, conforme a documentação.
+
+1.4. MLP — CPU
+
+Intel Core i7-13700, 16 núcleos físicos/24 lógicos, FP32,
+TensorFlow 2.21/oneDNN, batch 1, 200 warm-ups, RAPL a 100 ms nominais.
+Fonte: MLP/CPU/README.md
+
+| Métrica | 30.000 × 5 | 100.000 × 5 |
+|---|---:|---:|
+| Acurácia | 96,6667% — 29/30 | 96,6667% — 29/30 |
+| Latência inference-only média | 0,112886 | 0,112399 |
+| IC95% | 0,110670–0,115102 | 0,107717–0,117082 |
+| Mediana das médias de campanha | 0,112725 | 0,110878 |
+| CV entre campanhas | 1,58% | 3,36% |
+| Latência E2E efetiva | 0,137473 | 0,137069 |
+| IC95% E2E | 0,134838–0,140108 | 0,131422–0,142715 |
+| Mediana E2E entre campanhas | 0,137186 | 0,135240 |
+| CV E2E entre campanhas | 1,54% | 3,32% |
+| Throughput | 7.275,55 | 7.301,88 |
+| IC95% throughput | 7.136,58–7.414,51 | 7.009,16–7.594,59 |
+| Mediana throughput | 7.289,40 | 7.394,24 |
+| CV throughput | 1,54% | 3,23% |
+| Potência package | 53,444 | 55,245 |
+| IC95% potência package | 50,392–56,497 | 50,288–60,202 |
+| Potência ociosa | 11,898 | 12,569 |
+| IC95% potência ociosa | 10,793–13,003 | 10,624–14,513 |
+| Potência dinâmica | 41,546 | 42,677 |
+| IC95% potência dinâmica | 39,448–43,644 | 39,505–45,849 |
+| Potência dos cores | 44,653 | 46,312 |
+| IC95% potência dos cores | 41,704–47,603 | 41,590–51,035 |
+| Energia total package | 7,685 | 7,927 |
+| IC95% energia total | 7,128–8,243 | 6,899–8,954 |
+| Energia dinâmica package | 5,974 | 6,121 |
+| IC95% energia dinâmica | 5,591–6,356 | 5,424–6,819 |
+| Temperatura package média | 68,8 °C | 73,6 °C |
+| IC95% temperatura média | 66,7–70,8 °C | 70,4–76,8 °C |
+| Pico médio de temperatura | 74,6 °C | 78,8 °C |
+| Faixa dos picos | 71–77 °C | 73–82 °C |
+
+Percentis complementares: média das estatísticas das cinco campanhas
+de 100.000.
+
+| Estatística | Inference-only | E2E individual |
+|---|---:|---:|
+| Mediana média | 0,105438 | 0,127406 |
+| P95 médio | 0,151043 | 0,186929 |
+| P99 médio | 0,213531 | 0,261648 |
+
+Validação comum da referência CPU/GPU:
+
+| Métrica | Resultado |
+|---|---:|
+| IC95% Wilson da acurácia | 83,33%–99,41% |
+| Macro F1 | 0,966583 |
+| MCC | 0,951587 |
+| ROC AUC macro | 0,996667 |
+| Concordância de classes CPU × GPU | 100% |
+| Maior diferença de probabilidade | 1,192 × 10⁻⁷ |
+| Determinismo | 100% |
+
+======================================================================
+2. LENET — MNIST
+======================================================================
+
+44.426 parâmetros, 281.640 MACs/imagem, entrada 28 × 28 × 1,
+10 logits, sem softmax. Acurácia nas 10.000 imagens oficiais de teste.
+
+2.1. LENET — VITIS AI
+
+Coleta: 08/09/2026. INT8, dois núcleos DPU B4096 a 300 MHz.
+10.000 inferências/configuração, dez blocos; 120.000 nos 12 cenários.
+Fonte: LeNet/Vitis AI/README_RESULTS_VITIS_AI.md
+
+| Validação/configuração | Resultado |
+|---|---:|
+| Acurácia física | 98,95% — 9.895/10.000 |
+| IC95% Wilson | 98,7306%–99,1318% |
+| Concordância DPU × host INT8 | 100% — 10.000/10.000 |
+| Divergências | 0 |
+| MAE / RMSE / erro máximo dos logits contra INT8 | 0 / 0 / 0 |
+| Faixa de saída INT8 | −104 a 105 |
+| Saturações em −128 ou 127 | 0 |
+| Calibração | 10.000 imagens de treino; 1.000/classe |
+| Entrada | INT8 [1,28,28,1], fix point 6 |
+| Saída | INT8 [1,10], fix point 2 |
+| Warm-up | 100 por runner |
+| Telemetria nominal | 10 ms |
+| Compilação / runtime | Vitis AI 3.5 / VART 3.0 |
+
+| Cenário | T | Latência média | Mediana | DP | CV | P90 | P95 | P99 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Inferência | 1 | 0,225585 | 0,216300 | 0,026103 | 11,57% | 0,262441 | 0,284173 | 0,329211 |
+| Inferência | 2 | 0,253197 | 0,221870 | 0,067611 | 26,70% | 0,351910 | 0,391881 | 0,496332 |
+| Inferência | 3 | 0,411653 | 0,360975 | 0,236262 | 57,39% | 0,639831 | 0,836992 | 1,324196 |
+| Inferência | 4 | 0,612246 | 0,497340 | 0,450170 | 73,53% | 1,137437 | 1,452042 | 2,302124 |
+| E2E | 1 | 0,650648 | 0,588185 | 0,099138 | 15,24% | 0,808984 | 0,835760 | 0,910871 |
+| E2E | 2 | 1,206213 | 1,123250 | 0,388942 | 32,24% | 1,532943 | 1,682290 | 2,091478 |
+| E2E | 3 | 1,820691 | 1,730345 | 0,588907 | 32,35% | 2,556760 | 2,880463 | 3,592201 |
+| E2E | 4 | 2,472644 | 2,129700 | 1,368729 | 55,35% | 4,205438 | 5,207392 | 7,188725 |
+| Saturado | 1 | 0,221690 | 0,212770 | 0,037141 | 16,75% | 0,235159 | 0,277813 | 0,342952 |
+| Saturado | 2 | 0,235349 | 0,218680 | 0,073085 | 31,05% | 0,279454 | 0,318799 | 0,428182 |
+| Saturado | 3 | 0,281798 | 0,242270 | 0,165393 | 58,69% | 0,376101 | 0,439513 | 0,679217 |
+| Saturado | 4 | 0,419940 | 0,373295 | 0,209210 | 49,82% | 0,620141 | 0,745540 | 1,093435 |
+
+| Cenário | T | Mínimo | Máximo | IC95% latência média | Throughput global |
+|---|---:|---:|---:|---|---:|
+| Inferência | 1 | 0,210960 | 0,466690 | 0,224978–0,226192 | 3.066,89 |
+| Inferência | 2 | 0,210480 | 1,001780 | 0,251535–0,254858 | 5.291,79 |
+| Inferência | 3 | 0,211140 | 3,693280 | 0,391515–0,431791 | 4.487,86 |
+| Inferência | 4 | 0,211160 | 8,043640 | 0,591170–0,633322 | 4.351,15 |
+| E2E | 1 | 0,577660 | 1,635630 | 0,648524–0,652772 | 1.436,19 |
+| E2E | 2 | 0,577250 | 13,058540 | 1,198387–1,214040 | 1.565,82 |
+| E2E | 3 | 0,582790 | 8,940910 | 1,804811–1,836572 | 1.570,13 |
+| E2E | 4 | 0,578270 | 13,595510 | 2,435200–2,510087 | 1.495,12 |
+| Saturado | 1 | 0,205980 | 2,464840 | 0,220521–0,222859 | 4.167,43 |
+| Saturado | 2 | 0,208180 | 3,509670 | 0,232326–0,238372 | 7.750,04 |
+| Saturado | 3 | 0,204250 | 6,315540 | 0,276647–0,286950 | 9.292,01 |
+| Saturado | 4 | 0,207820 | 7,247620 | 0,408320–0,431559 | 8.281,59 |
+
+O throughput global difere ligeiramente da média dos throughputs dos
+dez blocos. Estatísticas dos blocos:
+
+| Cenário | T | Throughput médio dos blocos | DP | IC95% da média |
+|---|---:|---:|---:|---|
+| Inferência | 1 | 3.067,672 | 8,666 | 3.062,301–3.073,043 |
+| Inferência | 2 | 5.299,652 | 121,203 | 5.224,530–5.374,773 |
+| Inferência | 3 | 4.501,798 | 209,076 | 4.372,213–4.631,382 |
+| Inferência | 4 | 4.362,784 | 150,409 | 4.269,561–4.456,007 |
+| E2E | 1 | 1.436,400 | 7,183 | 1.431,948–1.440,852 |
+| E2E | 2 | 1.567,126 | 35,813 | 1.544,929–1.589,322 |
+| E2E | 3 | 1.570,905 | 8,086 | 1.565,893–1.575,916 |
+| E2E | 4 | 1.496,260 | 23,541 | 1.481,669–1.510,850 |
+| Saturado | 1 | 4.169,089 | 33,755 | 4.148,168–4.190,011 |
+| Saturado | 2 | 7.769,666 | 270,435 | 7.602,052–7.937,280 |
+| Saturado | 3 | 9.328,883 | 360,141 | 9.105,669–9.552,097 |
+| Saturado | 4 | 8.319,210 | 326,848 | 8.116,632–8.521,789 |
+
+| Cenário | T | P. ociosa | P. ativa | P. dinâmica | E. total | E. dinâmica | Cobertura energética |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Inferência | 1 | 14,487 | 14,767 | 0,280 | 4,8151 | 0,09140 | 99,67% |
+| Inferência | 2 | 14,489 | 14,988 | 0,499 | 2,8323 | 0,09422 | 98,82% |
+| Inferência | 3 | 14,491 | 14,977 | 0,486 | 3,3372 | 0,10820 | 98,85% |
+| Inferência | 4 | 14,492 | 14,973 | 0,480 | 3,4411 | 0,11034 | 99,18% |
+| E2E | 1 | 14,494 | 14,748 | 0,253 | 10,2685 | 0,17624 | 99,72% |
+| E2E | 2 | 14,496 | 14,827 | 0,331 | 9,4692 | 0,21153 | 99,66% |
+| E2E | 3 | 14,498 | 14,844 | 0,346 | 9,4538 | 0,22038 | 99,57% |
+| E2E | 4 | 14,497 | 14,841 | 0,345 | 9,9265 | 0,23053 | 99,68% |
+| Saturado | 1 | 14,494 | 14,791 | 0,297 | 3,5492 | 0,07123 | 99,17% |
+| Saturado | 2 | 14,497 | 15,050 | 0,553 | 1,9420 | 0,07140 | 98,28% |
+| Saturado | 3 | 14,491 | 15,184 | 0,694 | 1,6341 | 0,07468 | 98,22% |
+| Saturado | 4 | 14,491 | 15,134 | 0,643 | 1,8275 | 0,07769 | 98,76% |
+
+Telemetria média durante a carga:
+
+| Cenário | T | Tensão V | Corrente A | Temp. PS °C | Temp. PL °C | Temp. remota °C |
+|---|---:|---:|---:|---:|---:|---:|
+| Inferência | 1 | 12,0256 | 1,2270 | 44,195 | 43,952 | 45,204 |
+| Inferência | 2 | 12,0228 | 1,2445 | 44,528 | 43,866 | 45,449 |
+| Inferência | 3 | 12,0230 | 1,2435 | 44,654 | 43,928 | 46,014 |
+| Inferência | 4 | 12,0231 | 1,2431 | 44,736 | 44,193 | 45,867 |
+| E2E | 1 | 12,0258 | 1,2258 | 44,504 | 44,234 | 45,452 |
+| E2E | 2 | 12,0251 | 1,2324 | 44,419 | 43,991 | 45,633 |
+| E2E | 3 | 12,0248 | 1,2340 | 44,327 | 44,258 | 45,782 |
+| E2E | 4 | 12,0250 | 1,2336 | 44,295 | 44,078 | 45,496 |
+| Saturado | 1 | 12,0257 | 1,2288 | 44,085 | 43,968 | 45,490 |
+| Saturado | 2 | 12,0226 | 1,2483 | 44,378 | 44,302 | 45,814 |
+| Saturado | 3 | 12,0219 | 1,2582 | 44,356 | 43,916 | 45,434 |
+| Saturado | 4 | 12,0222 | 1,2547 | 44,613 | 44,014 | 45,652 |
+
+2.2. LENET — HLS4ML
+
+100 MHz, ap_fixed<22,12,AP_RND_CONV,AP_SAT>, io_stream, Resource,
+DMA. RF por camada: 5 / 50 / 64 / 60 / 42.
+Fonte: LeNet/hls4ml/README_FINAL_LENET_ZCU104_HLS4ML_COLETA_COMPLETA.md
+
+| Validação | Resultado |
+|---|---:|
+| Acurácia física | 98,99% — 9.899/10.000 |
+| IC95% Wilson | 98,774348%–99,168028% |
+| Macro precision | 0,989804715 |
+| Macro recall | 0,989853075 |
+| Macro F1 | 0,989817145 |
+| Kappa | 0,988773475 |
+| MCC | 0,988776145 |
+| Concordância FPGA × HLS | 100% |
+| Concordância FPGA × Keras | 99,99% |
+| MAE / erro máximo FPGA × HLS | 0 / 0 |
+| RAW mismatches | 0/100.000 palavras |
+| Erros de padding | 0 |
+| Determinismo | 3.000/3.000 sem falhas |
+| MAE HLS × Keras | 0,0156489812 |
+| Erro máximo HLS × Keras | 0,0985636711 |
+| Latência estimada do núcleo HLS | 9.412–9.460 ciclos = 94,12–94,60 µs |
+
+| Métrica | DMA + FPGA | E2E |
+|---|---:|---:|
+| Latência média | 0,369956 | 1,096973 |
+| IC95% média | 0,369490–0,370422 | 1,087028–1,106919 |
+| Mediana | 0,370160 | 1,094580 |
+| DP individual | 0,006411 | 0,028269 |
+| CV individual | 1,7329% | 2,5770% |
+| P90 | 0,371870 | 1,109690 |
+| P95 | 0,381840 | 1,115991 |
+| P99 | 0,385790 | 1,170190 |
+| Mínimo | 0,343230 | 1,064080 |
+| Máximo | 0,669230 | 5,192600 |
+| DP das médias de campanha | 0,000375 | 0,008010 |
+| CV das médias de campanha | 0,1015% | 0,7302% |
+| Throughput principal | 2.791,619 | 907,151 |
+| IC95% throughput | 2.772,291–2.810,947 | 901,450–912,853 |
+| Mediana throughput | 2.789,290 | 905,868 |
+| DP throughput | 15,566 | 4,592 |
+| CV throughput | 0,5576% | 0,5062% |
+| Throughput mínimo entre campanhas | 2.779,643 | 903,172 |
+| Throughput máximo entre campanhas | 2.818,284 | 914,005 |
+| Throughput sustentado, ensaio de oito janelas | 2.781,510 | 903,403 |
+| CV do ensaio sustentado | 0,3884% | 0,1012% |
+
+| Energia/potência oficiais | Inference-only | E2E | Máximo sustentado serial |
+|---|---:|---:|---:|
+| Repetições | 5 | 5 | 5 |
+| Throughput na janela energética | 2.785,809 | 913,293 | 2.784,801 |
+| IC95% desse throughput | 2.771,784–2.799,833 | 911,208–915,378 | 2.770,909–2.798,694 |
+| Potência ociosa | 10,326240 | 10,307240 | 10,314240 |
+| Potência ativa | 10,603240 | 10,544186 | 10,600907 |
+| Potência dinâmica | 0,277000 | 0,236946 | 0,286667 |
+| IC95% potência dinâmica | 0,235368–0,318632 | 0,223735–0,250157 | 0,263954–0,309379 |
+| Energia total | 3,806211 | 11,545270 | 3,806751 |
+| Energia dinâmica | 0,099451 | 0,259442 | 0,102935 |
+| IC95% energia dinâmica | 0,084311–0,114590 | 0,244966–0,273918 | 0,094913–0,110956 |
+
+| Recurso/timing | IP isolado, síntese | Sistema completo pós-route |
+|---|---:|---:|
+| LUT | 141.417 — 61,38% | 154.485 — 67,05% |
+| FF | 81.051 — 17,59% | 96.655 — 20,98% |
+| DSP48E2 | 746 — 43,17% | 746 — 43,17% |
+| BRAM tiles equivalentes | 114 — 36,54% | 125 — 40,06% |
+| URAM | 0 | 0 |
+| CARRY8 | 15.933 | 16.075 |
+| RAMB36 / RAMB18 | — | 122 / 6 |
+| CLB físicos ocupados | — | 28.154/28.800 — 97,76% |
+| WNS setup | — | +0,033 ns |
+| WHS hold | — | +0,010 ns |
+| Erros de roteamento | — | 0 |
+| Erros DRC / critical warnings | — | 0 / 0 |
+
+Métricas por classe da FPGA:
+
+| Dígito | Precision | Recall | F1 |
+|---|---:|---:|---:|
+| 0 | 0,989827 | 0,992857 | 0,991340 |
+| 1 | 0,993849 | 0,996476 | 0,995161 |
+| 2 | 0,990338 | 0,993217 | 0,991776 |
+| 3 | 0,993056 | 0,991089 | 0,992071 |
+| 4 | 0,990891 | 0,996945 | 0,993909 |
+| 5 | 0,985491 | 0,989910 | 0,987696 |
+| 6 | 0,990615 | 0,991649 | 0,991132 |
+| 7 | 0,995045 | 0,976654 | 0,985763 |
+| 8 | 0,988660 | 0,984600 | 0,986626 |
+| 9 | 0,980276 | 0,985134 | 0,982699 |
+
+2.3 E 2.4. LENET — GPU E CPU
+
+Os relatórios apresentam as duas plataformas lado a lado.
+Campanha final: 10.000 imagens × 100 ciclos = 1.000.000 de inferências
+por plataforma, FP32, batch 1.
+Fonte: LeNet/GPU/README.md
+
+| Métrica | GPU — RTX 3050 | CPU — i7-13700 |
+|---|---:|---:|
+| Acertos | 9.898/10.000 | 9.898/10.000 |
+| Acurácia | 98,98% | 98,98% |
+| IC95% Wilson | 98,7634%–99,1590% | 98,7634%–99,1590% |
+| Latência média | 0,2395 | 0,3872 |
+| IC95% média/ciclo | 0,2349–0,2441 | 0,3843–0,3900 |
+| Mediana | 0,2085 | 0,3423 |
+| DP | 0,0824 | 0,1339 |
+| CV | 34,3814% | 34,5779% |
+| P90 | 0,3285 | 0,5552 |
+| P95 | 0,4143 | 0,6395 |
+| P99 | 0,5695 | 0,9520 |
+| Mínimo | 0,1795 | 0,2385 |
+| Máximo | 2,1021 | 5,6823 |
+| Throughput médio dos ciclos | 2.841,6973 | 2.292,7288 |
+| Mediana do throughput | 2.829,5367 | 2.281,1518 |
+| DP throughput | 201,7835 | 86,9430 |
+| IC95% throughput médio | 2.802,1485–2.881,2462 | 2.275,6883–2.309,7694 |
+| Throughput global | 2.826,7257 | 2.289,4858 |
+| Tempo total dos ciclos | 353,7662 s | 436,7793 s |
+| Predições CPU × GPU | Idênticas | Idênticas |
+
+| Potência, energia e telemetria | GPU | CPU |
+|---|---:|---:|
+| Potência ociosa | 27,651 | 12,567 |
+| Potência total média | 28,2483 | 39,7820 |
+| Potência dos cores | — | 30,4457 |
+| Potência do sensor com média de 1 s | 28,2525 | — |
+| DP médio intraciclo da potência | 0,1353 | Não agregado |
+| Mínimo médio intraciclo da potência | 28,0784 | Não agregado |
+| Máximo médio intraciclo da potência | 28,4921 | Não agregado |
+| Potência dinâmica | 0,5973 | 27,2154 |
+| Energia total/inf | 9,9970 | 17,3548 |
+| Energia dinâmica/inf | 0,2150 | 11,8660 |
+| Energia total acumulada | 9.996,9597 J | 17.354,7949 J |
+| Energia dinâmica acumulada | 214,9707 J | 11.865,9937 J |
+| Energia dos cores acumulada | — | 13.274,5651 J |
+| Utilização GPU / Busy CPU | 21,7057% | 17,6018% |
+| DP médio utilização GPU | 2,0210 p.p. | — |
+| Utilização sistema, psutil | — | 12,0047% |
+| Utilização processo, soma dos núcleos | — | 289,7041% |
+| Utilização processo normalizada/24 | — | 12,0710% |
+| Utilização memória | 0,8885% | — |
+| Memória | 723,9833 MiB VRAM | 795,3217 MiB RSS |
+| Frequência principal | 1.755 MHz SM | 3.040,2443 MHz Bzy |
+| DP médio clock SM | 0 MHz | — |
+| Clock de memória | 6.801 MHz | — |
+| Temperatura média | 49,9955 °C | 67,6227 °C |
+| Máximo médio de temperatura entre ciclos | 50,1000 °C | 71,6600 °C |
+| Ventoinha | 31% | — |
+| Cobertura RAPL média | — | 99,2149% |
+| Menor cobertura RAPL por ciclo | — | 95,0823% |
+| Amostras na série principal | 3.504 | 4.433 RAPL |
+| Amostras brutas da campanha | 4.030 | 4.918 RAPL |
+| Amostras auxiliares psutil | — | 2.777 |
+| Intervalo nominal | 100 ms | 100 ms |
+| Tempo CPU acumulado | — | 1.268,8521 s |
+| Tempo CPU por inferência | — | 1,2689 ms |
+| Temperatura auxiliar psutil | — | 68,6872 °C |
+
+======================================================================
+3. RESNET8 — CIFAR-10
+======================================================================
+
+78.714 parâmetros, entrada 32 × 32 × 3, dez classes. Avaliação com
+10.000 imagens, 1.000 por classe. CPU/GPU: com e sem softmax;
+aceleradores FPGA: logits.
+
+3.1. RESNET8 — VITIS AI
+
+INT8, dois núcleos DPU B4096 a 300 MHz. Inferência/E2E: 10.000 imagens
+× 100 ciclos por configuração. Saturado: caracterização separada.
+Fontes: resnet8/README-ATUALIZADO-03-09-2026.md
+        resnet8/Vitis AI/backups/resnet8_final_v1_2026-09-01/results/benchmark_vart/resnet8_final_v1/FINAL_SUMMARY.json
+
+| Validação/configuração | Resultado |
+|---|---:|
+| Acurácia float | 74,90% |
+| Acurácia física DPU | 73,96% — 7.396/10.000 |
+| IC95% Wilson DPU | 73,0908%–74,8108% |
+| Concordância DPU × host INT8 | 100% |
+| Concordância INT8 × float, host | 93,75% |
+| MAE / RMSE / erro máximo DPU × INT8 | 0 / 0 / 0 |
+| Faixa observada INT8 | −109 a 84 |
+| Saturação em −128 ou 127 | 0 |
+| Calibração | 1.000 imagens; 100/classe |
+| Entrada | INT8 [1,32,32,3], fix point 6 |
+| Saída | INT8 [1,1,1,10], fix point 2 |
+| Operações no subgrafo DPU | 36 |
+| XModel | 249.251 bytes |
+| Compilação / runtime | Vitis AI 3.5 / VART 3.0 |
+| Divergências entre ciclos | 0 |
+
+| Cenário | T | Latência média | Mediana | DP | CV | P95 | P99 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Inferência | 1 | 0,252552 | 0,252100 | 0,010106 | 4,0014% | 0,254570 | 0,264000 |
+| Inferência | 2 | 0,264278 | 0,260120 | 0,014989 | 5,6716% | 0,279330 | 0,290420 |
+| Inferência | 3 | 0,340574 | 0,351310 | 0,051109 | 15,0067% | 0,397550 | 0,406090 |
+| Inferência | 4 | 0,519735 | 0,525890 | 0,079829 | 15,3595% | 0,558600 | 0,699660 |
+| E2E | 1 | 0,681568 | 0,679280 | 0,025780 | 3,7824% | 0,693230 | 0,709620 |
+| E2E | 2 | 0,954863 | 0,934430 | 0,052726 | 5,5219% | 1,050910 | 1,071540 |
+| E2E | 3 | 1,429096 | 1,423760 | 0,137679 | 9,6340% | 1,593330 | 1,628230 |
+| E2E | 4 | 1,923526 | 1,900700 | 0,425302 | 22,1106% | 2,696090 | 3,156770 |
+| Saturado | 1 | 0,246675 | 0,246260 | 0,010554 | 4,2783% | 0,248450 | 0,257490 |
+| Saturado | 2 | 0,261533 | 0,262200 | 0,008580 | 3,2806% | 0,272530 | 0,281540 |
+| Saturado | 3 | 0,273826 | 0,274150 | 0,025973 | 9,4851% | 0,287460 | 0,301660 |
+| Saturado | 4 | 0,307111 | 0,301690 | 0,024609 | 8,0130% | 0,340680 | 0,369240 |
+
+| Cenário | T | Latência mínima | Máxima | IC95% latência média |
+|---|---:|---:|---:|---|
+| Inferência | 1 | 0,245110 | 4,243690 | 0,252466–0,252640 |
+| Inferência | 2 | 0,247190 | 4,507520 | 0,264142–0,264421 |
+| Inferência | 3 | 0,244230 | 14,247830 | 0,337209–0,344229 |
+| Inferência | 4 | 0,247060 | 20,087360 | 0,518670–0,520799 |
+| E2E | 1 | 0,668970 | 4,920510 | 0,681453–0,681680 |
+| E2E | 2 | 0,672690 | 8,838530 | 0,952299–0,957571 |
+| E2E | 3 | 0,677670 | 16,899850 | 1,427510–1,430876 |
+| E2E | 4 | 0,674260 | 19,982390 | 1,921852–1,925252 |
+| Saturado | 1 | 0,239570 | 1,410470 | 0,246546–0,246884 |
+| Saturado | 2 | 0,243260 | 0,517190 | 0,261089–0,261892 |
+| Saturado | 3 | 0,244040 | 4,432810 | 0,273143–0,274527 |
+| Saturado | 4 | 0,248880 | 2,860570 | 0,304378–0,309958 |
+
+| Cenário | T | Throughput médio | DP | CV | IC95% throughput |
+|---|---:|---:|---:|---:|---|
+| Inferência | 1 | 3.092,498 | 5,256 | 0,1700% | 3.091,450–3.093,505 |
+| Inferência | 2 | 5.889,361 | 18,583 | 0,3155% | 5.885,527–5.892,900 |
+| Inferência | 3 | 6.707,228 | 262,521 | 3,9140% | 6.654,950–6.757,175 |
+| Inferência | 4 | 6.545,645 | 97,460 | 1,4889% | 6.525,977–6.564,042 |
+| E2E | 1 | 1.444,737 | 1,261 | 0,0873% | 1.444,492–1.444,982 |
+| E2E | 2 | 2.070,725 | 28,303 | 1,3668% | 2.065,068–2.076,150 |
+| E2E | 3 | 2.081,759 | 12,446 | 0,5979% | 2.079,179–2.084,039 |
+| E2E | 4 | 2.054,890 | 11,661 | 0,5675% | 2.052,531–2.057,057 |
+| Saturado | 1 | 3.991,113 | 5,914 | 0,1482% | 3.988,562–3.993,667 |
+| Saturado | 2 | 7.517,006 | 18,348 | 0,2441% | 7.508,831–7.524,693 |
+| Saturado | 3 | 10.725,936 | 68,023 | 0,6342% | 10.694,772–10.753,154 |
+| Saturado | 4 | 12.814,815 | 183,814 | 1,4344% | 12.734,854–12.892,853 |
+
+IC95% transcritos do JSON final, inclusive quando há pequenas diferenças
+em relação ao README.
+Potência/energia medidas em janelas próprias. Baseline ocioso:
+14,4788595 W, 120 s, sensor INA226 power1_input sem rótulo de escopo.
+
+| Cenário | T | P. ativa | P. dinâmica | Throughput na janela energética | E. total | E. dinâmica |
+|---|---:|---:|---:|---:|---:|---:|
+| Inferência | 1 | 15,2359 | 0,7571 | 3.134,29 | 4,8611 | 0,2415 |
+| Inferência | 2 | 15,9118 | 1,4329 | 5.880,78 | 2,7064 | 0,2437 |
+| Inferência | 3 | 16,2043 | 1,7254 | 6.743,45 | 2,4040 | 0,2559 |
+| Inferência | 4 | 16,1586 | 1,6797 | 6.566,47 | 2,4610 | 0,2558 |
+| E2E | 1 | 14,9590 | 0,4802 | 1.448,53 | 10,3270 | 0,3315 |
+| E2E | 2 | 15,2439 | 0,7651 | 2.069,51 | 7,3667 | 0,3697 |
+| E2E | 3 | 15,2784 | 0,7995 | 2.049,41 | 7,4558 | 0,3902 |
+| E2E | 4 | 15,3047 | 0,8258 | 2.036,52 | 7,5154 | 0,4055 |
+| Saturado | 1 | 15,3896 | 0,9107 | 3.981,75 | 3,8650 | 0,2287 |
+| Saturado | 2 | 16,1958 | 1,7169 | 7.483,46 | 2,1644 | 0,2295 |
+| Saturado | 3 | 16,9033 | 2,4244 | 10.692,85 | 1,5811 | 0,2268 |
+| Saturado | 4 | 17,2803 | 2,8014 | 12.554,48 | 1,3767 | 0,2232 |
+
+3.2. RESNET8 — HLS4ML
+
+100 MHz, ap_fixed<22,12,AP_RND_CONV,AP_SAT>, Resource, io_stream,
+LineBuffer, RF máximo 288, otimização de FIFOs, AXI DMA.
+Fonte: resnet8/hls4ml/Resultados_ZCU104/resnet8_ip11_final_10k100_2026-08-28/FINAL_SUMMARY_10k100.json
+
+| Métrica final | Resultado |
+|---|---:|
+| Imagens únicas | 10.000 |
+| Ciclos | 100 |
+| Inferências | 1.000.000 |
+| Warm-up | 100 |
+| Acertos | 7.492 |
+| Acurácia | 74,92% |
+| IC95% Wilson | 74,060947%–75,759914% |
+| Latência DMA + FPGA média | 0,849300 |
+| Mediana | 0,849360 |
+| DP individual | 0,015460 |
+| CV individual | 1,8204% |
+| P95 | 0,862090 |
+| P99 | 0,875650 |
+| Mínimo | 0,825990 |
+| Máximo | 4,762210 |
+| Throughput global efetivo | 899,2063 |
+| Throughput médio entre ciclos | 899,2073 |
+| IC95% throughput médio | 899,0136–899,4010 |
+| IC95% bootstrap throughput | 899,0196–899,4038 |
+| DP throughput | 0,9882 |
+| CV throughput | 0,1099% |
+| Throughput mínimo/máximo entre ciclos | 896,8204 / 902,2908 |
+| Drift entre primeiros e últimos 20 ciclos | +0,1496% |
+| Divergências entre ciclos | 0 |
+
+Potência, energia e E2E vêm da campanha complementar, identificada como
+intermediária no consolidado. Não foram medidos dentro da campanha
+final de 1 milhão de inferências.
+
+| Métrica complementar | Inferência | E2E | Saturado serial |
+|---|---:|---:|---:|
+| Latência média | 0,8451 | 1,5977 | 0,832636 |
+| P95 | 0,8592 | 1,6155 | 0,845190 |
+| Throughput medido | 901,08 | 620,70 | 1.200,94 |
+| Potência ociosa | 10,6094 | 10,6270 | 10,6170 |
+| Potência ativa | 12,2283 | 11,8088 | 12,6580 |
+| Potência dinâmica | 1,6189 | 1,1818 | 2,0410 |
+| Energia total | 13,4994 | 19,0992 | 10,7266 |
+| Energia dinâmica | 1,7871 | 1,9114 | 1,7295 |
+
+Latência saturada, caracterização adicional em 50.000 inferências:
+Fonte: resnet8/hls4ml/Resultados_ZCU104/resnet8_ip11_intermediario_2026-08-28/README-SATURADO.md
+
+| Métrica saturada | Resultado |
+|---|---:|
+| Mediana | 0,833510 |
+| DP | 0,019895 |
+| CV | 2,389% |
+| P99 | 0,850360 |
+| Mínimo / máximo | 0,818670 / 4,656440 |
+| Janelas de throughput sustentado | 8 × 10 s |
+| Telemetria energética | PMBus 12V_power, intervalo de 1 s |
+
+Recursos e timing: resnet8/README-ATUALIZADO-03-09-2026.md
+
+| Recurso | IP ResNet8 | Sistema completo |
+|---|---:|---:|
+| LUT | 162.352 — 70,47% | 178.658 — 77,54% |
+| FF | 179.101 — 38,87% | 197.484 — 42,86% |
+| BRAM tiles | 74,5 — 23,88% | 85,5 — 27,40% |
+| URAM | 11 — 11,46% | 11 — 11,46% |
+| DSP48E2 | 1.174 — 67,94% | 1.174 — 67,94% |
+
+| Timing/integridade | Resultado |
+|---|---:|
+| WNS / TNS | +0,122 ns / 0 ns |
+| WHS / THS | +0,009 ns / 0 ns |
+| Redes roteáveis completas | 368.791/368.791 |
+| Erros de roteamento | 0 |
+| Warnings DRC reportados | 3.008 |
+| Erros críticos reportados | 0 |
+
+3.3. RESNET8 — GPU
+
+RTX 3050 OEM, FP32, batch 1. Ambas as variantes: 10.000 imagens
+× 100 ciclos = 1.000.000 de inferências.
+Fontes: resnet8/GPU/resnet8-no-softmax/resultados/resultados.csv
+        resnet8/GPU/resnet8-softmax/resultados/resultados.csv
+
+| Métrica | Sem softmax | Com softmax |
+|---|---:|---:|
+| Acertos | 7.489/10.000 | 7.489/10.000 |
+| Acurácia | 74,89% | 74,89% |
+| IC95% Wilson | 74,0306%–75,7303% | 74,0306%–75,7303% |
+| Latência média | 0,691162 | 0,610966 |
+| IC95% média entre ciclos | 0,661459–0,720865 | 0,586169–0,635762 |
+| Mediana | 0,512246 | 0,510440 |
+| DP | 0,260938 | 0,207112 |
+| P95 | 1,121863 | 1,076847 |
+| Mínimo | 0,472118 | 0,480647 |
+| Máximo | 2,926915 | 3,913653 |
+| Throughput médio dos ciclos | 1.268,4927 | 1.400,9123 |
+| DP throughput | 233,5978 | 199,7093 |
+| IC95% throughput médio | 1.222,7084–1.314,2771 | 1.361,7700–1.440,0546 |
+| Throughput efetivo global | 1.223,8367 | 1.365,3162 |
+| Tempo total | 817,1025 s | 732,4311 s |
+| Potência ociosa | 29,0630 | 28,7286 |
+| Potência total média | 35,182382 | 35,918148 |
+| Potência sensor com média de 1 s | 35,173567 | 35,910274 |
+| Potência dinâmica | 6,119382 | 7,189548 |
+| Energia total | 28,461705 | 26,112731 |
+| Energia dinâmica | 4,714255 | 5,071011 |
+| Utilização GPU | 42,7366% | 48,0786% |
+| Clock SM médio | 1.844,6568 MHz | 1.861,2361 MHz |
+| Temperatura média | 53,2559 °C | 53,6245 °C |
+| Amostras de potência | 8.155 | 7.321 |
+| Intervalo nominal de telemetria | 100 ms | 100 ms |
+
+3.4. RESNET8 — CPU
+
+Intel Core i7-13700, FP32, batch 1. Ambas as variantes: 10.000 imagens
+× 100 ciclos = 1.000.000 de inferências.
+Fontes: resnet8/CPU/resnet8-no-softmax/resultados/resultados.csv
+        resnet8/CPU/resnet8-softmax/resultados/resultados.csv
+
+| Métrica | Sem softmax | Com softmax |
+|---|---:|---:|
+| Acertos | 7.490/10.000 | 7.490/10.000 |
+| Acurácia | 74,90% | 74,90% |
+| IC95% Wilson | 74,0407%–75,7401% | 74,0407%–75,7401% |
+| Latência média | 0,975968 | 0,955093 |
+| IC95% média entre ciclos | 0,975044–0,976893 | 0,953225–0,956961 |
+| Mediana | 0,902827 | 0,884305 |
+| DP | 0,244663 | 0,237134 |
+| P95 | 1,570393 | 1,529038 |
+| Mínimo | 0,734089 | 0,721781 |
+| Máximo | 6,115664 | 6,287699 |
+| Throughput médio dos ciclos | 975,0379 | 997,5456 |
+| DP throughput | 4,9508 | 10,1833 |
+| IC95% throughput médio | 974,0675–976,0082 | 995,5497–999,5415 |
+| Throughput efetivo global | 975,0129 | 997,4433 |
+| Tempo total | 1.025,6274 s | 1.002,5632 s |
+| Tempo CPU acumulado | 7.320,7580 s | 7.000,2484 s |
+| Tempo CPU por inferência | 7,320758 ms | 7,000248 ms |
+| Potência package | 57,414366 | 57,336767 |
+| Potência dos cores | 47,484825 | 47,538438 |
+| Potência dinâmica | 44,586613 | 44,537992 |
+| Baseline implícito package − dinâmica, calculado | 12,827753 | 12,798775 |
+| Energia total package | 58,359866 | 56,980689 |
+| Energia dinâmica package | 45,203370 | 44,149108 |
+| Utilização sistema, psutil | 29,7089% | 29,1217% |
+| Utilização processo, soma dos núcleos | 713,2470% | 697,5423% |
+| Utilização processo normalizada/24 | 29,7186% | 29,0643% |
+| Busy CPU, turbostat | 34,8733% | 34,1735% |
+| Frequência ativa Bzy | 3.364,4939 MHz | 3.367,6017 MHz |
+| Temperatura package, turbostat | 71,8508 °C | 71,8976 °C |
+| Temperatura package, psutil | 71,0124 °C | 71,1078 °C |
+| Memória RSS | 992,0268 MiB | 993,4258 MiB |
+| Amostras auxiliares de telemetria | 6.424 | 6.294 |
+| Amostras RAPL | 10.265 | 10.035 |
+| Intervalo nominal | 100 ms | 100 ms |
+| Potência DRAM | Não disponível — NaN |
+| Frequência psutil | Não disponível — NaN |
+
+OBSERVAÇÕES FINAIS DA CONSOLIDAÇÃO
+
+Os CSVs finais de ResNet8/CPU e GPU não apresentam P90/P99. A ausência
+foi mantida, sem substituir campos por valores de outras campanhas.
+
+Recursos LUT/FF/DSP específicos de cada rede no fluxo Vitis AI não
+foram atribuídos: a execução utiliza a DPU compartilhada. Os recursos
+hls4ml apresentados pertencem aos respectivos aceleradores e sistemas.
+
+Todos os caminhos de fonte são relativos à pasta:
+/home/miguel/Downloads/Plano testes TCC

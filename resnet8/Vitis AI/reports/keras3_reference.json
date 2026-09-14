@@ -1,0 +1,24 @@
+{
+  "purpose": "Keras 3 to Keras 2 conversion reference",
+  "tensorflow_version": "2.21.0",
+  "keras_version": "3.13.2",
+  "model": "models/float/resnet8_cifar10_keras3_no_softmax.h5",
+  "model_sha256": "047c190c70ea5901d2390af47b04f9d1e015c66cd7ff8bfc2a1e4f084154761e",
+  "probe": "data/prepared/keras3_conversion_probe.npz",
+  "probe_sha256": "f0c1be5bc586652c938ee0300c3b739310e8ed4595d50684aec3df97894758a7",
+  "seed": 20260831,
+  "samples": 32,
+  "input_shape": [
+    null,
+    32,
+    32,
+    3
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "parameters": 78714,
+  "last_layer": "dense",
+  "last_activation": "linear"
+}

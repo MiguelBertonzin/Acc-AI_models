@@ -1,0 +1,25 @@
+{
+  "vlnv": "xilinx.com:hls:resnet8_resource_fifo_opt:1.1",
+  "part": "xczu7ev-ffvc1156-2-e",
+  "vivado": "2024.2",
+  "catalog_validation": "PASS",
+  "validate_ip": "PASS",
+  "generate_target_all": "PASS",
+  "ooc_synthesis_status": "synth_design Complete!",
+  "ooc_progress": "100%",
+  "ooc_validation": "PASS",
+  "top_instantiates_d4096": false,
+  "utilization": {
+    "clb_lut": 165564,
+    "clb_registers": 178894,
+    "bram_tiles": 74.5,
+    "uram": 11,
+    "dsp48e2": 1174
+  },
+  "sha256": {
+    "archive": "4e148c361116d19430aabd95e00b0dc3ca6789821e83602f1cd5d70313095191",
+    "component_xml": "5caedf0ed65c0415d07abafc23b267b5ed5a0fdfa6ff80860238a006ea709470",
+    "top_verilog": "929fa8800dcbea9dfa4e5f143385354d7baaa6c645b82b207c8515358ec8b9d3",
+    "ooc_utilization_report": "f9c9907a8b4d00fb6db74ea9400c3f48267945287e33a874b3e4d4babc405204"
+  }
+}

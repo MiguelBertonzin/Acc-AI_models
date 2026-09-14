@@ -1,0 +1,53 @@
+{
+  "dataset": "CIFAR-10",
+  "source_dir": "data/cache/keras/datasets/cifar-10-batches-py",
+  "source_batch_sha256": {
+    "data_batch_1": "54636561a3ce25bd3e19253c6b0d8538147b0ae398331ac4a2d86c6d987368cd",
+    "data_batch_2": "766b2cef9fbc745cf056b3152224f7cf77163b330ea9a15f9392beb8b89bc5a8",
+    "data_batch_3": "0f00d98ebfb30b3ec0ad19f9756dc2630b89003e10525f5e148445e82aa6a1f9",
+    "data_batch_4": "3f7bb240661948b8f4d53e36ec720d8306f5668bd0071dcb4e6c947f78e9682b",
+    "data_batch_5": "d91802434d8376bbaeeadf58a737e3a1b12ac839077e931237e0dcd43adcb154",
+    "test_batch": "f53d8d457504f7cff4ea9e021afcf0e0ad8e24a91f3fc42091b8adef61157831"
+  },
+  "calibration_split": "train",
+  "calibration_selection": "stratified without replacement",
+  "calibration_samples": 1000,
+  "calibration_class_counts": [
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    100
+  ],
+  "calibration_output": "data/prepared/cifar10_calibration_train_uint8.npz",
+  "calibration_sha256": "1ebfa046e925aa3c3e77d3694b45ea8c682a9587193463c57ac8c87524ba8504",
+  "test_split": "test",
+  "test_samples": 10000,
+  "test_class_counts": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+  ],
+  "test_output": "data/prepared/cifar10_test_uint8.npz",
+  "test_sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467",
+  "raw_dtype": "uint8",
+  "shape": [
+    32,
+    32,
+    3
+  ],
+  "preprocessing_at_runtime": "astype(float32) / 255.0",
+  "seed": 20260825
+}

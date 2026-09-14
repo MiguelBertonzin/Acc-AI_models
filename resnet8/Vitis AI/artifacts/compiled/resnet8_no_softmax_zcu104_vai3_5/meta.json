@@ -1,0 +1,8 @@
+{
+    "lib": "libvart-dpu-runner.so",
+    "filename": "resnet8_no_softmax.xmodel",
+    "kernel": [
+        "subgraph_quant_add"
+    ],
+    "target": "DPUCZDX8G_ISA1_B4096"
+}

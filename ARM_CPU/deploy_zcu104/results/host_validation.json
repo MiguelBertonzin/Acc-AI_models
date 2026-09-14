@@ -1,0 +1,108 @@
+{
+  "generated_utc": "2026-09-11T20:10:25.243353+00:00",
+  "tensorflow_version": "2.21.0",
+  "models": {
+    "mlp": {
+      "network": "MLP Iris",
+      "unique_samples": 30,
+      "keras": {
+        "correct": 29,
+        "accuracy": 0.9666666666666667
+      },
+      "fp32": {
+        "model": "models/tflite/mlp_fp32.tflite",
+        "correct": 29,
+        "accuracy": 0.9666666666666667,
+        "accuracy_wilson95": [
+          0.8332960900859082,
+          0.9940914096183874
+        ],
+        "keras_class_agreement": 30,
+        "keras_class_agreement_rate": 1.0,
+        "output_mae_vs_keras": 8.870971512919823e-09,
+        "output_max_abs_vs_keras": 1.1920928955078125e-07
+      },
+      "int8": {
+        "model": "models/tflite/mlp_int8.tflite",
+        "correct": 29,
+        "accuracy": 0.9666666666666667,
+        "accuracy_wilson95": [
+          0.8332960900859082,
+          0.9940914096183874
+        ],
+        "keras_class_agreement": 30,
+        "keras_class_agreement_rate": 1.0,
+        "output_mae_vs_keras": 0.002779122907668352,
+        "output_max_abs_vs_keras": 0.018329083919525146
+      }
+    },
+    "lenet": {
+      "network": "LeNet MNIST",
+      "unique_samples": 10000,
+      "keras": {
+        "correct": 9898,
+        "accuracy": 0.9898
+      },
+      "fp32": {
+        "model": "models/tflite/lenet_fp32.tflite",
+        "correct": 9898,
+        "accuracy": 0.9898,
+        "accuracy_wilson95": [
+          0.9876339875739157,
+          0.9915898476221694
+        ],
+        "keras_class_agreement": 10000,
+        "keras_class_agreement_rate": 1.0,
+        "output_mae_vs_keras": 9.012274517772312e-07,
+        "output_max_abs_vs_keras": 7.62939453125e-06
+      },
+      "int8": {
+        "model": "models/tflite/lenet_int8.tflite",
+        "correct": 9899,
+        "accuracy": 0.9899,
+        "accuracy_wilson95": [
+          0.9877434785006571,
+          0.9916802798957538
+        ],
+        "keras_class_agreement": 9997,
+        "keras_class_agreement_rate": 0.9997,
+        "output_mae_vs_keras": 0.0634208619594574,
+        "output_max_abs_vs_keras": 2.1356754302978516
+      }
+    },
+    "resnet8": {
+      "network": "ResNet8 CIFAR-10",
+      "unique_samples": 10000,
+      "keras": {
+        "correct": 7490,
+        "accuracy": 0.749
+      },
+      "fp32": {
+        "model": "models/tflite/resnet8_fp32.tflite",
+        "correct": 7490,
+        "accuracy": 0.749,
+        "accuracy_wilson95": [
+          0.7404072994919971,
+          0.7574014693194059
+        ],
+        "keras_class_agreement": 10000,
+        "keras_class_agreement_rate": 1.0,
+        "output_mae_vs_keras": 2.648749614309054e-06,
+        "output_max_abs_vs_keras": 1.71661376953125e-05
+      },
+      "int8": {
+        "model": "models/tflite/resnet8_int8.tflite",
+        "correct": 7453,
+        "accuracy": 0.7453,
+        "accuracy_wilson95": [
+          0.7366675102405285,
+          0.7537441001588174
+        ],
+        "keras_class_agreement": 9719,
+        "keras_class_agreement_rate": 0.9719,
+        "output_mae_vs_keras": 0.20260027050971985,
+        "output_max_abs_vs_keras": 4.615497589111328
+      }
+    }
+  }
+}

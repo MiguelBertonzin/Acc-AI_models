@@ -1,0 +1,54 @@
+{
+  "validated_utc": "2026-08-25T19:38:57.291390+00:00",
+  "dataset": "CIFAR-10 official test split",
+  "unique_images": 10000,
+  "input_normalization": "float32 / 255.0",
+  "validation_batch_size": 1,
+  "device": "CPU",
+  "cpu_name": "x86_64",
+  "visible_tensorflow_gpus": [],
+  "output_devices": [
+    "/job:localhost/replica:0/task:0/device:CPU:0"
+  ],
+  "softmax_model": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/resnet8/resnet8_cifar10_keras3.h5",
+    "sha256": "9cc7cd3ea1c9603501f0c77dc0848b41d0bd136f80cc1d328881ed89cbb9cb1b",
+    "size_bytes": 1115216,
+    "activation": "softmax",
+    "parameters": 78714
+  },
+  "logits_model": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/resnet8/resnet8_cifar10_keras3_no_softmax.h5",
+    "sha256": "047c190c70ea5901d2390af47b04f9d1e015c66cd7ff8bfc2a1e4f084154761e",
+    "size_bytes": 416384,
+    "activation": "linear",
+    "parameters": 78714
+  },
+  "input_shape": [
+    null,
+    32,
+    32,
+    3
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "weight_array_count": 47,
+  "maximum_weight_absolute_error": 0.0,
+  "class_indices_equal": true,
+  "equal_class_indices": 10000,
+  "different_class_indices": 0,
+  "different_indices": [],
+  "softmax_correct": 7490,
+  "logits_correct": 7490,
+  "softmax_accuracy_percent": 74.9,
+  "logits_accuracy_percent": 74.9,
+  "maximum_probability_reconstruction_error": 2.384185791015625e-07,
+  "mean_probability_reconstruction_error": 5.513673517754114e-09,
+  "tensorflow_version": "2.21.0",
+  "keras_version": "3.13.2",
+  "numpy_version": "1.26.4",
+  "python_version": "3.12.7",
+  "passed": true
+}

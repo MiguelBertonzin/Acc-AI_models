@@ -1,0 +1,52 @@
+{
+  "available": true,
+  "source": "Linux powercap intel-rapl (MSR), cumulative energy_uj",
+  "primary_domain": "package",
+  "idle": {
+    "duration_s": 5.000234644,
+    "domains": {
+      "package": {
+        "name": "package-0",
+        "energy_j": 57.940526,
+        "average_power_w": 11.587561409648119
+      },
+      "core": {
+        "name": "core",
+        "energy_j": 15.366233,
+        "average_power_w": 3.073102382992889
+      },
+      "uncore": {
+        "name": "uncore",
+        "energy_j": 0.0,
+        "average_power_w": 0.0
+      }
+    }
+  },
+  "benchmark": {
+    "duration_s": 4.326595895,
+    "domains": {
+      "package": {
+        "name": "package-0",
+        "energy_j": 229.755393,
+        "average_power_w": 53.10303956639797
+      },
+      "core": {
+        "name": "core",
+        "energy_j": 191.609068,
+        "average_power_w": 44.28633333226976
+      },
+      "uncore": {
+        "name": "uncore",
+        "energy_j": 0.0,
+        "average_power_w": 0.0
+      }
+    }
+  },
+  "idle_package_power_w": 11.587561409648119,
+  "dynamic_package_power_w": 41.51547815674985,
+  "total_energy_per_inference_j": 0.0076585131,
+  "dynamic_energy_j": 179.62069737195603,
+  "dynamic_energy_per_inference_j": 0.005987356579065201,
+  "counter_sampling_interval_ms": 100,
+  "boundary_reads_used_for_energy": true
+}

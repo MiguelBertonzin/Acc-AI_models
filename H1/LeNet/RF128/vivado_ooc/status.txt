@@ -1,0 +1,5 @@
+status=completed
+rf_label=RF128
+part=xczu7ev-ffvc1156-2-e
+top=lenet_mnist_cap64_hls
+mode=out_of_context_post_synthesis

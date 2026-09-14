@@ -1,0 +1,6 @@
+resource,available,vitis_hls_used,vitis_hls_percent,vivado_used,vivado_percent,vivado_minus_hls,vivado_relative_change_percent,normalization
+LUT,230400,280382,121.693576,141417,61.378906,-138965,-49.562739,direct
+FF,460800,76276,16.552951,81051,17.589193,4775,6.260160,direct
+DSP,1728,1487,86.053241,746,43.171296,-741,-49.831876,direct
+BRAM18_equivalent,624,539,86.378205,228,36.538462,-311,-57.699443,"Vivado=2*RAMB36E2+RAMB18E2=2*112+4"
+URAM,96,0,0.000000,0,0.000000,0,0.000000,direct

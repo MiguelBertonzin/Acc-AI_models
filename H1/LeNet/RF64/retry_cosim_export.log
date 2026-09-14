@@ -1,0 +1,423 @@
+
+****** vitis-run v2024.2 (64-bit)
+  **** SW Build 5239630 on 2024-11-10-11:19:46
+  **** Start of session at: Wed Sep  9 17:14:24 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+  **** HLS Build v2024.2 5238294
+Sourcing Tcl script '/tmp/h1_lenet_rf64_anv2rv3c/retry_cosim_export.tcl'
+INFO: [HLS 200-1510] Running: open_project lenet_mnist_cap64_hls_prj 
+INFO: [HLS 200-10] Opening project '/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj'.
+INFO: [HLS 200-1510] Running: open_solution solution1 
+INFO: [HLS 200-10] Opening solution '/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 2.7ns.
+INFO: [HLS 200-1611] Setting target device to 'xczu7ev-ffvc1156-2-e'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Resolution: For help on HLS 200-1505 see docs.xilinx.com/access/sources/dita/topic?Doc_Version=2024.2%20English&url=ug1448-hls-guidance&resourceid=200-1505.html
+INFO: [HLS 200-1464] Running solution command: config_compile -name_max_length=80
+INFO: [XFORM 203-1161] The maximum of name length is set to 80.
+INFO: [HLS 200-1464] Running solution command: config_schedule -enable_dsp_full_reg=0
+INFO: [HLS 200-1510] Running: add_files -tb lenet_mnist_cap64_hls_test.cpp -cflags -std=c++0x -DRTL_SIM 
+INFO: [HLS 200-10] Adding test bench file 'lenet_mnist_cap64_hls_test.cpp' to the project
+INFO: [HLS 200-1510] Running: cosim_design -rtl verilog -trace_level none 
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+   Build using "/opt/Xilinx/Vitis/2024.2/vcxx/libexec//clang++"
+   Compiling apatb_lenet_mnist_cap64_hls.cpp
+   Compiling apatb_lenet_mnist_cap64_hls_util.cpp
+   Compiling lenet_mnist_cap64_hls.cpp_pre.cpp.tb.cpp
+   Compiling lenet_mnist_cap64_hls_test.cpp_pre.cpp.tb.cpp
+   Compiling apatb_lenet_mnist_cap64_hls_ir.ll
+   Generating cosim.tv.exe
+INFO: [COSIM 212-302] Starting C TB testing ... 
+Processing input 0
+Predictions
+10.2811 -11.9362 -3.34922 -5.59918 -2.71331 -1.14147 3.33328 -6.43857 -2.7032 0.83878 
+Quantized predictions
+10.2568 -11.9453 -3.37012 -5.61426 -2.70313 -1.15039 3.36523 -6.45801 -2.67188 0.81543 
+INFO: Saved inference results to file: tb_data/rtl_cosim_results.log
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 784
+INFO: [COSIM 212-333] Generating C post check test bench ...
+INFO: [COSIM 212-12] Generating RTL test bench ...
+INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***
+INFO: [COSIM 212-323] Starting verilog simulation. 
+INFO: [COSIM 212-15] Starting XSIM ...
+Vivado Simulator v2024.2.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2024.2/bin/unwrapped/lnx64.o/xelab xil_defaultlib.apatb_lenet_mnist_cap64_hls_top glbl -Oenable_linking_all_libraries -prj lenet_mnist_cap64_hls.prj -L smartconnect_v1_0 -L axi_protocol_checker_v1_1_12 -L axi_protocol_checker_v1_1_13 -L axis_protocol_checker_v1_1_11 -L axis_protocol_checker_v1_1_12 -L xil_defaultlib -L unisims_ver -L xpm -L floating_point_v7_0_24 -L floating_point_v7_1_19 --lib ieee_proposed=./ieee_proposed -s lenet_mnist_cap64_hls 
+Multi-threading is on. Using 22 slave threads.
+WARNING: [XSIM 43-3431] One or more environment variables have been detected which affect the operation of the C compiler. These are typically not set in standard installations and are not tested by AMD, however they may be appropriate for your system, so the flow will attempt to continue.  If errors occur, try running xelab with the "-mt off -v 1" switches to see more information from the C compiler. The following environment variables have been detected:
+    LIBRARY_PATH
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/glbl.v" into library work
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_1u_config2_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_1u_config2_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_6u_config2_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_6u_config2_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config4_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config4_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config5_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config5_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config5_mult_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config5_mult_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_16u_config5_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_16u_config5_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_16u_config7_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_16u_config7_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_array_array_ap_fixed_22_12_4_0_0_120u_config9_Pipeline_DataPrepare.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_array_array_ap_fixed_22_12_4_0_0_120u_config9_Pipeline_DataPrepare
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config9_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config9_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config11_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config11_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config13_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config13_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_s.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_s
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_flow_control_loop_pipe.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_flow_control_loop_pipe
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_flow_control_loop_pipe_sequential_init.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_flow_control_loop_pipe_sequential_init
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config18jQ.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config18jQ
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config18jQ_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config67jG.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config67jG
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config67jG_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config56jw.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config56jw
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config56jw_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config5jm.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config5jm
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config5jm_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_start_for_relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w1848_d1_S.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w1848_d1_S
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w1848_d1_S_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w2640_d1_S.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w2640_d1_S
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w2640_d1_S_ShiftReg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w352_d16_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w352_d16_A
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w352_d16_A_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w352_d64_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w352_d64_A
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w352_d64_A_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w132_d144_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w132_d144_A
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w132_d144_A_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_fifo_w132_d576_A.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w132_d576_A
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_fifo_w132_d576_A_ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config13_s_w13_ROM_NP4jc.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config13_s_w13_ROM_NP4jc
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_169_7_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_169_7_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config11_s_w11_ROM_NP3i2.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config11_s_w11_ROM_NP3i2
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_121_6_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_121_6_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config9_s_w9_ROM_NP_B2iS.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config9_s_w9_ROM_NP_B2iS
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_mul_22s_9s_31_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_mul_22s_9s_31_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_129_6_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_129_6_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_16u_config7_s_void_pooling2d_cl_Mgi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_16u_config7_s_void_pooling2d_cl_Mgi_core
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_16u_config7_s_void_pooling2d_cl_Mgi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config5_mult_s_w5_ROMLf8.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_leq_nin_ap_fixed_ap_fixed_22_12_4_0_0_config5_mult_s_w5_ROMLf8
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_151_7_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_151_7_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config5_s_p_ZZN4nnet26conv_2dncg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config5_s_p_ZZN4nnet26conv_2dncg_core
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config5_s_p_ZZN4nnet26conv_2dncg
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config4_s_void_pooling2d_cl_shbi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config4_s_void_pooling2d_cl_shbi_core
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_6u_config4_s_void_pooling2d_cl_shbi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_regslice_both.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_regslice_both
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s_w2g8j.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s_w2g8j
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s_oufYi.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_dense_resource_rf_gt_nin_rem0_ap_fixed_ap_fixed_22_12_4_0_0_config2_mult_s_oufYi
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_7_2_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_7_2_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_mul_22s_10s_32_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_mul_22s_10s_32_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_sparsemux_51_5_22_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_sparsemux_51_5_22_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_mul_22s_22s_44_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_mul_22s_22s_44_1_1
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_1u_config2_s_void_conv_2d_bufferbkb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_1u_config2_s_void_conv_2d_bufferbkb_core
+INFO: [VRFC 10-311] analyzing module lenet_mnist_cap64_hls_shift_line_buffer_array_ap_fixed_22_12_4_0_0_1u_config2_s_void_conv_2d_bufferbkb
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_deadlock_idx0_monitor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_idx0_monitor
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_deadlock_kernel_monitor_top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_kernel_monitor_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_deadlock_detector.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_detector
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_deadlock_report_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_report_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_deadlock_detection_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_deadlock_detect_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_axi_s_layer13_out.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_axi_s_layer13_out
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_axi_s_input_layer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module AESL_axi_s_input_layer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/AESL_fifo.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fifo
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls.autotb.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module apatb_lenet_mnist_cap64_hls_top
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/dataflow_monitor.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dataflow_monitor
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package xil_defaultlib.$unit_dataflow_monitor_sv
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_mul_22s_22...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_mul_22s_10...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_compute_ou...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_regslice_b...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_conv_2d_cl...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_flow_contr...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_relu_array...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_pooling2d_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_compute_ou...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_conv_2d_cl...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_relu_array...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_shift_line...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_pooling2d_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_flow_contr...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_arra...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_mul_22s_9s...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_arra...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_relu_array...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_arra...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_relu_array...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_sparsemux_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_reso...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_regslice_b...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_dense_arra...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w132_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w132_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w132_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w132_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w352_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w352_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w352_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w352_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w2640...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w2640...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w1848...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_fifo_w1848...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls_start_for_...
+Compiling module xil_defaultlib.lenet_mnist_cap64_hls
+Compiling module xil_defaultlib.fifo(DEPTH=784,WIDTH=32)
+Compiling module xil_defaultlib.AESL_axi_s_input_layer
+Compiling module xil_defaultlib.fifo(DEPTH=2,WIDTH=320)
+Compiling module xil_defaultlib.AESL_axi_s_layer13_out
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detect_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_report_unit(PROC_N...
+Compiling module xil_defaultlib.AESL_deadlock_detector_2
+Compiling module xil_defaultlib.AESL_deadlock_idx0_monitor
+Compiling module xil_defaultlib.AESL_deadlock_kernel_monitor_top...
+Compiling module xil_defaultlib.df_fifo_intf_default
+Compiling module xil_defaultlib.df_process_intf_default
+Compiling module xil_defaultlib.nodf_module_intf_default
+Compiling module xil_defaultlib.rewind_loop_intf_default
+Compiling module xil_defaultlib.seq_loop_intf(FSM_WIDTH=3)
+Compiling module xil_defaultlib.upc_loop_intf(FSM_WIDTH=1)
+Compiling module xil_defaultlib.upc_loop_intf_default
+Compiling module xil_defaultlib.dataflow_monitor_1
+Compiling module xil_defaultlib.apatb_lenet_mnist_cap64_hls_top
+Compiling module work.glbl
+Built simulation snapshot lenet_mnist_cap64_hls
+
+****** xsim v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Wed Sep  9 17:15:48 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/lenet_mnist_cap64_hls/xsim_script.tcl
+# xsim {lenet_mnist_cap64_hls} -autoloadwcfg -tclbatch {lenet_mnist_cap64_hls.tcl}
+Time resolution is 1 ps
+source lenet_mnist_cap64_hls.tcl
+## run all
+////////////////////////////////////////////////////////////////////////////////////
+// Inter-Transaction Progress: Completed Transaction / Total Transaction
+// Intra-Transaction Progress: Measured Latency / Latency Estimation * 100%
+//
+// RTL Simulation : "Inter-Transaction Progress" ["Intra-Transaction Progress"] @ "Simulation Time"
+////////////////////////////////////////////////////////////////////////////////////
+// RTL Simulation : 0 / 10 [0.00%] @ "125000"
+// RTL Simulation : 1 / 10 [0.50%] @ "478205000"
+// RTL Simulation : 2 / 10 [0.50%] @ "953105000"
+// RTL Simulation : 3 / 10 [0.50%] @ "1428005000"
+// RTL Simulation : 4 / 10 [0.50%] @ "1902905000"
+// RTL Simulation : 5 / 10 [0.50%] @ "2377805000"
+// RTL Simulation : 6 / 10 [0.50%] @ "2852705000"
+// RTL Simulation : 7 / 10 [0.50%] @ "3327605000"
+// RTL Simulation : 8 / 10 [0.50%] @ "3802505000"
+// RTL Simulation : 9 / 10 [0.50%] @ "4277405000"
+// RTL Simulation : 10 / 10 [100.00%] @ "4752305000"
+////////////////////////////////////////////////////////////////////////////////////
+$finish called at time : 4752365 ns : File "/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/sim/verilog/lenet_mnist_cap64_hls.autotb.v" Line 249
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:22 . Memory (MB): peak = 1332.344 ; gain = 0.000 ; free physical = 3294 ; free virtual = 34525
+## quit
+INFO: xsimkernel Simulation Memory Usage: 315324 KB (Peak: 353204 KB), Simulation CPU Usage: 22100 ms
+INFO: [Common 17-206] Exiting xsim at Wed Sep  9 17:16:11 2026...
+INFO: [COSIM 212-316] Starting C post checking ...
+Processing input 0
+Predictions
+10.2811 -11.9362 -3.34922 -5.59918 -2.71331 -1.14147 3.33328 -6.43857 -2.7032 0.83878 
+Quantized predictions
+10.2568 -11.9453 -3.37012 -5.61426 -2.70313 -1.15039 3.36523 -6.45801 -2.67188 0.81543 
+INFO: Saved inference results to file: tb_data/rtl_cosim_results.log
+INFO [HLS SIM]: The maximum depth reached by any hls::stream() instance in the design is 784
+INFO: [COSIM 212-1000] *** C/RTL co-simulation finished: PASS ***
+INFO: [HLS 200-2161] Finished Command cosim_design Elapsed time: 00:01:45; Allocated memory: 20.316 MB.
+INFO: [HLS 200-1510] Running: export_design -format ip_catalog -version 1.0.0 
+INFO: [IMPL 213-8] Exporting RTL as a Vivado IP.
+WARNING: /opt/Xilinx/Vivado/2024.2/tps/lnx64/jre11.0.16_1 does not exist.
+
+****** Vivado v2024.2 (64-bit)
+  **** SW Build 5239630 on Fri Nov 08 22:34:34 MST 2024
+  **** IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+  **** SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+  **** Start of session at: Wed Sep  9 17:17:06 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source run_ippack.tcl -notrace
+INFO: calling package_hls_ip ip_types=vitis sysgen json_file=/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/solution1_data.json outdir=/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip srcdir=/tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1 sort_interfaces_ports=false
+INFO: Copied 1 ipmisc file(s) to /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/misc
+INFO: Copied 73 verilog file(s) to /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/hdl/verilog
+INFO: Copied 62 vhdl file(s) to /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/hdl/vhdl
+INFO: Import ports from HDL: /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/hdl/vhdl/lenet_mnist_cap64_hls.vhd (lenet_mnist_cap64_hls)
+INFO: Add axi4stream interface input_layer
+INFO: Add axi4stream interface layer13_out
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2024.2/data/ip'.
+INFO: Add clock interface ap_clk
+INFO: Add reset interface ap_rst_n
+INFO: Add ap_ctrl interface ap_ctrl
+INFO: Calling post_process_vitis to specialize IP
+INFO: Calling post_process_sysgen to specialize IP
+Generating sysgen info xml from json file
+INFO: Created IP /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/component.xml
+INFO: Created IP archive /tmp/h1_lenet_rf64_anv2rv3c/lenet_mnist_cap64_hls_prj/solution1/impl/ip/xilinx_com_hls_lenet_mnist_cap64_hls_1_0.zip
+INFO: [Common 17-206] Exiting Vivado at Wed Sep  9 17:17:14 2026...
+INFO: [HLS 200-802] Generated output file lenet_mnist_cap64_hls_prj/solution1/impl/export.zip
+INFO: [HLS 200-2161] Finished Command export_design Elapsed time: 00:01:12; Allocated memory: 94.141 MB.
+INFO: [HLS 200-112] Total CPU user time: 301.36 seconds. Total CPU system time: 2.91 seconds. Total elapsed time: 179.32 seconds; peak allocated memory: 432.453 MB.
+INFO: [vitis-run 60-791] Total elapsed time: 0h 3m 0s
+INFO: [vitis-run 60-1662] Stopping dispatch session having empty uuid.

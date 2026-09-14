@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-09-09T20:33:25.896226+00:00",
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+  "protocol": "MLP robust Vitis AI equivalent to LeNet 12x10000 campaign",
+  "scenario": "saturated",
+  "threads_runners": 4,
+  "physical_dpu_cores": 2,
+  "batch": 1,
+  "warmup_per_runner": 100,
+  "baseline_seconds": 5.0,
+  "telemetry_ms": 10,
+  "seed": 20260831,
+  "outliers_removed": 0,
+  "timing_boundary": "persistent prequantized input buffer reused; t0 -> execute_async+wait -> t1; no preprocessing/dequantization/softmax/argmax",
+  "standard_scaler_inside_end_to_end": false,
+  "softmax_inside_end_to_end": false,
+  "temperature_pre": {
+    "ps_temp_c": 43.038649471896,
+    "remote_temp_c": 45.556620296904,
+    "pl_temp_c": 44.421979122672
+  },
+  "temperature_after_warmup": {
+    "ps_temp_c": 43.162993710167996,
+    "remote_temp_c": 44.561866390728,
+    "pl_temp_c": 44.21991973548
+  },
+  "temperature_after_benchmark": {
+    "ps_temp_c": 42.556815548592,
+    "remote_temp_c": 43.706999752608,
+    "pl_temp_c": 43.971231258936
+  },
+  "xmodel_sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+  "test_data_sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+  "reference_sha256": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e",
+  "script_sha256": "02ff166a1a1a21e349822f0c95edd16c48b49918b55b175a06b7f37f11294c84",
+  "xdputil_query_before_any_runner": {
+    "command": [
+      "xdputil",
+      "query"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"DPU IP Spec\":{\n        \"DPU Core Count\":2,\n        \"IP version\":\"v4.1.0\",\n        \"generation timestamp\":\"2022-12-06 16-30-00\",\n        \"git commit id\":\"8a36f42\",\n        \"git commit time\":2022120616,\n        \"regmap\":\"1to1 version\"\n    },\n    \"VAI Version\":{\n        \"libvaip-core.so\":\"Xilinx vaip Version: 1.0.0-a176db67b19f94b0a31f9d24ef80322efe4494ad  2022-12-26-13:22:58 \",\n        \"libvart-runner.so\":\"Xilinx vart-runner Version: 3.0.0-2efa5fe1e56c2b2c8a7e71e9fc1636242dd50a9f  2022-12-26-13:01:39 \",\n        \"libvitis_ai_library-dpu_task.so\":\"Xilinx vitis_ai_library dpu_task Version: 3.0.0-1cccff04dc341c4a6287226828f90aed56005f4f  2022-12-20 10:29:01 [UTC] \",\n        \"libxir.so\":\"Xilinx xir Version: xir-9204ac72103092a7b253a0c23ec7471481656940 2022-12-26-12:56:35\",\n        \"target_factory\":\"target-factory.3.0.0 860ed0499ab009084e2df3004eeb9ae710c26351\"\n    },\n    \"kernels\":[\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80000000\",\n            \"cu_handle\":\"0xaaaaf0dc7150\",\n            \"cu_idx\":0,\n            \"cu_mask\":2,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_1\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 0\"\n        },\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80001000\",\n            \"cu_handle\":\"0xaaaaf0dc6a80\",\n            \"cu_idx\":1,\n            \"cu_mask\":1,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_2\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 1\"\n        }\n    ]\n}\n"
+  }
+}

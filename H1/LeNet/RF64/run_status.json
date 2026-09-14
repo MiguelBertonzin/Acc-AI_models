@@ -1,0 +1,29 @@
+{
+  "reuse_factor": 64,
+  "status": "completed",
+  "staging": "/tmp/h1_lenet_rf64_anv2rv3c",
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "/home/miguel/Downloads/Plano testes TCC/H1/LeNet/generate_lenet_h1.py",
+    "--reuse-factor",
+    "64",
+    "--output-dir",
+    "/tmp/h1_lenet_rf64_anv2rv3c"
+  ],
+  "started_at_unix": 1788983021.7017334,
+  "returncode": 0,
+  "finished_at_unix": 1788984763.050139,
+  "phase": "completed_after_cosim_retry",
+  "retry_started_at_unix": 1788984863.7158115,
+  "retry_command": [
+    "/opt/Xilinx/Vitis/2024.2/bin/vitis-run",
+    "--tcl",
+    "/tmp/h1_lenet_rf64_anv2rv3c/retry_cosim_export.tcl",
+    "--mode",
+    "hls"
+  ],
+  "retry_finished_at_unix": 1788985045.877156,
+  "retry_error": null,
+  "synthesis_rerun": false,
+  "synthesis_hashes_unchanged": true
+}

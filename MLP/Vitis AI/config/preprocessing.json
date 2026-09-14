@@ -1,0 +1,30 @@
+{
+  "dataset": "Iris",
+  "feature_order": [
+    "sepal_length_cm",
+    "sepal_width_cm",
+    "petal_length_cm",
+    "petal_width_cm"
+  ],
+  "normalization": "(x - mean) / scale",
+  "mean": [
+    5.84166665871938,
+    3.0483333349227903,
+    3.769999987880389,
+    1.2049999895816048
+  ],
+  "scale": [
+    0.8374149871969131,
+    0.4466511177148879,
+    1.761135990687815,
+    0.7594789757360413
+  ],
+  "classes": [
+    "Iris setosa",
+    "Iris versicolor",
+    "Iris virginica"
+  ],
+  "model_output": "logits",
+  "decision": "argmax(logits)",
+  "softmax": "optional software post-processing when probabilities are required"
+}

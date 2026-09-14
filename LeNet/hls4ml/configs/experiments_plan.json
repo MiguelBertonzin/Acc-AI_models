@@ -1,0 +1,73 @@
+{
+  "fixed_invariants": {
+    "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+    "part": "xczu7ev-ffvc1156-2-e",
+    "backend": "Vitis",
+    "clock_period_ns": 10.0,
+    "io_type": "io_stream",
+    "strategy": "Resource",
+    "conv_implementation": "LineBuffer",
+    "parallelization_factor": 1,
+    "softmax": false,
+    "batch_size": 1,
+    "input_preprocessing": "uint8 -> float32 / 255.0, channels_last"
+  },
+  "ordered_candidates": [
+    {
+      "id": "A_baseline_q22_12_balanced",
+      "priority": 1,
+      "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+      "reuse": {"conv1": 5, "conv2": 30, "dense1": 128, "dense2": 120, "output": 84},
+      "estimated_multiplier_limit": 444,
+      "goal": "Golden numerical baseline and first synthesizable IP"
+    },
+    {
+      "id": "A_refined_same_proxy",
+      "priority": 2,
+      "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+      "reuse": {"conv1": 5, "conv2": 150, "dense1": 128, "dense2": 120, "output": 84},
+      "estimated_multiplier_limit": 380,
+      "goal": "Conservative first synthesis: fewer structural multipliers without worsening the baseline maximum schedule proxy"
+    },
+    {
+      "id": "B_compact_q22_12",
+      "priority": 3,
+      "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+      "reuse": {"conv1": 25, "conv2": 150, "dense1": 256, "dense2": 240, "output": 168},
+      "estimated_multiplier_limit": 236,
+      "goal": "Fallback if baseline resource use is excessive"
+    },
+    {
+      "id": "E_cap64_rate_balanced",
+      "priority": 4,
+      "precision": "First compare at ap_fixed<22,12,AP_RND_CONV,AP_SAT>; then Q16 mixed precision",
+      "reuse": {"conv1": 5, "conv2": 50, "dense1": 64, "dense2": 60, "output": 42},
+      "estimated_multiplier_limit": 746,
+      "goal": "Test the RF<=64 hypothesis without assigning an invalid or unbalanced global RF"
+    },
+    {
+      "id": "C_mixed_precision_balanced",
+      "priority": 5,
+      "precision_results_weights": "ap_fixed<16,6,AP_RND_CONV,AP_SAT>",
+      "precision_accumulators": "Keep wider and derive per layer after profiling",
+      "reuse": {"conv1": 5, "conv2": 30, "dense1": 128, "dense2": 120, "output": 84},
+      "goal": "Reduce DSP/LUT/BRAM while preserving top-1 accuracy"
+    },
+    {
+      "id": "D_faster_after_fit",
+      "priority": 6,
+      "precision": "Use best accepted precision from A/C",
+      "reuse": {"conv1": 1, "conv2": 10, "dense1": 64, "dense2": 60, "output": 42},
+      "estimated_multiplier_limit": 1058,
+      "goal": "Explore lower latency only after post-route resource margin is known"
+    }
+  ],
+  "acceptance_order": [
+    "Keras vs hls4ml C++ on 10000 tests",
+    "C synthesis timing and resources",
+    "RTL co-simulation",
+    "IP export and IP-XACT audit",
+    "Vivado OOC synthesis and route",
+    "Only then board integration"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "dataset": "CIFAR-10 official test set",
+  "unique_images": 10000,
+  "classes": 10,
+  "correct": 7492,
+  "accuracy": 0.7492,
+  "accuracy_percent": 74.92,
+  "wilson95_low": 0.7406094735802538,
+  "wilson95_high": 0.7575991416318009,
+  "wilson95_low_percent": 74.06094735802537,
+  "wilson95_high_percent": 75.75991416318008,
+  "elapsed_s": 16.045587119999993,
+  "model_output": "10 logits, no softmax",
+  "prediction": "argmax(logits)",
+  "preprocessing": "uint8 -> float32 /255 -> ap_fixed<22,12> packing",
+  "batch": 1,
+  "note": "Functional validation only. Elapsed time is not used as a latency or throughput benchmark."
+}

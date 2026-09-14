@@ -1,0 +1,17 @@
+{
+  "reuse_factor": 1,
+  "status": "completed",
+  "staging": "/tmp/h1_mlp_rf1_2c8qhhe8",
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "/home/miguel/Downloads/Plano testes TCC/H1/MLP/generate_mlp_h1.py",
+    "--reuse-factor",
+    "1",
+    "--output-dir",
+    "/tmp/h1_mlp_rf1_2c8qhhe8",
+    "--cosim"
+  ],
+  "started_at_unix": 1788979301.5042205,
+  "returncode": 0,
+  "finished_at_unix": 1788979363.7922127
+}

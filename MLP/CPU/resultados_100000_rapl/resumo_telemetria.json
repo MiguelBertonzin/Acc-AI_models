@@ -1,0 +1,108 @@
+{
+  "duration_s": 15.073980991,
+  "samples": 150,
+  "sampling_interval_nominal_ms": 100,
+  "system_cpu_percent": {
+    "mean": 6.147333333333333,
+    "median": 5.9,
+    "p95": 7.209999999999996,
+    "minimum": 5.0,
+    "maximum": 12.5
+  },
+  "process_cpu_percent": {
+    "mean": 111.16666666666667,
+    "median": 110.1,
+    "p95": 120.61,
+    "minimum": 99.0,
+    "maximum": 125.8
+  },
+  "process_rss_mib": {
+    "mean": 724.7265364583334,
+    "median": 724.740234375,
+    "p95": 726.122265625,
+    "minimum": 722.98828125,
+    "maximum": 726.3125
+  },
+  "process_vms_mib": {
+    "mean": 9757.962708333333,
+    "median": 9757.609375,
+    "p95": 9758.609375,
+    "minimum": 9756.609375,
+    "maximum": 9758.609375
+  },
+  "process_threads": {
+    "mean": 107.0,
+    "median": 107.0,
+    "p95": 107.0,
+    "minimum": 107.0,
+    "maximum": 107.0
+  },
+  "system_memory_percent": {
+    "mean": 27.627999999999993,
+    "median": 27.65,
+    "p95": 27.8,
+    "minimum": 27.5,
+    "maximum": 27.9
+  },
+  "load1": {
+    "mean": 0.346484375,
+    "median": 0.333984375,
+    "p95": 0.43701171875,
+    "minimum": 0.27587890625,
+    "maximum": 0.43701171875
+  },
+  "frequency_mean_mhz": {
+    "mean": 2321.82426,
+    "median": 2312.9948958333334,
+    "p95": 2711.5424437499996,
+    "minimum": 1500.065125,
+    "maximum": 2970.8733749999997
+  },
+  "frequency_min_mhz": {
+    "mean": 799.9105266666667,
+    "median": 800.0,
+    "p95": 800.0,
+    "minimum": 797.011,
+    "maximum": 800.0
+  },
+  "frequency_max_mhz": {
+    "mean": 5014.324706666666,
+    "median": 5100.0,
+    "p95": 5100.6003,
+    "minimum": 2385.122,
+    "maximum": 5110.099
+  },
+  "package_temperature_c": {
+    "mean": 75.48666666666666,
+    "median": 76.0,
+    "p95": 82.0,
+    "minimum": 52.0,
+    "maximum": 82.0
+  },
+  "core_temperature_mean_c": {
+    "mean": 59.377916666666664,
+    "median": 60.5625,
+    "p95": 62.0625,
+    "minimum": 51.375,
+    "maximum": 63.0
+  },
+  "core_temperature_max_c": {
+    "mean": 76.36,
+    "median": 77.0,
+    "p95": 82.0,
+    "minimum": 62.0,
+    "maximum": 82.0
+  },
+  "fan_rpm": {
+    "mean": 920.4333333333333,
+    "median": 919.0,
+    "p95": 922.0,
+    "minimum": 919.0,
+    "maximum": 940.0
+  },
+  "sampling_interval_observed_ms": {
+    "mean": 100.01090633557047,
+    "median": 100.020134,
+    "maximum": 104.80651
+  }
+}

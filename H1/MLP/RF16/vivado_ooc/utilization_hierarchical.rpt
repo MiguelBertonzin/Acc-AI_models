@@ -1,0 +1,52 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Thu Sep 10 09:04:10 2026
+| Host         : ubuntu running 64-bit Ubuntu 24.04.3 LTS
+| Command      : report_utilization -hierarchical -file {/home/miguel/Downloads/Plano testes TCC/H1/MLP/RF16/vivado_ooc/utilization_hierarchical.rpt}
+| Design       : mlp_iris
+| Device       : xczu7ev-ffvc1156-2-e
+| Speed File   : -2
+| Design State : Optimized
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Utilization Design Information
+
+Table of Contents
+-----------------
+1. Utilization by Hierarchy
+
+1. Utilization by Hierarchy
+---------------------------
+
++----------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+|                                     Instance                                     |                                           Module                                          | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | URAM | DSP Blocks |
++----------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+| mlp_iris                                                                         |                                                                                     (top) |       2887 |       2887 |       0 |    0 | 2453 |      0 |      3 |    0 |         11 |
+|   (mlp_iris)                                                                     |                                                                                     (top) |         13 |         13 |       0 |    0 |  392 |      0 |      0 |    0 |          0 |
+|   call_ret2_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s_fu_79    |                      mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config3_s |          8 |          8 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|   call_ret4_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s_fu_103   |                      mlp_iris_relu_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_relu_config5_s |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          0 |
+|   grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s_fu_73      |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s |        652 |        652 |       0 |    0 |  566 |      0 |      0 |    0 |          2 |
+|     (grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s_fu_73)  |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config2_s |        158 |        158 |       0 |    0 |  566 |      0 |      0 |    0 |          0 |
+|     mul_16s_12s_26_1_1_U1                                                        |                                                             mlp_iris_mul_16s_12s_26_1_1_6 |        249 |        249 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_16s_12s_26_1_1_U2                                                        |                                                             mlp_iris_mul_16s_12s_26_1_1_7 |        249 |        249 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|   grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s_fu_91      |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s |       1548 |       1548 |       0 |    0 | 1002 |      0 |      0 |    0 |          4 |
+|     (grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s_fu_91)  |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config4_s |        403 |        403 |       0 |    0 | 1002 |      0 |      0 |    0 |          0 |
+|     mul_16s_12s_26_1_1_U13                                                       |                                                             mlp_iris_mul_16s_12s_26_1_1_3 |        292 |        292 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_16s_12s_26_1_1_U14                                                       |                                                             mlp_iris_mul_16s_12s_26_1_1_4 |        229 |        229 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_16s_12s_26_1_1_U16                                                       |                                                             mlp_iris_mul_16s_12s_26_1_1_5 |        305 |        305 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_16s_13s_26_1_1_U15                                                       |                                                               mlp_iris_mul_16s_13s_26_1_1 |        320 |        320 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|   grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s_fu_115     |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s |        578 |        578 |       0 |    0 |  492 |      0 |      0 |    0 |          2 |
+|     (grp_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s_fu_115) |                  mlp_iris_dense_latency_ap_fixed_16_6_5_3_0_ap_fixed_16_6_5_3_0_config6_s |         95 |         95 |       0 |    0 |  492 |      0 |      0 |    0 |          0 |
+|     mul_16s_12s_26_1_1_U34                                                       |                                                               mlp_iris_mul_16s_12s_26_1_1 |        278 |        278 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_16s_12s_26_1_1_U35                                                       |                                                             mlp_iris_mul_16s_12s_26_1_1_2 |        206 |        206 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|   grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127       |                    mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s |         88 |         88 |       0 |    0 |    1 |      0 |      3 |    0 |          3 |
+|     (grp_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_fu_127)   |                    mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s |         37 |         37 |       0 |    0 |    1 |      0 |      0 |    0 |          0 |
+|     exp_table_U                                                                  | mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_exp_table_ROM_Abkb |         50 |         50 |       0 |    0 |    0 |      0 |      2 |    0 |          0 |
+|     invert_table_U                                                               | mlp_iris_softmax_stable_ap_fixed_ap_fixed_16_6_5_3_0_softmax_config7_s_invert_table_ROcud |          1 |          1 |       0 |    0 |    0 |      0 |      1 |    0 |          0 |
+|     mul_18s_11ns_26_1_1_U44                                                      |                                                              mlp_iris_mul_18s_11ns_26_1_1 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_18s_11ns_26_1_1_U45                                                      |                                                            mlp_iris_mul_18s_11ns_26_1_1_0 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
+|     mul_18s_11ns_26_1_1_U46                                                      |                                                            mlp_iris_mul_18s_11ns_26_1_1_1 |          0 |          0 |       0 |    0 |    0 |      0 |      0 |    0 |          1 |
++----------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------+------------+------------+---------+------+------+--------+--------+------+------------+
+
+

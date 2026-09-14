@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "models/float/resnet8_cifar10_keras2_vai3_5_no_softmax.h5",
+  "model_sha256": "6632bdf0dd8becd7afcb9dbb623be2c090ef500e57343cbee2c751729cdbce3f",
+  "test_data": "data/prepared/cifar10_test_uint8.npz",
+  "test_data_sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467",
+  "outputs": "results/float_test_outputs.npz",
+  "outputs_sha256": "e110e67684784da21cbfbf61985fac860a5607aefa481003a6eb762804ee21ae",
+  "samples": 10000,
+  "correct": 7490,
+  "accuracy": 0.749,
+  "accuracy_percent": 74.9,
+  "wilson_95": [
+    0.7404072994919971,
+    0.7574014693194059
+  ],
+  "batch_size": 256,
+  "preprocessing": "uint8 to float32, divide by 255.0",
+  "softmax": false,
+  "decision": "argmax of logits"
+}

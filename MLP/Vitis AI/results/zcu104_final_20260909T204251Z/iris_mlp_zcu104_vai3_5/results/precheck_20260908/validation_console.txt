@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "samples": 30,
+  "correct": 29,
+  "accuracy": 0.9666666666666667,
+  "reference_agreement": 30,
+  "reference_agreement_percent": 100.0,
+  "input_shape": [
+    1,
+    4
+  ],
+  "output_shape": [
+    1,
+    3
+  ],
+  "input_fix_point": 5,
+  "output_fix_point": 3,
+  "xmodel_sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+  "test_data_sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+  "reference_sha256": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e"
+}

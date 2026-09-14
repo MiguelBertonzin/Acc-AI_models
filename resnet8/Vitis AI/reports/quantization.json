@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "models/float/resnet8_cifar10_keras2_vai3_5_no_softmax.h5",
+  "model_sha256": "6632bdf0dd8becd7afcb9dbb623be2c090ef500e57343cbee2c751729cdbce3f",
+  "calibration_data": "data/prepared/cifar10_calibration_train_uint8.npz",
+  "calibration_data_sha256": "1ebfa046e925aa3c3e77d3694b45ea8c682a9587193463c57ac8c87524ba8504",
+  "calibration_samples": 1000,
+  "calibration_batch_size": 32,
+  "preprocessing": "uint8 to float32, divide by 255.0",
+  "strategy": "pof2s",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output": "artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5",
+  "output_sha256": "34ee6c9530aeb506300d481de966e858f632f397fd7178978f079d46b48ab91b",
+  "input_shape": [
+    null,
+    32,
+    32,
+    3
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "softmax": false
+}

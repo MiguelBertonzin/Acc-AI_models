@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "dataset": "MNIST",
+  "source": "data/cache/keras/datasets/mnist.npz",
+  "source_sha256": "731c5ac602752760c8e48fbffcf8c3b850d9dc2a2aedcf2cc48468fc17b673d1",
+  "calibration_split": "official training split",
+  "calibration_selection": "stratified without replacement",
+  "calibration_samples": 10000,
+  "calibration_class_counts": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+  ],
+  "calibration_output": "data/prepared/mnist_calibration_train_uint8.npz",
+  "calibration_sha256": "a2f4fb0aa43ea1415f01bcb291812cadc3979573ad322884da112f592185e650",
+  "test_split": "official test split",
+  "test_samples": 10000,
+  "test_class_counts": [
+    980,
+    1135,
+    1032,
+    1010,
+    982,
+    892,
+    958,
+    1028,
+    974,
+    1009
+  ],
+  "test_output": "data/prepared/mnist_test_uint8.npz",
+  "test_sha256": "be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd",
+  "raw_dtype": "uint8",
+  "model_input_shape": [
+    28,
+    28,
+    1
+  ],
+  "runtime_preprocessing": "astype(float32) / 255.0; add channels_last dimension",
+  "seed": 20260825
+}

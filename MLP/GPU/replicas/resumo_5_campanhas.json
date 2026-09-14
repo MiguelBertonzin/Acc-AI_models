@@ -1,0 +1,91 @@
+{
+  "30000": {
+    "inference_only_mean_ms": {
+      "n_campaigns": 5,
+      "mean": 0.17613443133333334,
+      "std_sample": 0.0059775953377824795,
+      "cv_percent": 3.393768777934121,
+      "minimum": 0.16991944256666666,
+      "maximum": 0.18574679589999998,
+      "ci95_lower": 0.16871226640657816,
+      "ci95_upper": 0.18355659626008852
+    },
+    "application_e2e_effective_ms": {
+      "n_campaigns": 5,
+      "mean": 0.26456538446,
+      "std_sample": 0.010479186547232275,
+      "cv_percent": 3.9609061361603177,
+      "minimum": 0.25259049633333336,
+      "maximum": 0.2804143509333333,
+      "ci95_lower": 0.25155375579384043,
+      "ci95_upper": 0.27757701312615957
+    },
+    "throughput_effective_inf_s": {
+      "n_campaigns": 5,
+      "mean": 3784.455186579621,
+      "std_sample": 147.50359839674337,
+      "cv_percent": 3.8976177844519984,
+      "minimum": 3566.151292441319,
+      "maximum": 3958.9771369716973,
+      "ci95_lower": 3601.305278844878,
+      "ci95_upper": 3967.605094314364
+    },
+    "total_energy_mj_per_inference": {
+      "n_campaigns": 5,
+      "mean": 7.875803407285531,
+      "std_sample": 0.24759872225997726,
+      "cv_percent": 3.1437900294836645,
+      "minimum": 7.543039421204426,
+      "maximum": 8.158457347738494,
+      "ci95_lower": 7.568368987854064,
+      "ci95_upper": 8.183237826716999
+    }
+  },
+  "100000": {
+    "inference_only_mean_ms": {
+      "n_campaigns": 5,
+      "mean": 0.16866298782,
+      "std_sample": 0.008801080805265997,
+      "cv_percent": 5.218145912758678,
+      "minimum": 0.16204733023999998,
+      "maximum": 0.18367661547,
+      "ci95_lower": 0.15773500263881898,
+      "ci95_upper": 0.17959097300118101
+    },
+    "application_e2e_effective_ms": {
+      "n_campaigns": 5,
+      "mean": 0.255898696834,
+      "std_sample": 0.009306931857581014,
+      "cv_percent": 3.6369594580695996,
+      "minimum": 0.24778444068999997,
+      "maximum": 0.27123109119,
+      "ci95_lower": 0.24434261461270596,
+      "ci95_upper": 0.2674547790552941
+    },
+    "throughput_effective_inf_s": {
+      "n_campaigns": 5,
+      "mean": 3911.8094847592947,
+      "std_sample": 137.9692215867917,
+      "cv_percent": 3.5269923579951987,
+      "minimum": 3686.8929576347514,
+      "maximum": 4035.7659149836913,
+      "ci95_lower": 3740.4980694547776,
+      "ci95_upper": 4083.120900063812
+    },
+    "total_energy_mj_per_inference": {
+      "n_campaigns": 5,
+      "mean": 7.521092032588774,
+      "std_sample": 0.3916848175939098,
+      "cv_percent": 5.207818437758049,
+      "minimum": 7.230770975913946,
+      "maximum": 8.19309645530387,
+      "ci95_lower": 7.034751095939407,
+      "ci95_upper": 8.00743296923814
+    }
+  },
+  "validation": {
+    "all_campaigns_correct_29_of_30": true,
+    "campaigns": 10,
+    "note": "Acur\u00e1cia usa apenas o holdout \u00fanico de 30; repeti\u00e7\u00f5es n\u00e3o s\u00e3o amostras adicionais."
+  }
+}

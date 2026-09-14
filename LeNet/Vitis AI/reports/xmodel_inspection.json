@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "xmodel": "artifacts/compiled/lenet_mnist_zcu104_vai3_5/lenet_mnist_no_softmax.xmodel",
+  "xmodel_sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5",
+  "xmodel_bytes": 171444,
+  "graph": "LeNet_MNIST",
+  "subgraph_count": 3,
+  "dpu_subgraph_count": 1,
+  "subgraphs": [
+    {
+      "name": "subgraph_input",
+      "device": "USER",
+      "ops": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "quant_input",
+          "dims": [
+            1,
+            28,
+            28,
+            1
+          ],
+          "dtype": "xint8",
+          "fix_point": 6
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_conv1",
+      "device": "DPU",
+      "ops": 20,
+      "inputs": [
+        {
+          "name": "quant_input",
+          "dims": [
+            1,
+            28,
+            28,
+            1
+          ],
+          "dtype": "xint8",
+          "fix_point": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_output_fix",
+          "dims": [
+            1,
+            10
+          ],
+          "dtype": "xint8",
+          "fix_point": 2
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_output_fix_",
+      "device": "CPU",
+      "ops": 1,
+      "inputs": [
+        {
+          "name": "quant_output_fix",
+          "dims": [
+            1,
+            10
+          ],
+          "dtype": "xint8",
+          "fix_point": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_output_fix_",
+          "dims": [
+            1,
+            10
+          ],
+          "dtype": "float32",
+          "fix_point": null
+        }
+      ]
+    }
+  ]
+}

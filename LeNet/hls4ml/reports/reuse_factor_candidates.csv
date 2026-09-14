@@ -1,0 +1,11 @@
+candidate,conv1_rf,conv2_rf,dense1_rf,dense2_rf,output_rf,multiplier_limit_total,one_dsp_scenario_percent,two_dsp_scenario_percent,maximum_schedule_proxy_cycles
+resource_cap_16,5,15,16,15,14,2842,164.468,328.935,6336
+resource_cap_32,25,30,32,30,28,1412,81.713,163.426,17856
+resource_cap_64,25,50,64,60,42,722,41.782,83.565,17856
+resource_cap_128,25,75,128,120,84,372,21.528,43.056,17856
+resource_cap_256,25,150,256,120,84,236,13.657,27.315,31440
+resource_cap_512,25,150,256,120,84,236,13.657,27.315,31440
+current_A,5,30,128,120,84,444,25.694,51.389,16080
+requested_64_as_same_value,75,75,64,60,84,696,40.278,80.556,46656
+recommended_E_cap64_rate_balanced,5,50,64,60,42,746,43.171,86.343,8400
+recommended_A_refined_same_proxy,5,150,128,120,84,380,21.991,43.981,16080

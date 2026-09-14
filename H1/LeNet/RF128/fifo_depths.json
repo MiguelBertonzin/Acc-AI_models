@@ -1,0 +1,12 @@
+{
+  "layer2_out": "576",
+  "layer3_out": "576",
+  "layer4_out": "144",
+  "layer5_out": "64",
+  "layer6_out": "64",
+  "layer7_out": "16",
+  "layer9_out": "1",
+  "layer10_out": "1",
+  "layer11_out": "1",
+  "layer12_out": "1"
+}

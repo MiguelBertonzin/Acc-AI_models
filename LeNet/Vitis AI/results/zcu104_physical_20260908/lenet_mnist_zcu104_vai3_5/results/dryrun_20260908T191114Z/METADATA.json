@@ -1,0 +1,141 @@
+{
+  "campaign_start_utc": "2026-09-08T19:11:16.210467+00:00",
+  "command": [
+    "03_benchmark_vart_robusto.py",
+    "--dry-run",
+    "--output-dir",
+    "results/dryrun_20260908T191114Z"
+  ],
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34",
+  "machine": "aarch64",
+  "python": "3.9.9 (main, Nov 15 2021, 18:05:17) \n[GCC 11.2.0]",
+  "numpy": "1.21.2",
+  "cwd": "/home/root/lenet_mnist_zcu104_vai3_5",
+  "input_hashes": {
+    "xmodel": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5",
+    "dataset": "be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd",
+    "reference": "cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32"
+  },
+  "host_prediction_sha256_official_order": "eaa5a7b4bad2e55523a42b6555292efbc15c34545a0fa0d17a66eabf68b5f250",
+  "selected_indices_sha256": "65a5248b6e84b1b5bc6bd1068aba612e7884ac5c781f686d75d3843cc7ebd8a9",
+  "run_order_sha256": "8a077f7691f6b36a26dd22569461aa19076eb278b93169ff0734023c864b0b92",
+  "tensor_meta": {
+    "input_name": "quant_input",
+    "input_shape": [
+      1,
+      28,
+      28,
+      1
+    ],
+    "input_fix_point": 6,
+    "output_name": "quant_output_fix",
+    "output_shape": [
+      1,
+      10
+    ],
+    "output_fix_point": 2,
+    "batch": 1
+  },
+  "host_int8_reference": {
+    "correct": 9895,
+    "accuracy_percent": 98.95
+  },
+  "xdputil_query": {
+    "command": [
+      "xdputil",
+      "query"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"DPU IP Spec\":{\n        \"DPU Core Count\":2,\n        \"IP version\":\"v4.1.0\",\n        \"generation timestamp\":\"2022-12-06 16-30-00\",\n        \"git commit id\":\"8a36f42\",\n        \"git commit time\":2022120616,\n        \"regmap\":\"1to1 version\"\n    },\n    \"VAI Version\":{\n        \"libvaip-core.so\":\"Xilinx vaip Version: 1.0.0-a176db67b19f94b0a31f9d24ef80322efe4494ad  2022-12-26-13:22:58 \",\n        \"libvart-runner.so\":\"Xilinx vart-runner Version: 3.0.0-2efa5fe1e56c2b2c8a7e71e9fc1636242dd50a9f  2022-12-26-13:01:39 \",\n        \"libvitis_ai_library-dpu_task.so\":\"Xilinx vitis_ai_library dpu_task Version: 3.0.0-1cccff04dc341c4a6287226828f90aed56005f4f  2022-12-20 10:29:01 [UTC] \",\n        \"libxir.so\":\"Xilinx xir Version: xir-9204ac72103092a7b253a0c23ec7471481656940 2022-12-26-12:56:35\",\n        \"target_factory\":\"target-factory.3.0.0 860ed0499ab009084e2df3004eeb9ae710c26351\"\n    },\n    \"kernels\":[\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80000000\",\n            \"cu_handle\":\"0xaaaad166c050\",\n            \"cu_idx\":0,\n            \"cu_mask\":2,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_1\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 0\"\n        },\n        {\n            \"DPU Arch\":\"DPUCZDX8G_ISA1_B4096\",\n            \"DPU Frequency (MHz)\":300,\n            \"IP Type\":\"DPU\",\n            \"Load Parallel\":2,\n            \"Load augmentation\":\"enable\",\n            \"Load minus mean\":\"disable\",\n            \"Save Parallel\":2,\n            \"XRT Frequency (MHz)\":300,\n            \"cu_addr\":\"0x80001000\",\n            \"cu_handle\":\"0xaaaad1682cc0\",\n            \"cu_idx\":1,\n            \"cu_mask\":1,\n            \"cu_name\":\"DPUCZDX8G:DPUCZDX8G_2\",\n            \"device_id\":0,\n            \"fingerprint\":\"0x101000056010407\",\n            \"name\":\"DPU Core 1\"\n        }\n    ]\n}\n"
+  },
+  "xdputil_status_before": {
+    "command": [
+      "xdputil",
+      "status"
+    ],
+    "returncode": 0,
+    "output": "{\n    \"kernels\":[\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x1b900000\",\n                \"dpu0_base_addr_1\":\"0x505f000\",\n                \"dpu0_base_addr_2\":\"0x50de000\",\n                \"dpu0_base_addr_3\":\"0x5ce4000\",\n                \"dpu0_base_addr_4\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_5\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_6\":\"0xffffffffffffffff\",\n                \"dpu0_base_addr_7\":\"0xffffffffffffffff\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x1b8e2\",\n                \"AP status\":\"idle\",\n                \"CONV END\":24,\n                \"CONV START\":24,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":269,\n                \"LOAD START\":269,\n                \"MISC END\":6,\n                \"MISC START\":6,\n                \"SAVE END\":1,\n                \"SAVE START\":1\n            },\n            \"name\":\"DPU Registers Core 0\"\n        },\n        {\n            \"addrs_registers\":{\n                \"dpu0_base_addr_0\":\"0x0\",\n                \"dpu0_base_addr_1\":\"0x0\",\n                \"dpu0_base_addr_2\":\"0x0\",\n                \"dpu0_base_addr_3\":\"0x0\",\n                \"dpu0_base_addr_4\":\"0x0\",\n                \"dpu0_base_addr_5\":\"0x0\",\n                \"dpu0_base_addr_6\":\"0x0\",\n                \"dpu0_base_addr_7\":\"0x0\"\n            },\n            \"common_registers\":{\n                \"ADDR_CODE\":\"0x0\",\n                \"AP status\":\"idle\",\n                \"CONV END\":0,\n                \"CONV START\":0,\n                \"HP_ARCOUNT_MAX\":7,\n                \"HP_ARLEN\":15,\n                \"HP_AWCOUNT_MAX\":7,\n                \"HP_AWLEN\":15,\n                \"LOAD END\":0,\n                \"LOAD START\":0,\n                \"MISC END\":0,\n                \"MISC START\":0,\n                \"SAVE END\":0,\n                \"SAVE START\":0\n            },\n            \"name\":\"DPU Registers Core 1\"\n        }\n    ]\n}\n"
+  },
+  "uname": {
+    "command": [
+      "uname",
+      "-a"
+    ],
+    "returncode": 0,
+    "output": "Linux xilinx-zcu104-20222 5.15.36-xilinx-v2022.2 #1 SMP Mon Oct 3 07:50:07 UTC 2022 aarch64 aarch64 aarch64 GNU/Linux\n"
+  },
+  "os_release": "ID=petalinux\nNAME=\"PetaLinux\"\nVERSION=\"2022.2_release_S10071807 (honister)\"\nVERSION_ID=2022.2_release_s10071807\nPRETTY_NAME=\"PetaLinux 2022.2_release_S10071807 (honister)\"",
+  "cpu_governors_and_freqs": {
+    "cpu0": {
+      "governor": "userspace",
+      "cur_freq_khz": 1199999,
+      "min_freq_khz": 299999,
+      "max_freq_khz": 1199999
+    },
+    "cpu1": {
+      "governor": "userspace",
+      "cur_freq_khz": 1199999,
+      "min_freq_khz": 299999,
+      "max_freq_khz": 1199999
+    },
+    "cpu2": {
+      "governor": "userspace",
+      "cur_freq_khz": 1199999,
+      "min_freq_khz": 299999,
+      "max_freq_khz": 1199999
+    },
+    "cpu3": {
+      "governor": "userspace",
+      "cur_freq_khz": 1199999,
+      "min_freq_khz": 299999,
+      "max_freq_khz": 1199999
+    }
+  },
+  "process_system_before": {
+    "VmSize": "106584 kB",
+    "VmHWM": "111516 kB",
+    "VmRSS": "88656 kB",
+    "Threads": "1",
+    "loadavg_1_5_15": [
+      0.08,
+      0.02,
+      0.01
+    ]
+  },
+  "telemetry_discovery": {
+    "hwmon_name": "ina226",
+    "power_path": "/sys/class/hwmon/hwmon0/power1_input",
+    "current_path": "/sys/class/hwmon/hwmon0/curr1_input",
+    "voltage_path": "/sys/class/hwmon/hwmon0/in2_input",
+    "iio_ina226_sampling_frequency_hz": 114,
+    "iio_ina226_oversampling_ratio": 4,
+    "temperature_initial": {
+      "ps_temp_c": 43.955688229152,
+      "remote_temp_c": 45.401189999064,
+      "pl_temp_c": 43.504940365416
+    }
+  },
+  "protocol": {
+    "samples_per_configuration": 10000,
+    "blocks": 10,
+    "block_size": 1000,
+    "warmup_per_runner": 100,
+    "threads": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "scenarios": [
+      "inference_only",
+      "end_to_end",
+      "saturated"
+    ],
+    "seed": 20260825,
+    "idle_seconds": 5.0,
+    "telemetry_interval_s": 0.01,
+    "outlier_removal": false,
+    "softmax": false,
+    "decision": "argmax logits"
+  }
+}

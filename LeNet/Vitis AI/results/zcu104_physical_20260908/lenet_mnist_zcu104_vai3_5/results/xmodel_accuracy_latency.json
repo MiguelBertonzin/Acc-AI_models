@@ -1,0 +1,155 @@
+{
+  "samples": 10000,
+  "correct": 9895,
+  "accuracy_percent": 98.95,
+  "quantized_host_argmax_agreement": 10000,
+  "quantized_host_argmax_agreement_percent": 100.0,
+  "warmup": 100,
+  "input_shape": [
+    1,
+    28,
+    28,
+    1
+  ],
+  "input_fix_point": 6,
+  "output_shape": [
+    1,
+    10
+  ],
+  "output_fix_point": 2,
+  "latency_inference_only_ms": {
+    "mean": 0.216988415,
+    "std_population": 0.004528365298623224,
+    "min": 0.2091,
+    "p50": 0.21647,
+    "p90": 0.21798,
+    "p95": 0.2197305,
+    "p99": 0.2314001,
+    "max": 0.34845
+  },
+  "end_to_end_loop_seconds": 5.85103035,
+  "end_to_end_throughput_images_per_second": 1709.100688565049,
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      973,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      3,
+      1
+    ],
+    [
+      0,
+      1131,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1025,
+      0,
+      1,
+      0,
+      2,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1001,
+      0,
+      3,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      979,
+      0,
+      2,
+      0,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      0,
+      4,
+      0,
+      883,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      0,
+      1,
+      4,
+      948,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      4,
+      7,
+      0,
+      0,
+      0,
+      0,
+      1005,
+      1,
+      11
+    ],
+    [
+      3,
+      0,
+      2,
+      1,
+      0,
+      4,
+      0,
+      3,
+      957,
+      4
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      6,
+      3,
+      1,
+      1,
+      2,
+      993
+    ]
+  ],
+  "latency_boundary": "execute_async + wait only; excludes image normalization/input quantization and argmax"
+}

@@ -1,0 +1,31 @@
+{
+  "inference_only": {
+    "unit": "media de uma passagem completa de 30 inferencias",
+    "reference_passages": 1000,
+    "new_passages": 3333,
+    "reference_mean_ms": 0.1857467959,
+    "new_mean_ms": 0.1836769904190419,
+    "difference_new_minus_reference_ms": -0.0020698054809581146,
+    "difference_ci95_lower_ms": -0.0056258804084668036,
+    "difference_ci95_upper_ms": 0.0014862694465505744,
+    "welch_t": -1.141748341670913,
+    "welch_degrees_freedom": 1446.0054866770402,
+    "welch_p_value_two_sided": 0.2537476721570393,
+    "standardized_mean_difference": -0.04305155658518127
+  },
+  "end_to_end_effective": {
+    "unit": "media de uma passagem completa de 30 inferencias",
+    "reference_passages": 1000,
+    "new_passages": 3333,
+    "reference_mean_ms": 0.28041435093333333,
+    "new_mean_ms": 0.27123107666766677,
+    "difference_new_minus_reference_ms": -0.009183274265666563,
+    "difference_ci95_lower_ms": -0.013076864987746429,
+    "difference_ci95_upper_ms": -0.005289683543586698,
+    "welch_t": -4.6263087990713485,
+    "welch_degrees_freedom": 1549.9534486483008,
+    "welch_p_value_two_sided": 4.032239162240925e-06,
+    "standardized_mean_difference": -0.17015807907928177
+  },
+  "interpretation": "exploratoria; campanhas sequenciais e temporalmente autocorrelacionadas"
+}

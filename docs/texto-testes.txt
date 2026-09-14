@@ -1,0 +1,868 @@
+======================================================================
+PLANO DE TESTES EXPERIMENTAIS - TCC III
+======================================================================
+
+OBJETIVO GERAL
+
+Explorar como diferentes decisões, parametrizações e características dos
+fluxos hls4ml e Vitis AI influenciam a implementação e a execução de redes
+neurais na FPGA AMD Zynq UltraScale+ ZCU104.
+
+Sempre que possível, cada experimento deve alterar apenas uma variável,
+mantendo constantes:
+- modelo e pesos;
+- conjunto de dados;
+- pré-processamento;
+- critérios de acurácia;
+- frequência de operação, quando não for a variável estudada;
+- precisão numérica, quando não for a variável estudada;
+- ReuseFactor, quando não for a variável estudada;
+- estratégia de síntese;
+- arquitetura de I/O;
+- batch;
+- número de repetições;
+- método de medição.
+
+Métricas gerais de interesse:
+- acurácia;
+- latência;
+- vazão (FPS/inferências por segundo);
+- média da latência;
+- mediana;
+- desvio padrão;
+- percentil 95 (p95);
+- utilização de LUT;
+- utilização de FF;
+- utilização de DSP;
+- utilização de BRAM;
+- utilização de URAM, quando aplicável;
+- potência total;
+- potência dinâmica;
+- energia por inferência;
+- frequência atingida;
+
+
+
+======================================================================
+1. TESTES GERAIS
+======================================================================
+
+M1 - End-to-end x inference-only
+Fluxos: hls4ml e Vitis AI
+
+Objetivo:
+Avaliar quanto do tempo total da aplicação corresponde efetivamente à
+execução do acelerador e quanto corresponde ao overhead do sistema.
+
+Rodar os 3 modelos nos fluxos e focar no minimo necessario para rodar os 3 no hls4ml.
+
+Comparações:
+1. Latência inference-only
+2. Latência end-to-end
+
+Inference-only:
+Considerar somente a execução relacionada diretamente à inferência no
+acelerador.
+
+End-to-end:
+Considerar o caminho completo da aplicação, incluindo, conforme aplicável:
+- pré-processamento;
+- preparação dos dados;
+- movimentação de dados;
+- chamada ao runtime;
+- execução na FPGA;
+- sincronização;
+- obtenção do resultado;
+- pós-processamento.
+
+Manter constante:
+- mesmo modelo;
+- mesmos pesos;
+- mesmas entradas;
+- mesma configuração de hardware;
+- mesmo número de inferências.
+
+Métricas:
+- latência inference-only;
+- latência end-to-end;
+- overhead absoluto;
+- overhead percentual;
+- FPS inference-only;
+- FPS end-to-end.
+
+
+----------------------------------------------------------------------
+M3 - Repetibilidade das medições
+Fluxos: hls4ml e Vitis AI
+
+Objetivo:
+Avaliar a estabilidade e variabilidade temporal das implementações.
+
+Procedimento:
+Executar um número elevado de inferências após uma etapa de warm-up.
+
+Registrar:
+- número de warm-ups;
+- número total de inferências;
+- latência individual de cada execução.
+
+Métricas:
+- média;
+- mediana;
+- mínimo;
+- máximo;
+- desvio padrão;
+- p95;
+- opcionalmente p99.
+
+Este procedimento deve ser utilizado principalmente nas configurações
+selecionadas para os resultados finais em hardware.
+
+
+======================================================================
+2. TESTES DO FLUXO HLS4ML
+======================================================================
+
+H1 - ReuseFactor global (testar MLP e LeNet)
+
+Objetivo:
+Avaliar o compromisso entre paralelismo, utilização de recursos e
+desempenho proporcionado pelo ReuseFactor.
+
+Variações:
+- RF = 1
+- RF = 2
+- RF = 4
+- RF = 8
+- RF = 16
+- valores superiores, quando válidos para o modelo/camada.
+
+Alterar:
+- somente o ReuseFactor global.
+
+Manter constante:
+- precisão;
+- Strategy;
+- IOType;
+- clock;
+- modelo;
+- pesos;
+- demais parâmetros do hls4ml.
+
+Métricas:
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência estimada pela síntese;
+- Initiation Interval (II);
+- latência real;
+- FPS;
+- potência;
+- energia por inferência.
+
+Objetivo principal:
+Construir a relação área x paralelismo x desempenho.
+
+
+----------------------------------------------------------------------
+H2 - ReuseFactor por camada (LeNet e resnet8)
+
+Objetivo:
+Verificar se uma configuração de ReuseFactor personalizada por camada
+produz uma solução superior ao uso de um único ReuseFactor global.
+
+Comparações:
+1. ReuseFactor global
+2. ReuseFactor configurado individualmente por camada
+
+Possíveis perfis:
+- performance;
+- balanced;
+- resource.
+
+Manter constante:
+- precisão;
+- clock;
+- IOType;
+- Strategy;
+- modelo e pesos.
+
+Métricas:
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- II;
+- latência;
+- FPS;
+- potência;
+- energia por inferência.
+
+Comparar também soluções de Pareto.
+
+
+----------------------------------------------------------------------
+H3 - Strategy: Latency x Resource (MLP e LeNet e Resnet8)
+
+Objetivo:
+Avaliar a influência da estratégia de síntese escolhida pelo hls4ml sobre
+o hardware gerado.
+
+Variações:
+- Strategy = Latency
+- Strategy = Resource
+
+Manter constante:
+- mesmo ReuseFactor;
+- mesma precisão;
+- mesmo clock;
+- mesmo IOType;
+- mesmo modelo.
+
+Métricas:
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- II;
+- frequência atingida;
+- FPS;
+- potência;
+- energia por inferência.
+
+
+----------------------------------------------------------------------
+H4 - Arquitetura de I/O - (MLP e LeNet e resnet8)
+
+Objetivo:
+Avaliar o impacto da arquitetura de comunicação utilizada pelo hls4ml e
+sua aplicabilidade conforme a complexidade do modelo.
+
+Variações:
+- io_parallel
+- io_stream
+
+Manter constante:
+- modelo;
+- precisão;
+- ReuseFactor;
+- Strategy;
+- clock.
+
+Métricas:
+- viabilidade de síntese;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- II;
+- FPS.
+
+IMPORTANTE:
+Caso uma configuração não possa ser implementada, registrar a etapa onde
+ocorreu a limitação:
+- conversão hls4ml;
+- C Simulation;
+- C Synthesis;
+- RTL Simulation;
+- Vivado Synthesis;
+- Implementation;
+- Place and Route;
+- Timing;
+- geração do bitstream.
+
+Uma configuração não implementável também deve ser considerada resultado
+experimental.
+
+
+----------------------------------------------------------------------
+H5 - FIFO optimization - resnet8 e lenet
+
+Objetivo:
+Avaliar o impacto da otimização automática da profundidade das FIFOs em
+arquiteturas io_stream.
+
+Variações:
+1. FIFO optimization desabilitada
+2. FIFO optimization habilitada
+
+Manter constante:
+- IOType = io_stream;
+- ReuseFactor;
+- precisão;
+- Strategy;
+- clock;
+- modelo.
+
+Métricas:
+- profundidade das FIFOs;
+- LUT;
+- FF;
+- BRAM;
+- DSP;
+- latência;
+- II;
+- FPS.
+
+Objetivo principal:
+Verificar se a otimização reduz recursos sem comprometer significativamente
+o desempenho.
+
+
+----------------------------------------------------------------------
+H6 - Precisão manual com ap_fixed (LeNet e Resnet8)
+
+Objetivo:
+Avaliar o impacto da largura de palavra utilizada na implementação HLS.
+
+Variações iniciais:
+- 16 bits
+- 12 bits
+- 10 bits
+- 8 bits
+
+Outras precisões poderão ser utilizadas caso seja identificado um ponto
+interessante entre acurácia e recursos.
+
+Alterar:
+- somente a precisão numérica.
+
+Manter constante:
+- ReuseFactor;
+- Strategy;
+- IOType;
+- clock;
+- modelo e pesos.
+
+Métricas:
+- acurácia;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- II;
+- FPS.
+
+Objetivo principal:
+Identificar a menor precisão capaz de manter uma perda de acurácia
+aceitável.
+
+
+----------------------------------------------------------------------
+H7 - Precisão uniforme x precisão por camada (LeNet e Resnet8)
+
+Objetivo:
+Verificar se a definição individual de precisão para diferentes camadas
+produz uma implementação mais eficiente que uma precisão uniforme global.
+
+Comparações:
+1. precisão uniforme para toda a rede;
+2. precisão definida por camada com auxílio de profiling.
+
+Manter constante:
+- modelo;
+- ReuseFactor;
+- Strategy;
+- IOType;
+- clock.
+
+Métricas:
+- acurácia;
+- precisão utilizada em cada camada;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- FPS.
+
+Objetivo principal:
+Avaliar se diferentes partes da rede realmente necessitam da mesma
+precisão numérica.
+
+
+----------------------------------------------------------------------
+H8 - Quantização utilizando QKeras (LeNet e Resnet8)
+
+Objetivo:
+Avaliar Quantization-Aware Training e seus impactos na implementação pelo
+hls4ml.
+
+Possíveis variações:
+- modelo de referência FP32;
+- QKeras 8 bits;
+- QKeras 6 bits;
+- QKeras 4 bits;
+- outras configurações consideradas viáveis.
+
+Manter constante sempre que possível:
+- arquitetura da rede;
+- dataset;
+- procedimento de avaliação;
+- configuração hls4ml utilizada após treinamento.
+
+Métricas:
+- acurácia antes da implementação;
+- acurácia após implementação;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- FPS;
+- energia por inferência.
+
+IMPORTANTE:
+QKeras deve ser tratado como uma abordagem de quantização durante o
+treinamento, e não como equivalente direto à simples alteração de ap_fixed.
+
+
+----------------------------------------------------------------------
+H9 - Quantização heterogênea HGQ/HGQ2
+
+Objetivo:
+Avaliar a otimização automática/heterogênea das precisões da rede e
+compará-la com abordagens de precisão manual e QKeras.
+
+Comparações possíveis:
+1. precisão manual uniforme;
+2. QKeras;
+3. HGQ/HGQ2.
+
+Avaliar preferencialmente HGQ2 para novos experimentos, verificando
+compatibilidade com a versão do hls4ml utilizada.
+
+Métricas:
+- acurácia;
+- precisão escolhida para pesos/ativações/camadas;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- FPS;
+- energia por inferência.
+
+Objetivo principal:
+Determinar se uma quantização heterogênea consegue melhorar a relação
+acurácia x recursos.
+
+
+----------------------------------------------------------------------
+H10 - Alteração do clock de síntese
+
+Objetivo:
+Avaliar como diferentes restrições de clock influenciam timing,
+desempenho e utilização de recursos.
+
+Variações iniciais:
+- 10 ns = 100 MHz
+- 5 ns = 200 MHz
+- 3,33 ns = aproximadamente 300 MHz
+
+Manter constante:
+- modelo;
+- ReuseFactor;
+- precisão;
+- Strategy;
+- IOType.
+
+Métricas:
+- clock solicitado;
+- clock/frequência atingida;
+- WNS;
+- timing closure;
+- latência em ciclos;
+- latência em tempo;
+- II;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- FPS;
+- potência.
+
+Registrar explicitamente configurações que não conseguirem fechar timing.
+
+
+----------------------------------------------------------------------
+H11 - Softmax x logits x argmax
+
+Objetivo:
+Avaliar o custo de implementar diferentes formas de produzir a saída de
+um classificador diretamente no hardware.
+
+Comparações:
+1. saída com Softmax;
+2. saída em logits;
+3. saída somente com argmax/classe prevista, quando suportado.
+
+Manter constante:
+- restante da arquitetura;
+- pesos;
+- precisão;
+- ReuseFactor;
+- clock;
+- Strategy.
+
+Métricas:
+- acurácia top-1;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- latência;
+- II;
+- FPS.
+
+Objetivo principal:
+Quantificar o custo de implementar operações de pós-processamento no
+acelerador.
+
+
+======================================================================
+3. TESTES DO FLUXO VITIS AI
+======================================================================
+
+V1 - FP32 x PTQ x QAT
+
+Objetivo:
+Avaliar o impacto da quantização exigida pelo fluxo Vitis AI sobre a
+acurácia do modelo.
+
+Comparações:
+1. FP32 em software - referência;
+2. INT8 obtido por Post-Training Quantization (PTQ);
+3. INT8 obtido por Quantization-Aware Training (QAT).
+
+IMPORTANTE:
+FP32 funciona como referência em software.
+A execução na DPUCZDX8G deve utilizar o formato compatível com a DPU.
+
+Manter constante:
+- arquitetura do modelo;
+- dataset;
+- conjunto de teste;
+- pré-processamento;
+- critérios de acurácia.
+
+Métricas:
+- acurácia FP32;
+- acurácia PTQ;
+- acurácia QAT;
+- perda de acurácia relativa ao FP32;
+- latência e FPS das versões executadas na DPU.
+
+
+----------------------------------------------------------------------
+V2 - Quantidade de imagens utilizadas na calibração PTQ
+
+Objetivo:
+Avaliar a sensibilidade da quantização PTQ ao tamanho do conjunto de
+calibração.
+
+Variações iniciais:
+- 100 imagens;
+- 500 imagens;
+- 1000 imagens.
+
+Manter constante:
+- modelo;
+- pesos FP32;
+- procedimento de quantização;
+- DPU alvo;
+- dataset de teste;
+- pré-processamento.
+
+Métricas:
+- acurácia após PTQ;
+- diferença de acurácia em relação ao FP32;
+- estabilidade da quantização.
+
+IMPORTANTE:
+As imagens de calibração devem ser provenientes de um conjunto apropriado
+para calibração, sem utilizar o conjunto final de teste para ajustar o
+modelo.
+
+
+----------------------------------------------------------------------
+V5 - Runtime Python x C++
+
+Objetivo:
+Avaliar o overhead introduzido pela camada de software utilizada para
+controlar a DPU.
+
+Comparações:
+1. aplicação utilizando API Python;
+2. aplicação utilizando API C++/VART.
+
+Manter constante:
+- mesmo arquivo .xmodel;
+- mesma DPU;
+- mesmos dados;
+- mesmo preprocessing;
+- mesmo número de inferências;
+- mesmo batch.
+
+Métricas:
+- latência inference-only;
+- latência end-to-end;
+- FPS;
+- média;
+- mediana;
+- p95;
+- desvio padrão;
+- utilização da CPU ARM, quando possível.
+
+Objetivo principal:
+Separar o desempenho do acelerador do overhead introduzido pelo runtime e
+pela linguagem da aplicação.
+
+
+----------------------------------------------------------------------
+V9 - Número de cores DPU
+
+Objetivo:
+Avaliar o efeito da utilização de múltiplos cores DPU sobre throughput,
+latência e eficiência energética.
+
+Comparações:
+- 1 core DPU;
+- 2 cores DPU.
+
+Manter constante:
+- mesma arquitetura DPU;
+- mesma frequência;
+- mesmo modelo;
+- mesma quantização;
+- mesmo runtime;
+- demais opções da DPU.
+
+Avaliar especialmente workloads com múltiplas inferências concorrentes.
+
+Métricas:
+- FPS total;
+- latência individual;
+- potência;
+- energia por inferência;
+- FPS/W;
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- URAM.
+
+Objetivo principal:
+Analisar o ganho de paralelismo entre inferências proporcionado por
+múltiplos cores.
+
+
+----------------------------------------------------------------------
+V10 - Variações da arquitetura DPUCZDX8G
+
+Objetivo:
+Avaliar como diferentes níveis de paralelismo da DPU influenciam
+desempenho, recursos e eficiência energética na mesma ZCU104.
+
+Configurações disponíveis a serem investigadas:
+- B512
+- B800
+- B1024
+- B1152
+- B1600
+- B2304
+- B3136
+- B4096
+
+Cada configuração deverá utilizar hardware compatível gerado para a
+ZCU104.
+
+O modelo deverá ser compilado para a arquitetura/fingerprint correspondente
+à DPU utilizada.
+
+Manter constante:
+- número de cores, preferencialmente 1 no primeiro experimento;
+- frequência, quando possível;
+- modelo;
+- pesos;
+- quantização;
+- dataset;
+- runtime;
+- opções adicionais da DPU.
+
+Métricas:
+- LUT;
+- FF;
+- DSP;
+- BRAM;
+- URAM;
+- frequência atingida;
+- latência;
+- FPS;
+- potência total;
+- potência dinâmica;
+- energia por inferência;
+- FPS/W.
+
+Objetivo principal:
+Construir a relação entre tamanho/paralelismo da DPU, recursos utilizados
+e desempenho obtido pelo modelo.
+
+
+======================================================================
+4. DISTRIBUIÇÃO PRELIMINAR DOS TESTES ENTRE OS MODELOS
+======================================================================
+
+MLP IRIS
+--------
+Modelo utilizado principalmente como baseline de baixa complexidade.
+
+Prioridade:
+- M1
+- M3
+- H1 reduzido
+- H4 completo (io_parallel x io_stream)
+- H6 reduzido
+- H11
+- V1
+- V5
+
+Opcional:
+- H3
+- H8
+- V10 apenas em configurações extremas, caso seja pertinente.
+
+
+LENET MNIST
+-----------
+Modelo intermediário, utilizado para observar o comportamento do fluxo
+em uma CNN convencional.
+
+Prioridade:
+- M1
+- M3
+- H1
+- H3
+- H6
+- H8
+- H11
+- V1
+- V5
+
+Complementar:
+- H2
+- H5
+- H7
+- H9
+- H10
+- V2
+- V9
+- V10 utilizando alguns pontos representativos.
+
+
+RESNET8 CIFAR-10
+----------------
+Modelo principal para exploração aprofundada do espaço de projeto.
+
+Prioridade:
+- M1
+- M3
+- H1
+- H2
+- H3
+- H4 como teste de viabilidade
+- H5
+- H6
+- H7
+- H8
+- H9
+- H10
+- H11
+- V1
+- V2
+- V5
+- V9
+- V10
+
+A ResNet8 deverá concentrar os sweeps mais extensos por apresentar maior
+complexidade computacional e estrutural.
+
+
+======================================================================
+5. ESTRATÉGIA PARA EVITAR EXPLOSÃO DO NÚMERO DE IMPLEMENTAÇÕES
+======================================================================
+
+Nem todas as configurações avaliadas deverão necessariamente gerar um
+bitstream final.
+
+Etapa 1 - Exploração inicial
+- conversão;
+- C Simulation;
+- C Synthesis;
+- relatórios de latência;
+- relatórios de recursos;
+- identificação de configurações inviáveis.
+
+Etapa 2 - Seleção de configurações representativas
+Selecionar pontos de interesse, por exemplo:
+- maior desempenho;
+- menor utilização de recursos;
+- solução intermediária/balanceada;
+- soluções localizadas na fronteira de Pareto.
+
+Etapa 3 - Implementação física
+Somente configurações selecionadas seguem para:
+- Vivado Synthesis;
+- Implementation;
+- timing closure;
+- bitstream;
+- execução real na ZCU104.
+
+Etapa 4 - Benchmark completo
+Nas configurações finais:
+- warm-up;
+- múltiplas repetições;
+- média;
+- mediana;
+- p95;
+- desvio padrão;
+- latência;
+- FPS;
+- potência;
+- energia por inferência.
+
+
+======================================================================
+6. INFORMAÇÕES QUE DEVEM SER REGISTRADAS EM TODA EXECUÇÃO
+======================================================================
+
+- modelo;
+- hash/nome dos pesos;
+- dataset;
+- preprocessing;
+- versão do TensorFlow/Keras/PyTorch;
+- versão do hls4ml;
+- versão do Vitis HLS;
+- versão do Vivado;
+- versão do Vitis AI;
+- versão/runtime da imagem embarcada;
+- DPU utilizada;
+- precisão;
+- ReuseFactor;
+- Strategy;
+- IOType;
+- FIFO optimization;
+- clock solicitado;
+- clock atingido;
+- batch;
+- número de warm-ups;
+- número de inferências medidas;
+- método de medição;
+- hardware utilizado;
+- sucesso/falha da síntese;
+- sucesso/falha da implementação;
+- motivo de falha, quando aplicável.

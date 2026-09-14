@@ -1,0 +1,18 @@
+{
+  "configuration_id": "A_refined_same_proxy",
+  "purpose": "Lower structural multiplier limit than the original baseline without increasing its worst analytical schedule proxy",
+  "reuse": {
+    "conv1": 5,
+    "conv2": 150,
+    "dense1": 128,
+    "dense2": 120,
+    "output": 84
+  },
+  "estimated_multiplier_limit": 380,
+  "maximum_schedule_proxy_cycles": 16080,
+  "notes": [
+    "Recommended conservative first synthesis candidate.",
+    "Keep the same precision as the baseline so the effect of RF remains isolated.",
+    "The final decision requires Vitis HLS csynth and then Vivado post-route reports."
+  ]
+}

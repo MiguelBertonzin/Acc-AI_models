@@ -1,0 +1,19 @@
+{
+  "reuse_factor": 32,
+  "status": "completed",
+  "staging": "/tmp/h1_lenet_rf32_fu0lry8l",
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "/home/miguel/Downloads/Plano testes TCC/H1/LeNet/generate_lenet_h1.py",
+    "--reuse-factor",
+    "32",
+    "--output-dir",
+    "/tmp/h1_lenet_rf32_fu0lry8l"
+  ],
+  "started_at_unix": 1788980590.5230787,
+  "returncode": 0,
+  "finished_at_unix": 1788981541.8638854,
+  "original_returncode": 1,
+  "recovered_at_unix": 1788983007.62014,
+  "recovery": "Post-export audit corrected to recognize simulation-only deadlock instrumentation. Existing IP verified; synthesis not rerun."
+}

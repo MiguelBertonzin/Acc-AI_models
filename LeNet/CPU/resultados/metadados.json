@@ -1,0 +1,215 @@
+{
+  "started_utc": "2026-09-03T20:16:43.728303+00:00",
+  "finished_utc": "2026-09-03T20:24:52.512449+00:00",
+  "model_path": "/home/miguel/Downloads/Plano testes TCC/LeNet/lenet_mnist_final.h5",
+  "model_size_bytes": 206696,
+  "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+  "architecture": {
+    "name": "LeNet_MNIST",
+    "input_shape": [
+      null,
+      28,
+      28,
+      1
+    ],
+    "output_shape": [
+      null,
+      10
+    ],
+    "parameters": 44426,
+    "macs_per_inference": 281640,
+    "final_activation": "linear",
+    "layers": [
+      {
+        "name": "conv1",
+        "class": "Conv2D",
+        "parameters": 156,
+        "output_shape": [
+          null,
+          24,
+          24,
+          6
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "pool1",
+        "class": "MaxPooling2D",
+        "parameters": 0,
+        "output_shape": [
+          null,
+          12,
+          12,
+          6
+        ],
+        "activation": null
+      },
+      {
+        "name": "conv2",
+        "class": "Conv2D",
+        "parameters": 2416,
+        "output_shape": [
+          null,
+          8,
+          8,
+          16
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "pool2",
+        "class": "MaxPooling2D",
+        "parameters": 0,
+        "output_shape": [
+          null,
+          4,
+          4,
+          16
+        ],
+        "activation": null
+      },
+      {
+        "name": "flatten",
+        "class": "Flatten",
+        "parameters": 0,
+        "output_shape": [
+          null,
+          256
+        ],
+        "activation": null
+      },
+      {
+        "name": "dense1",
+        "class": "Dense",
+        "parameters": 30840,
+        "output_shape": [
+          null,
+          120
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "dense2",
+        "class": "Dense",
+        "parameters": 10164,
+        "output_shape": [
+          null,
+          84
+        ],
+        "activation": "relu"
+      },
+      {
+        "name": "output",
+        "class": "Dense",
+        "parameters": 850,
+        "output_shape": [
+          null,
+          10
+        ],
+        "activation": "linear"
+      }
+    ]
+  },
+  "dataset": "MNIST official test split",
+  "dataset_class_counts": {
+    "0": 980,
+    "1": 1135,
+    "2": 1032,
+    "3": 1010,
+    "4": 982,
+    "5": 892,
+    "6": 958,
+    "7": 1028,
+    "8": 974,
+    "9": 1009
+  },
+  "input_normalization": "uint8 -> float32 / 255.0; canal adicionado ao final",
+  "sampling": "100 e 1000 balanceados/aninhados; 10000 = teste oficial completo",
+  "seed": 20260825,
+  "sample_sizes": [
+    100,
+    1000,
+    10000
+  ],
+  "repetition_prefixes": [
+    10,
+    20,
+    50,
+    100
+  ],
+  "maximum_repetitions_executed": 100,
+  "batch_size": 1,
+  "precision": "float32",
+  "execution_mode": "tf.function em /CPU:0, autograph=False, jit_compile=False",
+  "synchronization": "output.numpy() em cada inferencia",
+  "warmup_inferences": 100,
+  "telemetry_interval_ms": 100,
+  "baseline_duration_s": 5.0,
+  "baseline_start_epoch_s": 1788466598.7281294,
+  "baseline_end_epoch_s": 1788466603.72828,
+  "rapl_baseline": {
+    "rapl_samples": 49,
+    "rapl_coverage_s": 4.87784218788147,
+    "rapl_coverage_percent": 97.55390386260791,
+    "cpu_busy_percent_turbostat": 4.237957646633759,
+    "cpu_busy_frequency_mhz": 2253.181416698922,
+    "cpu_package_temperature_mean_c": 50.22170903164955,
+    "cpu_package_temperature_max_c": 54.0,
+    "power_package_mean_w": 12.566532627719242,
+    "power_cores_mean_w": 4.869807916779351,
+    "energy_package_j": 62.83455667054352,
+    "energy_cores_j": 24.349773369193052,
+    "idle_power_package_w": 12.566532627719242
+  },
+  "turbostat_source": "/tmp/lenet_cpu_turbostat.log",
+  "turbostat_snapshot_sha256": "1cb68f0ae74564ad2dc5a80ad25a1eef4531f20c8e9ff12507833f20d4a2785f",
+  "turbostat_samples_parsed": 4918,
+  "turbostat_rejected_numeric_lines": [],
+  "cpu_model_name": "13th Gen Intel(R) Core(TM) i7-13700",
+  "physical_cpu_count": 16,
+  "logical_cpu_count": 24,
+  "process_cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "tensorflow_intra_op_threads": 0,
+  "tensorflow_inter_op_threads": 0,
+  "tensorflow_visible_gpus": [],
+  "tensorflow_version": "2.21.0",
+  "keras_version": "3.13.2",
+  "numpy_version": "1.26.4",
+  "psutil_version": "5.9.0",
+  "python_version": "3.12.7",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "physical_cpu": "PhysicalDevice(name='/physical_device:CPU:0', device_type='CPU')",
+  "logical_cpu": "LogicalDevice(name='/device:CPU:0', device_type='CPU')",
+  "cpu_sampler_errors": [],
+  "limitations": [
+    "RAPL estima energia do pacote; nao mede a tomada",
+    "ciclos sequenciais podem apresentar autocorrelacao temporal",
+    "CPU permaneceu com escalonamento e frequencia dinamicos",
+    "threads TensorFlow/oneDNN em politica automatica quando configuradas como zero"
+  ]
+}

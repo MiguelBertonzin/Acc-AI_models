@@ -1,0 +1,18 @@
+{
+  "configuration_id": "E_cap64_rate_balanced",
+  "purpose": "Candidate with every layer RF <= 64, explicit valid factors and rate-aware allocation",
+  "reuse": {
+    "conv1": 5,
+    "conv2": 50,
+    "dense1": 64,
+    "dense2": 60,
+    "output": 42
+  },
+  "estimated_multiplier_limit": 746,
+  "maximum_schedule_proxy_cycles": 8400,
+  "notes": [
+    "Do not set a global ReuseFactor=64: 64 is invalid for conv1, conv2, dense2 and output.",
+    "This estimate is not the post-synthesis DSP count.",
+    "Validate numerically before synthesis and compare against the refined baseline using identical precision."
+  ]
+}

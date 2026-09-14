@@ -1,0 +1,34 @@
+[INFO] Namespace(batchsize=1, inputs_shape=None, layout='NHWC', model_files=['/workspace/artifacts/quantized/iris_mlp_logits_quantized.h5'], model_type='tensorflow2', named_inputs_shape=None, out_filename='/tmp/iris_mlp_DPUCZDX8G_ISA1_B4096_org.xmodel', proto=None)
+[INFO] tensorflow2 model: /workspace/artifacts/quantized/iris_mlp_logits_quantized.h5
+[INFO] keras version: 2.12.0
+[INFO] Tensorflow Keras model type: functional
+
+[INFO] parse raw model     :  0%|          | 0/7 [00:00<?, ?it/s]                            
+[INFO] parse raw model     :100%|██████████| 7/7 [00:00<00:00, 35119.77it/s]                 
+
+[INFO] infer shape (NHWC)  :  0%|          | 0/16 [00:00<?, ?it/s]                           
+[INFO] infer shape (NHWC)  :100%|██████████| 16/16 [00:00<00:00, 117941.76it/s]              
+
+[INFO] perform level-0 opt :  0%|          | 0/1 [00:00<?, ?it/s]                            
+[INFO] perform level-0 opt :100%|██████████| 1/1 [00:00<00:00, 2680.07it/s]                  
+
+[INFO] perform level-1 opt :  0%|          | 0/2 [00:00<?, ?it/s]                            
+[INFO] perform level-1 opt :100%|██████████| 2/2 [00:00<00:00, 10292.77it/s]                 
+
+[INFO] generate xmodel     :  0%|          | 0/16 [00:00<?, ?it/s]                           
+[INFO] generate xmodel     :100%|██████████| 16/16 [00:00<00:00, 7734.11it/s]                
+[INFO] dump xmodel ...
+[INFO] dump xmodel: /tmp/iris_mlp_DPUCZDX8G_ISA1_B4096_org.xmodel
+[UNILOG][INFO] Compile mode: dpu
+[UNILOG][INFO] Debug mode: null
+[UNILOG][INFO] Target architecture: DPUCZDX8G_ISA1_B4096
+[UNILOG][INFO] Graph name: iris_mlp_logits, with op num: 22
+[UNILOG][INFO] Begin to compile...
+[UNILOG][INFO] Total device subgraph number 3, DPU subgraph number 1
+[UNILOG][INFO] Compile done.
+[UNILOG][INFO] The meta json is saved to "/workspace/artifacts/compiled/iris_mlp_zcu104_vai3_5/meta.json"
+[UNILOG][INFO] The compiled xmodel is saved to "/workspace/artifacts/compiled/iris_mlp_zcu104_vai3_5/iris_mlp.xmodel"
+[UNILOG][INFO] The compiled xmodel's md5sum is a55b271245eadd693336bcce8dedfbfd, and has been saved to "/workspace/artifacts/compiled/iris_mlp_zcu104_vai3_5/md5sum.txt"
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************

@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import platform
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+from hls_common import DEFAULT_DESIGN, DEFAULT_MODEL, HLS_ROOT, ORIGINAL_MODEL, load_json, sha256
+
+
+def tool_version(executable: str | None) -> str | None:
+    if executable is None:
+        return None
+    completed = subprocess.run(
+        [executable, "-version"], capture_output=True, text=True, timeout=30, check=False
+    )
+    lines = (completed.stdout + completed.stderr).splitlines()
+    return lines[0].strip() if lines else "detectado, versão não reportada"
+
+
+def main() -> None:
+    import hls4ml
+    import keras
+    import numpy as np
+    import tensorflow as tf
+
+    design = load_json(DEFAULT_DESIGN)
+    vitis = shutil.which("vitis_hls")
+    vivado = shutil.which("vivado")
+    payload = {
+        "python": platform.python_version(),
+        "executable": sys.executable,
+        "tensorflow": tf.__version__,
+        "keras": keras.__version__,
+        "hls4ml": hls4ml.__version__,
+        "numpy": np.__version__,
+        "vitis_hls": {"path": vitis, "version": tool_version(vitis)},
+        "vivado": {"path": vivado, "version": tool_version(vivado)},
+        "design": design,
+        "models": {
+            str(DEFAULT_MODEL): sha256(DEFAULT_MODEL) if DEFAULT_MODEL.is_file() else None,
+            str(ORIGINAL_MODEL): sha256(ORIGINAL_MODEL) if ORIGINAL_MODEL.is_file() else None,
+        },
+        "status": "ok",
+    }
+    problems = []
+    for model in (DEFAULT_MODEL, ORIGINAL_MODEL):
+        if not model.is_file():
+            problems.append(f"modelo ausente: {model}")
+    if vitis is None:
+        problems.append("vitis_hls não está no PATH")
+    if vivado is None:
+        problems.append("vivado não está no PATH")
+    if problems:
+        payload["status"] = "incomplete"
+        payload["problems"] = problems
+
+    out = HLS_ROOT / "reports/environment_check.json"
+    out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    print(json.dumps(payload, indent=2))
+    print(f"\nRelatório: {out}")
+    if problems:
+        raise SystemExit(2)
+
+
+if __name__ == "__main__":
+    main()
+

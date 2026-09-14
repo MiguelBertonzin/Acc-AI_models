@@ -1,0 +1,72 @@
+{
+  "generated_utc": "2026-09-03T20:44:16.346587+00:00",
+  "host_ready_for_board_stage": true,
+  "board_measurements_complete": false,
+  "expected_pending": [
+    "Vitis AI: compatible DPU image, physical validation and 5x30k + 5x100k",
+    "hls4ml: AXI wrapper, block design, full post-route timing, bit/hwh, physical validation and 5x30k + 5x100k",
+    "calibrated ZCU104/external power measurement"
+  ],
+  "checks": [
+    {
+      "check": "canonical_methodology",
+      "status": "passed",
+      "detail": "MLP/Iris protocol present"
+    },
+    {
+      "check": "xmodel_sha256",
+      "status": "passed",
+      "detail": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce"
+    },
+    {
+      "check": "hls_ip_sha256",
+      "status": "passed",
+      "detail": "88a11380ea472636af4b4b72348aeda9e0b3b2421456b71b0b30222b2a774ba3"
+    },
+    {
+      "check": "vitis_deploy_hashes",
+      "status": "passed",
+      "detail": "12 files; all hashes valid"
+    },
+    {
+      "check": "vitis_flow_hashes",
+      "status": "passed",
+      "detail": "52 files; all hashes valid"
+    },
+    {
+      "check": "hls_golden_hashes",
+      "status": "passed",
+      "detail": "4 files; all hashes valid"
+    },
+    {
+      "check": "hls_flow_hashes",
+      "status": "passed",
+      "detail": "747 files; all hashes valid"
+    },
+    {
+      "check": "vitis_host_validation",
+      "status": "passed",
+      "detail": "29/30; agreement 30/30"
+    },
+    {
+      "check": "hls_rtl_golden",
+      "status": "passed",
+      "detail": "29/30; RTL golden"
+    },
+    {
+      "check": "cpu_five_campaigns",
+      "status": "passed",
+      "detail": "30k=5, 100k=5"
+    },
+    {
+      "check": "gpu_five_campaigns",
+      "status": "passed",
+      "detail": "30k=5, 100k=5"
+    },
+    {
+      "check": "documentation_links",
+      "status": "passed",
+      "detail": "70 checked"
+    }
+  ]
+}

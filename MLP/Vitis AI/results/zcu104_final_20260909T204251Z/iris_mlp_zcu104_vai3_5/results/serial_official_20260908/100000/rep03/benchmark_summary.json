@@ -1,0 +1,148 @@
+{
+  "validation": {
+    "samples_unique": 30,
+    "correct": 29,
+    "accuracy": 0.9666666666666667,
+    "accuracy_percent": 96.66666666666667,
+    "wilson95": [
+      0.8332960900859082,
+      0.9940914096183874
+    ],
+    "wilson95_percent": [
+      83.32960900859082,
+      99.40914096183874
+    ],
+    "reference_agreement": 30,
+    "reference_agreement_percent": 100.0,
+    "divergences": 0,
+    "passed": true
+  },
+  "metrics": {
+    "inferences": 100000,
+    "full_passages": 3333,
+    "final_passage_samples": 10,
+    "benchmark_wall_s": 73.62979709,
+    "throughput_effective_inf_s": 1358.1458044460842,
+    "passage_throughput_arithmetic_mean_inf_s": 1387.9003883871817,
+    "accelerator": {
+      "count": 100000,
+      "mean_ms": 0.180313814,
+      "median_ms": 0.17796,
+      "std_sample_ms": 0.018219751547451698,
+      "cv_percent": 10.104467951330506,
+      "minimum_ms": 0.16848,
+      "maximum_ms": 4.23068,
+      "p90_ms": 0.18621,
+      "p95_ms": 0.19377,
+      "p99_ms": 0.23166,
+      "mean_ci95_lower_ms": 0.18014257939232997,
+      "mean_ci95_upper_ms": 0.1804859492605353,
+      "ci_unit": "means of complete 30-sample passages",
+      "ci_passages": 3333
+    },
+    "device_call": {
+      "count": 100000,
+      "mean_ms": 0.4886301391,
+      "median_ms": 0.48288,
+      "std_sample_ms": 0.027334602134737384,
+      "cv_percent": 5.59412937259346,
+      "minimum_ms": 0.47192,
+      "maximum_ms": 4.56879,
+      "p90_ms": 0.50158,
+      "p95_ms": 0.51795,
+      "p99_ms": 0.5707705999999997,
+      "mean_ci95_lower_ms": 0.488337219898549,
+      "mean_ci95_upper_ms": 0.48892387161060186,
+      "ci_unit": "means of complete 30-sample passages",
+      "ci_passages": 3333
+    },
+    "application_end_to_end": {
+      "count": 100000,
+      "mean_ms": 0.6932165482000001,
+      "median_ms": 0.68571,
+      "std_sample_ms": 0.03172733187428397,
+      "cv_percent": 4.576828403284208,
+      "minimum_ms": 0.67436,
+      "maximum_ms": 4.81929,
+      "p90_ms": 0.70675,
+      "p95_ms": 0.7289604999999999,
+      "p99_ms": 0.7862707999999996,
+      "mean_ci95_lower_ms": 0.6928554046675093,
+      "mean_ci95_upper_ms": 0.6935788921621739,
+      "ci_unit": "means of complete 30-sample passages",
+      "ci_passages": 3333
+    },
+    "determinism": {
+      "passed": true,
+      "divergences": 0,
+      "divergent_positions_first100": []
+    }
+  },
+  "power": {
+    "status": "measured",
+    "scope": "ZCU104 board-input ~12V rail via INA226 hwmon0",
+    "sensor_path": "/sys/class/hwmon/hwmon0/power1_input",
+    "sensor_iio_sampling_frequency_hz": 114,
+    "telemetry_interval_ms": 100,
+    "baseline": {
+      "status": "measured",
+      "samples_inside": 50,
+      "bracketed": true,
+      "duration_s": 5.00503644,
+      "mean": 14.426252935336038,
+      "median_samples_inside": 14.425,
+      "std_sample_inside": 0.01987208071231412,
+      "minimum_samples_inside": 14.4,
+      "maximum_samples_inside": 14.537,
+      "max_sample_gap_ms": 100.08558,
+      "integral": 72.20392163401382
+    },
+    "benchmark": {
+      "status": "measured",
+      "samples_inside": 736,
+      "bracketed": true,
+      "duration_s": 73.62979709,
+      "mean": 14.631477051613674,
+      "median_samples_inside": 14.637,
+      "std_sample_inside": 0.008236628067690615,
+      "minimum_samples_inside": 14.612,
+      "maximum_samples_inside": 14.662,
+      "max_sample_gap_ms": 100.98413,
+      "integral": 1077.3126864373062
+    },
+    "current_benchmark": {
+      "status": "measured",
+      "samples_inside": 736,
+      "bracketed": true,
+      "duration_s": 73.62979709,
+      "mean": 1.2232411482774481,
+      "median_samples_inside": 1.223,
+      "std_sample_inside": 0.0009247162766226286,
+      "minimum_samples_inside": 1.221,
+      "maximum_samples_inside": 1.227,
+      "max_sample_gap_ms": 100.98413,
+      "integral": 90.0669975398071
+    },
+    "voltage_benchmark": {
+      "status": "measured",
+      "samples_inside": 736,
+      "bracketed": true,
+      "duration_s": 73.62979709,
+      "mean": 11.961566262142112,
+      "median_samples_inside": 11.962,
+      "std_sample_inside": 0.0005255365140736245,
+      "minimum_samples_inside": 11.96,
+      "maximum_samples_inside": 11.963,
+      "max_sample_gap_ms": 100.98413,
+      "integral": 880.7276967601134
+    },
+    "idle_mean_power_w": 14.426252935336038,
+    "active_mean_power_w": 14.631477051613674,
+    "dynamic_mean_power_w": 0.20522411627763582,
+    "total_energy_j": 1077.3126864373062,
+    "dynamic_energy_j": 15.110610039496805,
+    "total_mj_per_inference": 10.773126864373062,
+    "dynamic_mj_per_inference": 0.15110610039496805
+  },
+  "output_dir": "results/serial_official_20260908/100000/rep03"
+}

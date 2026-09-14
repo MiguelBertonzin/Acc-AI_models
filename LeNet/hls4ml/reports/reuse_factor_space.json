@@ -1,0 +1,612 @@
+{
+  "schema_version": 1,
+  "method": {
+    "hls4ml_version": "1.3.0",
+    "validity_rule": "FPGABackend._validate_reuse_factor",
+    "multiplier_limit": "ceil(n_in*n_out/min(n_in, reuse_factor))",
+    "schedule_proxy": "(reuse_factor+6)*schedule_units, derived from set_target_reuse_factor",
+    "warning": "Analytical estimates are not synthesis results."
+  },
+  "device": {
+    "board": "ZCU104",
+    "part": "xczu7ev-ffvc1156-2-e",
+    "dsp48e2": 1728
+  },
+  "layers": {
+    "conv1": {
+      "n_in": 25,
+      "n_out": 6,
+      "schedule_units": 576,
+      "valid_reuse_factors": [
+        1,
+        5,
+        25,
+        50,
+        75,
+        150
+      ]
+    },
+    "conv2": {
+      "n_in": 150,
+      "n_out": 16,
+      "schedule_units": 64,
+      "valid_reuse_factors": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        10,
+        15,
+        25,
+        30,
+        50,
+        75,
+        150,
+        300,
+        600,
+        1200,
+        2400
+      ]
+    },
+    "dense1": {
+      "n_in": 256,
+      "n_out": 120,
+      "schedule_units": 120,
+      "valid_reuse_factors": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        768,
+        1024,
+        1280,
+        1536,
+        2048,
+        2560,
+        3072,
+        3840,
+        5120,
+        6144,
+        7680,
+        10240,
+        15360,
+        30720
+      ]
+    },
+    "dense2": {
+      "n_in": 120,
+      "n_out": 84,
+      "schedule_units": 84,
+      "valid_reuse_factors": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        12,
+        15,
+        20,
+        24,
+        30,
+        40,
+        60,
+        120,
+        240,
+        360,
+        480,
+        720,
+        840,
+        1440,
+        1680,
+        2520,
+        3360,
+        5040,
+        10080
+      ]
+    },
+    "output": {
+      "n_in": 84,
+      "n_out": 10,
+      "schedule_units": 10,
+      "valid_reuse_factors": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        12,
+        14,
+        21,
+        28,
+        42,
+        84,
+        168,
+        420,
+        840
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "name": "resource_cap_16",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 5,
+        "conv2": 15,
+        "dense1": 16,
+        "dense2": 15,
+        "output": 14
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 5,
+          "multiplier_limit": 30,
+          "schedule_proxy_cycles": 6336
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 15,
+          "multiplier_limit": 160,
+          "schedule_proxy_cycles": 1344
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 16,
+          "multiplier_limit": 1920,
+          "schedule_proxy_cycles": 2640
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 15,
+          "multiplier_limit": 672,
+          "schedule_proxy_cycles": 1764
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 14,
+          "multiplier_limit": 60,
+          "schedule_proxy_cycles": 200
+        }
+      ],
+      "multiplier_limit_total": 2842,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 164.46759259259258,
+      "two_dsp_per_multiplier_scenario_percent": 328.93518518518516,
+      "maximum_schedule_proxy_cycles": 6336
+    },
+    {
+      "name": "resource_cap_32",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 25,
+        "conv2": 30,
+        "dense1": 32,
+        "dense2": 30,
+        "output": 28
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 25,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 17856
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 30,
+          "multiplier_limit": 80,
+          "schedule_proxy_cycles": 2304
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 32,
+          "multiplier_limit": 960,
+          "schedule_proxy_cycles": 4560
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 30,
+          "multiplier_limit": 336,
+          "schedule_proxy_cycles": 3024
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 28,
+          "multiplier_limit": 30,
+          "schedule_proxy_cycles": 340
+        }
+      ],
+      "multiplier_limit_total": 1412,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 81.71296296296296,
+      "two_dsp_per_multiplier_scenario_percent": 163.42592592592592,
+      "maximum_schedule_proxy_cycles": 17856
+    },
+    {
+      "name": "resource_cap_64",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 25,
+        "conv2": 50,
+        "dense1": 64,
+        "dense2": 60,
+        "output": 42
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 25,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 17856
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 50,
+          "multiplier_limit": 48,
+          "schedule_proxy_cycles": 3584
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 64,
+          "multiplier_limit": 480,
+          "schedule_proxy_cycles": 8400
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 60,
+          "multiplier_limit": 168,
+          "schedule_proxy_cycles": 5544
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 42,
+          "multiplier_limit": 20,
+          "schedule_proxy_cycles": 480
+        }
+      ],
+      "multiplier_limit_total": 722,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 41.782407407407405,
+      "two_dsp_per_multiplier_scenario_percent": 83.56481481481481,
+      "maximum_schedule_proxy_cycles": 17856
+    },
+    {
+      "name": "resource_cap_128",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 25,
+        "conv2": 75,
+        "dense1": 128,
+        "dense2": 120,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 25,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 17856
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 75,
+          "multiplier_limit": 32,
+          "schedule_proxy_cycles": 5184
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 128,
+          "multiplier_limit": 240,
+          "schedule_proxy_cycles": 16080
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 120,
+          "multiplier_limit": 84,
+          "schedule_proxy_cycles": 10584
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 372,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 21.52777777777778,
+      "two_dsp_per_multiplier_scenario_percent": 43.05555555555556,
+      "maximum_schedule_proxy_cycles": 17856
+    },
+    {
+      "name": "resource_cap_256",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 25,
+        "conv2": 150,
+        "dense1": 256,
+        "dense2": 120,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 25,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 17856
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 150,
+          "multiplier_limit": 16,
+          "schedule_proxy_cycles": 9984
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 256,
+          "multiplier_limit": 120,
+          "schedule_proxy_cycles": 31440
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 120,
+          "multiplier_limit": 84,
+          "schedule_proxy_cycles": 10584
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 236,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 13.657407407407407,
+      "two_dsp_per_multiplier_scenario_percent": 27.314814814814813,
+      "maximum_schedule_proxy_cycles": 31440
+    },
+    {
+      "name": "resource_cap_512",
+      "note": "Maior RF valido, nao dominado e menor ou igual ao teto global.",
+      "reuse": {
+        "conv1": 25,
+        "conv2": 150,
+        "dense1": 256,
+        "dense2": 120,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 25,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 17856
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 150,
+          "multiplier_limit": 16,
+          "schedule_proxy_cycles": 9984
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 256,
+          "multiplier_limit": 120,
+          "schedule_proxy_cycles": 31440
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 120,
+          "multiplier_limit": 84,
+          "schedule_proxy_cycles": 10584
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 236,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 13.657407407407407,
+      "two_dsp_per_multiplier_scenario_percent": 27.314814814814813,
+      "maximum_schedule_proxy_cycles": 31440
+    },
+    {
+      "name": "current_A",
+      "note": "Baseline inicialmente congelado.",
+      "reuse": {
+        "conv1": 5,
+        "conv2": 30,
+        "dense1": 128,
+        "dense2": 120,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 5,
+          "multiplier_limit": 30,
+          "schedule_proxy_cycles": 6336
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 30,
+          "multiplier_limit": 80,
+          "schedule_proxy_cycles": 2304
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 128,
+          "multiplier_limit": 240,
+          "schedule_proxy_cycles": 16080
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 120,
+          "multiplier_limit": 84,
+          "schedule_proxy_cycles": 10584
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 444,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 25.694444444444443,
+      "two_dsp_per_multiplier_scenario_percent": 51.388888888888886,
+      "maximum_schedule_proxy_cycles": 16080
+    },
+    {
+      "name": "requested_64_as_same_value",
+      "note": "O que o ajuste ao RF valido mais proximo de 64 produz; nao recomendado.",
+      "reuse": {
+        "conv1": 75,
+        "conv2": 75,
+        "dense1": 64,
+        "dense2": 60,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 75,
+          "multiplier_limit": 6,
+          "schedule_proxy_cycles": 46656
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 75,
+          "multiplier_limit": 32,
+          "schedule_proxy_cycles": 5184
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 64,
+          "multiplier_limit": 480,
+          "schedule_proxy_cycles": 8400
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 60,
+          "multiplier_limit": 168,
+          "schedule_proxy_cycles": 5544
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 696,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 40.27777777777778,
+      "two_dsp_per_multiplier_scenario_percent": 80.55555555555556,
+      "maximum_schedule_proxy_cycles": 46656
+    },
+    {
+      "name": "recommended_E_cap64_rate_balanced",
+      "note": "Teto 64 com RF explicito por camada e proxy de vazao balanceado.",
+      "reuse": {
+        "conv1": 5,
+        "conv2": 50,
+        "dense1": 64,
+        "dense2": 60,
+        "output": 42
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 5,
+          "multiplier_limit": 30,
+          "schedule_proxy_cycles": 6336
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 50,
+          "multiplier_limit": 48,
+          "schedule_proxy_cycles": 3584
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 64,
+          "multiplier_limit": 480,
+          "schedule_proxy_cycles": 8400
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 60,
+          "multiplier_limit": 168,
+          "schedule_proxy_cycles": 5544
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 42,
+          "multiplier_limit": 20,
+          "schedule_proxy_cycles": 480
+        }
+      ],
+      "multiplier_limit_total": 746,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 43.1712962962963,
+      "two_dsp_per_multiplier_scenario_percent": 86.3425925925926,
+      "maximum_schedule_proxy_cycles": 8400
+    },
+    {
+      "name": "recommended_A_refined_same_proxy",
+      "note": "Reduz o limite estrutural do baseline sem aumentar seu pior proxy de ciclos.",
+      "reuse": {
+        "conv1": 5,
+        "conv2": 150,
+        "dense1": 128,
+        "dense2": 120,
+        "output": 84
+      },
+      "layers": [
+        {
+          "layer": "conv1",
+          "reuse_factor": 5,
+          "multiplier_limit": 30,
+          "schedule_proxy_cycles": 6336
+        },
+        {
+          "layer": "conv2",
+          "reuse_factor": 150,
+          "multiplier_limit": 16,
+          "schedule_proxy_cycles": 9984
+        },
+        {
+          "layer": "dense1",
+          "reuse_factor": 128,
+          "multiplier_limit": 240,
+          "schedule_proxy_cycles": 16080
+        },
+        {
+          "layer": "dense2",
+          "reuse_factor": 120,
+          "multiplier_limit": 84,
+          "schedule_proxy_cycles": 10584
+        },
+        {
+          "layer": "output",
+          "reuse_factor": 84,
+          "multiplier_limit": 10,
+          "schedule_proxy_cycles": 900
+        }
+      ],
+      "multiplier_limit_total": 380,
+      "multiplier_limit_as_zcu104_dsp_percent_if_one_to_one": 21.99074074074074,
+      "two_dsp_per_multiplier_scenario_percent": 43.98148148148148,
+      "maximum_schedule_proxy_cycles": 16080
+    }
+  ]
+}

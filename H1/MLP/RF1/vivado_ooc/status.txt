@@ -1,0 +1,5 @@
+status=completed
+rf_label=RF1
+part=xczu7ev-ffvc1156-2-e
+top=mlp_iris
+mode=out_of_context_post_synthesis

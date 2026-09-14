@@ -1,0 +1,230 @@
+{
+  "root": "/home/miguel/Downloads/Plano testes TCC/resnet8/Vitis AI",
+  "files": [
+    {
+      "path": "HANDOFF_CHATGPT_WEB_ZCU104_VITIS_AI.txt",
+      "bytes": 29415,
+      "sha256": "d82e5057e92570124015878d7cc026119a644ee2232522367acd45e5a3adb32c"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4494,
+      "sha256": "f14ec94d462c449e972236696e3a4ca92a7ccf37f488e53a445c73df7086eb04"
+    },
+    {
+      "path": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/md5sum.txt",
+      "bytes": 33,
+      "sha256": "4e6870c7e0ed4511e781605afbcec04edf0ec62145e5d7d86d9228ce7ef9c70c"
+    },
+    {
+      "path": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/meta.json",
+      "bytes": 174,
+      "sha256": "0427484c7fbd8dae17460a7e0cdc9e2c95726a1491fa81e0a452c374fbbc2c02"
+    },
+    {
+      "path": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/resnet8_no_softmax.xmodel",
+      "bytes": 249251,
+      "sha256": "bfacc85783958ff0d734e5c7e44f126a6fd4af9b6b1f20e4d9b2f7ae96fa7802"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/00_inspect_dpu.py",
+      "bytes": 2160,
+      "sha256": "b4fe65e37c30341359d830d961448ab93228a96b74f33dc801484b41b48cf166"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/01_smoke_inference.py",
+      "bytes": 4615,
+      "sha256": "8586c903a48b06ad8c94f1a9da1744267bf9293c7da3006216d01ca66a13fe14"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/MANIFEST.json",
+      "bytes": 1193,
+      "sha256": "2d0be0cf51d6c8e65eb5030574588978c77046ce16af8ab20002c3e8668b8ee9"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/SHA256SUMS.txt",
+      "bytes": 616,
+      "sha256": "aa0d983f037358e81d28c336a7e1c0945d6c4f4c6976f5e45ea9e05b8acb61fe"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/arch_zcu104_vai3.5.json",
+      "bytes": 41,
+      "sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/cifar10_test_uint8.npz",
+      "bytes": 28267769,
+      "sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/quantized_test_outputs.npz",
+      "bytes": 149660,
+      "sha256": "072e6cb3e3356664cf096f8f00fd1263650ffa8966bdf2192676fd97a7da14d6"
+    },
+    {
+      "path": "artifacts/deploy/resnet8_no_softmax_zcu104_vai3_5/resnet8_no_softmax.xmodel",
+      "bytes": 249251,
+      "sha256": "bfacc85783958ff0d734e5c7e44f126a6fd4af9b6b1f20e4d9b2f7ae96fa7802"
+    },
+    {
+      "path": "artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5",
+      "bytes": 451264,
+      "sha256": "34ee6c9530aeb506300d481de966e858f632f397fd7178978f079d46b48ab91b"
+    },
+    {
+      "path": "board/00_inspect_dpu.py",
+      "bytes": 2160,
+      "sha256": "b4fe65e37c30341359d830d961448ab93228a96b74f33dc801484b41b48cf166"
+    },
+    {
+      "path": "board/01_smoke_inference.py",
+      "bytes": 4615,
+      "sha256": "8586c903a48b06ad8c94f1a9da1744267bf9293c7da3006216d01ca66a13fe14"
+    },
+    {
+      "path": "config/arch_zcu104_vai3.5.json",
+      "bytes": 41,
+      "sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671"
+    },
+    {
+      "path": "config/experiment.json",
+      "bytes": 1053,
+      "sha256": "4cda4d581c2a82eeddd5b55b4983785dd402e5dc697a0c5a3d4386222fcc0bae"
+    },
+    {
+      "path": "data/prepared/cifar10_calibration_train_uint8.npz",
+      "bytes": 2815856,
+      "sha256": "1ebfa046e925aa3c3e77d3694b45ea8c682a9587193463c57ac8c87524ba8504"
+    },
+    {
+      "path": "data/prepared/cifar10_test_uint8.npz",
+      "bytes": 28267769,
+      "sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467"
+    },
+    {
+      "path": "data/prepared/keras3_conversion_probe.npz",
+      "bytes": 353507,
+      "sha256": "f0c1be5bc586652c938ee0300c3b739310e8ed4595d50684aec3df97894758a7"
+    },
+    {
+      "path": "docker/run_vai.sh",
+      "bytes": 1080,
+      "sha256": "e406d48864d520065be08f57c6a5cf5d07b625fee0905f9c65ca537945dc13b1"
+    },
+    {
+      "path": "logs/compiler/compile_resnet8_no_softmax.log",
+      "bytes": 2695,
+      "sha256": "b2120f19613ed7a24b2b3f46a1c8d3a5e8c26affc153f2a546b68079934f69d3"
+    },
+    {
+      "path": "models/float/resnet8_cifar10_keras2_vai3_5_no_softmax.h5",
+      "bytes": 407328,
+      "sha256": "6632bdf0dd8becd7afcb9dbb623be2c090ef500e57343cbee2c751729cdbce3f"
+    },
+    {
+      "path": "models/float/resnet8_cifar10_keras3_no_softmax.h5",
+      "bytes": 416384,
+      "sha256": "047c190c70ea5901d2390af47b04f9d1e015c66cd7ff8bfc2a1e4f084154761e"
+    },
+    {
+      "path": "reports/cifar10_preparation.json",
+      "bytes": 1530,
+      "sha256": "7f59dbc9cc5e56dfbd787f3304eb29c9d34d378d973907a61a0ea8b6f24769a7"
+    },
+    {
+      "path": "reports/compilation.json",
+      "bytes": 1148,
+      "sha256": "e18e2fba07de7eb1875ede71684d407751d400b20af5fefe081ed62c46277f07"
+    },
+    {
+      "path": "reports/float_validation.json",
+      "bytes": 784,
+      "sha256": "1dcb1125d511b7ee0672104ffd57e246786cd5aee7b44f542eb9a62697fc4bcf"
+    },
+    {
+      "path": "reports/keras2_conversion.json",
+      "bytes": 846,
+      "sha256": "49056e4d9cc19170fcde0baef584dfd65ba8d745c31e9b5ae7fb58ac2ca98b96"
+    },
+    {
+      "path": "reports/keras3_reference.json",
+      "bytes": 628,
+      "sha256": "5012145e1892ed689c2188aacec2d9fb1e774f1aed58e5998b9ba23512f264d8"
+    },
+    {
+      "path": "reports/quantization.json",
+      "bytes": 846,
+      "sha256": "bf3fe3f9ee1c456e67e70074d183f01e01214de0b0742efe92d67545e02fe629"
+    },
+    {
+      "path": "reports/quantized_validation.json",
+      "bytes": 735,
+      "sha256": "c7780824b18b70b587f15982967e93e7ba77695d9c6072da3ba1a23b6670bf42"
+    },
+    {
+      "path": "reports/xmodel_inspection.json",
+      "bytes": 1736,
+      "sha256": "c6790d9059f4312e1e2621abd1dc114917f8fc099946ce127f51daf395f2ecaa"
+    },
+    {
+      "path": "results/float_test_outputs.npz",
+      "bytes": 382203,
+      "sha256": "e110e67684784da21cbfbf61985fac860a5607aefa481003a6eb762804ee21ae"
+    },
+    {
+      "path": "results/quantized_test_outputs.npz",
+      "bytes": 149660,
+      "sha256": "072e6cb3e3356664cf096f8f00fd1263650ffa8966bdf2192676fd97a7da14d6"
+    },
+    {
+      "path": "scripts/00_export_keras3_reference.py",
+      "bytes": 2795,
+      "sha256": "d54a44ef17ec3b82ea02008cb4a12f60e32d7f01a2e467caa23ecbbd2aaf9cae"
+    },
+    {
+      "path": "scripts/01_rebuild_keras2_model.py",
+      "bytes": 6334,
+      "sha256": "1ac73726c9f04463882bc8a6b5ef2e01bb35358b47f1fb06ac33ecb8304f5219"
+    },
+    {
+      "path": "scripts/02_prepare_cifar10.py",
+      "bytes": 4553,
+      "sha256": "d95f2c0af1939eb2215122527945d3f0a5356ff87b5a48ab9871ea0e6fd5f80c"
+    },
+    {
+      "path": "scripts/03_validate_float_model.py",
+      "bytes": 3403,
+      "sha256": "ff7f279758dc7fa7894f8ee8baa6801e87c5423f0855ac31d03744f86e5aaf16"
+    },
+    {
+      "path": "scripts/04_quantize_ptq.py",
+      "bytes": 3313,
+      "sha256": "a52602f869966ff3b98e5bc78b9c5eebf334e62942f6dc99153668c58f8bcde5"
+    },
+    {
+      "path": "scripts/05_validate_quantized_model.py",
+      "bytes": 4041,
+      "sha256": "32acba6513b8d5e1a3b8b3867cb736623f30f18c9435e82e4a51b5d5c6b81b6b"
+    },
+    {
+      "path": "scripts/06_compile_xmodel.py",
+      "bytes": 3426,
+      "sha256": "80ee7387b9ec01425a8578bf3a41625725366e7100f08318f369397632abcee7"
+    },
+    {
+      "path": "scripts/07_inspect_xmodel.py",
+      "bytes": 2515,
+      "sha256": "f197cbc7484a67f00521a7561ccfc0dc52f3f7364d512e2e7ab6ef51568f9621"
+    },
+    {
+      "path": "scripts/08_package_deploy.py",
+      "bytes": 2864,
+      "sha256": "4616c1abecec6d0f08efc1ec25328e9c8389c15867b23761392ce1463e55c9eb"
+    },
+    {
+      "path": "scripts/09_generate_manifest.py",
+      "bytes": 2147,
+      "sha256": "3152cb8731fd64b8ce147f9ffa951328c100bc40e07891a9669041926573d4ed"
+    }
+  ]
+}

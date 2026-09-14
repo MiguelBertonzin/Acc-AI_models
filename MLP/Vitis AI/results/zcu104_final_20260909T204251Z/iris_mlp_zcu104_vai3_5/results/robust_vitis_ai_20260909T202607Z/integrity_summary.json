@@ -1,0 +1,10 @@
+{
+  "expected_configs": 12,
+  "completed_configs": 12,
+  "all_inferences_10000": true,
+  "all_latency_count_10000": true,
+  "all_positive_fps": true,
+  "all_power_measured": true,
+  "all_power_bracketed": true,
+  "passed": true
+}

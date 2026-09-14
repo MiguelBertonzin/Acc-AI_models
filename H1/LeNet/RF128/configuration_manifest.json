@@ -1,0 +1,200 @@
+{
+  "model": "/home/miguel/Downloads/Plano testes TCC/H1/LeNet/lenet_mnist_final.h5",
+  "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+  "data_sha256": "bea672a7825e79be670e076977f43a8679a382cab2b84ef2a0a15cddda799d81",
+  "global_reuse_factor": 128,
+  "design": {
+    "schema_version": 1,
+    "configuration_id": "cap64_rate_balanced_q22_12",
+    "model": "../../lenet_mnist_final.h5",
+    "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+    "board": "ZCU104",
+    "part": "xczu7ev-ffvc1156-2-e",
+    "backend": "Vitis",
+    "tool_version": "2024.2",
+    "clock_period_ns": 10.0,
+    "target_frequency_mhz": 100.0,
+    "clock_uncertainty": "27% (hls4ml Vitis default)",
+    "io_type": "io_stream",
+    "strategy": "Resource",
+    "conv_implementation": "LineBuffer",
+    "parallelization_factor": 1,
+    "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+    "rounding": "AP_RND_CONV",
+    "overflow": "AP_SAT",
+    "softmax": false,
+    "batch_size": 1,
+    "trace_output": false,
+    "fifo_depth_optimization_initially": false,
+    "purpose": "Generate and validate the layer-wise RF<=64 candidate without changing numerical precision"
+  },
+  "hls_config": {
+    "Model": {
+      "Precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+      "ReuseFactor": 128,
+      "Strategy": "Resource",
+      "BramFactor": 1000000000,
+      "TraceOutput": false,
+      "BitExact": null
+    },
+    "LayerName": {
+      "input_layer": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        }
+      },
+      "conv1": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "ParallelizationFactor": 1,
+        "ConvImplementation": "LineBuffer",
+        "Strategy": "Resource"
+      },
+      "conv1_relu": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "TableSize": 1024
+      },
+      "pool1": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "ConvImplementation": "LineBuffer"
+      },
+      "conv2": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "ParallelizationFactor": 1,
+        "ConvImplementation": "LineBuffer",
+        "Strategy": "Resource"
+      },
+      "conv2_relu": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "TableSize": 1024
+      },
+      "pool2": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "ConvImplementation": "LineBuffer"
+      },
+      "flatten": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        }
+      },
+      "dense1": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "Strategy": "Resource"
+      },
+      "dense1_relu": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "TableSize": 1024
+      },
+      "dense2": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "Strategy": "Resource"
+      },
+      "dense2_relu": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "TableSize": 1024
+      },
+      "output": {
+        "Trace": false,
+        "Precision": {
+          "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+          "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+        },
+        "Strategy": "Resource"
+      }
+    }
+  },
+  "project_name": "lenet_mnist_cap64_hls",
+  "effective_reuse": {
+    "conv1": 150,
+    "conv2": 150,
+    "dense1": 128,
+    "dense2": 120,
+    "output": 168
+  },
+  "fifo_depths": {
+    "layer2_out": "576",
+    "layer3_out": "576",
+    "layer4_out": "144",
+    "layer5_out": "64",
+    "layer6_out": "64",
+    "layer7_out": "16",
+    "layer9_out": "1",
+    "layer10_out": "1",
+    "layer11_out": "1",
+    "layer12_out": "1"
+  },
+  "fifo_optimization": false,
+  "rtl_samples": 10,
+  "rtl_indices": [
+    3,
+    2,
+    1,
+    18,
+    4,
+    8,
+    11,
+    0,
+    61,
+    7
+  ],
+  "software": {
+    "python": "3.12.7",
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "hls4ml": "1.3.0",
+    "numpy": "1.26.4"
+  },
+  "testbench_changes": "10 fixed class-balanced images; default hls4ml simulation tracing; no hardware change",
+  "reference_note": "design identifies the previous layer-wise baseline; effective H1 RF is recorded separately"
+}

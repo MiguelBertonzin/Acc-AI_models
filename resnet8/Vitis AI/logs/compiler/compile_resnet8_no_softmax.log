@@ -1,0 +1,37 @@
+[INFO] Namespace(batchsize=1, inputs_shape=None, layout='NHWC', model_files=['/workspace/artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5'], model_type='tensorflow2', named_inputs_shape=None, out_filename='/tmp/resnet8_no_softmax_DPUCZDX8G_ISA1_B4096_org.xmodel', proto=None)
+[INFO] tensorflow2 model: /workspace/artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5
+[INFO] keras version: 2.12.0
+[INFO] Tensorflow Keras model type: functional
+
+[INFO] parse raw model     :  0%|          | 0/23 [00:00<?, ?it/s]                           
+[INFO] parse raw model     :100%|██████████| 23/23 [00:00<00:00, 28753.80it/s]               
+
+[INFO] infer shape (NHWC)  :  0%|          | 0/39 [00:00<?, ?it/s]                           
+[INFO] infer shape (NHWC)  :100%|██████████| 39/39 [00:00<00:00, 30041.85it/s]               
+
+[INFO] perform level-0 opt :  0%|          | 0/1 [00:00<?, ?it/s]                            
+[INFO] perform level-0 opt :100%|██████████| 1/1 [00:00<00:00, 497.07it/s]                   
+
+[INFO] perform level-1 opt :  0%|          | 0/2 [00:00<?, ?it/s]                            
+[INFO] perform level-1 opt :100%|██████████| 2/2 [00:00<00:00, 1965.47it/s]                  
+
+[INFO] infer shape (NHWC)  :  0%|          | 0/41 [00:00<?, ?it/s]                           
+[INFO] infer shape (NHWC)  :100%|██████████| 41/41 [00:00<00:00, 43958.71it/s]               
+
+[INFO] generate xmodel     :  0%|          | 0/41 [00:00<?, ?it/s]                           
+[INFO] generate xmodel     :100%|██████████| 41/41 [00:00<00:00, 5284.61it/s]                
+[INFO] dump xmodel ...
+[INFO] dump xmodel: /tmp/resnet8_no_softmax_DPUCZDX8G_ISA1_B4096_org.xmodel
+[UNILOG][INFO] Compile mode: dpu
+[UNILOG][INFO] Debug mode: null
+[UNILOG][INFO] Target architecture: DPUCZDX8G_ISA1_B4096
+[UNILOG][INFO] Graph name: functional, with op num: 79
+[UNILOG][INFO] Begin to compile...
+[UNILOG][INFO] Total device subgraph number 3, DPU subgraph number 1
+[UNILOG][INFO] Compile done.
+[UNILOG][INFO] The meta json is saved to "/workspace/artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/meta.json"
+[UNILOG][INFO] The compiled xmodel is saved to "/workspace/artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/resnet8_no_softmax.xmodel"
+[UNILOG][INFO] The compiled xmodel's md5sum is 1d2b7b3ddd36bd493ac28f28aa23339b, and has been saved to "/workspace/artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/md5sum.txt"
+**************************************************
+* VITIS_AI Compilation - Xilinx Inc.
+**************************************************

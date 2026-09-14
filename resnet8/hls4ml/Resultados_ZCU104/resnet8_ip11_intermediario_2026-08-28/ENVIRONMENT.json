@@ -1,0 +1,18 @@
+{
+  "real_collection_date": "2026-08-28",
+  "directory_timestamp_note": "O rel\u00f3gio do sistema embarcado estava incorreto; o nome resultados_intermediario_20250504_103336 n\u00e3o representa a data real da coleta.",
+  "platform": "AMD/Xilinx ZCU104",
+  "python": "3.10.4 (main, Apr  2 2022, 09:04:19) [GCC 11.2.0]",
+  "numpy": "1.21.5",
+  "pynq": "3.1.1",
+  "kernel": "6.6.10-xilinx-v2024.1-gfc1c20f0a1a9",
+  "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+  "clock_mhz": 100.0,
+  "power_sensor": "12V_power",
+  "power_interval_s": 1.0,
+  "seed": 20260825,
+  "batch": 1,
+  "performance_images": 5000,
+  "performance_cycles": 20,
+  "warmup": 100
+}

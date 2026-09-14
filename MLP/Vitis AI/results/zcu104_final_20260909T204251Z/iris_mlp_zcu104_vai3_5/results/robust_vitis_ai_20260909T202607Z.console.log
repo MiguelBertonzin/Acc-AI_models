@@ -1,0 +1,45 @@
+[inference_only T1] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[inference_only T1] OK: FPS=3462.664, lat=0.176710 ms, Pdyn=0.214722 W, Edyn=0.062011 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[inference_only T2] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[inference_only T2] OK: FPS=4894.829, lat=0.271703 ms, Pdyn=0.376878 W, Edyn=0.076995 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[inference_only T3] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[inference_only T3] OK: FPS=4231.657, lat=0.377215 ms, Pdyn=0.321487 W, Edyn=0.075972 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[inference_only T4] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[inference_only T4] OK: FPS=4060.092, lat=0.600500 ms, Pdyn=0.350546 W, Edyn=0.086339 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[end_to_end T1] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[end_to_end T1] OK: FPS=1412.794, lat=0.693515 ms, Pdyn=0.232573 W, Edyn=0.164619 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[end_to_end T2] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[end_to_end T2] OK: FPS=1597.396, lat=1.197868 ms, Pdyn=0.253037 W, Edyn=0.158406 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[end_to_end T3] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[end_to_end T3] OK: FPS=1511.088, lat=1.807040 ms, Pdyn=0.271859 W, Edyn=0.179910 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[end_to_end T4] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[end_to_end T4] OK: FPS=1570.833, lat=1.847936 ms, Pdyn=0.256299 W, Edyn=0.163161 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[saturated T1] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[saturated T1] OK: FPS=5484.878, lat=0.169353 ms, Pdyn=0.228746 W, Edyn=0.041705 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[saturated T2] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[saturated T2] OK: FPS=8917.201, lat=0.207781 ms, Pdyn=0.389617 W, Edyn=0.043693 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[saturated T3] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[saturated T3] OK: FPS=10470.977, lat=0.264071 ms, Pdyn=0.469125 W, Edyn=0.044802 mJ/inf
+[COOLDOWN] 30 s entre configurações
+[saturated T4] benchmark 10000 iniciado; sem prints dentro dos blocos medidos
+[saturated T4] OK: FPS=9639.873, lat=0.365382 ms, Pdyn=0.441535 W, Edyn=0.045803 mJ/inf
+{
+  "expected_configs": 12,
+  "completed_configs": 12,
+  "all_inferences_10000": true,
+  "all_latency_count_10000": true,
+  "all_positive_fps": true,
+  "all_power_measured": true,
+  "all_power_bracketed": true,
+  "passed": true
+}

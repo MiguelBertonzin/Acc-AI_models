@@ -1,0 +1,11 @@
+{
+  "samples": 30,
+  "correct": 29,
+  "accuracy": 0.9666666666666667,
+  "matches_reference_predictions": true,
+  "cpu_gpu_prediction_agreement": 1.0,
+  "cpu_gpu_max_abs_probability_difference": 1.1920928955078125e-07,
+  "probabilities_finite": true,
+  "probability_sum_max_abs_error": 1.0331859812140465e-07,
+  "gpu_output_device": "/job:localhost/replica:0/task:0/device:GPU:0"
+}

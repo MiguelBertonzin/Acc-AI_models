@@ -1,0 +1,6 @@
+exit_code=0
+turbostat: Failed to access /dev/cpu/0/msr. Some of the counters may not be available
+	Run as root to enable them or use --no-msr to disable the access explicitly
+cpu0: Guessing tjMax 100 C, Please use -T to specify
+TSC_MHz	IRQ	NMI	POLL%	C1ACPI%	C2ACPI%	C3ACPI%	CoreThr	GFX%rc6	GFXMHz	GFXAMHz	CPU%LPI	SYS%LPI
+2108	299	0	0.00	0.47	6.81	91.54	0	98.34	0	0	0.00	0.00

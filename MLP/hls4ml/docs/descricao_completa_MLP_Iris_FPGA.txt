@@ -1,0 +1,462 @@
+DESCRIÇÃO COMPLETA DA REDE MLP APLICADA AO IRIS PARA IMPLEMENTAÇÃO EM FPGA
+
+Documento elaborado a partir do arquivo:
+2026___TCC2___Miguel_Bertonzin-1.pdf
+
+Objetivo deste texto
+--------------------
+Este documento transforma a proposta apresentada no TCC em uma especificação técnica da
+rede MLP aplicada ao conjunto Iris. A intenção é permitir a reprodução do modelo em
+software, sua conversão para hardware com hls4ml/Vitis HLS e sua integração na placa
+Zynq UltraScale+ ZCU104.
+
+É importante distinguir duas categorias de informação:
+
+1. ESPECIFICADO NO TCC: arquitetura 4-8-8-3, ativações, número de parâmetros,
+   plataforma, ferramentas, fluxo geral e métricas a avaliar.
+2. DECISÕES NECESSÁRIAS PARA A IMPLEMENTAÇÃO: pré-processamento, separação dos dados,
+   ordem numérica das classes, treinamento, precisão de ponto fixo, fator de reutilização,
+   clock e interface concreta do IP. O TCC não fixa esses itens. Este documento fornece
+   uma configuração de referência, que deverá ser mantida igual no software e na FPGA.
+
+
+1. FUNÇÃO DA REDE
+-----------------
+A rede é um perceptron multicamadas (Multi-Layer Perceptron, MLP) para classificação
+multiclasse. Para cada flor, a rede recebe quatro medidas e produz três valores, um para
+cada espécie de Iris. A classe escolhida é a correspondente ao maior valor de saída.
+
+O modelo foi escolhido no TCC por sua baixa complexidade. Ele funciona como primeiro caso
+de validação do fluxo completo: preparação do modelo, quantização, conversão, síntese,
+integração do IP, inferência na FPGA e coleta de métricas. Depois de validar esse caso
+simples, o mesmo fluxo pode ser aplicado às redes mais complexas do trabalho.
+
+
+2. CONJUNTO DE DADOS E VETOR DE ENTRADA
+---------------------------------------
+O conjunto Iris contém amostras de três espécies:
+
+- Iris setosa;
+- Iris versicolor;
+- Iris virginica.
+
+Cada amostra é convertida no vetor x de quatro elementos, nesta ordem:
+
+x[0] = comprimento da sépala;
+x[1] = largura da sépala;
+x[2] = comprimento da pétala;
+x[3] = largura da pétala.
+
+As quatro grandezas devem usar a mesma unidade e a mesma ordem empregadas no treinamento.
+No conjunto Iris tradicional, as medidas são expressas em centímetros. Trocar a ordem dos
+atributos depois do treinamento produz resultados inválidos, mesmo que o circuito funcione.
+
+O TCC não define o pré-processamento. Para uma implementação reproduzível, recomenda-se
+padronizar cada atributo usando somente estatísticas do conjunto de treinamento:
+
+x_normalizado[i] = (x[i] - media_treino[i]) / desvio_treino[i]
+
+As quatro médias e os quatro desvios devem ser salvos junto com o modelo. Na execução
+embarcada, há duas possibilidades:
+
+a) a CPU ARM normaliza os quatro valores antes de enviá-los ao IP; ou
+b) a normalização é incorporada ao hardware como uma camada/operação inicial.
+
+Para a primeira versão, recomenda-se a alternativa (a), pois simplifica o acelerador. O
+software de referência, o teste do hls4ml e o programa da ZCU104 devem usar exatamente os
+mesmos valores de média e desvio. Não se deve ajustar novamente o normalizador com dados de
+teste.
+
+
+3. CODIFICAÇÃO DAS CLASSES
+--------------------------
+O TCC informa as três classes, mas não formaliza o índice de cada neurônio de saída. A
+Figura 13 as apresenta visualmente na ordem Versicolor, Setosa e Virginica, enquanto muitas
+bibliotecas do Iris usam Setosa, Versicolor e Virginica. Portanto, a ordem não deve ser
+inferida: ela deve ser definida e salva como metadado do modelo.
+
+Configuração de referência recomendada:
+
+classe 0 / saída y[0] = Iris setosa;
+classe 1 / saída y[1] = Iris versicolor;
+classe 2 / saída y[2] = Iris virginica.
+
+Se for necessário reproduzir literalmente a ordem visual da Figura 13, usar
+[Versicolor, Setosa, Virginica] em todo o fluxo. A arquitetura e o número de parâmetros não
+mudam; mudam apenas a ordem dos rótulos e as colunas da codificação one-hot. Nunca alterar
+essa ordem depois do treinamento.
+
+
+4. TOPOLOGIA EXATA DA MLP
+-------------------------
+A rede especificada no TCC é totalmente conectada e possui a sequência:
+
+Entrada(4) -> Dense(8) -> ReLU -> Dense(8) -> ReLU -> Dense(3) -> Softmax
+
+Resumo das camadas:
+
+Etapa                  Entrada  Saída  Ativação  Pesos  Biases  Parâmetros
+Entrada                   -       4       -        0      0          0
+1ª camada densa            4       8     ReLU      32      8         40
+2ª camada densa            8       8     ReLU      64      8         72
+Camada densa de saída      8       3   Softmax     24      3         27
+TOTAL                      -       -       -       120     19        139
+
+Logo, a topologia pode ser identificada de forma compacta como MLP 4-8-8-3.
+
+Não há convoluções, pooling, recorrência, conexões residuais nem batch normalization nessa
+rede. Todas as conexões entre duas camadas consecutivas são densas: cada neurônio recebe a
+saída de todos os neurônios da camada anterior.
+
+
+5. EQUAÇÕES DA INFERÊNCIA
+-------------------------
+Considere:
+
+x  : vetor de entrada com dimensão 4;
+W1 : matriz de pesos da primeira camada, dimensão 8 x 4;
+b1 : vetor de bias da primeira camada, dimensão 8;
+W2 : matriz de pesos da segunda camada, dimensão 8 x 8;
+b2 : vetor de bias da segunda camada, dimensão 8;
+W3 : matriz de pesos da saída, dimensão 3 x 8;
+b3 : vetor de bias da saída, dimensão 3.
+
+A inferência é:
+
+z1 = W1*x + b1
+h1 = ReLU(z1)
+
+z2 = W2*h1 + b2
+h2 = ReLU(z2)
+
+z3 = W3*h2 + b3
+y  = Softmax(z3)
+
+em que:
+
+ReLU(v) = max(0, v)
+
+Softmax(z3[k]) = exp(z3[k]) / soma_j(exp(z3[j])), para k = 0, 1, 2.
+
+A predição final é:
+
+classe_predita = argmax(y)
+
+Como softmax preserva a ordem dos logits, também vale:
+
+argmax(Softmax(z3)) = argmax(z3)
+
+Assim, se o sistema embarcado precisar apenas do rótulo e não das probabilidades, a softmax
+pode ser retirada do hardware e o argmax pode ser aplicado diretamente aos três logits. Essa
+otimização evita exponenciais e divisões. Entretanto, como o TCC declara uma saída softmax,
+os experimentos que avaliarem probabilidades devem manter a softmax ou calculá-la na CPU
+ARM. A opção adotada precisa ser registrada no relatório para que a implementação permaneça
+coerente com a arquitetura descrita.
+
+
+6. CUSTO COMPUTACIONAL
+-----------------------
+O número de multiplicações das camadas densas é:
+
+camada 1: 4 x 8 = 32;
+camada 2: 8 x 8 = 64;
+camada 3: 8 x 3 = 24;
+total: 32 + 64 + 24 = 120 multiplicações/MACs por inferência.
+
+Esse é o valor aproximado de 120 operações de multiplicação e acumulação citado no TCC.
+Além delas, existem 19 adições de bias, as somas internas dos produtos, 16 aplicações de
+ReLU e, se mantida no acelerador, a softmax. Os 139 parâmetros treináveis ocupam pouca
+memória e podem ser armazenados como constantes locais do IP, sem necessidade de acessar a
+DDR a cada inferência.
+
+Exemplo de armazenamento dos 139 parâmetros:
+
+- ponto flutuante de 32 bits: 139 x 4 bytes = 556 bytes;
+- ponto fixo de 16 bits: 139 x 2 bytes = 278 bytes;
+- inteiro de 8 bits: 139 x 1 byte = 139 bytes.
+
+O custo real de LUTs, FFs, DSPs, BRAMs, latência e intervalo de iniciação dependerá da
+precisão numérica, do paralelismo, do fator de reutilização e das diretivas de síntese.
+
+
+7. TREINAMENTO DO MODELO DE REFERÊNCIA
+--------------------------------------
+Embora o TCC delimite seu foco às etapas posteriores ao treinamento, um arquivo treinado é
+obrigatório para gerar o acelerador. Uma configuração de referência é:
+
+1. carregar o conjunto Iris;
+2. separar treinamento e teste de forma estratificada, preservando as três classes;
+3. usar uma semente fixa e registrá-la;
+4. ajustar o normalizador somente com o conjunto de treinamento;
+5. transformar treinamento e teste com o mesmo normalizador;
+6. codificar as classes conforme o mapa definido na Seção 3;
+7. construir as camadas Dense(8, ReLU), Dense(8, ReLU) e Dense(3, Softmax);
+8. treinar para classificação multiclasse com entropia cruzada e um otimizador como Adam;
+9. usar validação/early stopping para evitar sobreajuste;
+10. salvar o melhor modelo, os dados de normalização, o mapa das classes, a divisão dos
+    dados e as versões das bibliotecas.
+
+Parâmetros como taxa de aprendizado, tamanho do lote, número máximo de épocas, fração de
+teste e semente não foram definidos no TCC. Eles não devem ser apresentados como resultados
+originais do trabalho antes de serem escolhidos e medidos. Uma vez escolhidos, precisam ser
+registrados para permitir a reprodução do experimento.
+
+Artefatos mínimos da etapa de software:
+
+- modelo treinado no formato aceito pelo conversor;
+- arquivo com os 139 pesos e biases;
+- médias e desvios dos quatro atributos;
+- mapa índice-classe;
+- amostras exatas de treino, validação e teste ou os índices/seed que as reproduzem;
+- previsões e acurácia do modelo em ponto flutuante;
+- vetores de teste com entradas e saídas esperadas.
+
+
+8. QUANTIZAÇÃO E REPRESENTAÇÃO NUMÉRICA
+---------------------------------------
+O TCC promete avaliar quantização, mas não fixa um formato. Portanto, a precisão deve ser
+determinada experimentalmente, comparando-se cada versão quantizada com o modelo de
+referência em ponto flutuante.
+
+Sequência recomendada:
+
+1. começar com ponto fixo de 16 bits, por exemplo total de 16 bits com 6 bits inteiros,
+   incluindo sinal;
+2. executar profiling para verificar os intervalos das entradas, ativações, pesos e
+   acumuladores;
+3. ajustar separadamente a largura dos acumuladores para impedir overflow;
+4. testar precisões menores, como 12 e 8 bits, somente depois de obter uma referência
+   correta;
+5. medir a diferença máxima dos logits/probabilidades, a concordância das classes e a
+   acurácia no conjunto de teste;
+6. escolher a menor precisão que preserve o critério de acurácia estabelecido.
+
+O formato 16/6 acima é apenas ponto de partida, não uma exigência do TCC. O resultado do
+profiling tem prioridade. Entradas normalizadas podem assumir valores negativos, portanto o
+tipo deve ser assinado. Produtos e somas precisam de bits suficientes para que as 8 parcelas
+das camadas internas não saturem. Devem ser documentados o modo de arredondamento e o
+comportamento de saturação/truncamento.
+
+
+9. CONVERSÃO COM HLS4ML E SÍNTESE
+---------------------------------
+O fluxo hls4ml descrito no TCC é:
+
+modelo treinado -> modelo otimizado/quantizado -> conversão hls4ml -> C/C++ sintetizável
+-> Vitis HLS -> IP de hardware customizado -> integração no Vivado -> implantação na FPGA
+-> inferência e coleta de resultados.
+
+Configurações que devem ser explicitadas no projeto hls4ml:
+
+- backend compatível com Vitis HLS;
+- dispositivo alvo da ZCU104;
+- período de clock escolhido;
+- precisão de entradas, pesos, biases, resultados e acumuladores;
+- estratégia de síntese (latência ou economia de recursos);
+- fator de reutilização (ReuseFactor) por camada;
+- implementação da softmax ou sua transferência para a CPU;
+- tipo de interface do IP;
+- nomes e ordem dos quatro sinais de entrada e das três saídas.
+
+O fator de reutilização controla quantas vezes os multiplicadores são compartilhados. Um
+ReuseFactor baixo tende a empregar mais multiplicadores/DSPs e reduzir a latência; um valor
+mais alto tende a poupar recursos, mas aumenta a latência e pode reduzir a vazão. Para esta
+MLP pequena, deve-se sintetizar pelo menos uma configuração orientada a baixa latência e uma
+orientada a recursos, mantendo pesos e dados iguais, para produzir uma comparação válida.
+
+Antes da síntese RTL, devem ser executadas:
+
+- predição do modelo original;
+- predição do modelo convertido pelo hls4ml;
+- C simulation;
+- C/RTL co-simulation, quando disponível;
+- comparação amostra a amostra com tolerância numérica definida;
+- síntese HLS e inspeção dos relatórios.
+
+
+10. ARQUITETURA DO SISTEMA NA ZCU104
+-----------------------------------
+O TCC define a placa Zynq UltraScale+ ZCU104. O sistema é dividido em:
+
+- PS/CPU ARM: controla a aplicação, prepara as quatro entradas, inicia a inferência,
+  recebe os resultados, realiza pós-processamento e registra as métricas;
+- PL/FPGA: contém o IP customizado da MLP gerado por hls4ml/Vitis HLS;
+- interconexão AXI: transporta controle e dados entre PS e PL;
+- Linux embarcado, por exemplo PetaLinux, inicializado por microSD;
+- programa de usuário/script de inferência executado no processador ARM.
+
+Para somente quatro entradas e três saídas, uma interface simples por registradores AXI4-Lite
+pode ser suficiente para uma implementação funcional. Se o objetivo for medir vazão com
+muitas amostras e reduzir o custo de comunicação, uma interface AXI4-Stream associada a DMA
+é mais apropriada. A escolha não está fixada no TCC e deve ser declarada, pois o método de
+transferência influencia a latência observada no sistema.
+
+Fluxo funcional sugerido por amostra:
+
+1. a CPU lê ou gera as quatro medidas;
+2. a CPU aplica a mesma normalização do treinamento;
+3. os quatro valores são convertidos para o formato numérico da interface;
+4. a CPU envia a entrada ao acelerador e inicia a execução;
+5. o IP calcula as três camadas densas e as ativações;
+6. o IP devolve três logits/probabilidades, ou diretamente o índice vencedor;
+7. a CPU decodifica a classe e registra tempo, saída e correção da predição.
+
+No Vivado, o block design deve conter o Zynq UltraScale+ MPSoC, o IP da MLP, interconexões
+AXI, clock, reset e, se adotado streaming, DMA e acesso à memória. Após validação do block
+design devem ser gerados os produtos de saída, o bitstream e os metadados de hardware
+necessários ao software embarcado.
+
+
+11. VERIFICAÇÃO FUNCIONAL
+-------------------------
+A implementação só deve ser considerada correta após passar por níveis sucessivos de teste:
+
+Nível 1 - modelo de software
+- confirmar formato 4-8-8-3 e total de 139 parâmetros;
+- medir acurácia e matriz de confusão no conjunto de teste;
+- salvar entradas, logits, probabilidades e classes esperadas.
+
+Nível 2 - modelo quantizado/hls4ml
+- usar exatamente as mesmas entradas do nível 1;
+- comparar todas as três saídas, e não apenas a classe;
+- calcular erro absoluto máximo, erro médio e taxa de concordância do argmax;
+- investigar qualquer perda de acurácia causada pela quantização.
+
+Nível 3 - C simulation e C/RTL co-simulation
+- testar valores normais, valores negativos após padronização, limites numéricos e amostras
+  próximas à fronteira entre classes;
+- verificar protocolo de início/fim, ordem dos dados e número de ciclos.
+
+Nível 4 - execução na placa
+- enviar os mesmos vetores de referência;
+- verificar igualdade do índice previsto e tolerância das saídas numéricas;
+- executar todo o conjunto de teste;
+- confirmar que o primeiro resultado e execuções repetidas são determinísticos.
+
+
+12. MÉTRICAS PROMETIDAS NO TCC
+------------------------------
+Devem ser coletadas, no mínimo:
+
+- acurácia de classificação;
+- latência por inferência;
+- vazão em inferências por segundo;
+- potência em watts;
+- energia por inferência em joules;
+- LUTs;
+- flip-flops (FFs);
+- BRAMs;
+- DSPs;
+- frequência/clock e, idealmente, folga de temporização;
+- esforço e limitações do fluxo de desenvolvimento.
+
+O TCC determina que latência e vazão considerem o tempo efetivo de inferência, excluindo
+carregamento, leitura de dados, pré-processamento e organização dos resultados. Para evitar
+ambiguidade, recomenda-se apresentar duas medições:
+
+1. latência do kernel/IP: do início ao término do acelerador;
+2. latência ponta a ponta: inclui transferência PS-PL, controle e pós-processamento.
+
+A primeira atende à definição principal do TCC; a segunda mostra o desempenho observado
+pela aplicação real. A vazão deve ser medida após aquecimento, sobre muitas inferências, e o
+número de repetições deve ser informado. A energia por inferência pode ser calculada por:
+
+energia_por_inferencia = potencia_media / inferencias_por_segundo
+
+ou pela integração da potência durante o intervalo medido. Na FPGA, podem ser usados os
+sensores internos acessíveis pelo Linux; na referência GPU RTX 3050, o TCC prevê o uso de
+nvidia-smi. Os relatórios do Vitis HLS e do Vivado fornecem estimativas e resultados de uso de
+recursos e temporização.
+
+
+13. VERSÕES E AMBIENTE PREVISTOS
+--------------------------------
+O TCC registra:
+
+- Vivado 2024.2;
+- Vitis HLS 2024.2;
+- Vitis AI 3.5.0;
+- hls4ml como fluxo aberto para geração do IP customizado;
+- Zynq UltraScale+ ZCU104 como plataforma FPGA;
+- NVIDIA RTX 3050 8 GB como plataforma de referência;
+- Linux embarcado/PetaLinux no lado ARM da placa.
+
+As versões de Python, framework de treinamento, hls4ml, compilador e sistema operacional
+também devem ser congeladas em um arquivo de ambiente. Compatibilidade entre hls4ml e
+Vitis HLS deve ser verificada antes de fixar definitivamente as versões.
+
+
+14. ARTEFATOS FINAIS QUE DEVEM SER ENTREGUES
+--------------------------------------------
+Para demonstrar que a MLP foi realmente criada e implantada, recomenda-se conservar:
+
+- código de treinamento e avaliação;
+- modelo treinado e arquivo de pesos;
+- normalizador e mapa de classes;
+- conjunto/vetores de teste usados na comparação;
+- configuração do hls4ml;
+- código C/C++ gerado e testbench;
+- relatórios de C simulation, co-simulation e síntese HLS;
+- IP exportado;
+- projeto/block design do Vivado;
+- bitstream e metadados de hardware;
+- imagem/configuração do Linux embarcado;
+- programa de controle no ARM;
+- resultados brutos de cada execução;
+- tabelas de acurácia, latência, vazão, energia e recursos;
+- README contendo comandos, versões e ordem de execução.
+
+
+15. CHECKLIST DE IMPLEMENTAÇÃO
+------------------------------
+[ ] Fixar a ordem dos quatro atributos.
+[ ] Fixar e salvar o mapa dos três índices de classe.
+[ ] Separar os dados de modo estratificado e reproduzível.
+[ ] Ajustar e salvar média/desvio somente no treino.
+[ ] Construir exatamente a MLP 4-8-8-3.
+[ ] Confirmar 139 parâmetros treináveis.
+[ ] Treinar e registrar acurácia de referência.
+[ ] Exportar pesos, normalizador e vetores de teste.
+[ ] Definir precisão de ponto fixo após profiling.
+[ ] Decidir se a softmax ficará no IP ou na CPU.
+[ ] Converter com hls4ml e validar numericamente.
+[ ] Definir clock, estratégia e ReuseFactor.
+[ ] Executar C simulation, síntese e co-simulation.
+[ ] Exportar o IP e integrá-lo ao Zynq MPSoC via AXI.
+[ ] Gerar bitstream e software de controle para o ARM.
+[ ] Repetir na placa os mesmos testes do software.
+[ ] Coletar acurácia, latência, vazão, potência, energia e recursos.
+[ ] Registrar todas as versões e decisões não definidas no TCC.
+
+
+16. ESPECIFICAÇÃO MÍNIMA CONSOLIDADA
+------------------------------------
+Nome: MLP Iris.
+Tarefa: classificação multiclasse de flores Iris.
+Entrada: vetor com 4 atributos numéricos, em ordem fixa.
+Topologia: 4 -> 8 -> 8 -> 3.
+Camada oculta 1: Dense, 8 neurônios, ReLU, 40 parâmetros.
+Camada oculta 2: Dense, 8 neurônios, ReLU, 72 parâmetros.
+Saída: Dense, 3 neurônios, softmax, 27 parâmetros.
+Total: 139 parâmetros treináveis.
+Custo denso: 120 multiplicações/MACs por inferência.
+Predição: índice do maior valor de saída.
+Plataforma: Zynq UltraScale+ ZCU104.
+Fluxo principal do IP: modelo treinado -> hls4ml -> Vitis HLS 2024.2 -> Vivado 2024.2.
+Integração: CPU ARM + acelerador no PL, comunicando-se por AXI, sob Linux embarcado.
+Métricas: acurácia, latência, vazão, potência, energia/inferência, LUT, FF, BRAM e DSP.
+
+
+CONCLUSÃO
+---------
+A rede prometida no TCC é uma MLP pequena, totalmente conectada, de topologia 4-8-8-3.
+Ela recebe quatro medidas da flor, aplica duas transformações densas com ReLU e produz três
+saídas para classificar Setosa, Versicolor ou Virginica. Sua implementação requer somente
+139 parâmetros e 120 multiplicações por inferência, o que a torna apropriada para validar o
+fluxo hls4ml/Vitis HLS antes de redes maiores.
+
+Para que o experimento seja tecnicamente reproduzível, não basta copiar a topologia. É
+essencial fixar o pré-processamento, o mapa das classes, os pesos treinados, a precisão
+numérica, a estratégia de softmax, o fator de reutilização, o clock e a interface AXI. Esses
+itens não estão completamente definidos no PDF e constituem as principais decisões que
+precisam ser tomadas e documentadas durante a implementação.

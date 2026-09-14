@@ -1,0 +1,28 @@
+{
+  "selection": "first test image of each class, in class order 0..9",
+  "indices": [
+    3,
+    2,
+    1,
+    18,
+    4,
+    8,
+    11,
+    0,
+    61,
+    7
+  ],
+  "labels": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "samples": 10
+}

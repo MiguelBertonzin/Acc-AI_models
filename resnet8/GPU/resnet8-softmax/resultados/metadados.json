@@ -1,0 +1,44 @@
+{
+  "started_utc": "2026-08-25T17:44:26.402305+00:00",
+  "finished_utc": "2026-08-25T17:58:11.099936+00:00",
+  "model_path": "/home/miguel/Downloads/Plano testes TCC/resnet8/resnet8_cifar10_keras3.h5",
+  "model_size_bytes": 1115216,
+  "model_final_activation": "softmax",
+  "input_normalization": "float32 / 255.0",
+  "dataset": "CIFAR-10 official test split",
+  "sampling": "nested stratified fixed-seed order",
+  "seed": 20260825,
+  "sample_sizes": [
+    100,
+    1000,
+    10000
+  ],
+  "repetition_prefixes": [
+    10,
+    20,
+    50,
+    100
+  ],
+  "maximum_repetitions_executed": 100,
+  "batch_size": 1,
+  "execution_mode": "tf.function graph, jit_compile=False",
+  "warmup_inferences": 100,
+  "telemetry_interval_ms": 100,
+  "baseline_duration_s": 5.0,
+  "idle_power_mean_w": 28.728600000000007,
+  "idle_power_samples": 50,
+  "telemetry_errors": [],
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3050 OEM",
+    "uuid": "GPU-234713d7-e691-1f3e-f20d-851ede38469f",
+    "driver_version": "580.173.02",
+    "memory.total": "8192 MiB",
+    "power.limit": "120.00 W"
+  },
+  "tensorflow_version": "2.21.0",
+  "keras_version": "3.13.2",
+  "python_version": "3.12.7",
+  "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+  "physical_gpu": "PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')",
+  "logical_gpu": "LogicalDevice(name='/device:GPU:0', device_type='GPU')"
+}

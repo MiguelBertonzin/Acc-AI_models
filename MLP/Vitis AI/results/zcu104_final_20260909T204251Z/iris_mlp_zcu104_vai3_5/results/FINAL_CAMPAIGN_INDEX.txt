@@ -1,0 +1,30 @@
+MLP / Iris / Vitis AI / ZCU104
+
+Serial platform campaign:
+  results/serial_official_20260908/30000/rep01..rep05
+  results/serial_official_20260908/100000/rep01..rep05
+
+Excluded / preserved artifact:
+  rep01_aborted_20260908T203231Z
+
+Robust Vitis AI campaign:
+  results/robust_vitis_ai_20260909T202607Z
+
+Configurations:
+  inference_only T1-T4
+  end_to_end T1-T4
+  saturated T1-T4
+
+Final consolidated summary:
+  results/final_summary/summary_all.json
+  results/final_summary/summary_all.csv
+
+Measured inference total:
+  5 x 30000  = 150000
+  5 x 100000 = 500000
+  12 x 10000 = 120000
+  TOTAL      = 770000
+
+Accuracy evaluation:
+  29/30 = 96.6667%
+  DPU vs INT8 reference agreement = 30/30

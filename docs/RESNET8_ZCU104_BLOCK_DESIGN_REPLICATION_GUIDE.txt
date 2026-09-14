@@ -1,0 +1,1711 @@
+RESNET8 / hls4ml NA ZCU104
+GUIA COMPLETO DE RECONSTRUÇÃO DO BLOCK DESIGN, INTEGRAÇÃO DO IP, GERAÇÃO DO BITSTREAM E EXECUÇÃO COM PYNQ
+
+================================================================================
+1. OBJETIVO DESTE DOCUMENTO
+================================================================================
+
+Este documento registra, de forma detalhada e operacional, como foi construída a
+arquitetura final utilizada para executar uma ResNet8 gerada com hls4ml na placa
+AMD/Xilinx ZCU104.
+
+O objetivo principal não é apenas descrever o Block Design, mas deixar um roteiro
+que permita reconstruir a solução no futuro sem depender da memória das decisões
+tomadas durante o desenvolvimento.
+
+A arquitetura final tem como função:
+
+1. receber uma imagem CIFAR-10 armazenada na DDR do Zynq UltraScale+ MPSoC;
+2. transferir essa imagem da DDR para o Programmable Logic por AXI DMA;
+3. adaptar a largura do AXI Stream do DMA para a interface do IP hls4ml;
+4. executar a ResNet8 no acelerador customizado;
+5. adaptar a saída da ResNet8 para o AXI Stream de retorno;
+6. usar o AXI DMA para gravar os logits na DDR;
+7. permitir que o ARM/PYNQ leia os logits e execute o argmax;
+8. produzir um bitstream e HWH carregáveis diretamente pelo PYNQ.
+
+A solução final foi validada fisicamente na ZCU104. Portanto, este documento
+representa a arquitetura que efetivamente gerou bitstream e executou inferência,
+não apenas uma proposta conceitual.
+
+
+================================================================================
+2. AMBIENTE E ALVO
+================================================================================
+
+Placa:
+    AMD/Xilinx ZCU104
+
+Board part utilizada no Vivado:
+    xilinx.com:zcu104:part0:1.1
+
+FPGA / MPSoC:
+    xczu7ev-ffvc1156-2-e
+
+Vivado utilizado na implementação final:
+    Vivado 2024.2
+
+Clock principal do Programmable Logic:
+    100 MHz
+
+Período correspondente:
+    10 ns
+
+Ambiente utilizado para execução em placa:
+    PYNQ 3.1.1
+    Python 3.10.4
+    NumPy 1.21.5
+
+A implementação final do acelerador utiliza:
+    hls4ml
+    io_stream
+    Strategy = Resource
+    ConvImplementation = LineBuffer
+    precisão principal = ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+
+O IP final usado no Vivado é:
+    xilinx.com:hls:resnet8_resource_fifo_opt:2.2
+
+Nome da instância no Block Design:
+    myproject_0
+
+
+================================================================================
+3. PRINCÍPIO GERAL DA ARQUITETURA
+================================================================================
+
+O Zynq UltraScale+ possui duas regiões principais:
+
+    PS = Processing System
+         ARM Cortex-A53, controlador DDR e periféricos hard.
+
+    PL = Programmable Logic
+         região FPGA onde ficam AXI DMA, SmartConnect, wrapper e ResNet8.
+
+A CPU não transmite cada pixel diretamente para o acelerador e o acelerador não
+entrega os logits diretamente à CPU.
+
+A comunicação ocorre por memória DDR e AXI DMA.
+
+Fluxo completo:
+
+    ARM / PYNQ
+        |
+        | prepara buffer em DDR
+        v
+       DDR
+        |
+        | AXI Memory Mapped
+        v
+     AXI DMA MM2S
+        |
+        | AXI Stream 128 bits
+        v
+  Accel_dma_wrapper
+        |
+        | 96 bits úteis
+        v
+   ResNet8 hls4ml
+        |
+        | 320 bits
+        v
+  Accel_dma_wrapper
+        |
+        | AXI Stream 512 bits
+        v
+     AXI DMA S2MM
+        |
+        | AXI Memory Mapped
+        v
+       DDR
+        |
+        | CPU lê buffer
+        v
+      PYNQ
+        |
+        v
+      argmax
+
+Assim, o AXI DMA é a ponte entre dois mundos:
+
+    memória DDR / AXI Memory Mapped
+                <->
+            AXI Stream
+
+O acelerador trabalha em streaming. O software trabalha com memória.
+
+
+================================================================================
+4. BLOCOS DO BLOCK DESIGN FINAL
+================================================================================
+
+O Block Design final contém os seguintes blocos principais:
+
+    zynq_ultra_ps_e_0
+    rst_ps8_0_100M
+    axi_smc
+    axi_smc_1
+    axi_dma_0
+    Accel_dma_wrapper_0
+    myproject_0
+
+Não foi necessário adicionar Utility Vector Logic para inverter reset na versão
+final.
+
+Também não foi utilizada uma interface AXI-Lite de controle própria da ResNet8.
+O ap_start do acelerador é mantido em '1' pelo wrapper.
+
+
+================================================================================
+5. BLOCO zynq_ultra_ps_e_0
+================================================================================
+
+5.1 Função
+---------
+
+O bloco zynq_ultra_ps_e_0 representa o Processing System do Zynq UltraScale+.
+Ele contém, entre outros elementos:
+
+    - ARM Cortex-A53;
+    - controlador da DDR;
+    - interfaces AXI entre PS e PL;
+    - geração de clocks PL;
+    - sinais de reset;
+    - infraestrutura hard do MPSoC.
+
+No nosso sistema, o PS tem três funções principais:
+
+    1. executar Linux/PYNQ no ARM;
+    2. fornecer acesso à DDR;
+    3. conectar o software ao AXI DMA e o AXI DMA à DDR.
+
+5.2 Interfaces PS utilizadas
+----------------------------
+
+Foram habilitadas:
+
+    M_AXI_HPM0_FPD
+    M_AXI_HPM1_FPD
+    S_AXI_HPC0_FPD
+    pl_clk0
+    pl_resetn0
+
+Também existe pl_ps_irq0 no PS, mas os sinais de interrupção do DMA não foram
+necessários para o fluxo final utilizado com polling.
+
+Não foi usada M_AXI_HPM0_LPD como caminho de controle na arquitetura final.
+
+5.3 Significado das portas HPM
+------------------------------
+
+HPM = High Performance Master.
+
+Quando o PS possui uma interface M_AXI_HPM*_FPD, o PS é mestre AXI e consegue
+acessar registradores localizados no PL.
+
+No nosso caso, as interfaces HPM servem para o ARM acessar o AXI-Lite do DMA.
+
+Conceitualmente:
+
+    ARM
+     |
+     v
+    M_AXI_HPM0_FPD / M_AXI_HPM1_FPD
+     |
+     v
+    axi_smc
+     |
+     v
+    AXI DMA S_AXI_LITE
+
+Essa é a rota de CONTROLE.
+
+5.4 Significado da porta HPC0
+-----------------------------
+
+HPC = High Performance Coherent.
+
+A interface S_AXI_HPC0_FPD permite que um mestre AXI presente no PL acesse o
+sistema de memória controlado pelo PS.
+
+No nosso caso, o mestre é o AXI DMA.
+
+Conceitualmente:
+
+    AXI DMA
+      |
+      v
+    axi_smc_1
+      |
+      v
+    S_AXI_HPC0_FPD
+      |
+      v
+    DDR
+
+Essa é a rota de DADOS entre DMA e memória.
+
+5.5 Clock PL
+------------
+
+pl_clk0 foi configurado para:
+
+    100 MHz
+
+Esse clock é compartilhado pelo datapath principal do PL.
+
+Foi importante manter um único domínio principal de clock para simplificar a
+integração, o timing e os resets.
+
+
+================================================================================
+6. BLOCO rst_ps8_0_100M
+================================================================================
+
+6.1 Função
+---------
+
+rst_ps8_0_100M é uma instância do IP proc_sys_reset.
+
+Ele recebe o clock e reset provenientes do PS e gera resets adequados e
+sincronizados para os periféricos AXI e demais componentes do PL.
+
+6.2 Conexão principal
+---------------------
+
+Clock:
+
+    zynq_ultra_ps_e_0/pl_clk0
+        -> rst_ps8_0_100M/slowest_sync_clk
+
+Reset externo:
+
+    zynq_ultra_ps_e_0/pl_resetn0
+        -> rst_ps8_0_100M/ext_reset_in
+
+A configuração final respeita a polaridade ativa-baixa de pl_resetn0.
+
+Não foi necessário adicionar um inversor externo.
+
+6.3 Reset distribuído
+---------------------
+
+O sinal peripheral_aresetn gerado pelo proc_sys_reset é usado como reset
+ativo-baixo dos componentes AXI e do acelerador/wrapper quando aplicável.
+
+Conceitualmente:
+
+    pl_resetn0
+       |
+       v
+    proc_sys_reset
+       |
+       +--> peripheral_aresetn --> DMA
+       +--> peripheral_aresetn --> SmartConnect
+       +--> peripheral_aresetn --> wrapper
+       +--> peripheral_aresetn --> HLS IP
+
+Um erro comum em reconstruções é inverter duas vezes o reset ou misturar resets
+ativos-altos e ativos-baixos. Deve-se conferir a polaridade de cada pino na GUI.
+
+
+================================================================================
+7. BLOCO axi_smc - SMARTCONNECT DE CONTROLE
+================================================================================
+
+7.1 Função
+---------
+
+axi_smc é o SmartConnect responsável pelo caminho de CONTROLE.
+
+Ele conecta as interfaces master HPM do Processing System ao AXI-Lite do AXI DMA.
+
+Configuração utilizada:
+
+    NUM_SI = 2
+    NUM_MI = 1
+
+7.2 Entradas e saída
+-------------------
+
+Entradas do SmartConnect:
+
+    S00_AXI <- M_AXI_HPM0_FPD
+    S01_AXI <- M_AXI_HPM1_FPD
+
+Saída:
+
+    M00_AXI -> axi_dma_0/S_AXI_LITE
+
+O uso dos dois HPM reproduziu a topologia do projeto de referência adotado durante
+a reconstrução. Não se deve substituir casualmente essa topologia por outra sem
+revalidar todo o Block Design.
+
+7.3 Por que o DMA precisa AXI-Lite
+----------------------------------
+
+O AXI DMA não começa a mover dados sozinho.
+
+O software precisa escrever registradores como:
+
+    - endereço do buffer;
+    - tamanho da transferência;
+    - bits de controle;
+    - estado dos canais.
+
+Esses registradores são acessados pela interface S_AXI_LITE.
+
+O PYNQ abstrai isso através de chamadas como:
+
+    dma.sendchannel.transfer(input_buffer)
+    dma.recvchannel.transfer(output_buffer)
+
+Internamente, o driver escreve os registradores do DMA usando esse caminho AXI de
+controle.
+
+
+================================================================================
+8. BLOCO axi_smc_1 - SMARTCONNECT DE MEMÓRIA
+================================================================================
+
+8.1 Função
+---------
+
+axi_smc_1 é o SmartConnect responsável pelo caminho de MEMÓRIA.
+
+Ele conecta os dois canais memory-mapped do AXI DMA à porta HPC0 do Processing
+System.
+
+Configuração:
+
+    NUM_SI = 2
+    NUM_MI = 1
+
+8.2 Conexões
+------------
+
+Entradas:
+
+    S00_AXI <- axi_dma_0/M_AXI_MM2S
+    S01_AXI <- axi_dma_0/M_AXI_S2MM
+
+Saída:
+
+    M00_AXI -> zynq_ultra_ps_e_0/S_AXI_HPC0_FPD
+
+8.3 Papel dos dois canais
+-------------------------
+
+M_AXI_MM2S:
+    DMA lê a imagem da DDR.
+
+M_AXI_S2MM:
+    DMA escreve os logits de volta na DDR.
+
+Os dois passam pelo mesmo SmartConnect e compartilham HPC0.
+
+
+================================================================================
+9. BLOCO axi_dma_0
+================================================================================
+
+9.1 Função geral
+----------------
+
+AXI DMA converte dados entre:
+
+    AXI Memory Mapped
+        e
+    AXI Stream
+
+Possui dois caminhos independentes:
+
+    MM2S = Memory Mapped To Stream
+    S2MM = Stream To Memory Mapped
+
+No nosso projeto:
+
+    MM2S = entrada da CNN
+    S2MM = saída da CNN
+
+9.2 Configuração geral final
+----------------------------
+
+Scatter Gather:
+    OFF
+
+Micro DMA:
+    OFF
+
+Address Width:
+    32 bits
+
+Buffer Length Register Width:
+    26 bits
+
+9.3 Configuração MM2S
+---------------------
+
+Memory Map Data Width:
+    128 bits
+
+Stream Data Width:
+    128 bits
+
+Maximum Burst Size:
+    64
+
+DRE - Data Realignment Engine:
+    ON
+
+9.4 Configuração S2MM
+---------------------
+
+Memory Map Data Width:
+    512 bits
+
+Stream Data Width:
+    512 bits
+
+Maximum Burst Size:
+    64
+
+DRE:
+    ON
+
+9.5 Por que as larguras são diferentes?
+---------------------------------------
+
+Entrada:
+
+    um pixel CIFAR-10 possui 3 canais;
+    cada canal é transportado em um slot de 32 bits;
+    3 x 32 = 96 bits úteis;
+    o AXI Stream foi definido em 128 bits;
+    sobram 32 bits de padding.
+
+Saída:
+
+    a CNN possui 10 logits;
+    cada logit ocupa um slot de 32 bits;
+    10 x 32 = 320 bits;
+    o S2MM usa 512 bits;
+    sobram 192 bits de padding.
+
+Essa diferença é resolvida pelo Accel_dma_wrapper.
+
+9.6 Interrupts
+--------------
+
+Os sinais de interrupção do DMA ficaram sem conexão na arquitetura funcional.
+
+Isso foi possível porque o software PYNQ usado no benchmark utiliza polling por
+meio de:
+
+    transfer()
+    wait()
+
+Logo, não foi necessário modificar a arquitetura apenas para conectar IRQs.
+
+Se no futuro for adotado um driver dependente de interrupções, esse ponto deverá
+ser revisto.
+
+
+================================================================================
+10. BLOCO Accel_dma_wrapper_0
+================================================================================
+
+10.1 Por que o wrapper foi necessário?
+--------------------------------------
+
+O AXI DMA e o IP hls4ml não possuíam interfaces diretamente compatíveis em largura
+e protocolo.
+
+Entrada:
+
+    DMA = AXI Stream 128 bits
+    HLS = dados úteis de 96 bits + valid/ready
+
+Saída:
+
+    HLS = 320 bits + valid/ready
+    DMA = AXI Stream 512 bits + TLAST
+
+O wrapper realiza essa adaptação.
+
+Arquivo utilizado:
+
+    hardware/src/Accel_dma_wrapper.vhd
+
+10.2 Interface de entrada do wrapper
+------------------------------------
+
+Principais sinais:
+
+    s_axis_tdata  : 128 bits
+    s_axis_tvalid
+    s_axis_tready
+
+Conexão lógica com o HLS:
+
+    accel_input_data
+    accel_input_valid
+    accel_input_ready
+
+Trecho essencial:
+
+    accel_input_data  <= s_axis_tdata(95 downto 0);
+    accel_input_valid <= s_axis_tvalid;
+    s_axis_tready     <= accel_input_ready;
+
+Portanto:
+
+    bits 95:0   -> usados pela ResNet8
+    bits 127:96 -> descartados
+
+10.3 Formato de um beat de entrada
+----------------------------------
+
+Cada pixel é empacotado assim:
+
+    bits 31:0     = canal R
+    bits 63:32    = canal G
+    bits 95:64    = canal B
+    bits 127:96   = 0
+
+Representação:
+
+    127           96 95            64 63            32 31             0
+    +---------------+----------------+----------------+----------------+
+    |    padding    |       B        |       G        |       R        |
+    +---------------+----------------+----------------+----------------+
+        32 bits          32 bits          32 bits          32 bits
+
+10.4 Handshake de entrada
+-------------------------
+
+AXI Stream utiliza TVALID/TREADY.
+
+O wrapper não armazena arbitrariamente os dados; ele propaga o handshake para o
+acelerador:
+
+    DMA TVALID -> accel_input_valid
+    accel_input_ready -> DMA TREADY
+
+A transferência de um beat ocorre quando ambos são 1.
+
+10.5 ap_start
+-------------
+
+O IP hls4ml possui ap_start.
+
+No projeto final:
+
+    ap_start <= '1';
+
+Isso significa que o acelerador fica permanentemente habilitado para iniciar
+processamento quando os dados chegam.
+
+Não existe necessidade de a CPU acessar uma interface AXI-Lite própria do HLS para
+escrever ap_start a cada inferência.
+
+Essa decisão é central na simplicidade da arquitetura final.
+
+10.6 Saída do HLS para o wrapper
+--------------------------------
+
+O acelerador fornece:
+
+    accel_output_data  : 320 bits
+    accel_output_valid
+    accel_output_ready
+
+Esses 320 bits correspondem aos 10 logits.
+
+10.7 Adaptação 320 -> 512
+-------------------------
+
+Trecho essencial:
+
+    m_axis_tdata(319 downto 0)   <= accel_output_data;
+    m_axis_tdata(511 downto 320) <= (others => '0');
+
+Logo:
+
+    bits 319:0   = saída real da CNN
+    bits 511:320 = zeros
+
+10.8 Handshake de saída
+-----------------------
+
+Trecho:
+
+    m_axis_tvalid      <= accel_output_valid;
+    accel_output_ready <= m_axis_tready;
+
+Assim, a saída só é consumida quando DMA e acelerador concordam através de
+TVALID/TREADY.
+
+10.9 TLAST
+----------
+
+O AXI DMA S2MM precisa saber quando termina o pacote.
+
+A ResNet8 produz os 10 logits em um único beat de saída.
+
+Foi usado:
+
+    m_axis_tlast <= accel_output_valid;
+
+Assim, no ciclo em que a palavra de saída está válida:
+
+    TVALID = 1
+    TLAST  = 1
+
+O DMA entende que aquele único beat representa a transferência completa da saída
+de uma inferência.
+
+Esse detalhe é crítico. Sem TLAST correto, o S2MM pode permanecer aguardando o fim
+do pacote e o software pode travar em recvchannel.wait().
+
+
+================================================================================
+11. BLOCO myproject_0 - RESNET8 hls4ml
+================================================================================
+
+11.1 Função
+-----------
+
+myproject_0 é o acelerador neural propriamente dito.
+
+VLNV final:
+
+    xilinx.com:hls:resnet8_resource_fifo_opt:2.2
+
+Ele foi gerado pelo fluxo hls4ml/Vitis HLS após ajustes de reuse factor e otimização
+de FIFOs para que o circuito pudesse fechar em recursos e roteamento na ZCU104.
+
+11.2 Interfaces relevantes
+---------------------------
+
+A interface externa do HLS expõe essencialmente:
+
+    clock/reset
+    ap_start e sinais de controle associados
+    input_layer
+    layer31_out
+
+No Block Design, o wrapper conecta os sinais escalares/stream-like de entrada e
+saída do HLS.
+
+Entrada externa efetiva:
+    96 bits
+
+Saída externa efetiva:
+    320 bits
+
+11.3 Precisão
+-------------
+
+Formato numérico principal:
+
+    ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+
+Bits totais:
+    22
+
+Bits inteiros:
+    12
+
+Bits fracionários:
+    10
+
+Escala:
+    2^10 = 1024
+
+11.4 Reuse factors finais
+-------------------------
+
+Plano final resolvido:
+
+    conv2d      RF usado = 9
+    conv2d_1    RF usado = 36
+    conv2d_2    RF usado = 36
+    conv2d_3    RF usado = 72
+    conv2d_4    RF usado = 144
+    conv2d_5    RF usado = 64
+    conv2d_6    RF usado = 288
+    conv2d_7    RF usado = 288
+    conv2d_8    RF usado = 128
+    dense       RF usado = 64
+
+As mudanças mais importantes da etapa routefix1 foram:
+
+    conv2d_6 -> 288
+    conv2d_7 -> 288
+
+11.5 FIFO optimization
+----------------------
+
+A versão final utilizou profundidades de FIFO reduzidas com base em otimização e
+validação por co-simulação.
+
+Instâncias efetivamente presentes no top final incluíram:
+
+    fifo_w66_d1026
+    fifo_w352_d1
+    fifo_w352_d30
+    fifo_w352_d36
+    fifo_w352_d703
+    fifo_w352_d706
+    fifo_w704_d1
+    fifo_w704_d14
+    fifo_w704_d26
+    fifo_w704_d42
+    fifo_w1408_d1
+    fifo_w1408_d12
+    fifo_w1408_d21
+
+O top final foi verificado sem instâncias d4096.
+
+IMPORTANTE:
+O diretório do IP pode conter arquivos RTL cujo nome inclui d4096. Esses arquivos
+podem permanecer como módulos gerados não utilizados. O que importa é a hierarquia
+efetivamente instanciada pelo top sintetizado.
+
+
+================================================================================
+12. CONEXÕES EXATAS DO BLOCK DESIGN
+================================================================================
+
+A seção abaixo deve ser usada como checklist de reconstrução.
+
+12.1 Clock
+----------
+
+Conectar pl_clk0 a todos os clocks principais:
+
+    zynq_ultra_ps_e_0/pl_clk0
+        -> rst_ps8_0_100M/slowest_sync_clk
+        -> axi_smc/aclk
+        -> axi_smc_1/aclk
+        -> axi_dma_0/s_axi_lite_aclk
+        -> axi_dma_0/m_axi_mm2s_aclk
+        -> axi_dma_0/m_axi_s2mm_aclk
+        -> axi_dma_0/m_axis_mm2s_aclk
+        -> axi_dma_0/s_axis_s2mm_aclk
+        -> Accel_dma_wrapper_0 clock
+        -> myproject_0/ap_clk
+
+Os nomes exatos de pinos podem variar na GUI dependendo da versão/configuração do
+IP, mas todos devem estar no mesmo domínio de 100 MHz.
+
+12.2 Reset
+----------
+
+    zynq_ultra_ps_e_0/pl_resetn0
+        -> rst_ps8_0_100M/ext_reset_in
+
+    rst_ps8_0_100M/peripheral_aresetn
+        -> resets ativos-baixos do DMA
+        -> SmartConnects
+        -> wrapper
+        -> HLS IP conforme interface gerada
+
+12.3 Controle do DMA
+--------------------
+
+    zynq_ultra_ps_e_0/M_AXI_HPM0_FPD
+        -> axi_smc/S00_AXI
+
+    zynq_ultra_ps_e_0/M_AXI_HPM1_FPD
+        -> axi_smc/S01_AXI
+
+    axi_smc/M00_AXI
+        -> axi_dma_0/S_AXI_LITE
+
+12.4 Acesso do DMA à DDR
+------------------------
+
+    axi_dma_0/M_AXI_MM2S
+        -> axi_smc_1/S00_AXI
+
+    axi_dma_0/M_AXI_S2MM
+        -> axi_smc_1/S01_AXI
+
+    axi_smc_1/M00_AXI
+        -> zynq_ultra_ps_e_0/S_AXI_HPC0_FPD
+
+12.5 Stream de entrada
+----------------------
+
+    axi_dma_0/M_AXIS_MM2S
+        -> Accel_dma_wrapper_0/S_AXIS
+
+No wrapper:
+
+    s_axis_tdata[95:0]
+        -> myproject_0/input data
+
+    s_axis_tvalid
+        -> myproject_0/input valid
+
+    myproject_0/input ready
+        -> s_axis_tready
+
+12.6 Stream de saída
+--------------------
+
+    myproject_0/output data[319:0]
+        -> Accel_dma_wrapper_0/accel_output_data
+
+    myproject_0/output valid
+        -> Accel_dma_wrapper_0/accel_output_valid
+
+    Accel_dma_wrapper_0/accel_output_ready
+        -> myproject_0/output ready
+
+Depois:
+
+    Accel_dma_wrapper_0/M_AXIS
+        -> axi_dma_0/S_AXIS_S2MM
+
+12.7 ap_start
+-------------
+
+No wrapper:
+
+    ap_start <= '1'
+
+Esse sinal é ligado ao ap_start do myproject_0.
+
+12.8 Interrupts
+---------------
+
+    axi_dma_0/mm2s_introut -> não conectado
+    axi_dma_0/s2mm_introut -> não conectado
+
+Isso reproduz a arquitetura funcional usada no PYNQ com polling.
+
+
+================================================================================
+13. ADDRESS MAP
+================================================================================
+
+O AXI DMA recebeu região de controle:
+
+    base = 0x00A0000000
+    range = 64 KiB
+
+A DDR foi mapeada para os canais MM2S e S2MM através de HPC0.
+
+Foram usados segmentos de DDR de baixa faixa, e segmentos como OCM e QSPI foram
+explicitamente excluídos dos address spaces do DMA.
+
+Exclusões observadas/aceitas:
+
+    HPC0_LPS_OCM
+    HPC0_QSPI
+
+Esses avisos não representaram erro do design.
+
+Ao reconstruir, usar Address Editor e conferir:
+
+    - S_AXI_LITE do DMA acessível pelo PS;
+    - MM2S com acesso à DDR;
+    - S2MM com acesso à DDR;
+    - OCM/QSPI não necessários para este fluxo.
+
+
+================================================================================
+14. WARNINGS ACEITOS NO BLOCK DESIGN
+================================================================================
+
+Alguns warnings foram observados e não impediram o funcionamento:
+
+    - segmentos OCM/QSPI excluídos;
+    - mismatch relacionado a AWUSER/ARUSER em HPC0;
+    - aviso interno de SmartConnect relacionado a nets de arbitragem;
+    - avisos de pipelining de DSP no DRC final.
+
+Não se deve alterar a arquitetura apenas para eliminar warnings quando:
+
+    - validate_bd_design passa;
+    - síntese passa;
+    - routing termina com zero nets não roteadas;
+    - timing fecha;
+    - bitstream é gerado;
+    - teste físico funciona.
+
+Mudanças cosméticas para eliminar warnings podem reintroduzir problemas de
+roteamento ou incompatibilidade com a referência.
+
+
+================================================================================
+15. PASSO A PASSO PARA RECONSTRUIR NO VIVADO
+================================================================================
+
+15.1 Criar projeto novo
+-----------------------
+
+Criar projeto RTL vazio.
+
+Selecionar board:
+
+    xilinx.com:zcu104:part0:1.1
+
+ou garantir part:
+
+    xczu7ev-ffvc1156-2-e
+
+Usar Vivado 2024.2 para maior reprodutibilidade com esta versão.
+
+15.2 Adicionar o IP repository
+------------------------------
+
+Adicionar:
+
+    hardware/ip_repo/resnet8_resource_fifo_opt_v2_2
+
+Em Tcl, conceitualmente:
+
+    set_property ip_repo_paths \
+        [file normalize "./hardware/ip_repo/resnet8_resource_fifo_opt_v2_2"] \
+        [current_project]
+
+    update_ip_catalog
+
+Confirmar no IP Catalog que aparece:
+
+    xilinx.com:hls:resnet8_resource_fifo_opt:2.2
+
+ATENÇÃO:
+Não selecionar a versão 2.1 por engano.
+
+15.3 Adicionar o wrapper VHDL
+-----------------------------
+
+Adicionar como source:
+
+    hardware/src/Accel_dma_wrapper.vhd
+
+Ele precisa estar disponível ANTES de recriar o Block Design que contém a Module
+Reference.
+
+15.4 Criar Block Design
+-----------------------
+
+Nome recomendado:
+
+    system
+
+15.5 Adicionar Zynq UltraScale+ MPSoC
+------------------------------------
+
+Adicionar:
+
+    Zynq UltraScale+ MPSoC
+
+Aplicar board preset/automation adequado para ZCU104.
+
+Depois verificar manualmente que estão habilitados:
+
+    M_AXI_HPM0_FPD
+    M_AXI_HPM1_FPD
+    S_AXI_HPC0_FPD
+    pl_clk0 = 100 MHz
+    pl_resetn0
+
+Não depender apenas de automação sem conferir as portas.
+
+15.6 Adicionar proc_sys_reset
+-----------------------------
+
+Adicionar:
+
+    Processor System Reset
+
+Nome:
+
+    rst_ps8_0_100M
+
+Conectar clock e reset conforme seção anterior.
+
+15.7 Adicionar SmartConnect de controle
+---------------------------------------
+
+Adicionar SmartConnect:
+
+    axi_smc
+
+Configurar:
+
+    NUM_SI = 2
+    NUM_MI = 1
+
+15.8 Adicionar SmartConnect de memória
+--------------------------------------
+
+Adicionar:
+
+    axi_smc_1
+
+Configurar:
+
+    NUM_SI = 2
+    NUM_MI = 1
+
+15.9 Adicionar AXI DMA
+----------------------
+
+Adicionar:
+
+    AXI Direct Memory Access
+
+Configurar exatamente:
+
+    Scatter Gather = OFF
+    Micro DMA = OFF
+    Address Width = 32
+    Length Width = 26
+
+MM2S:
+    Memory width = 128
+    Stream width = 128
+    Burst = 64
+    DRE = ON
+
+S2MM:
+    Memory width = 512
+    Stream width = 512
+    Burst = 64
+    DRE = ON
+
+15.10 Adicionar Module Reference
+--------------------------------
+
+Adicionar Module Reference:
+
+    Accel_dma_wrapper
+
+Instância:
+
+    Accel_dma_wrapper_0
+
+Se não aparecer em Add Module, conferir:
+
+    - arquivo VHDL adicionado ao projeto;
+    - entidade compilando sem erro;
+    - source correto no sourceset.
+
+15.11 Adicionar IP ResNet8
+--------------------------
+
+Adicionar:
+
+    resnet8_resource_fifo_opt v2.2
+
+Instância:
+
+    myproject_0
+
+Confirmar VLNV 2.2.
+
+15.12 Fazer conexões
+--------------------
+
+Seguir exatamente a seção 12 deste documento.
+
+Evitar usar Connection Automation indiscriminadamente depois que a topologia já
+estiver definida, pois Vivado pode criar interconnects adicionais ou usar portas PS
+não desejadas.
+
+15.13 Configurar endereços
+--------------------------
+
+Abrir Address Editor.
+
+Garantir controle do DMA em:
+
+    0x00A0000000 / 64 KiB
+
+Garantir que MM2S/S2MM têm acesso à DDR via HPC0.
+
+Excluir OCM/QSPI se forem incluídos automaticamente e não forem necessários.
+
+15.14 Validate Design
+---------------------
+
+Executar:
+
+    validate_bd_design
+
+O design final validado não deve apresentar erros bloqueadores.
+
+15.15 Criar HDL wrapper
+-----------------------
+
+Criar HDL Wrapper do Block Design:
+
+    system_wrapper
+
+Definir como top.
+
+15.16 Síntese
+-------------
+
+Rodar synthesis.
+
+Antes de seguir, verificar que o IP integrado é realmente 2.2.
+
+15.17 Implementação
+-------------------
+
+Executar implementation com estratégia DEFAULT.
+
+Na solução final, a estratégia padrão conseguiu concluir o roteamento.
+
+Não usar como primeira tentativa:
+
+    Congestion_SpreadLogic_high
+
+Não adicionar manualmente FORCE_MAX_FANOUT apenas porque existem nets de alto
+fanout. O Vivado realizou replicação física automaticamente na solução que fechou.
+
+15.18 Routing
+-------------
+
+A implementação final obteve:
+
+    all routable nets fully routed
+    failed nets = 0
+    unrouted nets = 0
+    partially routed nets = 0
+    overlaps = 0
+
+15.19 Timing
+-------------
+
+Resultado final:
+
+    WNS = +0.257 ns
+    TNS = 0.000 ns
+    WHS = +0.009 ns
+    THS = 0.000 ns
+    WPWS = +3.500 ns
+    TPWS = 0.000 ns
+
+Clock:
+    100 MHz
+
+Mensagem final:
+    All user specified timing constraints are met.
+
+15.20 Bitstream
+----------------
+
+Gerar bitstream.
+
+Resultado funcional observado:
+
+    Bitgen Completed Successfully
+    0 Errors
+
+Arquivo principal:
+
+    system_wrapper.bit
+
+Também preservar o HWH correspondente:
+
+    system_wrapper.hwh
+
+Os dois devem possuir o mesmo basename para facilitar Overlay() no PYNQ.
+
+
+================================================================================
+16. UTILIZAÇÃO DE RECURSOS FINAL
+================================================================================
+
+16.1 IP ResNet8 isolado - síntese OOC
+-------------------------------------
+
+Aproximadamente:
+
+    LUTs        = 165242
+    Logic LUT   = 153562
+    LUT Memory  = 11680
+    FF          = 179332
+    BRAM Tile   = 93.5
+    DSP         = 1174
+    URAM        = 0
+
+16.2 Arquitetura completa pós-route
+-----------------------------------
+
+    CLB LUTs    = 178378   = 77.42%
+    Logic LUT   = 165695
+    LUT Memory  = 12683
+    Registers   = 197981   = 42.96%
+    BRAM Tile   = 104.5    = 33.49%
+    DSP         = 1174     = 67.94%
+    URAM        = 0
+
+O fato de DSP permanecer 1174 mostra que praticamente todos os DSPs utilizados
+pertencem ao acelerador ResNet8, enquanto DMA/interconexões acrescentam
+principalmente LUTs, FFs e BRAM.
+
+
+================================================================================
+17. EXPORTAÇÃO E ARQUIVOS QUE DEVEM SER PRESERVADOS
+================================================================================
+
+Para permitir execução e reconstrução futura, preservar pelo menos:
+
+    hardware/overlay/system_wrapper.bit
+    hardware/overlay/system_wrapper.hwh
+    hardware/system_bd.tcl
+    hardware/src/Accel_dma_wrapper.vhd
+    hardware/ip_repo/resnet8_resource_fifo_opt_v2_2/
+    hardware/reports/
+    hls/reuse_plan_resource_routefix1.json
+    hls/scripts/
+    model/resnet8_cifar10_keras3.h5
+    benchmark/benchmark_zcu104.py
+
+O system_bd.tcl sozinho não basta se o user IP e Module Reference não estiverem
+disponíveis. Por isso os três devem ser preservados juntos:
+
+    system_bd.tcl
+    IP repo v2.2
+    Accel_dma_wrapper.vhd
+
+
+================================================================================
+18. COMO A ENTRADA É PREPARADA NO PYNQ
+================================================================================
+
+18.1 Buffer
+-----------
+
+Para uma imagem CIFAR-10:
+
+    32 x 32 = 1024 pixels
+
+Cada pixel ocupa 128 bits no DMA:
+
+    R = uint32
+    G = uint32
+    B = uint32
+    PAD = uint32
+
+Buffer:
+
+    shape = (1024, 4)
+    dtype = uint32
+
+Tamanho:
+
+    1024 x 4 x 4 bytes = 16384 bytes
+
+18.2 Conversão fixed-point
+--------------------------
+
+Dados normalizados em [0,1] são convertidos para ap_fixed<22,12> usando escala
+1024 e armazenamento dos bits relevantes nos slots de 32 bits.
+
+18.3 Ordem
+----------
+
+Empacotamento:
+
+    input_buffer[:,0] = R
+    input_buffer[:,1] = G
+    input_buffer[:,2] = B
+    input_buffer[:,3] = 0
+
+Isso gera exatamente o formato consumido pelo wrapper.
+
+
+================================================================================
+19. COMO A SAÍDA É RECEBIDA NO PYNQ
+================================================================================
+
+A saída do DMA possui um beat de 512 bits.
+
+Buffer:
+
+    shape = (16,)
+    dtype = uint32
+
+Tamanho:
+
+    16 x 32 = 512 bits = 64 bytes
+
+Conteúdo:
+
+    output_buffer[0:10]  = 10 logits
+    output_buffer[10:16] = padding zero
+
+Após recvchannel.wait(), a CPU converte os primeiros 10 words de volta para
+float e executa:
+
+    pred = argmax(logits)
+
+A saída NÃO vai diretamente do acelerador para a CPU.
+
+Caminho real:
+
+    ResNet8
+      -> wrapper
+      -> AXI Stream 512 bits
+      -> AXI DMA S2MM
+      -> SmartConnect
+      -> HPC0
+      -> DDR
+      -> CPU/PYNQ
+
+
+================================================================================
+20. SEQUÊNCIA CORRETA DE UMA INFERÊNCIA
+================================================================================
+
+No software, a sequência funcional utilizada foi:
+
+    1. preparar input_buffer;
+    2. preparar output_buffer;
+    3. iniciar recvchannel primeiro;
+    4. iniciar sendchannel;
+    5. aguardar sendchannel;
+    6. aguardar recvchannel;
+    7. decodificar logits;
+    8. executar argmax.
+
+Exemplo conceitual:
+
+    dma.recvchannel.transfer(output_buffer)
+    dma.sendchannel.transfer(input_buffer)
+
+    dma.sendchannel.wait()
+    dma.recvchannel.wait()
+
+Preparar o receptor antes de enviar a entrada evita que a saída do acelerador
+chegue quando o S2MM ainda não está pronto.
+
+
+================================================================================
+21. VALIDAÇÕES QUE CONFIRMARAM QUE A ARQUITETURA ESTAVA CORRETA
+================================================================================
+
+21.1 Overlay
+------------
+
+PYNQ carregou:
+
+    system_wrapper.bit
+
+IPs reconhecidos:
+
+    axi_dma_0
+    zynq_ultra_ps_e_0
+
+É normal o myproject_0 não aparecer como periférico AXI-Lite controlável no Python,
+pois o acelerador é acessado através do DMA/wrapper.
+
+21.2 Primeira inferência
+------------------------
+
+A primeira imagem testada apresentou:
+
+    ground truth = 3
+    prediction FPGA = 3
+
+Os logits foram coerentes e o maior valor correspondia à classe 3.
+
+21.3 Padding
+------------
+
+Foi validado:
+
+    output_buffer[10:16] = [0,0,0,0,0,0]
+
+Isso confirma o padding 320 -> 512 do wrapper.
+
+21.4 DMA status
+---------------
+
+Após transferência:
+
+    MM2S idle = True
+    S2MM idle = True
+    DMAIntErr = False
+    DMASlvErr = False
+    DMADecErr = False
+    Err_Irq = False
+
+21.5 Accuracy
+-------------
+
+100 imagens:
+    79/100 corretas
+
+10000 imagens:
+    7492 corretas
+    accuracy = 74.92%
+
+Isso confirmou que o datapath não apenas transfere bits, mas preserva o modelo de
+forma funcional em hardware.
+
+
+================================================================================
+22. ERROS COMUNS E COMO EVITAR
+================================================================================
+
+22.1 Usar IP 2.1 em vez de 2.2
+------------------------------
+
+Problema:
+    recurso/roteamento diferente ou versão antiga com FIFOs não desejadas.
+
+Solução:
+    conferir VLNV do myproject_0 antes de sintetizar.
+
+Deve ser:
+    xilinx.com:hls:resnet8_resource_fifo_opt:2.2
+
+22.2 Reviver projetos arquivados
+--------------------------------
+
+Não reutilizar acidentalmente projetos antigos ou IPs arquivados como fonte da
+arquitetura final.
+
+Usar o repositório final e os artefatos v2.2 preservados.
+
+22.3 Reset invertido incorretamente
+-----------------------------------
+
+Sintoma:
+    DMA parado, IP sempre em reset, canais não iniciam.
+
+Solução:
+    conferir pl_resetn0 e peripheral_aresetn; não adicionar inversor sem necessidade.
+
+22.4 Wrapper faltando
+---------------------
+
+Sintoma:
+    system_bd.tcl reclama de Module Reference ausente.
+
+Solução:
+    adicionar Accel_dma_wrapper.vhd antes de source do BD Tcl.
+
+22.5 IP repo não adicionado
+---------------------------
+
+Sintoma:
+    myproject_0 aparece unresolved/locked ou BD Tcl não encontra user IP.
+
+Solução:
+    set ip_repo_paths e update_ip_catalog antes de abrir/criar o BD.
+
+22.6 Largura DMA errada
+-----------------------
+
+Se MM2S não for 128 ou S2MM não for 512, o wrapper deixa de corresponder ao
+Block Design.
+
+Manter:
+
+    MM2S stream = 128
+    S2MM stream = 512
+
+22.7 TLAST incorreto
+--------------------
+
+Sintoma:
+    recvchannel.wait() trava.
+
+Solução:
+    garantir m_axis_tlast <= accel_output_valid na arquitetura atual, pois existe
+    um único beat de saída por inferência.
+
+22.8 Mandar float32 diretamente
+--------------------------------
+
+O acelerador espera a representação fixed-point empacotada nos slots físicos.
+
+Não enviar a imagem NumPy float diretamente ao DMA sem conversão.
+
+22.9 Endereço físico incompatível com Address Width 32
+------------------------------------------------------
+
+O DMA foi configurado com endereços de 32 bits.
+
+Ao depurar problemas futuros, conferir:
+
+    hex(buffer.device_address)
+
+O buffer deve cair em região DDR acessível pelo mapa configurado e caber no espaço
+de endereço aceito pelo DMA.
+
+22.10 Alterar estratégia de implementation sem necessidade
+-----------------------------------------------------------
+
+A versão final fechou com estratégia DEFAULT.
+
+Mudanças agressivas em place/route podem produzir resultados piores.
+
+Reproduzir primeiro a estratégia conhecida antes de experimentar outras.
+
+22.11 Tentar eliminar todo warning
+-----------------------------------
+
+Nem todo warning é erro.
+
+Priorizar:
+
+    validate_bd_design sem erros;
+    síntese concluída;
+    routing completo;
+    timing met;
+    DRC sem erros bloqueadores;
+    bitstream gerado;
+    teste físico funcional.
+
+
+================================================================================
+23. CHECKLIST DE REPLICAÇÃO RÁPIDA
+================================================================================
+
+Antes de gerar bitstream, conferir:
+
+[ ] Board part = xilinx.com:zcu104:part0:1.1
+[ ] Part = xczu7ev-ffvc1156-2-e
+[ ] Vivado 2024.2
+[ ] IP repo v2.2 adicionado
+[ ] Accel_dma_wrapper.vhd adicionado
+[ ] myproject_0 = resnet8_resource_fifo_opt:2.2
+[ ] M_AXI_HPM0_FPD habilitado
+[ ] M_AXI_HPM1_FPD habilitado
+[ ] S_AXI_HPC0_FPD habilitado
+[ ] pl_clk0 = 100 MHz
+[ ] pl_resetn0 conectado ao proc_sys_reset
+[ ] axi_smc = 2 SI / 1 MI
+[ ] axi_smc_1 = 2 SI / 1 MI
+[ ] DMA SG OFF
+[ ] DMA Micro OFF
+[ ] DMA address width = 32
+[ ] DMA length width = 26
+[ ] MM2S = 128/128, burst 64, DRE ON
+[ ] S2MM = 512/512, burst 64, DRE ON
+[ ] MM2S AXIS -> wrapper input
+[ ] wrapper output -> S2MM AXIS
+[ ] HLS input = 96 bits
+[ ] HLS output = 320 bits
+[ ] ap_start = 1
+[ ] TLAST = output_valid
+[ ] HPM -> axi_smc -> DMA S_AXI_LITE
+[ ] DMA MM2S/S2MM -> axi_smc_1 -> HPC0
+[ ] DMA control = 0x00A0000000 / 64 KiB
+[ ] DDR acessível a MM2S/S2MM
+[ ] OCM/QSPI excluídos se necessário
+[ ] validate_bd_design passa
+[ ] system_wrapper é top
+[ ] synthesis passa
+[ ] implementation usa DEFAULT inicialmente
+[ ] routing = 0 failed/unrouted nets
+[ ] timing WNS >= 0 e WHS >= 0
+[ ] bitstream gera sem erro
+[ ] .bit e .hwh têm mesmo basename
+[ ] Overlay carrega no PYNQ
+[ ] axi_dma_0 aparece em ol.ip_dict
+[ ] primeira inferência fecha sem DMA error
+[ ] padding de saída [10:16] = zero
+[ ] smoke test de 100 imagens produz resultado coerente
+
+
+================================================================================
+24. ARQUITETURA FINAL EM UMA FIGURA ASCII
+================================================================================
+
+                           PROCESSING SYSTEM
+                     +----------------------------+
+                     |                            |
+                     |   ARM Cortex-A53 / PYNQ    |
+                     |          |                 |
+                     |          | HPM control     |
+                     |          v                 |
+                     |       M_AXI_HPM*           |
+                     |                            |
+                     |                 DDR        |
+                     |                  ^         |
+                     |                  | HPC0    |
+                     +------------------|---------+
+                                        |
+                                        |
+                  +---------------------|--------------------+
+                  |              PROGRAMMABLE LOGIC          |
+                  |                                          |
+                  |  HPM                                     |
+                  |   |                                      |
+                  |   v                                      |
+                  | +---------+                               |
+                  | | axi_smc |                               |
+                  | +----+----+                               |
+                  |      | S_AXI_LITE                         |
+                  |      v                                    |
+                  | +----------------------+                  |
+                  | |      AXI DMA         |                  |
+                  | |                      |                  |
+                  | | MM2S            S2MM |                  |
+                  | +--+---------------^---+                  |
+                  |    |               |                      |
+                  |    | AXIS 128      | AXIS 512             |
+                  |    v               |                      |
+                  | +----------------------+                  |
+                  | | Accel_dma_wrapper    |                  |
+                  | | 128->96   320->512   |                  |
+                  | +------+---------^-----+                  |
+                  |        |         |                        |
+                  |        | 96      | 320                    |
+                  |        v         |                        |
+                  | +----------------------+                  |
+                  | | ResNet8 hls4ml v2.2 |                  |
+                  | +----------------------+                  |
+                  |                                          |
+                  | DMA M_AXI_MM2S ----+                     |
+                  | DMA M_AXI_S2MM ----+--> axi_smc_1 --> HPC0
+                  +------------------------------------------+
+
+
+================================================================================
+25. CONCLUSÃO
+================================================================================
+
+A arquitetura funcional foi baseada em uma separação simples e robusta:
+
+    - PS controla o DMA;
+    - DDR armazena entrada e saída;
+    - AXI DMA converte memória em stream e stream em memória;
+    - wrapper resolve largura, handshake e TLAST;
+    - ResNet8 trabalha apenas com seus sinais de dados/valid/ready;
+    - ap_start permanece em 1;
+    - resultado retorna à DDR antes de ser lido pela CPU.
+
+A principal razão de a solução ser reproduzível é manter compatíveis, ao mesmo
+tempo, quatro contratos:
+
+    1. contrato de memória do DMA;
+    2. contrato AXI Stream do DMA;
+    3. contrato de largura/handshake do wrapper;
+    4. contrato numérico e de packing do IP hls4ml.
+
+Se esses quatro contratos forem preservados, a arquitetura pode ser reutilizada
+para futuras versões da ResNet8 e, com pequenas adaptações de largura e quantidade
+de dados, para outros aceleradores hls4ml.
+
+Para replicações futuras, recomenda-se não começar modificando a arquitetura.
+Primeiro reproduzir exatamente esta versão conhecida e funcional. Depois que o
+bitstream carregar e a primeira inferência funcionar, alterar um fator de cada vez,
+como precisão, reuse factor, FIFO optimization ou o próprio modelo.
+
+FIM DO DOCUMENTO

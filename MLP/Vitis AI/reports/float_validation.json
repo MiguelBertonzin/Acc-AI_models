@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "models/float/iris_mlp_keras2_vai3_5_logits.h5",
+  "model_sha256": "3537a280b4521b83ca5b48b93c5ec936acc9f41662c24535f4a2dcf3b9261add",
+  "test_data": "data/prepared/iris_test.npz",
+  "test_data_sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+  "outputs": "results/float_test_outputs.npz",
+  "outputs_sha256": "05d3a88f2ae74b1139d54bfcc1b26724ec21df8e59f72a69a3be14d156a1bbbd",
+  "samples": 30,
+  "correct": 29,
+  "accuracy": 0.9666666666666667,
+  "accuracy_percent": 96.66666666666667,
+  "wilson_95": [
+    0.8332960900859082,
+    0.9940914096183874
+  ],
+  "decision": "argmax of float logits"
+}

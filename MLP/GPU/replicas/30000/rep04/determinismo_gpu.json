@@ -1,0 +1,6 @@
+{
+  "passes": 5,
+  "maximum_absolute_probability_difference": 0.0,
+  "argmax_agreement": 1.0,
+  "bitwise_equal": true
+}

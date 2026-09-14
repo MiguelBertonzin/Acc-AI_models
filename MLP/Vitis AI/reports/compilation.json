@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "command": [
+    "vai_c_tensorflow2",
+    "--model",
+    "/workspace/artifacts/quantized/iris_mlp_logits_quantized.h5",
+    "--arch",
+    "/workspace/config/arch_zcu104_vai3.5.json",
+    "--output_dir",
+    "/workspace/artifacts/compiled/iris_mlp_zcu104_vai3_5",
+    "--net_name",
+    "iris_mlp"
+  ],
+  "returncode": 0,
+  "model": "artifacts/quantized/iris_mlp_logits_quantized.h5",
+  "model_sha256": "8c0f74a578bef56279b3244bcb76dd8f0109eb3e6c6917929f0f5357305acd72",
+  "arch": "config/arch_zcu104_vai3.5.json",
+  "arch_sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output_dir": "artifacts/compiled/iris_mlp_zcu104_vai3_5",
+  "xmodels": [
+    {
+      "path": "artifacts/compiled/iris_mlp_zcu104_vai3_5/iris_mlp.xmodel",
+      "sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+      "bytes": 109221
+    }
+  ],
+  "log": "logs/compiler/compile_iris_mlp.log",
+  "log_sha256": "bcc3f8f0f730e214c75d44f4570d79599d1f836b15acf448436d0b49951a6c5d"
+}

@@ -1,0 +1,217 @@
+exit_code=0
+{
+   "dell_smm-virtual-0":{
+      "Adapter": "Virtual device",
+      "fan1":{
+         "fan1_input": 932.000,
+         "fan1_min": 0.000,
+         "fan1_max": 4000.000
+      },
+      "temp1":{
+         "temp1_input": 50.000
+      },
+      "temp2":{
+         "temp2_input": 61.000
+      },
+      "temp3":{
+         "temp3_input": 0.000
+      },
+      "temp4":{
+         "temp4_input": 42.000
+      },
+      "temp5":{
+         "temp5_input": 45.000
+      },
+      "temp6":{
+         "temp6_input": 40.000
+      },
+      "temp7":{
+         "temp7_input": 39.000
+      },
+      "temp8":{
+         "temp8_input": 34.000
+      },
+      "temp9":{
+         "temp9_input": 61.000
+      },
+      "temp10":{
+         "temp10_input": 8.000
+      }
+   },
+   "nvme-pci-0200":{
+      "Adapter": "PCI adapter",
+      "Composite":{
+         "temp1_input": 38.850,
+         "temp1_max": 82.850,
+         "temp1_min": -0.150,
+         "temp1_crit": 89.850,
+         "temp1_alarm": 0.000
+      },
+      "Sensor 1":{
+         "temp2_input": 38.850,
+         "temp2_max": 65261.850,
+         "temp2_min": -273.150
+      }
+   },
+   "coretemp-isa-0000":{
+      "Adapter": "ISA adapter",
+      "Package id 0":{
+         "temp1_input": 52.000,
+         "temp1_max": 80.000,
+         "temp1_crit": 100.000,
+         "temp1_crit_alarm": 0.000
+      },
+      "Core 0":{
+         "temp2_input": 52.000,
+         "temp2_max": 80.000,
+         "temp2_crit": 100.000,
+         "temp2_crit_alarm": 0.000
+      },
+      "Core 4":{
+         "temp6_input": 49.000,
+         "temp6_max": 80.000,
+         "temp6_crit": 100.000,
+         "temp6_crit_alarm": 0.000
+      },
+      "Core 8":{
+         "temp10_input": 51.000,
+         "temp10_max": 80.000,
+         "temp10_crit": 100.000,
+         "temp10_crit_alarm": 0.000
+      },
+      "Core 12":{
+         "temp14_input": 49.000,
+         "temp14_max": 80.000,
+         "temp14_crit": 100.000,
+         "temp14_crit_alarm": 0.000
+      },
+      "Core 16":{
+         "temp18_input": 50.000,
+         "temp18_max": 80.000,
+         "temp18_crit": 100.000,
+         "temp18_crit_alarm": 0.000
+      },
+      "Core 20":{
+         "temp22_input": 53.000,
+         "temp22_max": 80.000,
+         "temp22_crit": 100.000,
+         "temp22_crit_alarm": 0.000
+      },
+      "Core 24":{
+         "temp26_input": 50.000,
+         "temp26_max": 80.000,
+         "temp26_crit": 100.000,
+         "temp26_crit_alarm": 0.000
+      },
+      "Core 28":{
+         "temp30_input": 50.000,
+         "temp30_max": 80.000,
+         "temp30_crit": 100.000,
+         "temp30_crit_alarm": 0.000
+      },
+      "Core 32":{
+         "temp34_input": 51.000,
+         "temp34_max": 80.000,
+         "temp34_crit": 100.000,
+         "temp34_crit_alarm": 0.000
+      },
+      "Core 33":{
+         "temp35_input": 51.000,
+         "temp35_max": 80.000,
+         "temp35_crit": 100.000,
+         "temp35_crit_alarm": 0.000
+      },
+      "Core 34":{
+         "temp36_input": 51.000,
+         "temp36_max": 80.000,
+         "temp36_crit": 100.000,
+         "temp36_crit_alarm": 0.000
+      },
+      "Core 35":{
+         "temp37_input": 51.000,
+         "temp37_max": 80.000,
+         "temp37_crit": 100.000,
+         "temp37_crit_alarm": 0.000
+      },
+      "Core 36":{
+         "temp38_input": 51.000,
+         "temp38_max": 80.000,
+         "temp38_crit": 100.000,
+         "temp38_crit_alarm": 0.000
+      },
+      "Core 37":{
+         "temp39_input": 51.000,
+         "temp39_max": 80.000,
+         "temp39_crit": 100.000,
+         "temp39_crit_alarm": 0.000
+      },
+      "Core 38":{
+         "temp40_input": 51.000,
+         "temp40_max": 80.000,
+         "temp40_crit": 100.000,
+         "temp40_crit_alarm": 0.000
+      },
+      "Core 39":{
+         "temp41_input": 51.000,
+         "temp41_max": 80.000,
+         "temp41_crit": 100.000,
+         "temp41_crit_alarm": 0.000
+      }
+   },
+   "dell_ddv-virtual-0":{
+      "Adapter": "Virtual device",
+      "CPU Fan":{
+         "fan1_input": 932.000
+      },
+      "CPU":{
+         "temp1_input": 50.000,
+         "temp1_max": 0.000,
+         "temp1_min": 0.000
+      },
+      "Ambient":{
+         "temp2_input": 61.000,
+         "temp2_max": 0.000,
+         "temp2_min": 0.000
+      },
+      "Video":{
+         "temp3_input": 0.000,
+         "temp3_max": 0.000,
+         "temp3_min": 0.000
+      },
+      "Memory":{
+         "temp4_input": 42.000,
+         "temp4_max": 0.000,
+         "temp4_min": 0.000
+      },
+      "Other":{
+         "temp5_input": 45.000,
+         "temp5_max": 0.000,
+         "temp5_min": 0.000
+      },
+      "Other":{
+         "temp6_input": 40.000,
+         "temp6_max": 0.000,
+         "temp6_min": 0.000
+      },
+      "Other":{
+         "temp7_input": 39.000,
+         "temp7_max": 0.000,
+         "temp7_min": 0.000
+      },
+      "Other":{
+         "temp8_input": 34.000,
+         "temp8_max": 0.000,
+         "temp8_min": 0.000
+      },
+      "Video":{
+         "temp9_input": 61.000,
+         "temp9_max": 0.000,
+         "temp9_min": 0.000
+      },
+      "Other":{
+         "temp10_input": 8.000,
+         "temp10_max": 0.000,
+         "temp10_min": 0.000
+      }
+   }
+}

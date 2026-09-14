@@ -1,0 +1,2 @@
+usar 1, 2, 3 e 4 threads
+testar o banchmark usando C ao inves de Python e ver se o tempo melhora, provavelmente sim, pois ja fizemos tstes parecidos no lab

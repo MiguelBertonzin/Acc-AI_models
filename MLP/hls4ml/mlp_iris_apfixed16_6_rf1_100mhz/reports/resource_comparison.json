@@ -1,0 +1,51 @@
+{
+  "configuration": {
+    "part": "xczu7ev-ffvc1156-2-e",
+    "target_clock_mhz": 100,
+    "precision": "ap_fixed<16,6>",
+    "reuse_factor": 1,
+    "strategy": "Latency",
+    "io_type": "io_parallel"
+  },
+  "vitis_hls_estimate": {
+    "lut": 4058,
+    "ff": 413,
+    "dsp": 108,
+    "bram_18k": 3,
+    "uram": 0,
+    "latency_cycles": 5,
+    "initiation_interval_cycles": 1,
+    "estimated_period_ns": 6.586
+  },
+  "vivado_post_synth_ooc": {
+    "clb_lut": 2098,
+    "clb_register": 377,
+    "dsp48e2": 108,
+    "ramb18e2": 3,
+    "uram": 0
+  },
+  "vivado_post_route_ooc": {
+    "clb": 330,
+    "clb_lut": 1944,
+    "clb_register": 377,
+    "carry8": 151,
+    "dsp48e2": 108,
+    "ramb18e2": 3,
+    "uram": 0,
+    "wns_ns": 2.886,
+    "tns_ns": 0.0,
+    "whs_ns": 0.064,
+    "critical_path_approx_ns": 7.114,
+    "timing_met": true,
+    "route_failed_nets": 0
+  },
+  "difference_hls_to_vivado_post_route": {
+    "lut_absolute": -2114,
+    "lut_percent": -52.094,
+    "ff_absolute": -36,
+    "ff_percent": -8.717,
+    "dsp_absolute": 0,
+    "bram_18k_absolute": 0,
+    "uram_absolute": 0
+  }
+}

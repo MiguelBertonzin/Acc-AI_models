@@ -1,0 +1,25 @@
+ dois modelos, intuito final de implementalos no hls4ml e no vitis,
+todos os scripts referente ao modelo de quantização, reduções, e relacionados ao modelo em alto nivel deve estar na pasta de scripts
+CPU e GPU deve conter todos os arquivos relacionados aos testes realizados nessas duas formas, com scripts, resultados coletados, etc..
+pasta hls4ml deve conter todos os arquivos que forem sendo utilizados e gerados no fluxo do hls4ml,
+pasta vitis ai deve conter todo os arquivos que forem sendo utilizados e gerados no fluxo.
+
+
+Métricas gerais de interesse:
+- acurácia;
+- latência;
+- vazão (FPS/inferências por segundo);
+- média da latência;
+- mediana;
+- desvio padrão;
+- percentil 95 (p95);
+- utilização de LUT;
+- utilização de FF;
+- utilização de DSP;
+- utilização de BRAM;
+- utilização de URAM, quando aplicável;
+- potência total;
+- potência dinâmica;
+- energia por inferência;
+- frequência atingida;
+

@@ -1,0 +1,146 @@
+{
+  "status": "passed",
+  "samples": 10000,
+  "keras_correct": 9898,
+  "keras_accuracy_percent": 98.98,
+  "hls_correct": 9899,
+  "hls_accuracy_percent": 98.99,
+  "hls_wilson_95": [
+    0.9877434785006571,
+    0.9916802798957538
+  ],
+  "accuracy_delta_hls_minus_keras_pp": 0.01,
+  "keras_hls_argmax_agreement": 9999,
+  "keras_hls_argmax_agreement_percent": 99.99,
+  "logit_mean_absolute_error": 0.01564898155629635,
+  "logit_max_absolute_error": 0.09856367111206055,
+  "confusion_matrix_rows_true_columns_predicted": [
+    [
+      973,
+      0,
+      0,
+      0,
+      1,
+      0,
+      2,
+      0,
+      3,
+      1
+    ],
+    [
+      0,
+      1131,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1025,
+      0,
+      1,
+      0,
+      2,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1001,
+      0,
+      3,
+      0,
+      0,
+      4,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      979,
+      0,
+      2,
+      0,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      0,
+      4,
+      0,
+      883,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      0,
+      1,
+      3,
+      950,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      4,
+      7,
+      0,
+      0,
+      0,
+      0,
+      1004,
+      1,
+      12
+    ],
+    [
+      3,
+      0,
+      2,
+      1,
+      0,
+      3,
+      0,
+      2,
+      959,
+      4
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      6,
+      3,
+      1,
+      1,
+      1,
+      994
+    ]
+  ],
+  "acceptance": {
+    "minimum_argmax_agreement_percent": 99.9,
+    "maximum_accuracy_loss_images": 10
+  },
+  "cpp_evaluation_host_seconds": 57.055474281311035,
+  "baseline_hls_argmax_agreement": 10000,
+  "baseline_hls_logits_max_absolute_error": 0.0
+}

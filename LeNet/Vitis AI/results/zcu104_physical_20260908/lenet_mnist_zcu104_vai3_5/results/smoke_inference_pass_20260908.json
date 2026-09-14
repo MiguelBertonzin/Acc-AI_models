@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "xmodel": "lenet_mnist_no_softmax.xmodel",
+  "xmodel_sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5",
+  "sample_index": 0,
+  "label": 7,
+  "prediction_dpu": 7,
+  "prediction_quantized_host": 7,
+  "prediction_matches_reference": true,
+  "raw_output_int8": [
+    -18,
+    -6,
+    1,
+    1,
+    -33,
+    -14,
+    -61,
+    44,
+    -6,
+    2
+  ],
+  "dequantized_logits": [
+    -4.5,
+    -1.5,
+    0.25,
+    0.25,
+    -8.25,
+    -3.5,
+    -15.25,
+    11.0,
+    -1.5,
+    0.5
+  ],
+  "input_shape": [
+    1,
+    28,
+    28,
+    1
+  ],
+  "input_fix_point": 6,
+  "output_shape": [
+    1,
+    10
+  ],
+  "output_fix_point": 2,
+  "warmup": 20,
+  "inference_only_ms": 0.20677,
+  "latency_boundary": "execute_async + wait; input pre-quantized in runner buffer"
+}

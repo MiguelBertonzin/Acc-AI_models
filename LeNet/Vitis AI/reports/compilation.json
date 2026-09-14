@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "tool": "Vitis AI Compiler for TensorFlow 2 (vai_c_tensorflow2)",
+  "command": [
+    "vai_c_tensorflow2",
+    "--model",
+    "/workspace/artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+    "--arch",
+    "/workspace/config/arch_zcu104_vai3.5.json",
+    "--output_dir",
+    "/workspace/artifacts/compiled/lenet_mnist_zcu104_vai3_5",
+    "--net_name",
+    "lenet_mnist_no_softmax"
+  ],
+  "returncode": 0,
+  "model": "artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+  "model_sha256": "3412600f3ea4abad6f7cc6487b462e1d79121b1ce34097220bdb7a1060911421",
+  "arch": "config/arch_zcu104_vai3.5.json",
+  "arch_sha256": "ed133f86ad4e2942ff3eacdabf42153bb4c6a0a95014deac4e30611298acf923",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output_dir": "artifacts/compiled/lenet_mnist_zcu104_vai3_5",
+  "xmodels": [
+    {
+      "path": "artifacts/compiled/lenet_mnist_zcu104_vai3_5/lenet_mnist_no_softmax.xmodel",
+      "sha256": "bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5",
+      "bytes": 171444
+    }
+  ],
+  "log": "logs/compiler/compile_lenet_mnist.log",
+  "log_sha256": "9bd72a939af01c811355ce8f756a71aa676d9dbf347d8b88f82c621d60c3d2b3"
+}

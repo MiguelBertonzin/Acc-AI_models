@@ -1,0 +1,30 @@
+[START] scenario=inference_only threads=1 samples=10000
+[DONE] inference_only T=1 lat_mean=0.225585 ms fps=3066.887 P=14.767444644281195 W
+[START] scenario=inference_only threads=2 samples=10000
+[DONE] inference_only T=2 lat_mean=0.253197 ms fps=5291.790 P=14.987734515088686 W
+[START] scenario=inference_only threads=3 samples=10000
+[DONE] inference_only T=3 lat_mean=0.411653 ms fps=4487.863 P=14.97676661248062 W
+[START] scenario=inference_only threads=4 samples=10000
+[DONE] inference_only T=4 lat_mean=0.612246 ms fps=4351.146 P=14.972600968359593 W
+[START] scenario=end_to_end threads=1 samples=10000
+[DONE] end_to_end T=1 lat_mean=0.650648 ms fps=1436.194 P=14.747563108115102 W
+[START] scenario=end_to_end threads=2 samples=10000
+[DONE] end_to_end T=2 lat_mean=1.206213 ms fps=1565.817 P=14.827070059871254 W
+[START] scenario=end_to_end threads=3 samples=10000
+[DONE] end_to_end T=3 lat_mean=1.820691 ms fps=1570.126 P=14.843608865239776 W
+[START] scenario=end_to_end threads=4 samples=10000
+[DONE] end_to_end T=4 lat_mean=2.472644 ms fps=1495.118 P=14.841346716776538 W
+[START] scenario=saturated threads=1 samples=10000
+[DONE] saturated T=1 lat_mean=0.221690 ms fps=4167.431 P=14.790981125227894 W
+[START] scenario=saturated threads=2 samples=10000
+[DONE] saturated T=2 lat_mean=0.235349 ms fps=7750.040 P=15.050417744320335 W
+[START] scenario=saturated threads=3 samples=10000
+[DONE] saturated T=3 lat_mean=0.281798 ms fps=9292.006 P=15.184492909816317 W
+[START] scenario=saturated threads=4 samples=10000
+[DONE] saturated T=4 lat_mean=0.419940 ms fps=8281.592 P=15.134270500643625 W
+
+===== CAMPANHA CONCLUIDA =====
+output_dir: results/benchmark_full_20260908T191312Z
+FINAL_SUMMARY.csv: results/benchmark_full_20260908T191312Z/FINAL_SUMMARY.csv
+validacao_integridade.json: results/benchmark_full_20260908T191312Z/validacao_integridade.json
+passed: True

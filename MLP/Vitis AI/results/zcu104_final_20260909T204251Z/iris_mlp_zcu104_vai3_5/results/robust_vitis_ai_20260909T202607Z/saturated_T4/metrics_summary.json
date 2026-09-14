@@ -1,0 +1,31 @@
+{
+  "scenario": "saturated",
+  "threads_runners": 4,
+  "physical_dpu_cores": 2,
+  "inferences": 10000,
+  "blocks": 10,
+  "samples_per_block": 1000,
+  "benchmark_wall_s": 1.03735805,
+  "throughput_effective_inf_s": 9639.87313734154,
+  "block_throughput_arithmetic_mean_inf_s": 9692.924687270657,
+  "latency": {
+    "count": 10000,
+    "mean_ms": 0.36538226999999995,
+    "median_ms": 0.3217,
+    "std_sample_ms": 0.20567773311643897,
+    "cv_percent": 56.291109340483054,
+    "minimum_ms": 0.15941,
+    "maximum_ms": 5.06435,
+    "p90_ms": 0.554201,
+    "p95_ms": 0.7080384999999995,
+    "p99_ms": 1.2080596000000003,
+    "mean_ci95_lower_ms": 0.3558778795999189,
+    "mean_ci95_upper_ms": 0.374886660400081,
+    "ci_unit": "means of 10 blocks of 1000 completed inferences",
+    "ci_blocks": 10
+  },
+  "determinism": {
+    "checked": false,
+    "reason": "saturated is performance-only; no postprocessing/prediction in measured loop"
+  }
+}

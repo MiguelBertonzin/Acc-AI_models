@@ -1,0 +1,59 @@
+{
+  "status": "passed",
+  "dataset": "scikit-learn Iris",
+  "sklearn_version": "1.5.1",
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "stratified": true,
+    "calibration_source": "training split only",
+    "test_used_for_calibration": false
+  },
+  "preprocessing": "StandardScaler previously fitted on the training split",
+  "scaler": "source/iris_scaler.joblib",
+  "scaler_sha256": "beef6de7823db389c06565f0eb199ba71a353d4c2050e425ef6efd425bb20e31",
+  "scaler_mean": [
+    5.84166665871938,
+    3.0483333349227903,
+    3.769999987880389,
+    1.2049999895816048
+  ],
+  "scaler_scale": [
+    0.8374149871969131,
+    0.4466511177148879,
+    1.761135990687815,
+    0.7594789757360413
+  ],
+  "calibration": {
+    "path": "data/prepared/iris_calibration_train.npz",
+    "sha256": "ef6f47d06d3d6c4e4a04ece3335ebcc0fcda612762242a5bd29adcdcf95034d2",
+    "samples": 120,
+    "class_counts": {
+      "0": 40,
+      "1": 40,
+      "2": 40
+    },
+    "feature_min": [
+      -1.8409826755523682,
+      -2.3470964431762695,
+      -1.5160669088363647,
+      -1.4549448490142822
+    ],
+    "feature_max": [
+      2.457961082458496,
+      3.0262250900268555,
+      1.7772619724273682,
+      1.7051162719726562
+    ]
+  },
+  "test": {
+    "path": "data/prepared/iris_test.npz",
+    "sha256": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+    "samples": 30,
+    "class_counts": {
+      "0": 10,
+      "1": 10,
+      "2": 10
+    }
+  }
+}

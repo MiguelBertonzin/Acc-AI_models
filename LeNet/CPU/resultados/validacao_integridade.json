@@ -1,0 +1,44 @@
+{
+  "device": "CPU",
+  "status": "valid",
+  "total_timed_inferences": 1110000,
+  "latency_shapes": {
+    "100": [
+      100,
+      100
+    ],
+    "1000": [
+      100,
+      1000
+    ],
+    "10000": [
+      100,
+      10000
+    ]
+  },
+  "all_latencies_finite": true,
+  "pass_rows": {
+    "100": 100,
+    "1000": 100,
+    "10000": 100
+  },
+  "aggregate_rows": 12,
+  "correct_full_test": 9898,
+  "accuracy_percent": 98.98,
+  "prediction_sha256": "2e1bd57ae813232b84b89428876c305a3cd6f07dd5b2f8f8566f808aec004beb",
+  "unique_prediction_hashes_per_size": {
+    "100": 1,
+    "1000": 1,
+    "10000": 1
+  },
+  "outliers_removed": false,
+  "tensorflow_visible_gpus": [],
+  "cpu_gpu_prediction_agreement": 1.0,
+  "cpu_gpu_prediction_divergences": 0,
+  "minimum_rapl_coverage_percent": 95.08234305146918,
+  "all_package_energy_positive": true,
+  "all_package_energy_at_least_cores": true,
+  "rapl_scope": "CPU package; cores is a subdomain and is not added to package",
+  "psutil_frequency_valid": false,
+  "authoritative_frequency_source": "turbostat Bzy_MHz"
+}

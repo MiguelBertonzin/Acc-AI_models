@@ -1,0 +1,39 @@
+{
+  "project_name": "mlp_iris",
+  "model": "/home/miguel/Downloads/Plano testes TCC/H1/MLP/iris_mlp_clean.h5",
+  "scaler": "/home/miguel/Downloads/Plano testes TCC/H1/MLP/iris_scaler.joblib",
+  "backend": "Vitis",
+  "part": "xczu7ev-ffvc1156-2-e",
+  "board": "ZCU104",
+  "target_frequency_mhz": 100,
+  "clock_period_ns": 10,
+  "clock_uncertainty": "27% (hls4ml Vitis default)",
+  "precision": "fixed<16,6>",
+  "quantization_framework": null,
+  "reuse_factor": 16,
+  "model_sha256": "60d4e49c7082d97cac029ba919ffa8c88514ac9109d0bd69bafb23fa663fbb94",
+  "scaler_sha256": "beef6de7823db389c06565f0eb199ba71a353d4c2050e425ef6efd425bb20e31",
+  "strategy": "Latency",
+  "io_type": "io_parallel",
+  "softmax": "kept in the HLS model",
+  "versions": {
+    "python": "3.12.7",
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "hls4ml": "1.3.0",
+    "numpy": "1.26.4",
+    "scikit_learn_runtime": "1.5.1"
+  },
+  "hls_config": {
+    "Model": {
+      "Precision": {
+        "default": "fixed<16,6>"
+      },
+      "ReuseFactor": 16,
+      "Strategy": "Latency",
+      "BramFactor": 1000000000,
+      "TraceOutput": false,
+      "BitExact": null
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "models/float/iris_mlp_keras2_vai3_5_logits.h5",
+  "model_sha256": "3537a280b4521b83ca5b48b93c5ec936acc9f41662c24535f4a2dcf3b9261add",
+  "calibration_data": "data/prepared/iris_calibration_train.npz",
+  "calibration_data_sha256": "ef6f47d06d3d6c4e4a04ece3335ebcc0fcda612762242a5bd29adcdcf95034d2",
+  "calibration_samples": 120,
+  "calibration_unique_samples": 119,
+  "calibration_class_counts": {
+    "0": 40,
+    "1": 40,
+    "2": 40
+  },
+  "calibration_batch_size": 16,
+  "calibration_batches": 8,
+  "test_samples_used": 0,
+  "strategy": "pof2s",
+  "numeric_format": "INT8 power-of-two scale",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output": "artifacts/quantized/iris_mlp_logits_quantized.h5",
+  "output_sha256": "8c0f74a578bef56279b3244bcb76dd8f0109eb3e6c6917929f0f5357305acd72",
+  "input_shape": [
+    null,
+    4
+  ],
+  "output_shape": [
+    null,
+    3
+  ],
+  "softmax": false
+}

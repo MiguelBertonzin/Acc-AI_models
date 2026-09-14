@@ -1,0 +1,44 @@
+{
+  "status": "passed",
+  "created_utc": "2026-09-08T20:23:02.827254+00:00",
+  "hashes": {
+    "xmodel": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+    "test_data": "3972a24323d73613dfca346b56333a5843d45e399cdf80d05ac04b1257ed86e1",
+    "reference": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e"
+  },
+  "validation": {
+    "samples_unique": 30,
+    "correct": 29,
+    "accuracy": 0.9666666666666667,
+    "accuracy_percent": 96.66666666666667,
+    "wilson95": [
+      0.8332960900859082,
+      0.9940914096183874
+    ],
+    "wilson95_percent": [
+      83.32960900859082,
+      99.40914096183874
+    ],
+    "reference_agreement": 30,
+    "reference_agreement_percent": 100.0,
+    "divergences": 0,
+    "passed": true
+  },
+  "temperature": {
+    "ps_temp_c": 43.924602169584006,
+    "remote_temp_c": 45.680964535175995,
+    "pl_temp_c": 44.328720943968
+  },
+  "power_now_w": 14.675,
+  "current_now_a": 1.22,
+  "voltage_now_v": 12.028,
+  "xdputil_query": {
+    "command": [
+      "xdputil",
+      "query"
+    ],
+    "returncode": null,
+    "output": "TimeoutExpired(['xdputil', 'query'], 30)"
+  },
+  "platform": "Linux-5.15.36-xilinx-v2022.2-aarch64-with-glibc2.34"
+}

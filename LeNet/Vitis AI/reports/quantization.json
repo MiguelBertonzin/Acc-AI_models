@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "tool": "Vitis AI Quantizer for TensorFlow 2",
+  "tensorflow_version": "2.12.0",
+  "model": "models/float/lenet_mnist_keras2_vai3_5_no_softmax.h5",
+  "model_sha256": "8dea58ecbe193e25058fda3327c1f47cf06b3003e48f6a880ad6233e6ef1e22e",
+  "calibration_data": "data/prepared/mnist_calibration_train_uint8.npz",
+  "calibration_data_sha256": "a2f4fb0aa43ea1415f01bcb291812cadc3979573ad322884da112f592185e650",
+  "calibration_split": "MNIST official training split",
+  "calibration_samples": 10000,
+  "calibration_class_counts": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+  ],
+  "calibration_batch_size": 32,
+  "preprocessing": "uint8 -> float32; divide by 255.0; add channels_last dimension",
+  "strategy": "pof2s",
+  "numeric_format": "INT8",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output": "artifacts/quantized/lenet_mnist_no_softmax_quantized.h5",
+  "output_sha256": "3412600f3ea4abad6f7cc6487b462e1d79121b1ce34097220bdb7a1060911421",
+  "output_bytes": 259104,
+  "input_shape": [
+    null,
+    28,
+    28,
+    1
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "softmax": false
+}

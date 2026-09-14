@@ -1,0 +1,61 @@
+{
+  "reference_inferences": 30000,
+  "new_inferences": 100000,
+  "metrics": {
+    "inference_only_mean_ms": {
+      "reference_30000": 0.1857467958999999,
+      "new_100000": 0.1648349232,
+      "delta_percent": -11.258268331723025
+    },
+    "inference_only_median_ms": {
+      "reference_30000": 0.1603645,
+      "new_100000": 0.1540585,
+      "delta_percent": -3.932291747861906
+    },
+    "inference_only_std_ms": {
+      "reference_30000": 0.065265152797545,
+      "new_100000": 0.036779059116113566,
+      "delta_percent": -43.64671261828863
+    },
+    "inference_only_p95_ms": {
+      "reference_30000": 0.31812205,
+      "new_100000": 0.2251694499999999,
+      "delta_percent": -29.21916289675616
+    },
+    "inference_only_p99_ms": {
+      "reference_30000": 0.4489472899999995,
+      "new_100000": 0.32798704999999945,
+      "delta_percent": -26.94308278372728
+    },
+    "end_to_end_effective_mean_ms": {
+      "reference_30000": 0.2804143509333333,
+      "new_100000": 0.24778444068999997,
+      "delta_percent": -11.63631965865073
+    },
+    "end_to_end_effective_throughput_fps": {
+      "reference_30000": 3566.151292441319,
+      "new_100000": 4035.7659149836913,
+      "delta_percent": 13.16866795690216
+    },
+    "power_board_mean_w": {
+      "reference_30000": 28.519523809523808,
+      "new_100000": 28.44705179282868,
+      "delta_percent": -0.25411369831822084
+    },
+    "energy_total_per_inference_mj": {
+      "reference_30000": 8.1584573477384,
+      "new_100000": 7.230770975913946,
+      "delta_percent": -11.370855203179037
+    },
+    "gpu_utilization_mean_percent": {
+      "reference_30000": 10.488095238095237,
+      "new_100000": 9.46215139442231,
+      "delta_percent": -9.781984434565933
+    },
+    "temperature_mean_c": {
+      "reference_30000": 45.416666666666664,
+      "new_100000": 47.9800796812749,
+      "delta_percent": 5.644212142256669
+    }
+  }
+}

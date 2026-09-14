@@ -1,0 +1,33 @@
+Backend: Vitis
+ClockPeriod: 10
+ClockUncertainty: 27%
+HLSConfig:
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision:
+      default: fixed<16,6>
+    ReuseFactor: 1
+    Strategy: Latency
+    TraceOutput: false
+IOType: io_parallel
+InputData: /tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/tb_input_features.dat
+InputShapes:
+  features:
+  - 4
+KerasModel: !keras_model '/tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/keras_model.keras'
+OutputDir: /tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W
+OutputPredictions: /tmp/mlp_iris_apfixed16_6_rf1_100mhz.9uLq6W/tb_output_predictions.dat
+OutputShapes:
+  layer7_out:
+  - 3
+Part: xczu7ev-ffvc1156-2-e
+ProjectName: mlp_iris
+Stamp: 8367de19
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteEmulationConstants: false
+  WriteTar: false
+  WriteWeightsTxt: true

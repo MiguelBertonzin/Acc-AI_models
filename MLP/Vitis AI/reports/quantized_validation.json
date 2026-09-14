@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "model": "artifacts/quantized/iris_mlp_logits_quantized.h5",
+  "model_sha256": "8c0f74a578bef56279b3244bcb76dd8f0109eb3e6c6917929f0f5357305acd72",
+  "test_samples": 30,
+  "correct": 29,
+  "accuracy": 0.9666666666666667,
+  "accuracy_percent": 96.66666666666667,
+  "wilson_95": [
+    0.8332960900859082,
+    0.9940914096183874
+  ],
+  "float_argmax_agreement": 30,
+  "float_argmax_agreement_percent": 100.0,
+  "max_abs_logit_error": 0.22719144821166992,
+  "mean_abs_logit_error": 0.04820604249835014,
+  "max_abs_probability_error": 0.03152778744697571,
+  "mean_abs_probability_error": 0.003658690955489874,
+  "outputs": "results/quantized_test_outputs.npz",
+  "outputs_sha256": "b0ab40e38bd10bf685badc8552e2a66030c247447df626ab05a12e796364ba0e",
+  "decision": "argmax of quantized logits",
+  "softmax_policy": "computed in software only for probability comparison"
+}

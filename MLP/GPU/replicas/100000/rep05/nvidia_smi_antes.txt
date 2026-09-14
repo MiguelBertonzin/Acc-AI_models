@@ -1,0 +1,37 @@
+exit_code=0
+Thu Sep  3 17:33:23 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 3050 OEM    Off |   00000000:01:00.0  On |                  N/A |
+| 31%   49C    P2             22W /  120W |     700MiB /   8192MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            1908      G   /usr/lib/xorg/Xorg                      167MiB |
+|    0   N/A  N/A            2329      G   /usr/bin/kwalletd5                        2MiB |
+|    0   N/A  N/A            2489      G   ...ibexec/xdg-desktop-portal-kde          2MiB |
+|    0   N/A  N/A            2546      G   /usr/bin/ksmserver                        2MiB |
+|    0   N/A  N/A            2548      G   /usr/bin/kded5                            2MiB |
+|    0   N/A  N/A            2549      G   /usr/bin/kwin_x11                        91MiB |
+|    0   N/A  N/A            2607      G   /usr/bin/plasmashell                     26MiB |
+|    0   N/A  N/A            2630      G   ...it-kde-authentication-agent-1          2MiB |
+|    0   N/A  N/A            2760      G   ...linux-gnu/libexec/kdeconnectd          2MiB |
+|    0   N/A  N/A            2791      G   /usr/bin/kaccess                          2MiB |
+|    0   N/A  N/A            2823      G   ...-gnu/libexec/DiscoverNotifier          2MiB |
+|    0   N/A  N/A           28093      G   ...linux-gnu/libexec/baloorunner          2MiB |
+|    0   N/A  N/A           70572      G   /usr/bin/konsole                          2MiB |
+|    0   N/A  N/A          104657      G   /usr/bin/konsole                          2MiB |
+|    0   N/A  N/A          128290      G   /usr/bin/dolphin                          2MiB |
+|    0   N/A  N/A          128315      G   ...nux-gnu/libexec/kf5/kioslave5          1MiB |
+|    0   N/A  N/A          130100      C   python3                                 116MiB |
++-----------------------------------------------------------------------------------------+

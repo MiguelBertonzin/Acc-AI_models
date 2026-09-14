@@ -1,0 +1,362 @@
+{
+  "status": "passed",
+  "model": "/home/miguel/Downloads/Plano testes TCC/LeNet/lenet_mnist_final.h5",
+  "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+  "name": "LeNet_MNIST",
+  "input_shape": [
+    null,
+    28,
+    28,
+    1
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "parameters": 44426,
+  "macs_per_inference": 281640,
+  "final_activation": "linear",
+  "softmax": false,
+  "test_samples": 10000,
+  "test_data": "data/mnist_test_uint8.npz",
+  "test_data_sha256": "bea672a7825e79be670e076977f43a8679a382cab2b84ef2a0a15cddda799d81",
+  "preprocessing": "uint8 -> float32 / 255.0; add channels_last dimension",
+  "layers": [
+    {
+      "name": "conv1",
+      "class": "Conv2D",
+      "output_shape": [
+        24,
+        24,
+        6
+      ],
+      "parameters": 156,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 2.3663880825042725,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 2.0248687298297945
+      },
+      "weights": [
+        {
+          "index": 0,
+          "shape": [
+            5,
+            5,
+            1,
+            6
+          ],
+          "min": -0.48665300011634827,
+          "max": 0.3496141731739044
+        },
+        {
+          "index": 1,
+          "shape": [
+            6
+          ],
+          "min": -0.0498405396938324,
+          "max": 0.11565015465021133
+        }
+      ],
+      "multiplier_dimensions": [
+        25,
+        6
+      ],
+      "multiplications": 150,
+      "valid_reuse_factors_up_to_512": [
+        1,
+        5,
+        25,
+        50,
+        75,
+        150
+      ]
+    },
+    {
+      "name": "pool1",
+      "class": "MaxPooling2D",
+      "output_shape": [
+        12,
+        12,
+        6
+      ],
+      "parameters": 0,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 2.3663880825042725,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 2.1200824067592667
+      },
+      "weights": []
+    },
+    {
+      "name": "conv2",
+      "class": "Conv2D",
+      "output_shape": [
+        8,
+        8,
+        16
+      ],
+      "parameters": 2416,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 5.206009864807129,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 3.2497728226185565
+      },
+      "weights": [
+        {
+          "index": 0,
+          "shape": [
+            5,
+            5,
+            6,
+            16
+          ],
+          "min": -0.3721541166305542,
+          "max": 0.394431471824646
+        },
+        {
+          "index": 1,
+          "shape": [
+            16
+          ],
+          "min": -0.0645793005824089,
+          "max": 0.046637825667858124
+        }
+      ],
+      "multiplier_dimensions": [
+        150,
+        16
+      ],
+      "multiplications": 2400,
+      "valid_reuse_factors_up_to_512": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        10,
+        15,
+        25,
+        30,
+        50,
+        75,
+        150,
+        300
+      ]
+    },
+    {
+      "name": "pool2",
+      "class": "MaxPooling2D",
+      "output_shape": [
+        4,
+        4,
+        16
+      ],
+      "parameters": 0,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 5.206009864807129,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 3.6381959896088034
+      },
+      "weights": []
+    },
+    {
+      "name": "flatten",
+      "class": "Flatten",
+      "output_shape": [
+        256
+      ],
+      "parameters": 0,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 5.206009864807129,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 3.6381959896088034
+      },
+      "weights": []
+    },
+    {
+      "name": "dense1",
+      "class": "Dense",
+      "output_shape": [
+        120
+      ],
+      "parameters": 30840,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 9.659931182861328,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 6.819092437744246
+      },
+      "weights": [
+        {
+          "index": 0,
+          "shape": [
+            256,
+            120
+          ],
+          "min": -0.46032214164733887,
+          "max": 0.3709520101547241
+        },
+        {
+          "index": 1,
+          "shape": [
+            120
+          ],
+          "min": -0.07501798868179321,
+          "max": 0.0674099400639534
+        }
+      ],
+      "multiplier_dimensions": [
+        256,
+        120
+      ],
+      "multiplications": 30720,
+      "valid_reuse_factors_up_to_512": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ]
+    },
+    {
+      "name": "dense2",
+      "class": "Dense",
+      "output_shape": [
+        84
+      ],
+      "parameters": 10164,
+      "activation_range_all_10000_tests": {
+        "min": 0.0,
+        "max": 15.40257740020752,
+        "percentile_0_1": 0.0,
+        "percentile_99_9": 10.098643371582035
+      },
+      "weights": [
+        {
+          "index": 0,
+          "shape": [
+            120,
+            84
+          ],
+          "min": -0.4025736451148987,
+          "max": 0.4085610806941986
+        },
+        {
+          "index": 1,
+          "shape": [
+            84
+          ],
+          "min": -0.04112895578145981,
+          "max": 0.06018388643860817
+        }
+      ],
+      "multiplier_dimensions": [
+        120,
+        84
+      ],
+      "multiplications": 10080,
+      "valid_reuse_factors_up_to_512": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        12,
+        15,
+        20,
+        24,
+        30,
+        40,
+        60,
+        120,
+        240,
+        360,
+        480
+      ]
+    },
+    {
+      "name": "output",
+      "class": "Dense",
+      "output_shape": [
+        10
+      ],
+      "parameters": 850,
+      "activation_range_all_10000_tests": {
+        "min": -26.421710968017578,
+        "max": 26.455575942993164,
+        "percentile_0_1": -19.418119306564332,
+        "percentile_99_9": 21.633528297424466
+      },
+      "weights": [
+        {
+          "index": 0,
+          "shape": [
+            84,
+            10
+          ],
+          "min": -0.4427717626094818,
+          "max": 0.5102930665016174
+        },
+        {
+          "index": 1,
+          "shape": [
+            10
+          ],
+          "min": -0.029326075688004494,
+          "max": 0.028874553740024567
+        }
+      ],
+      "multiplier_dimensions": [
+        84,
+        10
+      ],
+      "multiplications": 840,
+      "valid_reuse_factors_up_to_512": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        12,
+        14,
+        21,
+        28,
+        42,
+        84,
+        168,
+        420
+      ]
+    }
+  ],
+  "software": {
+    "python": "3.12.7",
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "hls4ml": "1.3.0",
+    "numpy": "1.26.4",
+    "vitis_hls": "/opt/Xilinx/Vitis_HLS/2024.2/bin/vitis_hls",
+    "vivado": "/opt/Xilinx/Vivado/2024.2/bin/vivado"
+  },
+  "vitis_hls_version": {
+    "command": [
+      "/opt/Xilinx/Vitis_HLS/2024.2/bin/vitis_hls",
+      "-version"
+    ],
+    "returncode": 0,
+    "output": "/opt/Xilinx/Vitis/2024.2/bin/setupEnv.sh: line 236: [: too many arguments\nVitis HLS - High-Level Synthesis from C, C++ and OpenCL v2024.2 (64-bit)\nSW Build 5238294 on Nov  8 2024\nIP Build 5239520 on Sun Nov 10 16:12:51 MST 2024\nTool Version Limit: 2024.11\nCopyright 1986-2022 Xilinx, Inc. All Rights Reserved.\nCopyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.\nSharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024\n\n"
+  }
+}

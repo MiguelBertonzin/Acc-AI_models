@@ -1,0 +1,79 @@
+{
+  "duration_s": 25.41825464,
+  "samples": 251,
+  "sampling_interval_nominal_ms": 100,
+  "energy_total_j": 723.0770975913946,
+  "power_baseline_w": 28.25395833333333,
+  "energy_dynamic_j": 4.910790086777979,
+  "power.draw.instant": {
+    "mean": 28.44705179282868,
+    "median": 28.4,
+    "p95": 28.73,
+    "minimum": 28.2,
+    "maximum": 28.76
+  },
+  "power.draw.average": {
+    "mean": 28.4297609561753,
+    "median": 28.42,
+    "p95": 28.62,
+    "minimum": 28.16,
+    "maximum": 28.62
+  },
+  "utilization.gpu": {
+    "mean": 9.46215139442231,
+    "median": 9.0,
+    "p95": 12.0,
+    "minimum": 0.0,
+    "maximum": 12.0
+  },
+  "utilization.memory": {
+    "mean": 0.47808764940239046,
+    "median": 0.0,
+    "p95": 1.0,
+    "minimum": 0.0,
+    "maximum": 1.0
+  },
+  "memory.used": {
+    "mean": 700.0,
+    "median": 700.0,
+    "p95": 700.0,
+    "minimum": 700.0,
+    "maximum": 700.0
+  },
+  "temperature.gpu": {
+    "mean": 47.9800796812749,
+    "median": 48.0,
+    "p95": 48.0,
+    "minimum": 47.0,
+    "maximum": 49.0
+  },
+  "clocks.current.sm": {
+    "mean": 1755.0,
+    "median": 1755.0,
+    "p95": 1755.0,
+    "minimum": 1755.0,
+    "maximum": 1755.0
+  },
+  "clocks.current.memory": {
+    "mean": 6801.0,
+    "median": 6801.0,
+    "p95": 6801.0,
+    "minimum": 6801.0,
+    "maximum": 6801.0
+  },
+  "fan.speed": {
+    "mean": 31.0,
+    "median": 31.0,
+    "p95": 31.0,
+    "minimum": 31.0,
+    "maximum": 31.0
+  },
+  "sampling_interval_observed_ms": {
+    "mean": 101.294316296,
+    "median": 101.277878,
+    "maximum": 102.046717
+  },
+  "pstate_counts": {
+    "P2": 251
+  }
+}

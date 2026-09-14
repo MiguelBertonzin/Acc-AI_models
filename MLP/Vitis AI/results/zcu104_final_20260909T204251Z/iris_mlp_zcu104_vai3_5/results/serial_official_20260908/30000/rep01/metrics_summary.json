@@ -1,0 +1,61 @@
+{
+  "inferences": 30000,
+  "full_passages": 1000,
+  "final_passage_samples": 30,
+  "benchmark_wall_s": 22.01840269,
+  "throughput_effective_inf_s": 1362.4966543837882,
+  "passage_throughput_arithmetic_mean_inf_s": 1393.033053835971,
+  "accelerator": {
+    "count": 30000,
+    "mean_ms": 0.17979024166666668,
+    "median_ms": 0.17732,
+    "std_sample_ms": 0.040213304355480456,
+    "cv_percent": 22.366789199847908,
+    "minimum_ms": 0.16895,
+    "maximum_ms": 6.9601,
+    "p90_ms": 0.18653,
+    "p95_ms": 0.19232,
+    "p99_ms": 0.2243401,
+    "mean_ci95_lower_ms": 0.1792882474367831,
+    "mean_ci95_upper_ms": 0.18029223589655022,
+    "ci_unit": "means of complete 30-sample passages",
+    "ci_passages": 1000
+  },
+  "device_call": {
+    "count": 30000,
+    "mean_ms": 0.48759652200000003,
+    "median_ms": 0.48209,
+    "std_sample_ms": 0.04333959051006792,
+    "cv_percent": 8.888412561332405,
+    "minimum_ms": 0.47283,
+    "maximum_ms": 7.40534,
+    "p90_ms": 0.499481,
+    "p95_ms": 0.517002,
+    "p99_ms": 0.5570714999999997,
+    "mean_ci95_lower_ms": 0.4869832206626859,
+    "mean_ci95_upper_ms": 0.48820982333731405,
+    "ci_unit": "means of complete 30-sample passages",
+    "ci_passages": 1000
+  },
+  "application_end_to_end": {
+    "count": 30000,
+    "mean_ms": 0.6907299629999999,
+    "median_ms": 0.68342,
+    "std_sample_ms": 0.04653760523603825,
+    "cv_percent": 6.73745280050031,
+    "minimum_ms": 0.67233,
+    "maximum_ms": 7.94771,
+    "p90_ms": 0.70236,
+    "p95_ms": 0.7315515,
+    "p99_ms": 0.7762502,
+    "mean_ci95_lower_ms": 0.6900279871758597,
+    "mean_ci95_upper_ms": 0.6914319388241403,
+    "ci_unit": "means of complete 30-sample passages",
+    "ci_passages": 1000
+  },
+  "determinism": {
+    "passed": true,
+    "divergences": 0,
+    "divergent_positions_first100": []
+  }
+}

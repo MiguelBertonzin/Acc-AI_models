@@ -1,0 +1,126 @@
+{
+  "Model": {
+    "Precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+    "ReuseFactor": 64,
+    "Strategy": "Resource",
+    "BramFactor": 1000000000,
+    "TraceOutput": false,
+    "BitExact": null
+  },
+  "LayerName": {
+    "input_layer": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      }
+    },
+    "conv1": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "ParallelizationFactor": 1,
+      "ConvImplementation": "LineBuffer",
+      "Strategy": "Resource"
+    },
+    "conv1_relu": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "TableSize": 1024
+    },
+    "pool1": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "ConvImplementation": "LineBuffer"
+    },
+    "conv2": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "ParallelizationFactor": 1,
+      "ConvImplementation": "LineBuffer",
+      "Strategy": "Resource"
+    },
+    "conv2_relu": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "TableSize": 1024
+    },
+    "pool2": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "ConvImplementation": "LineBuffer"
+    },
+    "flatten": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      }
+    },
+    "dense1": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "Strategy": "Resource"
+    },
+    "dense1_relu": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "TableSize": 1024
+    },
+    "dense2": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "Strategy": "Resource"
+    },
+    "dense2_relu": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "table": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "TableSize": 1024
+    },
+    "output": {
+      "Trace": false,
+      "Precision": {
+        "result": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "weight": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "bias": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+        "accum": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>"
+      },
+      "Strategy": "Resource"
+    }
+  }
+}

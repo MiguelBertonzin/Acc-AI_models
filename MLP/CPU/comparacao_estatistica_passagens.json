@@ -1,0 +1,54 @@
+{
+  "method": "Welch t-test bilateral sobre medias de passagens completas de 30 inferencias",
+  "interpretation": "exploratoria; campanhas sequenciais e temporalmente autocorrelacionadas",
+  "comparisons": {
+    "cpu_100k_minus_cpu_30k_inference_only": {
+      "reference_passages": 1000,
+      "new_passages": 3333,
+      "difference_ms": -0.0022387675236023447,
+      "difference_ci95_ms": [-0.003378951563370188, -0.0010985834838345013],
+      "p_value_two_sided": 0.00012313939972928085,
+      "standardized_mean_difference": -0.15582297460759947
+    },
+    "cpu_100k_minus_cpu_30k_end_to_end": {
+      "reference_passages": 1000,
+      "new_passages": 3333,
+      "difference_ms": -0.002777517399249946,
+      "difference_ci95_ms": [-0.004175482458424802, -0.0013795523400750894],
+      "p_value_two_sided": 0.00010228314472073999,
+      "standardized_mean_difference": -0.15761684028976086
+    },
+    "cpu_30k_minus_gpu_30k_inference_only": {
+      "cpu_passages": 1000,
+      "gpu_passages": 1000,
+      "difference_ms": -0.07462706440000001,
+      "difference_ci95_ms": [-0.07803597822973392, -0.0712181505702661],
+      "p_value_two_sided": 2.3621324696001475e-246,
+      "standardized_mean_difference": -1.9207643322133579
+    },
+    "cpu_30k_minus_gpu_30k_end_to_end": {
+      "cpu_passages": 1000,
+      "gpu_passages": 1000,
+      "difference_ms": -0.14502625936666666,
+      "difference_ci95_ms": [-0.14874409695600854, -0.14130842177732478],
+      "p_value_two_sided": 0.0,
+      "standardized_mean_difference": -3.422380928806631
+    },
+    "cpu_100k_minus_gpu_100k_inference_only": {
+      "cpu_passages": 3333,
+      "gpu_passages": 3333,
+      "difference_ms": -0.07479602644264424,
+      "difference_ci95_ms": [-0.07632108119513988, -0.07327097169014861],
+      "p_value_two_sided": 0.0,
+      "standardized_mean_difference": -2.355485371360088
+    },
+    "cpu_100k_minus_gpu_100k_end_to_end": {
+      "cpu_passages": 3333,
+      "gpu_passages": 3333,
+      "difference_ms": -0.13862050250025004,
+      "difference_ci95_ms": [-0.14043506442951015, -0.13680594057098994],
+      "p_value_two_sided": 0.0,
+      "standardized_mean_difference": -3.6689518143807014
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "x": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/resnet8/hls4ml/data/cifar10_x_test.npy",
+    "shape": [
+      10000,
+      32,
+      32,
+      3
+    ],
+    "dtype": "float32",
+    "min": 0.0,
+    "max": 1.0,
+    "sha256": "d9603f23e2043167a99beedce2abf197cb4df2dc1fe0034c562939cca7e90e42"
+  },
+  "y": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/resnet8/hls4ml/data/cifar10_y_test.npy",
+    "shape": [
+      10000
+    ],
+    "dtype": "uint8",
+    "min": 0,
+    "max": 9,
+    "sha256": "19004b019bd095265b4ce6637c9ff979c66abcbc8e658a665f791b487cdea5eb"
+  },
+  "normalization": "x.astype(float32) / 255.0"
+}

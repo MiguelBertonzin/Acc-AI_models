@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "source": "source/iris_mlp_clean.h5",
+  "source_sha256": "60d4e49c7082d97cac029ba919ffa8c88514ac9109d0bd69bafb23fa663fbb94",
+  "output": "models/float/iris_mlp_keras2_vai3_5_logits.h5",
+  "output_sha256": "3537a280b4521b83ca5b48b93c5ec936acc9f41662c24535f4a2dcf3b9261add",
+  "parameters": 139,
+  "architecture": "4-8-8-3",
+  "source_last_activation": "softmax",
+  "dpu_model_last_activation": "linear",
+  "softmax_policy": "removed from DPU graph; apply on ARM only when probabilities are required",
+  "samples": 30,
+  "max_abs_probability_error": 1.1920928955078125e-07,
+  "mean_abs_probability_error": 6.508568795027259e-09,
+  "argmax_agreement": 30,
+  "argmax_total": 30,
+  "source_correct": 29,
+  "rebuilt_correct": 29,
+  "atol": 2e-06
+}

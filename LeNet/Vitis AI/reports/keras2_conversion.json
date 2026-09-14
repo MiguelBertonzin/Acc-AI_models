@@ -1,0 +1,119 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.12.0",
+  "source": "models/float/lenet_mnist_keras3_no_softmax.h5",
+  "source_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+  "output": "models/float/lenet_mnist_keras2_vai3_5_no_softmax.h5",
+  "output_sha256": "8dea58ecbe193e25058fda3327c1f47cf06b3003e48f6a880ad6233e6ef1e22e",
+  "probe_sha256": "fc708d3fab31a5263c04016255daa5684a59abc2173471ce947b4e0ad5aeb6e3",
+  "samples": 256,
+  "max_abs_error": 0.006184220314025879,
+  "mean_abs_error": 0.0009955058339983225,
+  "argmax_matches": 256,
+  "weights_exact_match": true,
+  "weight_tensor_checks": [
+    {
+      "tensor": "conv1/kernel",
+      "shape": [
+        5,
+        5,
+        1,
+        6
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "conv1/bias",
+      "shape": [
+        6
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "conv2/kernel",
+      "shape": [
+        5,
+        5,
+        6,
+        16
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "conv2/bias",
+      "shape": [
+        16
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "dense1/kernel",
+      "shape": [
+        256,
+        120
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "dense1/bias",
+      "shape": [
+        120
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "dense2/kernel",
+      "shape": [
+        120,
+        84
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "dense2/bias",
+      "shape": [
+        84
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "output/kernel",
+      "shape": [
+        84,
+        10
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    },
+    {
+      "tensor": "output/bias",
+      "shape": [
+        10
+      ],
+      "max_abs_error": 0.0,
+      "exact_match": true
+    }
+  ],
+  "parameters": 44426,
+  "input_shape": [
+    null,
+    28,
+    28,
+    1
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "last_activation": "linear",
+  "atol": 0.01,
+  "numerical_note": "Logits compare TensorFlow 2.21/GPU with TensorFlow 2.12/CPU; weights are checked bit-exact separately."
+}

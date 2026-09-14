@@ -1,0 +1,16 @@
+{
+  "reuse_factor": 128,
+  "status": "completed",
+  "staging": "/tmp/h1_lenet_rf128_c_n8q5ud",
+  "command": [
+    "/opt/anaconda3/bin/python3",
+    "/home/miguel/Downloads/Plano testes TCC/H1/LeNet/generate_lenet_h1.py",
+    "--reuse-factor",
+    "128",
+    "--output-dir",
+    "/tmp/h1_lenet_rf128_c_n8q5ud"
+  ],
+  "started_at_unix": 1788985046.133971,
+  "returncode": 0,
+  "finished_at_unix": 1788985607.7910533
+}

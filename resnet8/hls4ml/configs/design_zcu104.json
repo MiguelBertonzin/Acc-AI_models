@@ -1,0 +1,18 @@
+{
+  "project_name_baseline": "resnet8_resource",
+  "project_name_fifo": "resnet8_resource_fifo_opt",
+  "part": "xczu7ev-ffvc1156-2-e",
+  "board": "xilinx.com:zcu104:part0:1.1",
+  "clock_period_ns": 10.0,
+  "backend": "Vitis",
+  "io_type": "io_stream",
+  "strategy": "Resource",
+  "conv_implementation": "LineBuffer",
+  "precision_width": 22,
+  "precision_integer": 12,
+  "rounding": "AP_RND_CONV",
+  "saturation": "AP_SAT",
+  "maximum_reuse_factor": 288,
+  "profiling_fifo_depth": 4096,
+  "minimum_fifo_test_samples": 2
+}

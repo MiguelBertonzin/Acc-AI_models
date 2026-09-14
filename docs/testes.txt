@@ -1,0 +1,25 @@
+M1 -> hls4ml x vitis ai -> end-to-end x inference-only (os 3 modelos)
+M3 -> Repetibilidade -> várias execuções (media, mediana, p95, desvio) (os 3 modelos)
+
+H1 -> hls4ml -> reusefactor global, RF = 1,2,4,8,16 ..., manter precisão, clock tudo constante. (MLP e LeNet(testar))
+H2 -> hls4ml -> reusefactor por camada, resto igual constante. (LeNet e Resnet8)
+H3 -> hls4ml -> Strategy, Latency x Resource, reusefactor e precisão constante. (MLP e LeNet e resnet8)
+H4 -> hls4ml -> Arquitetura de I/O, io_parallel x io_stream. (MLP e LeNet e resnet8)
+
+(fOCAR NA Resnet8)
+H5 -> hls4ml -> FIFO optimization, com e sem, io_stream constante. (LeNet e resnet8)
+H6 -> hls4ml -> precisão manual, 16/12/10/8 bits etc, manter consntante o resto só alterar a precisão, (medir acuracia e utilização de recursos). (LeNet e resnet8)
+H7 -> hls4ml -> Precisão uniforme x por camada, global x profiling, acuracia e recursos. (LeNet e Resnet8)
+H8 -> hls4ml -> Qkeras, medir acuracia e utilização de recursos (resnet8 e lenet)
+H9 -> hls4ml -> HGQ/HGQ2 (Resnet8)
+
+TALVEZ
+H10 -> alterar clock, 10ns / 5ns / 3,33ns, medir Fmax, WNS, latencia, e recursos.
+H11 -> hls4ml -> softmax x logits x argmax
+
+
+Resnet8
+V1 -> vitis AI -> FP32(alto-nivel) x PTQ x QAT, FP32 software / INT8 PTQ / INT8 QAT.
+V2 -> viis ai -> Calibração PTQ, 100 / 500/ 1000 imagens.
+V5 -> VITIS AI -> Runtime, Python x C, manter xmodel.
+V9 -> vitis ai -> número de DPUs, 1 x 2 cores.

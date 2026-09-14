@@ -1,0 +1,33 @@
+{
+  "scenario": "inference_only",
+  "threads_runners": 4,
+  "physical_dpu_cores": 2,
+  "inferences": 10000,
+  "blocks": 10,
+  "samples_per_block": 1000,
+  "benchmark_wall_s": 2.46299852,
+  "throughput_effective_inf_s": 4060.0917616466936,
+  "block_throughput_arithmetic_mean_inf_s": 4068.2446877820375,
+  "latency": {
+    "count": 10000,
+    "mean_ms": 0.600500091,
+    "median_ms": 0.42295,
+    "std_sample_ms": 0.6094990104999858,
+    "cv_percent": 101.49857088031412,
+    "minimum_ms": 0.16343,
+    "maximum_ms": 7.85763,
+    "p90_ms": 1.1559930000000005,
+    "p95_ms": 1.5598224999999997,
+    "p99_ms": 3.448955800000008,
+    "mean_ci95_lower_ms": 0.5777012818456785,
+    "mean_ci95_upper_ms": 0.6232989001543215,
+    "ci_unit": "means of 10 blocks of 1000 completed inferences",
+    "ci_blocks": 10
+  },
+  "determinism": {
+    "checked": true,
+    "passed": true,
+    "divergences": 0,
+    "divergent_positions_first100": []
+  }
+}

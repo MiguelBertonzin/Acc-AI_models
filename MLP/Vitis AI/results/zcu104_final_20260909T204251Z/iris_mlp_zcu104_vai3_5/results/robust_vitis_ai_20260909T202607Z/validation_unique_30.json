@@ -1,0 +1,18 @@
+{
+  "samples_unique": 30,
+  "correct": 29,
+  "accuracy": 0.9666666666666667,
+  "accuracy_percent": 96.66666666666667,
+  "wilson95": [
+    0.8332960900859082,
+    0.9940914096183874
+  ],
+  "wilson95_percent": [
+    83.32960900859082,
+    99.40914096183874
+  ],
+  "reference_agreement": 30,
+  "reference_agreement_percent": 100.0,
+  "divergences": 0,
+  "passed": true
+}

@@ -1,0 +1,39 @@
+{
+  "package": "resnet8_no_softmax_zcu104_vai3_5",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "board": "ZCU104",
+  "vitis_ai": "3.5 host toolchain",
+  "required_before_run": "xdputil query must report a matching DPU fingerprint",
+  "files": [
+    {
+      "path": "resnet8_no_softmax.xmodel",
+      "bytes": 249251,
+      "sha256": "bfacc85783958ff0d734e5c7e44f126a6fd4af9b6b1f20e4d9b2f7ae96fa7802"
+    },
+    {
+      "path": "cifar10_test_uint8.npz",
+      "bytes": 28267769,
+      "sha256": "5e2212a3c58a17d04ec1e91cb1b501c51ed4a02a0cdc5f25b9f6d3345360f467"
+    },
+    {
+      "path": "quantized_test_outputs.npz",
+      "bytes": 149660,
+      "sha256": "072e6cb3e3356664cf096f8f00fd1263650ffa8966bdf2192676fd97a7da14d6"
+    },
+    {
+      "path": "00_inspect_dpu.py",
+      "bytes": 2160,
+      "sha256": "b4fe65e37c30341359d830d961448ab93228a96b74f33dc801484b41b48cf166"
+    },
+    {
+      "path": "01_smoke_inference.py",
+      "bytes": 4615,
+      "sha256": "8586c903a48b06ad8c94f1a9da1744267bf9293c7da3006216d01ca66a13fe14"
+    },
+    {
+      "path": "arch_zcu104_vai3.5.json",
+      "bytes": 41,
+      "sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671"
+    }
+  ]
+}

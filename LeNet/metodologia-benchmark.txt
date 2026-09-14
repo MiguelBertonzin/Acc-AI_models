@@ -1,0 +1,573 @@
+METODOLOGIA DOS BENCHMARKS DE INFERENCIA EM CPU E GPU
+=====================================================
+
+O protocolo utilizado foi um benchmark de inferencia batch 1, sincrono, com as
+imagens previamente normalizadas. Ele mede principalmente o tempo de execucao do
+modelo e o caminho ate a saida no host, mas nao representa saturacao maxima da
+CPU ou GPU por batching ou por multiplas requisicoes simultaneas.
+
+A descricao abaixo prioriza a variante sem softmax, que e a mais adequada para
+comparar com a implementacao hls4ml da ZCU104. A variante com softmax usou
+essencialmente o mesmo protocolo, mudando apenas o modelo avaliado.
+
+
+1. MODELOS AVALIADOS
+====================
+
+Foram avaliadas duas variantes da mesma ResNet-8:
+
+- Com softmax:
+  Arquivo: resnet8_cifar10_keras3.h5
+  Saida: 10 probabilidades.
+
+- Sem softmax:
+  Arquivo: resnet8_cifar10_keras3_no_softmax.h5
+  Saida: 10 logits.
+
+Ambas possuem 78.714 parametros. A variante sem softmax e a correspondente a
+implementacao em FPGA.
+
+A remocao da softmax foi validada separadamente:
+
+- os 47 arrays de pesos eram identicos;
+- argmax(softmax) e argmax(logits) produziram a mesma classe nas 10.000 imagens,
+  dentro de cada dispositivo;
+- o erro maximo ao reconstruir softmax(logits) foi aproximadamente 2,38 x 10^-7.
+
+E importante observar que CPU e GPU divergiram em uma imagem do CIFAR-10: a CPU
+obteve 7.490 acertos e a GPU 7.489. Isso e compativel com diferencas numericas
+entre oneDNN e CUDA/cuDNN proximas a uma fronteira de decisao.
+
+
+2. DATASET E PRE-PROCESSAMENTO
+==============================
+
+Foi utilizada a divisao oficial de teste do CIFAR-10:
+
+- 10.000 imagens;
+- resolucao de 32 x 32 pixels;
+- tres canais RGB;
+- 10 classes;
+- 1.000 imagens por classe.
+
+As imagens foram convertidas previamente para float32 e normalizadas:
+
+    test_images = test_images.astype(np.float32) / 255.0
+
+Portanto, a normalizacao nao foi feita a cada inferencia e nao entrou na latencia
+ou no throughput medido.
+
+Foram construidos tres conjuntos:
+
+- 100 imagens: 10 por classe;
+- 1.000 imagens: 100 por classe;
+- 10.000 imagens: todo o conjunto, 1.000 por classe.
+
+Os conjuntos eram:
+
+- estratificados por classe;
+- balanceados;
+- aninhados: as 100 imagens estavam dentro das 1.000, que estavam dentro das
+  10.000;
+- selecionados deterministicamente com a seed 20260825.
+
+Dentro de cada ciclo, a ordem das imagens era novamente permutada de maneira
+deterministica. Assim, cada ciclo processava as mesmas imagens, mas nao
+necessariamente na mesma ordem.
+
+
+3. CONFIGURACAO COMUM DE EXECUCAO
+=================================
+
+CPU e GPU usaram:
+
+- TensorFlow 2.21.0;
+- Keras 3.13.2;
+- NumPy 1.26.4;
+- Python 3.12.7;
+- precisao float32;
+- batch igual a 1;
+- tf.function;
+- assinatura fixa (1, 32, 32, 3);
+- jit_compile=False;
+- determinismo do TensorFlow habilitado.
+
+Nao foram usados:
+
+- XLA;
+- TensorRT;
+- quantizacao;
+- mixed precision;
+- batching maior que 1;
+- multiplas inferencias simultaneas.
+
+O modelo foi tracado uma unica vez como grafo TensorFlow. Isso evitou executar
+toda a interpretacao eager em cada imagem, mas manteve XLA desativado.
+
+
+4. GARANTIA DE POSICIONAMENTO NA CPU
+====================================
+
+A CPU utilizada foi:
+
+- Intel Core i7-13700;
+- 16 nucleos fisicos;
+- 24 CPUs logicas;
+- backend TensorFlow oneDNN;
+- politica automatica de threads do TensorFlow.
+
+Para garantir execucao na CPU:
+
+1. CUDA_VISIBLE_DEVICES foi definido como vazio antes da importacao do
+   TensorFlow.
+2. Todas as GPUs foram ocultadas com tf.config.set_visible_devices([], "GPU").
+3. O soft placement foi desativado.
+4. Modelo e funcao de inferencia ficaram sob tf.device("/CPU:0").
+5. A localizacao de cada saida era verificada.
+6. Uma saida fora de CPU:0 interromperia o benchmark.
+
+A CPU continuou multithread. Portanto, batch 1 nao significa execucao em apenas
+um nucleo: o TensorFlow/oneDNN pode distribuir uma inferencia entre varios
+nucleos.
+
+
+5. GARANTIA DE POSICIONAMENTO NA GPU
+====================================
+
+A GPU utilizada foi:
+
+- NVIDIA GeForce RTX 3050 OEM;
+- 8 GB de memoria;
+- CUDA 12.5.1;
+- cuDNN 9;
+- driver 580.173.02.
+
+Para evitar fallback para CPU:
+
+1. CUDA_VISIBLE_DEVICES=0 expos somente a GPU selecionada.
+2. O script confirmou a presenca de uma GPU fisica.
+3. Apenas uma GPU logica foi mantida visivel.
+4. O soft placement foi desativado.
+5. Modelo e inferencia ficaram sob tf.device("/GPU:0").
+6. Cada saida era verificada como pertencente a GPU:0.
+7. Uma saida fora da GPU interromperia o ensaio.
+
+A rede era calculada na GPU, mas a CPU ainda participava de:
+
+- laco Python;
+- criacao dos tensores;
+- chamadas ao runtime/driver;
+- sincronizacao;
+- argmax;
+- armazenamento dos resultados;
+- telemetria e checkpoints.
+
+Portanto, "execucao na GPU" significa que o grafo da rede estava na GPU, nao que
+todo o benchmark acontecia sem participacao da CPU.
+
+
+6. AQUECIMENTO
+==============
+
+Antes das medicoes foram realizadas 100 inferencias batch 1.
+
+Essas inferencias serviram para:
+
+- carregar e estabilizar o runtime;
+- tracar o tf.function;
+- inicializar kernels oneDNN ou CUDA/cuDNN;
+- inicializar caches;
+- evitar que compilacao e inicializacao contaminassem as primeiras medicoes.
+
+As 100 inferencias de aquecimento nao entraram nos resultados.
+
+Depois do aquecimento, foi feita tambem uma janela ociosa de aproximadamente
+5 segundos para estimar a potencia de baseline:
+
+- CPU: aproximadamente 12,8278 W de potencia de pacote;
+- GPU: aproximadamente 29,0630 W de potencia da placa, na sessao sem softmax.
+
+
+7. REPETICOES E CICLOS
+======================
+
+Para cada tamanho de conjunto foram executados 100 ciclos completos:
+
+    100 imagens x 100 ciclos       =     10.000 inferencias
+    1.000 imagens x 100 ciclos     =    100.000 inferencias
+    10.000 imagens x 100 ciclos    =  1.000.000 inferencias
+
+No total, cada combinacao dispositivo/modelo produziu:
+
+    10.000 + 100.000 + 1.000.000 = 1.110.000 latencias
+
+Os resultados rotulados como 10, 20, 50 e 100 ciclos nao eram quatro
+experimentos separados. Eles eram prefixos da mesma execucao:
+
+- resultado de 10 ciclos: primeiros 10;
+- resultado de 20 ciclos: primeiros 20;
+- resultado de 50 ciclos: primeiros 50;
+- resultado de 100 ciclos: todos os 100.
+
+Isso permite observar convergencia temporal, mas significa que essas quatro
+linhas nao sao estatisticamente independentes.
+
+
+8. LACO DE UMA INFERENCIA
+=========================
+
+De forma simplificada, cada inferencia foi executada assim:
+
+    batch = tf.convert_to_tensor(image)
+
+    t0 = time.perf_counter_ns()
+
+    output = infer(batch)
+    host_output = output.numpy()
+
+    t1 = time.perf_counter_ns()
+
+    latency_ms = (t1 - t0) / 1_000_000
+    prediction = np.argmax(host_output[0])
+
+A chamada .numpy() e metodologicamente importante:
+
+- na GPU, forca a conclusao dos kernels;
+- transfere ou materializa a saida no host;
+- impede medir apenas o tempo de enfileiramento assincrono;
+- cria uma barreira antes da proxima inferencia.
+
+Assim, foi executada uma inferencia por vez:
+
+    entrada 1 -> inferencia -> saida no host
+    entrada 2 -> inferencia -> saida no host
+    entrada 3 -> inferencia -> saida no host
+    ...
+
+Nao havia varias inferencias em voo.
+
+
+9. O QUE ENTROU NA LATENCIA INDIVIDUAL
+======================================
+
+A latencia individual comecou depois da chamada a tf.convert_to_tensor e
+terminou depois de output.numpy().
+
+Entraram:
+
+- chamada ao grafo tf.function;
+- calculo completo da ResNet-8;
+- sincronizacao;
+- materializacao da saida no host;
+- transferencia GPU -> host da saida, no caso da GPU;
+- qualquer transferencia de entrada ainda pendente quando a sincronizacao foi
+  alcancada.
+
+Nao entraram diretamente:
+
+- carregamento do CIFAR-10;
+- normalizacao /255.0;
+- construcao dos subconjuntos;
+- chamada a tf.convert_to_tensor;
+- argmax;
+- comparacao com o rotulo;
+- escrita dos checkpoints;
+- calculo das estatisticas.
+
+Na GPU, embora tf.convert_to_tensor fosse chamado antes de iniciar o cronometro
+individual, a transferencia podia ser assincrona. Qualquer parte ainda pendente
+acabava sendo aguardada por .numpy(). Por isso, nao e correto interpretar a
+latencia como tempo matematico puro do kernel.
+
+
+10. O QUE ENTROU NO THROUGHPUT
+==============================
+
+O throughput nao foi calculado simplesmente como:
+
+    1000 / latencia_media_ms
+
+Para cada ciclo havia um cronometro externo:
+
+    inicio_ciclo = time.perf_counter()
+
+    for image in images:
+        criar_tensor()
+        executar_inferencia()
+        sincronizar_saida()
+        calcular_argmax()
+        armazenar_predicao()
+
+    fim_ciclo = time.perf_counter()
+
+    throughput = numero_de_imagens / (fim_ciclo - inicio_ciclo)
+
+Portanto, o throughput incluiu:
+
+- laco Python;
+- selecao e indexacao da imagem;
+- criacao do tensor;
+- transferencias necessarias;
+- inferencia;
+- sincronizacao;
+- argmax;
+- armazenamento da predicao em memoria.
+
+Nao incluiu:
+
+- normalizacao global;
+- carregamento do dataset;
+- gravacao posterior do CSV/NPY;
+- calculo agregado da acuracia depois do ciclo;
+- impressao do resultado.
+
+Foram reportadas duas formas de vazao:
+
+    FPS_ciclo = imagens / tempo_do_ciclo
+
+    FPS_medio = media aritmetica dos FPS dos ciclos
+
+    FPS_efetivo = total de inferencias / soma dos tempos dos ciclos
+
+Na GPU sem softmax:
+
+- FPS medio dos ciclos: 1.268,49 inferencias/s;
+- FPS efetivo global: 1.223,84 inferencias/s.
+
+A diferenca existe porque a media de razoes e a razao dos totais nao sao
+matematicamente equivalentes e porque os ciclos apresentaram duracoes
+diferentes.
+
+
+11. CALCULO DA LATENCIA E ESTATISTICA
+=====================================
+
+Nenhum outlier foi removido.
+
+Para cada prefixo de ciclos foram calculados sobre todas as latencias:
+
+- media;
+- mediana;
+- desvio-padrao amostral;
+- percentil 95;
+- minimo;
+- maximo.
+
+O intervalo de confianca da media usou as medias dos ciclos como observacoes:
+
+    IC95 = media +/- 1,95996 x desvio_das_medias / sqrt(K)
+
+em que:
+
+- a media e a media das medias por ciclo;
+- o desvio e o desvio-padrao entre as medias dos ciclos;
+- K e 10, 20, 50 ou 100.
+
+A ideia foi usar o ciclo completo como unidade para capturar variacoes temporais
+de temperatura, DVFS e escalonamento.
+
+Uma limitacao e que os ciclos foram sequenciais na mesma sessao. Portanto, pode
+existir autocorrelacao temporal; eles nao sao replicacoes completamente
+independentes realizadas em reinicializacoes diferentes da maquina.
+
+
+12. ACURACIA
+============
+
+Para o modelo sem softmax:
+
+    classe_predita = np.argmax(logits)
+
+Para o modelo com softmax:
+
+    classe_predita = np.argmax(probabilidades)
+
+A acuracia foi calculada somente sobre imagens unicas. As 100 repeticoes nao
+foram tratadas como novas observacoes de acuracia.
+
+Por exemplo, para 10.000 imagens:
+
+- CPU sem softmax: 7.490/10.000 = 74,90%;
+- GPU sem softmax: 7.489/10.000 = 74,89%.
+
+O intervalo de confianca de acuracia foi calculado pelo metodo de Wilson.
+
+Cada ciclo tambem deveria produzir a mesma quantidade de acertos. Se uma
+repeticao produzisse uma contagem diferente, o script abortaria por
+nao determinismo.
+
+
+13. POTENCIA E ENERGIA NA CPU
+=============================
+
+A telemetria principal da CPU foi coletada externamente pelo turbostat,
+aproximadamente a cada 100 ms:
+
+    Busy%
+    Bzy_MHz
+    PkgTmp
+    PkgWatt
+    CorWatt
+
+Foram medidos:
+
+- ocupacao da CPU;
+- frequencia durante ciclos ocupados;
+- temperatura do pacote;
+- potencia total do pacote;
+- potencia dos nucleos.
+
+Cada amostra de potencia foi associada ao intervalo temporal exato de cada
+ciclo. Para amostras parcialmente sobrepostas com o comeco ou fim do ciclo, foi
+usado peso proporcional a duracao da sobreposicao.
+
+A energia foi integrada a partir da potencia:
+
+    E = soma(P_i x delta_t_i)
+
+A energia por inferencia foi:
+
+    E_inferencia = E_ciclo / N
+
+Tambem foi calculada energia dinamica:
+
+    P_dinamica = max(P_pacote - P_ociosa, 0)
+
+Limitacoes:
+
+- RAPL/turbostat estima energia do pacote, nao mede consumo na tomada;
+- PkgWatt inclui nucleos e uncore;
+- o dominio DRAM nao estava disponivel;
+- carga de outros processos tambem pode afetar o pacote;
+- potencia de CPU nao possui o mesmo escopo fisico da potencia de placa da GPU.
+
+
+14. POTENCIA E ENERGIA NA GPU
+=============================
+
+Foi usado um processo persistente do nvidia-smi, com amostragem a cada 100 ms:
+
+    power.draw.instant
+    power.draw.average
+    utilization.gpu
+    clocks.current.sm
+    temperature.gpu
+
+Para cada ciclo:
+
+    E_total = P_media x tempo_do_ciclo
+
+    E_inferencia = E_total / N
+
+A potencia dinamica foi calculada subtraindo a potencia ociosa medida depois do
+aquecimento:
+
+    P_dinamica = max(P_total - P_ociosa, 0)
+
+Limitacoes:
+
+- a leitura vem do sensor interno da placa;
+- a documentacao local indicava incerteza aproximada de +/- 5 W;
+- 100 ms e muito maior que uma inferencia de aproximadamente 0,5 a 1 ms;
+- por isso, a energia somente se torna razoavelmente estavel quando integrada em
+  ciclos longos;
+- o consumo do processador host nao esta incluido na potencia da placa GPU.
+
+
+15. RESULTADOS PRINCIPAIS SEM SOFTMAX
+=====================================
+
+A linha recomendada usa 10.000 imagens e 100 ciclos:
+
+Metrica                         CPU i7-13700        GPU RTX 3050
+-----------------------------  ------------------  ------------------
+Inferencias                    1.000.000           1.000.000
+Batch                          1                   1
+Acuracia                       74,90%              74,89%
+Latencia media                 0,9760 ms           0,6912 ms
+Mediana                        0,9028 ms           0,5122 ms
+p95                            1,5704 ms           1,1219 ms
+FPS medio                      975,04              1.268,49
+FPS efetivo global             975,01              1.223,84
+Potencia medida                57,41 W pacote CPU  35,18 W placa GPU
+Energia total por inferencia   58,36 mJ            28,46 mJ
+
+Os escopos de potencia sao diferentes: pacote CPU versus placa GPU. Logo, a
+comparacao energetica e indicativa, nao uma comparacao completa de consumo do
+sistema.
+
+
+16. INTERPRETACAO METODOLOGICA PARA A ZCU104
+============================================
+
+Metodologicamente, o que foi medido em CPU/GPU pode ser resumido como:
+
+    Inferencia sustentada batch 1, serial e sincrona, com entrada previamente
+    normalizada e saida materializada no host.
+
+Isso e comparavel a ZCU104 se nela for realizado:
+
+    entrada pronta
+    -> iniciar DMA
+    -> executar FPGA
+    -> receber saida por DMA
+    -> aguardar conclusao
+    -> iniciar proxima inferencia
+
+Nao e exatamente equivalente se a ZCU104 for medida assim:
+
+    DMA continuamente alimentado
+    -> varias imagens em voo
+    -> computacao e transferencias sobrepostas
+    -> pipeline permanentemente ocupado
+
+Nesse segundo caso, a FPGA esta sendo medida em regime saturado, enquanto CPU e
+GPU foram medidas em regime batch 1 sincrono, sem batching e sem concorrencia
+entre inferencias.
+
+A denominacao metodologicamente mais correta para CPU/GPU e:
+
+    Throughput sustentado de inferencia batch 1 com entrada pre-processada.
+
+E nao:
+
+    Throughput maximo ou saturado do acelerador.
+
+Finalmente, os ensaios com e sem softmax foram feitos em sessoes sequenciais,
+nao alternadas ou pareadas. Por isso, pequenas diferencas de desempenho entre
+essas variantes nao provam causalmente o custo da softmax; podem envolver
+temperatura, DVFS, cache, escalonamento e decisoes internas do backend.
+
+
+17. ARQUIVOS DE EVIDENCIA E REPRODUCAO
+======================================
+
+Documentacao detalhada:
+
+- CPU/resnet8-no-softmax/README.md
+- GPU/resnet8-no-softmax/README.md
+- CPU/resnet8-softmax/README.md
+- GPU/resnet8-softmax/README.md
+
+Scripts principais:
+
+- CPU/resnet8-no-softmax/benchmark_no_softmax_cpu.py
+- GPU/resnet8-no-softmax/benchmark_no_softmax_gpu.py
+- CPU/resnet8-softmax/benchmark_softmax_cpu.py
+- GPU/resnet8-softmax/benchmark_softmax_gpu.py
+
+Resultados brutos e agregados:
+
+- CPU/resnet8-no-softmax/resultados/
+- GPU/resnet8-no-softmax/resultados/
+- CPU/resnet8-softmax/resultados/
+- GPU/resnet8-softmax/resultados/
+
+Os diretorios de resultados contem:
+
+- resultados.csv: resultados agregados;
+- passagens_n*.csv: uma linha para cada ciclo;
+- latencias_n*.npy: latencias individuais;
+- metadados.json: ambiente e configuracao;
+- validacao_equivalencia.json: validacao entre softmax e logits;
+- RESULTADOS.md: tabelas resumidas.

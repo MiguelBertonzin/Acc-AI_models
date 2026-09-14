@@ -1,0 +1,369 @@
+#!/usr/bin/env python3
+"""Funções compartilhadas pelo fluxo ResNet8/hls4ml."""
+
+from __future__ import annotations
+
+import csv
+import hashlib
+import json
+import platform
+import re
+import shutil
+from pathlib import Path
+from typing import Any
+
+import numpy as np
+
+
+HLS_ROOT = Path(__file__).resolve().parents[1]
+WORKSPACE_ROOT = HLS_ROOT.parent
+DEFAULT_MODEL = WORKSPACE_ROOT / "resnet8_cifar10_keras3_no_softmax.h5"
+ORIGINAL_MODEL = WORKSPACE_ROOT / "resnet8_cifar10_keras3.h5"
+DEFAULT_X = HLS_ROOT / "data/cifar10_x_test.npy"
+DEFAULT_Y = HLS_ROOT / "data/cifar10_y_test.npy"
+DEFAULT_REUSE_PLAN = HLS_ROOT / "configs/reuse_plan_zcu104_max288.json"
+DEFAULT_DESIGN = HLS_ROOT / "configs/design_zcu104.json"
+
+
+def fixed_type(width: int, integer: int) -> str:
+    if integer < 1 or width <= integer:
+        raise ValueError("A precisão exige width > integer >= 1.")
+    return f"ap_fixed<{width},{integer},AP_RND_CONV,AP_SAT>"
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def ensure_new_output_dir(path: Path, force: bool = False) -> Path:
+    resolved = path.expanduser().resolve()
+    builds_root = (HLS_ROOT / "builds").resolve()
+    if resolved != builds_root and builds_root not in resolved.parents:
+        raise ValueError(f"O build deve permanecer dentro de {builds_root}: {resolved}")
+    if resolved.exists():
+        if not force:
+            raise FileExistsError(
+                f"O diretório já existe: {resolved}. Escolha outro --out ou use --force."
+            )
+        if resolved == builds_root:
+            raise ValueError("Recusa em remover a raiz builds/.")
+        shutil.rmtree(resolved)
+    resolved.mkdir(parents=True)
+    return resolved
+
+
+def vitis_safe_path(path: Path) -> Path:
+    """Cria um staging temporário sem espaços para ferramentas AMD.
+
+    Vitis HLS 2024.2 canonicaliza symlinks e rejeita espaços no caminho real.
+    O conteúdo do staging deve ser sincronizado para ``path`` ao final.
+    """
+    resolved = path.expanduser().resolve()
+    if " " not in str(resolved):
+        return resolved
+    if resolved != HLS_ROOT and HLS_ROOT not in resolved.parents:
+        raise ValueError(f"Só são aceitos builds sob {HLS_ROOT}: {resolved}")
+    token = hashlib.sha256(str(HLS_ROOT).encode("utf-8")).hexdigest()[:10]
+    stage_root = Path("/tmp") / f"resnet8_hls4ml_stage_{token}"
+    stage_path = stage_root / resolved.name
+    if stage_path.exists():
+        shutil.rmtree(stage_path)
+    stage_path.mkdir(parents=True)
+    return stage_path
+
+
+def sync_tool_output(tool_path: Path, output_path: Path, cleanup: bool = True) -> None:
+    """Copia o staging para builds/ e opcionalmente remove a cópia temporária."""
+    if tool_path.resolve() == output_path.resolve():
+        return
+    tool_resolved = tool_path.resolve()
+    expected_root = Path("/tmp").resolve()
+    if expected_root not in tool_resolved.parents:
+        raise ValueError(f"Staging fora de /tmp: {tool_resolved}")
+    collect_report_paths(output_path.resolve())
+    if any(output_path.resolve().rglob("*.v")):
+        audit_fifo_rtl(output_path.resolve())
+    shutil.copytree(tool_resolved, output_path.resolve(), dirs_exist_ok=True)
+    if cleanup:
+        shutil.rmtree(tool_resolved)
+
+
+def replace_precision_tree(value: Any, precision: str) -> Any:
+    if isinstance(value, dict):
+        return {key: replace_precision_tree(item, precision) for key, item in value.items()}
+    if isinstance(value, list):
+        return [replace_precision_tree(item, precision) for item in value]
+    return precision
+
+
+def layer_mult_dimensions(layer: Any) -> tuple[int, int] | None:
+    weights = layer.get_weights()
+    if not weights:
+        return None
+    kernel = weights[0]
+    if layer.__class__.__name__ == "Conv2D":
+        return int(kernel.shape[0] * kernel.shape[1] * kernel.shape[2]), int(kernel.shape[3])
+    if layer.__class__.__name__ == "Dense":
+        return int(kernel.shape[0]), int(kernel.shape[1])
+    return None
+
+
+def choose_valid_reuse(
+    n_in: int, n_out: int, requested: int, maximum: int
+) -> tuple[int, list[int]]:
+    from hls4ml.backends.backend import get_backend
+
+    backend = get_backend("Vitis")
+    valid = [
+        int(value)
+        for value in backend.get_valid_reuse_factors(n_in, n_out)
+        if int(value) <= maximum
+    ]
+    if not valid:
+        raise RuntimeError(
+            f"Nenhum ReuseFactor válido <= {maximum} para n_in={n_in}, n_out={n_out}."
+        )
+    selected = min(valid, key=lambda value: (abs(value - requested), value))
+    return selected, valid
+
+
+def final_activation(model: Any) -> str:
+    import keras
+
+    last = model.layers[-1]
+    if last.__class__.__name__ != "Dense":
+        raise TypeError(f"A última camada deveria ser Dense, mas é {last.__class__.__name__}.")
+    return str(keras.activations.serialize(last.activation))
+
+
+def reference_logits(model: Any, x: np.ndarray) -> np.ndarray:
+    """Retorna logits tanto para o modelo linear quanto para o original softmax."""
+    import tensorflow as tf
+
+    activation = final_activation(model)
+    if activation == "linear":
+        return np.asarray(
+            model.predict(x, batch_size=max(1, min(128, len(x))), verbose=0),
+            dtype=np.float32,
+        )
+    if activation != "softmax":
+        raise ValueError(f"Ativação final não suportada: {activation}")
+
+    dense = model.layers[-1]
+    pre_dense_model = tf.keras.Model(model.inputs, dense.input)
+    dense_input = pre_dense_model.predict(
+        x, batch_size=max(1, min(128, len(x))), verbose=0
+    )
+    kernel, bias = dense.get_weights()
+    return np.asarray(dense_input @ kernel + bias, dtype=np.float32)
+
+
+def load_labels(path: Path) -> np.ndarray:
+    labels = np.load(path)
+    if labels.ndim > 1 and labels.shape[-1] > 1:
+        return np.argmax(labels, axis=-1).reshape(-1)
+    return labels.reshape(-1).astype(np.int64)
+
+
+def make_hls_config(
+    model: Any,
+    precision: str,
+    reuse_plan: dict[str, int],
+    max_reuse: int,
+) -> tuple[dict[str, Any], list[dict[str, Any]], str]:
+    import hls4ml
+
+    config = hls4ml.utils.config_from_keras_model(
+        model,
+        granularity="name",
+        backend="Vitis",
+        default_precision=precision,
+        default_reuse_factor=16,
+    )
+    config.setdefault("Model", {})["Precision"] = precision
+    config["Model"]["ReuseFactor"] = 16
+    config["Model"]["Strategy"] = "Resource"
+
+    for section_name in ("LayerType", "LayerName"):
+        section = config.get(section_name, {})
+        if not isinstance(section, dict):
+            continue
+        for layer_cfg in section.values():
+            if isinstance(layer_cfg, dict) and "Precision" in layer_cfg:
+                layer_cfg["Precision"] = replace_precision_tree(
+                    layer_cfg["Precision"], precision
+                )
+
+    rows: list[dict[str, Any]] = []
+    for layer in model.layers:
+        layer_cfg = config.get("LayerName", {}).get(layer.name)
+        if not isinstance(layer_cfg, dict):
+            continue
+        layer_cfg["Trace"] = False
+        class_name = layer.__class__.__name__
+        if class_name == "Conv2D":
+            layer_cfg["ConvImplementation"] = "LineBuffer"
+        dimensions = layer_mult_dimensions(layer)
+        if dimensions is None:
+            continue
+        n_in, n_out = dimensions
+        requested = int(reuse_plan.get(layer.name, 16))
+        if requested > max_reuse:
+            raise ValueError(
+                f"Plano solicita ReuseFactor {requested} > {max_reuse} em {layer.name}."
+            )
+        selected, valid = choose_valid_reuse(n_in, n_out, requested, max_reuse)
+        layer_cfg["Strategy"] = "Resource"
+        layer_cfg["ReuseFactor"] = selected
+        rows.append(
+            {
+                "layer": layer.name,
+                "class": class_name,
+                "n_in": n_in,
+                "n_out": n_out,
+                "multiplications": n_in * n_out,
+                "requested_reuse": requested,
+                "selected_reuse": selected,
+                "estimated_parallel_multipliers": int(np.ceil((n_in * n_out) / selected)),
+                "valid_reuse_up_to_max": " ".join(map(str, valid)),
+            }
+        )
+
+    activation = final_activation(model)
+    softmax_candidates = [
+        name for name in config.get("LayerName", {}) if "softmax" in name.lower()
+    ]
+    if activation == "linear":
+        if softmax_candidates:
+            raise RuntimeError(
+                f"Modelo linear gerou camadas softmax inesperadas: {softmax_candidates}"
+            )
+        softmax_mode = "absent_model_is_linear"
+    elif activation == "softmax":
+        if len(softmax_candidates) != 1:
+            raise RuntimeError(
+                f"Era esperada exatamente uma softmax sintética: {softmax_candidates}"
+            )
+        config["LayerName"][softmax_candidates[0]]["Skip"] = True
+        config["LayerName"][softmax_candidates[0]]["Trace"] = False
+        softmax_mode = f"skipped:{softmax_candidates[0]}"
+    else:
+        raise ValueError(f"Ativação final não suportada: {activation}")
+
+    if not rows:
+        raise RuntimeError("Nenhuma camada Conv2D/Dense foi configurada.")
+    if any(int(row["selected_reuse"]) > max_reuse for row in rows):
+        raise RuntimeError("O reuse resolvido excedeu o limite configurado.")
+    return config, rows, softmax_mode
+
+
+def write_reuse_csv(path: Path, rows: list[dict[str, Any]]) -> None:
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=rows[0].keys())
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def patch_vitis_2024_2_tcl(output_dir: Path) -> bool:
+    tcl_path = output_dir / "build_prj.tcl"
+    if not tcl_path.exists():
+        return False
+    original = tcl_path.read_text(encoding="utf-8")
+    patched = "\n".join(
+        line
+        for line in original.splitlines()
+        if "config_array_partition -maximum_size" not in line
+    ) + "\n"
+    if patched == original:
+        return False
+    (output_dir / "build_prj.original.tcl").write_text(original, encoding="utf-8")
+    tcl_path.write_text(patched, encoding="utf-8")
+    return True
+
+
+def save_manifest(
+    output_dir: Path,
+    model_path: Path,
+    parameters: dict[str, Any],
+    softmax_mode: str,
+) -> None:
+    import hls4ml
+    import keras
+    import tensorflow as tf
+
+    manifest = {
+        "model": str(model_path.resolve()),
+        "model_sha256": sha256(model_path),
+        "softmax_handling": softmax_mode,
+        "parameters": parameters,
+        "software": {
+            "python": platform.python_version(),
+            "tensorflow": tf.__version__,
+            "keras": keras.__version__,
+            "hls4ml": hls4ml.__version__,
+            "numpy": np.__version__,
+            "vitis_hls": shutil.which("vitis_hls"),
+            "vivado": shutil.which("vivado"),
+        },
+    }
+    (output_dir / "build_manifest.json").write_text(
+        json.dumps(manifest, indent=2, default=str), encoding="utf-8"
+    )
+
+
+def collect_report_paths(output_dir: Path) -> list[Path]:
+    patterns = (
+        "*csynth.rpt",
+        "*csynth.xml",
+        "*cosim*.rpt",
+        "vivado_synth.rpt",
+        "*utilization*.rpt",
+        "csynth_design_size.rpt",
+    )
+    files: list[Path] = []
+    for pattern in patterns:
+        files.extend(output_dir.rglob(pattern))
+    files = sorted(set(path.resolve() for path in files if path.is_file()))
+    (output_dir / "report_paths.txt").write_text(
+        "\n".join(map(str, files)) + ("\n" if files else ""), encoding="utf-8"
+    )
+    return files
+
+
+def audit_fifo_rtl(output_dir: Path) -> dict[str, Any]:
+    fifo_pattern = re.compile(r"fifo_w\d+_d\d+")
+    all_rtl_names: set[str] = set()
+    top_instances: set[str] = set()
+    top_files: list[str] = []
+    for path in output_dir.rglob("*.v"):
+        if "syn/verilog" not in str(path):
+            continue
+        text = path.read_text(errors="replace")
+        found = fifo_pattern.findall(text)
+        if found:
+            all_rtl_names.update(found)
+            if path.stem in {"resnet8_resource", "resnet8_resource_fifo_opt"}:
+                top_files.append(str(path.resolve()))
+                top_instances.update(found)
+    payload = {
+        "top_candidates": sorted(top_files),
+        "top_fifo_instances": sorted(top_instances),
+        "all_fifo_names_in_syn_verilog": sorted(all_rtl_names),
+        "top_instantiates_d4096": any(name.endswith("_d4096") for name in top_instances),
+        "contains_residual_d4096_rtl": any(
+            name.endswith("_d4096") for name in all_rtl_names
+        ),
+    }
+    (output_dir / "fifo_rtl_audit.json").write_text(
+        json.dumps(payload, indent=2), encoding="utf-8"
+    )
+    return payload
+

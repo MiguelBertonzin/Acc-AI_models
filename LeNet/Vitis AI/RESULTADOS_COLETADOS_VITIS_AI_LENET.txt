@@ -1,0 +1,609 @@
+RESULTADOS COLETADOS — LENET / MNIST / VITIS AI / ZCU104
+Campanha física: 08/09/2026
+Status: FINALIZADA E APROVADA
+
+============================================================
+1. PLATAFORMA
+============================================================
+
+Placa: AMD/Xilinx ZCU104
+DPU: DPUCZDX8G_ISA1_B4096
+Cores DPU: 2
+Frequência DPU: 300 MHz
+IP version: v4.1.0
+Fingerprint: 0x101000056010407
+
+Sistema:
+- PetaLinux/Xilinx 2022.2
+- Kernel: 5.15.36-xilinx-v2022.2
+- Arquitetura: aarch64
+- Python: 3.9.9
+- NumPy: 1.21.2
+- VART: 3.0.0
+
+Modelo:
+- LeNet
+- Dataset: MNIST
+- Precisão DPU: INT8
+- Entrada: [1, 28, 28, 1]
+- Input fix_point: 6
+- Saída: [1, 10]
+- Output fix_point: 2
+- Batch: 1
+- Softmax: não utilizado
+- Decisão: argmax(logits)
+- Parâmetros: 44.426
+- MACs teóricos por imagem: 281.640
+
+============================================================
+2. HASHES PRINCIPAIS
+============================================================
+
+XModel:
+bfef577b297939e19cabf74b1ab8d30ab65d694cd6a1ec9b28197577a3ce52c5
+
+Dataset:
+be1c7a4955d7da22ea2fa55f9c0350a34f33cdee1697a6da500153c2eafa73cd
+
+Referência INT8 host:
+cb7f13cff28ae247001a638d7635dea8fd7066d12078dd049beb93bd856b0d32
+
+Índices N=10000:
+65a5248b6e84b1b5bc6bd1068aba612e7884ac5c781f686d75d3843cc7ebd8a9
+
+Script benchmark:
+a712edf15d45498236102e713f4cb918ae3b0b228503729e30256ef6cf8959d6
+
+============================================================
+3. VALIDAÇÃO FUNCIONAL
+============================================================
+
+Smoke test:
+- Status: passed
+- Sample index: 0
+- Label: 7
+- Predição DPU: 7
+- Predição referência INT8: 7
+- Concordância: true
+- Warm-up: 20
+
+Validação completa:
+- Imagens únicas: 10.000
+- Acertos DPU: 9.895
+- Acurácia: 98,95%
+- IC95 Wilson: 98,7306% a 99,1318%
+- Concordância DPU x host INT8: 10.000 / 10.000
+- Concordância: 100,00%
+- Divergências: 0
+
+Referência float host:
+- Acertos: 9.898 / 10.000
+- Acurácia: 98,98%
+
+Referência INT8 host:
+- Acertos: 9.895 / 10.000
+- Acurácia: 98,95%
+
+Diferença INT8 vs float:
+- -3 acertos
+- -0,03 ponto percentual
+
+============================================================
+4. CAMPANHA DE BENCHMARK
+============================================================
+
+Configurações:
+- inference_only: 1, 2, 3 e 4 threads
+- end_to_end: 1, 2, 3 e 4 threads
+- saturated: 1, 2, 3 e 4 threads
+
+Inferências por configuração: 10.000
+Total de configurações: 12
+Total de inferências medidas: 120.000
+
+Warm-up:
+- 100 inferências por runner
+- warm-ups excluídos da região medida
+
+Divisão estatística:
+- 10 blocos x 1.000 inferências por configuração
+
+Outliers:
+- nenhum removido
+
+============================================================
+5. RESULTADOS — INFERENCE-ONLY
+============================================================
+
+Threads = 1
+- Inferências: 10.000
+- Wall time: 3,26063553 s
+- FPS global: 3066,8868
+- Latência média: 0,225584919 ms
+- Mediana: 0,216300 ms
+- SD amostral: 0,026103307 ms
+- CV: 11,5714%
+- p90: 0,262441 ms
+- p95: 0,284173 ms
+- p99: 0,329211 ms
+- Mínimo: 0,210960 ms
+- Máximo: 0,466690 ms
+- IC95 média: 0,224978 a 0,226192 ms
+- P idle: 14,487146 W
+- P ativa: 14,767445 W
+- P dinâmica: 0,280299 W
+- Energia total: 4,815125 mJ/inferência
+- Energia dinâmica: 0,091395 mJ/inferência
+- Amostras de potência: 326
+- Cobertura de potência: 99,6739%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 2
+- Inferências: 10.000
+- Wall time: 1,88971981 s
+- FPS global: 5291,7898
+- Latência média: 0,253196704 ms
+- Mediana: 0,221870 ms
+- SD amostral: 0,067610774 ms
+- CV: 26,7029%
+- p90: 0,351910 ms
+- p95: 0,391881 ms
+- p99: 0,496332 ms
+- Mínimo: 0,210480 ms
+- Máximo: 1,001780 ms
+- IC95 média: 0,251535 a 0,254858 ms
+- P idle: 14,489130 W
+- P ativa: 14,987735 W
+- P dinâmica: 0,498605 W
+- Energia total: 2,832262 mJ/inferência
+- Energia dinâmica: 0,094222 mJ/inferência
+- Amostras de potência: 182
+- Cobertura de potência: 98,8176%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 3
+- Inferências: 10.000
+- Wall time: 2,22823178 s
+- FPS global: 4487,8635
+- Latência média: 0,411653050 ms
+- Mediana: 0,360975 ms
+- SD amostral: 0,236261899 ms
+- CV: 57,3935%
+- p90: 0,639831 ms
+- p95: 0,836992 ms
+- p99: 1,324196 ms
+- Mínimo: 0,211140 ms
+- Máximo: 3,693280 ms
+- IC95 média: 0,391515 a 0,431791 ms
+- P idle: 14,491168 W
+- P ativa: 14,976767 W
+- P dinâmica: 0,485599 W
+- Energia total: 3,337171 mJ/inferência
+- Energia dinâmica: 0,108203 mJ/inferência
+- Amostras de potência: 198
+- Cobertura de potência: 98,8528%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 4
+- Inferências: 10.000
+- Wall time: 2,29824515 s
+- FPS global: 4351,1459
+- Latência média: 0,612245964 ms
+- Mediana: 0,497340 ms
+- SD amostral: 0,450170243 ms
+- CV: 73,5277%
+- p90: 1,137437 ms
+- p95: 1,452042 ms
+- p99: 2,302124 ms
+- Mínimo: 0,211160 ms
+- Máximo: 8,043640 ms
+- IC95 média: 0,591170 a 0,633322 ms
+- P idle: 14,492491 W
+- P ativa: 14,972601 W
+- P dinâmica: 0,480110 W
+- Energia total: 3,441071 mJ/inferência
+- Energia dinâmica: 0,110341 mJ/inferência
+- Amostras de potência: 180
+- Cobertura de potência: 99,1787%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+============================================================
+6. RESULTADOS — END-TO-END
+============================================================
+
+Threads = 1
+- Inferências: 10.000
+- Wall time: 6,96284709 s
+- FPS global: 1436,1941
+- Latência média: 0,650647905 ms
+- Mediana: 0,588185 ms
+- SD amostral: 0,099137945 ms
+- CV: 15,2368%
+- p90: 0,808984 ms
+- p95: 0,835760 ms
+- p99: 0,910871 ms
+- Mínimo: 0,577660 ms
+- Máximo: 1,635630 ms
+- IC95 média: 0,648524 a 0,652772 ms
+- P idle: 14,494443 W
+- P ativa: 14,747563 W
+- P dinâmica: 0,253120 W
+- Energia total: 10,268503 mJ/inferência
+- Energia dinâmica: 0,176244 mJ/inferência
+- Amostras de potência: 690
+- Cobertura de potência: 99,7223%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 2
+- Inferências: 10.000
+- Wall time: 6,38644178 s
+- FPS global: 1565,8171
+- Latência média: 1,206213345 ms
+- Mediana: 1,123250 ms
+- SD amostral: 0,388941685 ms
+- CV: 32,2449%
+- p90: 1,532943 ms
+- p95: 1,682290 ms
+- p99: 2,091478 ms
+- Mínimo: 0,577250 ms
+- Máximo: 13,058540 ms
+- IC95 média: 1,198387 a 1,214040 ms
+- P idle: 14,495846 W
+- P ativa: 14,827070 W
+- P dinâmica: 0,331224 W
+- Energia total: 9,469222 mJ/inferência
+- Energia dinâmica: 0,211534 mJ/inferência
+- Amostras de potência: 587
+- Cobertura de potência: 99,6613%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 3
+- Inferências: 10.000
+- Wall time: 6,36891469 s
+- FPS global: 1570,1262
+- Latência média: 1,820691489 ms
+- Mediana: 1,730345 ms
+- SD amostral: 0,588906577 ms
+- CV: 32,3452%
+- p90: 2,556760 ms
+- p95: 2,880463 ms
+- p99: 3,592201 ms
+- Mínimo: 0,582790 ms
+- Máximo: 8,940910 ms
+- IC95 média: 1,804811 a 1,836572 ms
+- P idle: 14,497577 W
+- P ativa: 14,843609 W
+- P dinâmica: 0,346032 W
+- Energia total: 9,453768 mJ/inferência
+- Energia dinâmica: 0,220385 mJ/inferência
+- Amostras de potência: 556
+- Cobertura de potência: 99,5662%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+Threads = 4
+- Inferências: 10.000
+- Wall time: 6,68843572 s
+- FPS global: 1495,1179
+- Latência média: 2,472643961 ms
+- Mediana: 2,129700 ms
+- SD amostral: 1,368729349 ms
+- CV: 55,3549%
+- p90: 4,205438 ms
+- p95: 5,207392 ms
+- p99: 7,188725 ms
+- Mínimo: 0,578270 ms
+- Máximo: 13,595510 ms
+- IC95 média: 2,435200 a 2,510087 ms
+- P idle: 14,496685 W
+- P ativa: 14,841347 W
+- P dinâmica: 0,344662 W
+- Energia total: 9,926539 mJ/inferência
+- Energia dinâmica: 0,230525 mJ/inferência
+- Amostras de potência: 562
+- Cobertura de potência: 99,6777%
+- Acurácia: 98,95%
+- Concordância host INT8: 100,00%
+- Divergências: 0
+
+============================================================
+7. RESULTADOS — SATURATED
+============================================================
+
+Threads = 1
+- Inferências: 10.000
+- Wall time: 2,39956006 s
+- FPS global: 4167,4306
+- Latência média: 0,221690184 ms
+- Mediana: 0,212770 ms
+- SD amostral: 0,037141096 ms
+- CV: 16,7536%
+- p90: 0,235159 ms
+- p95: 0,277813 ms
+- p99: 0,342952 ms
+- Mínimo: 0,205980 ms
+- Máximo: 2,464840 ms
+- IC95 média: 0,220521 a 0,222859 ms
+- P idle: 14,494120 W
+- P ativa: 14,790981 W
+- P dinâmica: 0,296861 W
+- Energia total: 3,549185 mJ/inferência
+- Energia dinâmica: 0,071234 mJ/inferência
+- Amostras de potência: 239
+- Cobertura de potência: 99,1723%
+
+Threads = 2
+- Inferências: 10.000
+- Wall time: 1,29031587 s
+- FPS global: 7750,0403
+- Latência média: 0,235349139 ms
+- Mediana: 0,218680 ms
+- SD amostral: 0,073085031 ms
+- CV: 31,0539%
+- p90: 0,279454 ms
+- p95: 0,318799 ms
+- p99: 0,428182 ms
+- Mínimo: 0,208180 ms
+- Máximo: 3,509670 ms
+- IC95 média: 0,232326 a 0,238372 ms
+- P idle: 14,497088 W
+- P ativa: 15,050418 W
+- P dinâmica: 0,553330 W
+- Energia total: 1,941979 mJ/inferência
+- Energia dinâmica: 0,071397 mJ/inferência
+- Amostras de potência: 128
+- Cobertura de potência: 98,2782%
+
+Threads = 3
+- Inferências: 10.000
+- Wall time: 1,07619390 s
+- FPS global: 9292,0058
+- Latência média: 0,281798325 ms
+- Mediana: 0,242270 ms
+- SD amostral: 0,165392908 ms
+- CV: 58,6919%
+- p90: 0,376101 ms
+- p95: 0,439513 ms
+- p99: 0,679217 ms
+- Mínimo: 0,204250 ms
+- Máximo: 6,315540 ms
+- IC95 média: 0,276647 a 0,286950 ms
+- P idle: 14,490533 W
+- P ativa: 15,184493 W
+- P dinâmica: 0,693960 W
+- Energia total: 1,634146 mJ/inferência
+- Energia dinâmica: 0,074684 mJ/inferência
+- Amostras de potência: 106
+- Cobertura de potência: 98,2165%
+
+Threads = 4
+- Inferências: 10.000
+- Wall time: 1,20749723 s
+- FPS global: 8281,5925
+- Latência média: 0,419939531 ms
+- Mediana: 0,373295 ms
+- SD amostral: 0,209209628 ms
+- CV: 49,8190%
+- p90: 0,620141 ms
+- p95: 0,745540 ms
+- p99: 1,093435 ms
+- Mínimo: 0,207820 ms
+- Máximo: 7,247620 ms
+- IC95 média: 0,408320 a 0,431559 ms
+- P idle: 14,490840 W
+- P ativa: 15,134271 W
+- P dinâmica: 0,643430 W
+- Energia total: 1,827459 mJ/inferência
+- Energia dinâmica: 0,077694 mJ/inferência
+- Amostras de potência: 115
+- Cobertura de potência: 98,7578%
+
+============================================================
+8. ESCALABILIDADE DE THROUGHPUT
+============================================================
+
+Speedup em relação a 1 thread do mesmo cenário:
+
+Inference-only:
+- T1: 1,000x
+- T2: 1,725x
+- T3: 1,463x
+- T4: 1,419x
+
+End-to-end:
+- T1: 1,000x
+- T2: 1,090x
+- T3: 1,093x
+- T4: 1,041x
+
+Saturated:
+- T1: 1,000x
+- T2: 1,860x
+- T3: 2,230x
+- T4: 1,987x
+
+============================================================
+9. MELHORES RESULTADOS OBSERVADOS
+============================================================
+
+Menor latência inference-only:
+- 1 thread
+- 0,225585 ms
+
+Maior throughput inference-only:
+- 2 threads
+- 5291,79 FPS
+
+Menor energia total inference-only:
+- 2 threads
+- 2,8323 mJ/inferência
+
+Menor energia dinâmica inference-only:
+- 1 thread
+- 0,09140 mJ/inferência
+
+Menor latência end-to-end:
+- 1 thread
+- 0,650648 ms
+
+Maior throughput end-to-end:
+- 3 threads
+- 1570,13 FPS
+
+Melhor compromisso end-to-end:
+- 2 threads
+- 1565,82 FPS
+- 1,206 ms
+
+Menor energia total end-to-end:
+- 3 threads
+- 9,4538 mJ/inferência
+
+Menor energia dinâmica end-to-end:
+- 1 thread
+- 0,17624 mJ/inferência
+
+Menor latência saturated:
+- 1 thread
+- 0,221690 ms
+
+Maior throughput saturated:
+- 3 threads
+- 9292,01 FPS
+
+Menor energia total saturated:
+- 3 threads
+- 1,6341 mJ/inferência
+
+Menor energia dinâmica saturated:
+- 1 thread
+- 0,07123 mJ/inferência
+
+============================================================
+10. TELEMETRIA
+============================================================
+
+Sensor de potência:
+- INA226
+
+Rail:
+- entrada de aproximadamente 12 V da ZCU104
+
+Frequência IIO observada:
+- 114 Hz
+
+Intervalo solicitado pelo sampler:
+- 10 ms
+
+Teste empírico do sensor:
+- duração: ~5 s
+- leituras: 910
+- mudanças de valor: 383
+- intervalo mediano entre mudanças: ~10,983 ms
+- intervalo médio: ~13,071 ms
+
+Potência idle típica:
+- aproximadamente 14,49 W
+
+Temperaturas típicas:
+- PS: ~44–46 °C
+- PL: ~43–45 °C
+- Remote: ~45–47 °C
+
+Cobertura temporal das campanhas:
+- aproximadamente 98,2% a 99,7%
+
+============================================================
+11. INTEGRIDADE FINAL
+============================================================
+
+configurations_expected: 12
+configurations_completed: 12
+all_samples_10000: true
+all_latencies_count_10000: true
+all_positive_fps: true
+all_power_bracketed: true
+passed: true
+
+Configurações com validação funcional:
+- inference_only T1
+- inference_only T2
+- inference_only T3
+- inference_only T4
+- end_to_end T1
+- end_to_end T2
+- end_to_end T3
+- end_to_end T4
+
+Todas:
+- correct: 9895
+- agreement: 10000
+- divergences: 0
+
+============================================================
+12. RESULTADOS DE REFERÊNCIA CPU/GPU
+============================================================
+
+CPU — Intel Core i7-13700
+- Precisão: FP32
+- Acurácia: 98,98%
+- Latência média: 0,3872 ms
+- FPS global: 2289,49
+- Potência: 39,782 W
+- Energia total: 17,3548 mJ/inferência
+
+GPU — NVIDIA RTX 3050 OEM
+- Precisão: FP32
+- Acurácia: 98,98%
+- Latência média: 0,2395 ms
+- FPS global: 2826,73
+- Potência: 28,2483 W
+- Energia total: 9,9970 mJ/inferência
+
+ZCU104 — Vitis AI
+- Precisão: INT8
+- Acurácia: 98,95%
+- Latência inference-only T1: 0,225585 ms
+- FPS inference-only T2: 5291,79
+- FPS saturated T3: 9292,01
+- P ativa inference-only T1: 14,767 W
+- E total inference-only T1: 4,8151 mJ/inferência
+- E total inference-only T2: 2,8323 mJ/inferência
+- E total saturated T3: 1,6341 mJ/inferência
+
+Observação:
+- CPU: potência via RAPL package.
+- GPU: potência via sensor da placa / nvidia-smi.
+- ZCU104: potência do rail de entrada ~12 V via INA226.
+- Os escopos físicos de potência não são idênticos.
+- CPU/GPU usam FP32; DPU usa INT8.
+
+============================================================
+13. CONCLUSÃO RESUMIDA
+============================================================
+
+- Acurácia física do DPU: 98,95%.
+- Concordância com referência INT8: 100%.
+- Divergências: 0.
+- Menor latência inference-only: 0,225585 ms com 1 runner.
+- Maior throughput inference-only: 5291,79 FPS com 2 runners.
+- Maior throughput saturated: 9292,01 FPS com 3 runners.
+- Menor energia total observada: 1,6341 mJ/inferência em saturated/3.
+- Menor energia dinâmica observada: 0,07123 mJ/inferência em saturated/1.
+- Potência idle da plataforma: ~14,49 W.
+- Potência ativa máxima observada entre os pontos resumidos: ~15,18 W.
+- Campanha completa: 12 configurações, 120.000 inferências medidas.
+- Status final: FINALIZADA.

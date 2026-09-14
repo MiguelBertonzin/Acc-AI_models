@@ -1,0 +1,39 @@
+{
+  "vlnv": "xilinx.com:hls:resnet8_resource_fifo_opt:1.1",
+  "source_scaffold": "Vitis HLS 2024.2 export_design (metadados IP-XACT; RTL exportado rejeitado)",
+  "source_syn_rtl": "hls4ml/builds/fifo_opt_q22_12_rf288/resnet8_resource_fifo_opt_prj/solution1/syn/verilog",
+  "component_sha256": "5caedf0ed65c0415d07abafc23b267b5ed5a0fdfa6ff80860238a006ea709470",
+  "top_sha256": "929fa8800dcbea9dfa4e5f143385354d7baaa6c645b82b207c8515358ec8b9d3",
+  "top_matches_syn_rtl": true,
+  "top_instantiates_d4096": false,
+  "removed_scaffold_artifacts": [
+    ".Xil/",
+    "vivado.log",
+    "vivado.jou",
+    "xilinx_com_hls_resnet8_resource_fifo_opt_1_0.zip"
+  ],
+  "removed_residual_d4096_modules": [
+    "resnet8_resource_fifo_opt_fifo_w1408_d4096_A.v",
+    "resnet8_resource_fifo_opt_fifo_w352_d4096_A.v",
+    "resnet8_resource_fifo_opt_fifo_w66_d4096_A.v",
+    "resnet8_resource_fifo_opt_fifo_w704_d4096_A.v"
+  ],
+  "referenced_fifo_modules": [
+    "resnet8_resource_fifo_opt_fifo_w1408_d1_S",
+    "resnet8_resource_fifo_opt_fifo_w1408_d21_A",
+    "resnet8_resource_fifo_opt_fifo_w1408_d23_A",
+    "resnet8_resource_fifo_opt_fifo_w352_d1351_A",
+    "resnet8_resource_fifo_opt_fifo_w352_d1464_A",
+    "resnet8_resource_fifo_opt_fifo_w352_d1_S",
+    "resnet8_resource_fifo_opt_fifo_w352_d30_A",
+    "resnet8_resource_fifo_opt_fifo_w352_d69_A",
+    "resnet8_resource_fifo_opt_fifo_w66_d2100_A",
+    "resnet8_resource_fifo_opt_fifo_w704_d14_A",
+    "resnet8_resource_fifo_opt_fifo_w704_d1_S",
+    "resnet8_resource_fifo_opt_fifo_w704_d42_A",
+    "resnet8_resource_fifo_opt_fifo_w704_d45_A"
+  ],
+  "verilog_file_count": 181,
+  "data_file_count": 10,
+  "archive": "/home/miguel/Downloads/Plano testes TCC/resnet8/hls4ml/ip_exports/xilinx_com_hls_resnet8_resource_fifo_opt_1_1_corrected.zip"
+}

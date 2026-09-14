@@ -1,0 +1,60 @@
+
+wire kernel_monitor_reset;
+wire kernel_monitor_clock;
+wire kernel_monitor_report;
+assign kernel_monitor_reset = ~ap_rst_n;
+assign kernel_monitor_clock = ap_clk;
+assign kernel_monitor_report = 1'b0;
+wire [1:0] axis_block_sigs;
+wire [13:0] inst_idle_sigs;
+wire [10:0] inst_block_sigs;
+wire kernel_block;
+
+assign axis_block_sigs[0] = ~conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.input_layer_TDATA_blk_n;
+assign axis_block_sigs[1] = ~dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.layer13_out_TDATA_blk_n;
+
+assign inst_idle_sigs[0] = conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.ap_idle;
+assign inst_block_sigs[0] = (conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.ap_done & ~conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.ap_continue) | ~conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.grp_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_6u_config2_s_fu_116.layer2_out_blk_n;
+assign inst_idle_sigs[1] = relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.ap_idle;
+assign inst_block_sigs[1] = (relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.ap_done & ~relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.ap_continue) | ~relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.layer2_out_blk_n | ~relu_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_relu_config3_U0.layer3_out_blk_n;
+assign inst_idle_sigs[2] = pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_U0.ap_idle;
+assign inst_block_sigs[2] = (pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_U0.ap_done & ~pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_U0.ap_continue) | ~pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_U0.layer3_out_blk_n | ~pooling2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_6u_config4_U0.layer4_out_blk_n;
+assign inst_idle_sigs[3] = conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_U0.ap_idle;
+assign inst_block_sigs[3] = (conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_U0.ap_done & ~conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_U0.ap_continue) | ~conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_U0.layer4_out_blk_n | ~conv_2d_cl_array_ap_fixed_6u_array_ap_fixed_22_12_4_0_0_16u_config5_U0.grp_compute_output_buffer_2d_array_array_ap_fixed_22_12_4_0_0_16u_config5_s_fu_424.layer5_out_blk_n;
+assign inst_idle_sigs[4] = relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_U0.ap_idle;
+assign inst_block_sigs[4] = (relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_U0.ap_done & ~relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_U0.ap_continue) | ~relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_U0.layer5_out_blk_n | ~relu_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_16u_relu_config6_U0.layer6_out_blk_n;
+assign inst_idle_sigs[5] = pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.ap_idle;
+assign inst_block_sigs[5] = (pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.ap_done & ~pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.ap_continue) | ~pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.layer6_out_blk_n | ~pooling2d_cl_array_array_ap_fixed_22_12_4_0_0_16u_config7_U0.layer7_out_blk_n;
+assign inst_idle_sigs[6] = dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.ap_idle;
+assign inst_block_sigs[6] = (dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.ap_done & ~dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.ap_continue) | ~dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.grp_dense_array_array_ap_fixed_22_12_4_0_0_120u_config9_Pipeline_DataPrepare_fu_1059.layer7_out_blk_n | ~dense_array_ap_fixed_16u_array_ap_fixed_22_12_4_0_0_120u_config9_U0.layer9_out_blk_n;
+assign inst_idle_sigs[7] = relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.ap_idle;
+assign inst_block_sigs[7] = (relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.ap_done & ~relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.ap_continue) | ~relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.layer9_out_blk_n | ~relu_array_array_ap_fixed_22_12_4_0_0_120u_relu_config10_U0.layer10_out_blk_n;
+assign inst_idle_sigs[8] = dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.ap_idle;
+assign inst_block_sigs[8] = (dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.ap_done & ~dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.ap_continue) | ~dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.layer10_out_blk_n | ~dense_array_ap_fixed_120u_array_ap_fixed_22_12_4_0_0_84u_config11_U0.layer11_out_blk_n;
+assign inst_idle_sigs[9] = relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_U0.ap_idle;
+assign inst_block_sigs[9] = (relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_U0.ap_done & ~relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_U0.ap_continue) | ~relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_U0.layer11_out_blk_n | ~relu_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_84u_relu_config12_U0.layer12_out_blk_n;
+assign inst_idle_sigs[10] = dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.ap_idle;
+assign inst_block_sigs[10] = (dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.ap_done & ~dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.ap_continue) | ~dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.layer12_out_blk_n;
+
+assign inst_idle_sigs[11] = 1'b0;
+assign inst_idle_sigs[12] = conv_2d_cl_array_ap_fixed_1u_array_ap_fixed_22_12_4_0_0_6u_config2_U0.ap_idle;
+assign inst_idle_sigs[13] = dense_array_ap_fixed_84u_array_ap_fixed_22_12_4_0_0_10u_config13_U0.ap_idle;
+
+lenet_mnist_cap64_hls_hls_deadlock_idx0_monitor lenet_mnist_cap64_hls_hls_deadlock_idx0_monitor_U (
+    .clock(kernel_monitor_clock),
+    .reset(kernel_monitor_reset),
+    .axis_block_sigs(axis_block_sigs),
+    .inst_idle_sigs(inst_idle_sigs),
+    .inst_block_sigs(inst_block_sigs),
+    .block(kernel_block)
+);
+
+
+always @ (kernel_block or kernel_monitor_reset) begin
+    if (kernel_block == 1'b1 && kernel_monitor_reset == 1'b0) begin
+        find_kernel_block = 1'b1;
+    end
+    else begin
+        find_kernel_block = 1'b0;
+    end
+end

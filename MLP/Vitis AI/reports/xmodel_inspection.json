@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "xmodel": "artifacts/compiled/iris_mlp_zcu104_vai3_5/iris_mlp.xmodel",
+  "xmodel_sha256": "47921742c6470b190d448278b8c1ec94d431ec4841bb52d19bb7c537fde6a1ce",
+  "graph": "iris_mlp_logits",
+  "subgraph_count": 3,
+  "dpu_subgraph_count": 1,
+  "subgraphs": [
+    {
+      "name": "subgraph_features",
+      "device": "USER",
+      "ops": 1,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "quant_features",
+          "dims": [
+            1,
+            4
+          ],
+          "dtype": "xint8",
+          "fix_point": 5
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_dense1(TransferMatMulToConv2d)",
+      "device": "DPU",
+      "ops": 13,
+      "inputs": [
+        {
+          "name": "quant_features",
+          "dims": [
+            1,
+            4
+          ],
+          "dtype": "xint8",
+          "fix_point": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_output_fix",
+          "dims": [
+            1,
+            3
+          ],
+          "dtype": "xint8",
+          "fix_point": 3
+        }
+      ]
+    },
+    {
+      "name": "subgraph_quant_output_fix_",
+      "device": "CPU",
+      "ops": 1,
+      "inputs": [
+        {
+          "name": "quant_output_fix",
+          "dims": [
+            1,
+            3
+          ],
+          "dtype": "xint8",
+          "fix_point": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "quant_output_fix_",
+          "dims": [
+            1,
+            3
+          ],
+          "dtype": "float32",
+          "fix_point": null
+        }
+      ]
+    }
+  ]
+}

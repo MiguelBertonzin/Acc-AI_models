@@ -1,0 +1,13 @@
+{
+  "prediction_agreement": 1.0,
+  "all_predictions_equal": true,
+  "maximum_absolute_probability_difference": 1.1920928955078125e-07,
+  "mean_absolute_probability_difference": 1.328359581344153e-08,
+  "allclose_rtol_1e_5_atol_1e_6": true,
+  "mcnemar_exact": {
+    "cpu_correct_gpu_wrong": 0,
+    "gpu_correct_cpu_wrong": 0,
+    "discordant_pairs": 0,
+    "p_value_two_sided": 1.0
+  }
+}

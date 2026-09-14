@@ -1,0 +1,300 @@
+{
+  "created_at_local": "2026-09-01T16:08:32.976239-03:00",
+  "benchmark": {
+    "inferences": 30000,
+    "samples_per_passage": 30,
+    "warmup_inferences": 200,
+    "idle_seconds": 5.0,
+    "telemetry_ms": 100,
+    "seed": 20260831,
+    "batch_size": 1,
+    "synchronous": true,
+    "jit_compile": false,
+    "mixed_precision": false,
+    "outliers_removed": false
+  },
+  "cpu": {
+    "model_name": "13th Gen Intel(R) Core(TM) i7-13700",
+    "physical_cores": 16,
+    "logical_cpus": 24,
+    "governors": [
+      "powersave"
+    ],
+    "tensorflow_intra_op_threads": 0,
+    "tensorflow_inter_op_threads": 0
+  },
+  "dataset": {
+    "train_samples": 120,
+    "test_samples": 30,
+    "split": {
+      "test_size": 0.2,
+      "random_state": 42,
+      "stratify": true
+    },
+    "train_indices": [
+      8,
+      106,
+      76,
+      9,
+      89,
+      146,
+      94,
+      133,
+      135,
+      117,
+      105,
+      78,
+      60,
+      67,
+      92,
+      29,
+      19,
+      108,
+      137,
+      31,
+      72,
+      46,
+      131,
+      25,
+      81,
+      103,
+      111,
+      26,
+      121,
+      40,
+      21,
+      71,
+      91,
+      15,
+      139,
+      148,
+      79,
+      59,
+      144,
+      70,
+      6,
+      50,
+      16,
+      130,
+      1,
+      17,
+      101,
+      35,
+      41,
+      12,
+      45,
+      64,
+      100,
+      55,
+      0,
+      149,
+      99,
+      136,
+      47,
+      142,
+      36,
+      53,
+      113,
+      24,
+      83,
+      90,
+      122,
+      66,
+      54,
+      115,
+      39,
+      23,
+      4,
+      119,
+      82,
+      129,
+      80,
+      145,
+      123,
+      85,
+      34,
+      114,
+      68,
+      43,
+      120,
+      32,
+      109,
+      98,
+      86,
+      30,
+      97,
+      110,
+      44,
+      13,
+      124,
+      118,
+      112,
+      87,
+      126,
+      5,
+      143,
+      96,
+      125,
+      102,
+      48,
+      74,
+      73,
+      95,
+      88,
+      65,
+      27,
+      128,
+      62,
+      61,
+      11,
+      37,
+      2,
+      33,
+      52,
+      3
+    ],
+    "test_indices": [
+      38,
+      127,
+      57,
+      93,
+      42,
+      56,
+      22,
+      20,
+      147,
+      84,
+      107,
+      141,
+      104,
+      51,
+      7,
+      49,
+      14,
+      69,
+      63,
+      138,
+      10,
+      140,
+      58,
+      134,
+      132,
+      77,
+      75,
+      18,
+      116,
+      28
+    ]
+  },
+  "model": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/MLP/iris_mlp_clean.h5",
+    "sha256": "60d4e49c7082d97cac029ba919ffa8c88514ac9109d0bd69bafb23fa663fbb94",
+    "layers": [
+      [
+        8,
+        "relu"
+      ],
+      [
+        8,
+        "relu"
+      ],
+      [
+        3,
+        "softmax"
+      ]
+    ],
+    "parameters": 139
+  },
+  "scaler": {
+    "path": "/home/miguel/Downloads/Plano testes TCC/MLP/iris_scaler.joblib",
+    "sha256": "beef6de7823db389c06565f0eb199ba71a353d4c2050e425ef6efd425bb20e31",
+    "matches_reconstructed_split": true,
+    "load_warnings": [
+      "Trying to unpickle estimator StandardScaler from version 1.7.2 when using version 1.5.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations"
+    ]
+  },
+  "software": {
+    "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:27:36) [GCC 11.2.0]",
+    "platform": "Linux-7.0.0-30-generic-x86_64-with-glibc2.39",
+    "tensorflow": "2.21.0",
+    "keras": "3.13.2",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scikit_learn": "1.5.1",
+    "psutil": "5.9.0",
+    "oneDNN_enabled": "default/on"
+  },
+  "power_energy": {
+    "available": true,
+    "source": "Linux powercap intel-rapl energy_uj",
+    "primary_scope": "CPU package-0; não inclui fonte/tomada",
+    "domains": {
+      "package": {
+        "name": "package-0",
+        "energy_path": "/sys/class/powercap/intel-rapl:0/energy_uj",
+        "max_energy_range_uj": 262143328850
+      },
+      "core": {
+        "name": "core",
+        "energy_path": "/sys/class/powercap/intel-rapl:0/intel-rapl:0:0/energy_uj",
+        "max_energy_range_uj": 262143328850
+      },
+      "uncore": {
+        "name": "uncore",
+        "energy_path": "/sys/class/powercap/intel-rapl:0/intel-rapl:0:1/energy_uj",
+        "max_energy_range_uj": 262143328850
+      }
+    },
+    "turbostat_diagnostic_exit_code": 0
+  },
+  "diagnostics": {
+    "lscpu": {
+      "command": [
+        "lscpu"
+      ],
+      "exit_code": 0,
+      "output": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           46 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  24\nOn-line CPU(s) list:                     0-23\nVendor ID:                               GenuineIntel\nModel name:                              13th Gen Intel(R) Core(TM) i7-13700\nCPU family:                              6\nModel:                                   183\nThread(s) per core:                      2\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                1\nCPU(s) scaling MHz:                      38%\nCPU max MHz:                             5200.0000\nCPU min MHz:                             800.0000\nBogoMIPS:                                4224.00\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize pconfig arch_lbr ibt flush_l1d arch_capabilities\nVirtualization:                          VT-x\nL1d cache:                               640 KiB (16 instances)\nL1i cache:                               768 KiB (16 instances)\nL2 cache:                                24 MiB (10 instances)\nL3 cache:                                30 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-23\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Mitigation; Clear Register File\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Not affected\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Not affected\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Mitigation; IBPB before exit to userspace\n"
+    },
+    "sensors_before": {
+      "command": [
+        "sensors",
+        "-j"
+      ],
+      "exit_code": 0,
+      "output": "{\n   \"dell_smm-virtual-0\":{\n      \"Adapter\": \"Virtual device\",\n      \"fan1\":{\n         \"fan1_input\": 920.000,\n         \"fan1_min\": 0.000,\n         \"fan1_max\": 4000.000\n      },\n      \"temp1\":{\n         \"temp1_input\": 52.000\n      },\n      \"temp2\":{\n         \"temp2_input\": 61.000\n      },\n      \"temp3\":{\n         \"temp3_input\": 0.000\n      },\n      \"temp4\":{\n         \"temp4_input\": 43.000\n      },\n      \"temp5\":{\n         \"temp5_input\": 49.000\n      },\n      \"temp6\":{\n         \"temp6_input\": 39.000\n      },\n      \"temp7\":{\n         \"temp7_input\": 39.000\n      },\n      \"temp8\":{\n         \"temp8_input\": 35.000\n      },\n      \"temp9\":{\n         \"temp9_input\": 46.000\n      },\n      \"temp10\":{\n         \"temp10_input\": 8.000\n      }\n   },\n   \"nvme-pci-0200\":{\n      \"Adapter\": \"PCI adapter\",\n      \"Composite\":{\n         \"temp1_input\": 37.850,\n         \"temp1_max\": 82.850,\n         \"temp1_min\": -0.150,\n         \"temp1_crit\": 89.850,\n         \"temp1_alarm\": 0.000\n      },\n      \"Sensor 1\":{\n         \"temp2_input\": 37.850,\n         \"temp2_max\": 65261.850,\n         \"temp2_min\": -273.150\n      }\n   },\n   \"coretemp-isa-0000\":{\n      \"Adapter\": \"ISA adapter\",\n      \"Package id 0\":{\n         \"temp1_input\": 54.000,\n         \"temp1_max\": 80.000,\n         \"temp1_crit\": 100.000,\n         \"temp1_crit_alarm\": 0.000\n      },\n      \"Core 0\":{\n         \"temp2_input\": 52.000,\n         \"temp2_max\": 80.000,\n         \"temp2_crit\": 100.000,\n         \"temp2_crit_alarm\": 0.000\n      },\n      \"Core 4\":{\n         \"temp6_input\": 52.000,\n         \"temp6_max\": 80.000,\n         \"temp6_crit\": 100.000,\n         \"temp6_crit_alarm\": 0.000\n      },\n      \"Core 8\":{\n         \"temp10_input\": 52.000,\n         \"temp10_max\": 80.000,\n         \"temp10_crit\": 100.000,\n         \"temp10_crit_alarm\": 0.000\n      },\n      \"Core 12\":{\n         \"temp14_input\": 51.000,\n         \"temp14_max\": 80.000,\n         \"temp14_crit\": 100.000,\n         \"temp14_crit_alarm\": 0.000\n      },\n      \"Core 16\":{\n         \"temp18_input\": 52.000,\n         \"temp18_max\": 80.000,\n         \"temp18_crit\": 100.000,\n         \"temp18_crit_alarm\": 0.000\n      },\n      \"Core 20\":{\n         \"temp22_input\": 54.000,\n         \"temp22_max\": 80.000,\n         \"temp22_crit\": 100.000,\n         \"temp22_crit_alarm\": 0.000\n      },\n      \"Core 24\":{\n         \"temp26_input\": 52.000,\n         \"temp26_max\": 80.000,\n         \"temp26_crit\": 100.000,\n         \"temp26_crit_alarm\": 0.000\n      },\n      \"Core 28\":{\n         \"temp30_input\": 53.000,\n         \"temp30_max\": 80.000,\n         \"temp30_crit\": 100.000,\n         \"temp30_crit_alarm\": 0.000\n      },\n      \"Core 32\":{\n         \"temp34_input\": 52.000,\n         \"temp34_max\": 80.000,\n         \"temp34_crit\": 100.000,\n         \"temp34_crit_alarm\": 0.000\n      },\n      \"Core 33\":{\n         \"temp35_input\": 52.000,\n         \"temp35_max\": 80.000,\n         \"temp35_crit\": 100.000,\n         \"temp35_crit_alarm\": 0.000\n      },\n      \"Core 34\":{\n         \"temp36_input\": 52.000,\n         \"temp36_max\": 80.000,\n         \"temp36_crit\": 100.000,\n         \"temp36_crit_alarm\": 0.000\n      },\n      \"Core 35\":{\n         \"temp37_input\": 52.000,\n         \"temp37_max\": 80.000,\n         \"temp37_crit\": 100.000,\n         \"temp37_crit_alarm\": 0.000\n      },\n      \"Core 36\":{\n         \"temp38_input\": 51.000,\n         \"temp38_max\": 80.000,\n         \"temp38_crit\": 100.000,\n         \"temp38_crit_alarm\": 0.000\n      },\n      \"Core 37\":{\n         \"temp39_input\": 51.000,\n         \"temp39_max\": 80.000,\n         \"temp39_crit\": 100.000,\n         \"temp39_crit_alarm\": 0.000\n      },\n      \"Core 38\":{\n         \"temp40_input\": 51.000,\n         \"temp40_max\": 80.000,\n         \"temp40_crit\": 100.000,\n         \"temp40_crit_alarm\": 0.000\n      },\n      \"Core 39\":{\n         \"temp41_input\": 51.000,\n         \"temp41_max\": 80.000,\n         \"temp41_crit\": 100.000,\n         \"temp41_crit_alarm\": 0.000\n      }\n   },\n   \"dell_ddv-virtual-0\":{\n      \"Adapter\": \"Virtual device\",\n      \"CPU Fan\":{\n         \"fan1_input\": 920.000\n      },\n      \"CPU\":{\n         \"temp1_input\": 52.000,\n         \"temp1_max\": 0.000,\n         \"temp1_min\": 0.000\n      },\n      \"Ambient\":{\n         \"temp2_input\": 61.000,\n         \"temp2_max\": 0.000,\n         \"temp2_min\": 0.000\n      },\n      \"Video\":{\n         \"temp3_input\": 0.000,\n         \"temp3_max\": 0.000,\n         \"temp3_min\": 0.000\n      },\n      \"Memory\":{\n         \"temp4_input\": 43.000,\n         \"temp4_max\": 0.000,\n         \"temp4_min\": 0.000\n      },\n      \"Other\":{\n         \"temp5_input\": 49.000,\n         \"temp5_max\": 0.000,\n         \"temp5_min\": 0.000\n      },\n      \"Other\":{\n         \"temp6_input\": 39.000,\n         \"temp6_max\": 0.000,\n         \"temp6_min\": 0.000\n      },\n      \"Other\":{\n         \"temp7_input\": 39.000,\n         \"temp7_max\": 0.000,\n         \"temp7_min\": 0.000\n      },\n      \"Other\":{\n         \"temp8_input\": 35.000,\n         \"temp8_max\": 0.000,\n         \"temp8_min\": 0.000\n      },\n      \"Video\":{\n         \"temp9_input\": 46.000,\n         \"temp9_max\": 0.000,\n         \"temp9_min\": 0.000\n      },\n      \"Other\":{\n         \"temp10_input\": 8.000,\n         \"temp10_max\": 0.000,\n         \"temp10_min\": 0.000\n      }\n   }\n}\n"
+    },
+    "turbostat_access": {
+      "command": [
+        "turbostat",
+        "--Summary",
+        "--quiet",
+        "--no-perf",
+        "--interval",
+        "0.1",
+        "--num_iterations",
+        "1"
+      ],
+      "exit_code": 0,
+      "output": "turbostat: Failed to access /dev/cpu/0/msr. Some of the counters may not be available\n\tRun as root to enable them or use --no-msr to disable the access explicitly\ncpu0: Guessing tjMax 100 C, Please use -T to specify\nTSC_MHz\tIRQ\tNMI\tPOLL%\tC1ACPI%\tC2ACPI%\tC3ACPI%\tCoreThr\tGFX%rc6\tGFXMHz\tGFXAMHz\tCPU%LPI\tSYS%LPI\n2108\t893\t0\t0.00\t1.53\t7.57\t87.52\t0\t98.29\t0\t0\t0.00\t0.00\n"
+    },
+    "perf_energy": {
+      "command": [
+        "perf",
+        "stat",
+        "-e",
+        "power/energy-pkg/",
+        "true"
+      ],
+      "exit_code": 1,
+      "output": "Error:\nNo supported events found.\nAccess to performance monitoring and observability operations is limited.\nConsider adjusting /proc/sys/kernel/perf_event_paranoid setting to open\naccess to performance monitoring and observability operations for processes\nwithout CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.\nMore information can be found at 'Perf events and tool security' document:\nhttps://www.kernel.org/doc/html/latest/admin-guide/perf-security.html\nperf_event_paranoid setting is 4:\n  -1: Allow use of (almost) all events by all users\n      Ignore mlock limit after perf_event_mlock_kb without CAP_IPC_LOCK\n>= 0: Disallow raw and ftrace function tracepoint access\n>= 1: Disallow CPU event access\n>= 2: Disallow kernel profiling\nTo make the adjusted perf_event_paranoid setting permanent preserve it\nin /etc/sysctl.conf (e.g. kernel.perf_event_paranoid = <setting>)\n"
+    },
+    "sensors_after": {
+      "command": [
+        "sensors",
+        "-j"
+      ],
+      "exit_code": 0,
+      "output": "{\n   \"dell_smm-virtual-0\":{\n      \"Adapter\": \"Virtual device\",\n      \"fan1\":{\n         \"fan1_input\": 920.000,\n         \"fan1_min\": 0.000,\n         \"fan1_max\": 4000.000\n      },\n      \"temp1\":{\n         \"temp1_input\": 53.000\n      },\n      \"temp2\":{\n         \"temp2_input\": 61.000\n      },\n      \"temp3\":{\n         \"temp3_input\": 0.000\n      },\n      \"temp4\":{\n         \"temp4_input\": 43.000\n      },\n      \"temp5\":{\n         \"temp5_input\": 51.000\n      },\n      \"temp6\":{\n         \"temp6_input\": 39.000\n      },\n      \"temp7\":{\n         \"temp7_input\": 39.000\n      },\n      \"temp8\":{\n         \"temp8_input\": 35.000\n      },\n      \"temp9\":{\n         \"temp9_input\": 47.000\n      },\n      \"temp10\":{\n         \"temp10_input\": 8.000\n      }\n   },\n   \"nvme-pci-0200\":{\n      \"Adapter\": \"PCI adapter\",\n      \"Composite\":{\n         \"temp1_input\": 37.850,\n         \"temp1_max\": 82.850,\n         \"temp1_min\": -0.150,\n         \"temp1_crit\": 89.850,\n         \"temp1_alarm\": 0.000\n      },\n      \"Sensor 1\":{\n         \"temp2_input\": 37.850,\n         \"temp2_max\": 65261.850,\n         \"temp2_min\": -273.150\n      }\n   },\n   \"coretemp-isa-0000\":{\n      \"Adapter\": \"ISA adapter\",\n      \"Package id 0\":{\n         \"temp1_input\": 77.000,\n         \"temp1_max\": 80.000,\n         \"temp1_crit\": 100.000,\n         \"temp1_crit_alarm\": 0.000\n      },\n      \"Core 0\":{\n         \"temp2_input\": 53.000,\n         \"temp2_max\": 80.000,\n         \"temp2_crit\": 100.000,\n         \"temp2_crit_alarm\": 0.000\n      },\n      \"Core 4\":{\n         \"temp6_input\": 54.000,\n         \"temp6_max\": 80.000,\n         \"temp6_crit\": 100.000,\n         \"temp6_crit_alarm\": 0.000\n      },\n      \"Core 8\":{\n         \"temp10_input\": 57.000,\n         \"temp10_max\": 80.000,\n         \"temp10_crit\": 100.000,\n         \"temp10_crit_alarm\": 0.000\n      },\n      \"Core 12\":{\n         \"temp14_input\": 60.000,\n         \"temp14_max\": 80.000,\n         \"temp14_crit\": 100.000,\n         \"temp14_crit_alarm\": 0.000\n      },\n      \"Core 16\":{\n         \"temp18_input\": 59.000,\n         \"temp18_max\": 80.000,\n         \"temp18_crit\": 100.000,\n         \"temp18_crit_alarm\": 0.000\n      },\n      \"Core 20\":{\n         \"temp22_input\": 76.000,\n         \"temp22_max\": 80.000,\n         \"temp22_crit\": 100.000,\n         \"temp22_crit_alarm\": 0.000\n      },\n      \"Core 24\":{\n         \"temp26_input\": 52.000,\n         \"temp26_max\": 80.000,\n         \"temp26_crit\": 100.000,\n         \"temp26_crit_alarm\": 0.000\n      },\n      \"Core 28\":{\n         \"temp30_input\": 53.000,\n         \"temp30_max\": 80.000,\n         \"temp30_crit\": 100.000,\n         \"temp30_crit_alarm\": 0.000\n      },\n      \"Core 32\":{\n         \"temp34_input\": 53.000,\n         \"temp34_max\": 80.000,\n         \"temp34_crit\": 100.000,\n         \"temp34_crit_alarm\": 0.000\n      },\n      \"Core 33\":{\n         \"temp35_input\": 56.000,\n         \"temp35_max\": 80.000,\n         \"temp35_crit\": 100.000,\n         \"temp35_crit_alarm\": 0.000\n      },\n      \"Core 34\":{\n         \"temp36_input\": 56.000,\n         \"temp36_max\": 80.000,\n         \"temp36_crit\": 100.000,\n         \"temp36_crit_alarm\": 0.000\n      },\n      \"Core 35\":{\n         \"temp37_input\": 56.000,\n         \"temp37_max\": 80.000,\n         \"temp37_crit\": 100.000,\n         \"temp37_crit_alarm\": 0.000\n      },\n      \"Core 36\":{\n         \"temp38_input\": 56.000,\n         \"temp38_max\": 80.000,\n         \"temp38_crit\": 100.000,\n         \"temp38_crit_alarm\": 0.000\n      },\n      \"Core 37\":{\n         \"temp39_input\": 56.000,\n         \"temp39_max\": 80.000,\n         \"temp39_crit\": 100.000,\n         \"temp39_crit_alarm\": 0.000\n      },\n      \"Core 38\":{\n         \"temp40_input\": 56.000,\n         \"temp40_max\": 80.000,\n         \"temp40_crit\": 100.000,\n         \"temp40_crit_alarm\": 0.000\n      },\n      \"Core 39\":{\n         \"temp41_input\": 56.000,\n         \"temp41_max\": 80.000,\n         \"temp41_crit\": 100.000,\n         \"temp41_crit_alarm\": 0.000\n      }\n   },\n   \"dell_ddv-virtual-0\":{\n      \"Adapter\": \"Virtual device\",\n      \"CPU Fan\":{\n         \"fan1_input\": 920.000\n      },\n      \"CPU\":{\n         \"temp1_input\": 53.000,\n         \"temp1_max\": 0.000,\n         \"temp1_min\": 0.000\n      },\n      \"Ambient\":{\n         \"temp2_input\": 61.000,\n         \"temp2_max\": 0.000,\n         \"temp2_min\": 0.000\n      },\n      \"Video\":{\n         \"temp3_input\": 0.000,\n         \"temp3_max\": 0.000,\n         \"temp3_min\": 0.000\n      },\n      \"Memory\":{\n         \"temp4_input\": 43.000,\n         \"temp4_max\": 0.000,\n         \"temp4_min\": 0.000\n      },\n      \"Other\":{\n         \"temp5_input\": 51.000,\n         \"temp5_max\": 0.000,\n         \"temp5_min\": 0.000\n      },\n      \"Other\":{\n         \"temp6_input\": 39.000,\n         \"temp6_max\": 0.000,\n         \"temp6_min\": 0.000\n      },\n      \"Other\":{\n         \"temp7_input\": 39.000,\n         \"temp7_max\": 0.000,\n         \"temp7_min\": 0.000\n      },\n      \"Other\":{\n         \"temp8_input\": 35.000,\n         \"temp8_max\": 0.000,\n         \"temp8_min\": 0.000\n      },\n      \"Video\":{\n         \"temp9_input\": 47.000,\n         \"temp9_max\": 0.000,\n         \"temp9_min\": 0.000\n      },\n      \"Other\":{\n         \"temp10_input\": 8.000,\n         \"temp10_max\": 0.000,\n         \"temp10_min\": 0.000\n      }\n   }\n}\n"
+    }
+  }
+}

@@ -1,0 +1,123 @@
+Backend: Vitis
+ClockPeriod: 10.0
+ClockUncertainty: 27%
+HLSConfig:
+  LayerName:
+    conv1:
+      ConvImplementation: LineBuffer
+      ParallelizationFactor: 1
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        bias: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        weight: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Strategy: Resource
+      Trace: false
+    conv1_relu:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        table: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      TableSize: 1024
+      Trace: false
+    conv2:
+      ConvImplementation: LineBuffer
+      ParallelizationFactor: 1
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        bias: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        weight: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Strategy: Resource
+      Trace: false
+    conv2_relu:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        table: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      TableSize: 1024
+      Trace: false
+    dense1:
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        bias: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        weight: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Strategy: Resource
+      Trace: false
+    dense1_relu:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        table: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      TableSize: 1024
+      Trace: false
+    dense2:
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        bias: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        weight: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Strategy: Resource
+      Trace: false
+    dense2_relu:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        table: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      TableSize: 1024
+      Trace: false
+    flatten:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Trace: false
+    input_layer:
+      Precision:
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Trace: false
+    output:
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        bias: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        weight: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Strategy: Resource
+      Trace: false
+    pool1:
+      ConvImplementation: LineBuffer
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Trace: false
+    pool2:
+      ConvImplementation: LineBuffer
+      Precision:
+        accum: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+        result: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+      Trace: false
+  Model:
+    BitExact: null
+    BramFactor: 1000000000
+    Precision: ap_fixed<22,12,AP_RND_CONV,AP_SAT>
+    ReuseFactor: 128
+    Strategy: Resource
+    TraceOutput: false
+IOType: io_stream
+InputData: /tmp/h1_lenet_rf128_c_n8q5ud/tb_input_features.dat
+InputShapes:
+  input_layer:
+  - 28
+  - 28
+  - 1
+KerasModel: !keras_model '/tmp/h1_lenet_rf128_c_n8q5ud/keras_model.keras'
+OutputDir: /tmp/h1_lenet_rf128_c_n8q5ud
+OutputPredictions: /tmp/h1_lenet_rf128_c_n8q5ud/tb_output_predictions.dat
+OutputShapes:
+  layer13_out:
+  - 10
+Part: xczu7ev-ffvc1156-2-e
+ProjectName: lenet_mnist_cap64_hls
+Stamp: 6769040d
+Version: 1.0.0
+WriterConfig:
+  Namespace: null
+  TBOutputStream: both
+  WriteEmulationConstants: false
+  WriteTar: false
+  WriteWeightsTxt: true

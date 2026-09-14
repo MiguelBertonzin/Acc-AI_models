@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "tensorflow_version": "2.21.0",
+  "keras_version": "3.13.2",
+  "model": "models/float/lenet_mnist_keras3_no_softmax.h5",
+  "model_sha256": "7d052aa27f18565af0a948e656cbd23eac842374ac73c0aaf18e98d5d913226c",
+  "probe": "data/prepared/keras3_conversion_probe.npz",
+  "probe_sha256": "fc708d3fab31a5263c04016255daa5684a59abc2173471ce947b4e0ad5aeb6e3",
+  "samples": 256,
+  "seed": 20260825,
+  "input_shape": [
+    null,
+    28,
+    28,
+    1
+  ],
+  "output_shape": [
+    null,
+    10
+  ],
+  "parameters": 44426,
+  "last_activation": "linear"
+}

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "command": [
+    "vai_c_tensorflow2",
+    "--model",
+    "/workspace/artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5",
+    "--arch",
+    "/workspace/config/arch_zcu104_vai3.5.json",
+    "--output_dir",
+    "/workspace/artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5",
+    "--net_name",
+    "resnet8_no_softmax"
+  ],
+  "returncode": 0,
+  "model": "artifacts/quantized/resnet8_cifar10_no_softmax_quantized.h5",
+  "model_sha256": "34ee6c9530aeb506300d481de966e858f632f397fd7178978f079d46b48ab91b",
+  "arch": "config/arch_zcu104_vai3.5.json",
+  "arch_sha256": "1f47e9d34febc6b5b12ebf0cc73431b5c6f2b281ee7052a7d715b684a39aa671",
+  "target": "DPUCZDX8G_ISA1_B4096",
+  "output_dir": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5",
+  "xmodels": [
+    {
+      "path": "artifacts/compiled/resnet8_no_softmax_zcu104_vai3_5/resnet8_no_softmax.xmodel",
+      "sha256": "bfacc85783958ff0d734e5c7e44f126a6fd4af9b6b1f20e4d9b2f7ae96fa7802",
+      "bytes": 249251
+    }
+  ],
+  "log": "logs/compiler/compile_resnet8_no_softmax.log",
+  "log_sha256": "b2120f19613ed7a24b2b3f46a1c8d3a5e8c26affc153f2a546b68079934f69d3"
+}

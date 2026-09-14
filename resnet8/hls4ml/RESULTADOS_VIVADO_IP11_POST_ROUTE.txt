@@ -1,0 +1,251 @@
+RESULTADOS VIVADO — RESNET8 IP 1.1 E BLOCK DESIGN COMPLETO
+=========================================================
+
+Data de geração dos relatórios: 02/09/2026
+Ferramenta: Vivado 2024.2 (Build 5239630)
+Projeto: /home/miguel/resnet8_vivado_ip11/resnet8_zcu104.xpr
+Top: system_wrapper
+Dispositivo: xczu7ev-ffvc1156-2-e (ZCU104)
+Estado do design: Routed / Fully Routed
+Clock da lógica programável: 100 MHz (período de 10 ns)
+
+IP ResNet8 confirmado no block design:
+  Instância: myproject_0
+  VLNV: xilinx.com:hls:resnet8_resource_fifo_opt:1.1
+
+
+1. UTILIZAÇÃO DE RECURSOS PÓS-ROUTE
+===================================
+
+Os valores do IP abaixo correspondem à instância myproject_0 dentro da mesma
+implementação pós-route. Essa é a comparação mais adequada com o sistema
+completo, pois ambos os valores incluem as otimizações feitas pelo Vivado no
+mesmo contexto de implementação.
+
++----------------+----------------------+----------------------+----------------------+
+| Recurso        | IP myproject_0       | Sistema completo     | Overhead do sistema  |
++----------------+----------------------+----------------------+----------------------+
+| CLB LUTs       | 162.352 (70,47%)     | 178.658 (77,54%)     | +16.306 (+10,04%)    |
+| Logic LUTs     | 151.986              | 166.007              | +14.021              |
+| LUTRAM         | 3.834                | 5.422                | +1.588               |
+| SRLs           | 6.532                | 7.229                | +697                 |
+| Registradores  | 179.101 (38,87%)     | 197.484 (42,86%)     | +18.383 (+10,26%)    |
+| BRAM tiles     | 74,5 (23,88%)        | 85,5 (27,40%)        | +11 (+14,77%)        |
+| URAM           | 11 (11,46%)          | 11 (11,46%)          | 0                    |
+| DSP48E2        | 1.174 (67,94%)       | 1.174 (67,94%)       | 0                    |
++----------------+----------------------+----------------------+----------------------+
+
+Capacidade total do dispositivo usada no cálculo dos percentuais:
+  CLB LUTs:      230.400
+  Registradores: 460.800
+  BRAM tiles:    312
+  URAM:          96
+  DSP48E2:       1.728
+
+Conclusão da comparação:
+  O block design, incluindo AXI DMA, SmartConnects, reset, clock e lógica de
+  integração, acrescentou 16.306 CLB LUTs, 18.383 registradores e 11 BRAM
+  tiles. Não houve acréscimo de DSP48E2 ou URAM: todos os 1.174 DSPs e as
+  11 URAMs do sistema pertencem ao acelerador ResNet8.
+
+
+2. UTILIZAÇÃO DOS PRINCIPAIS BLOCOS DO SISTEMA
+==============================================
+
+myproject_0 — ResNet8 hls4ml 1.1:
+  Total LUTs:  162.352
+  Logic LUTs:  151.986
+  LUTRAMs:     3.834
+  SRLs:        6.532
+  FFs:         179.101
+  RAMB36:      74
+  RAMB18:      1
+  BRAM tiles:  74,5
+  URAM:        11
+  DSP48E2:     1.174
+
+axi_dma_0:
+  Total LUTs: 9.624
+  Logic LUTs: 9.445
+  LUTRAMs:    54
+  SRLs:       125
+  FFs:        7.560
+  RAMB36:     10
+  RAMB18:     2
+  BRAM tiles: 11
+  URAM:       0
+  DSP48E2:    0
+
+axi_smc — SmartConnect de controle:
+  Total LUTs: 3.013
+  Logic LUTs: 2.472
+  LUTRAMs:    4
+  SRLs:       537
+  FFs:        3.065
+
+axi_smc_1 — SmartConnect de memória:
+  Total LUTs: 3.675
+  Logic LUTs: 2.111
+  LUTRAMs:    1.530
+  SRLs:       34
+  FFs:        7.725
+
+rst_ps8_0_100M:
+  Total LUTs: 16
+  Logic LUTs: 15
+  SRLs:       1
+  FFs:        33
+
+Accel_dma_wrapper_0:
+  A hierarquia não apresentou consumo próprio separado no relatório.
+
+zynq_ultra_ps_e_0:
+  O Processing System é um bloco dedicado do dispositivo e não apresentou
+  consumo de LUT, FF, BRAM, URAM ou DSP na lógica programável.
+
+Observação: totais hierárquicos de LUT podem não ser estritamente aditivos por
+causa de combinações e otimizações realizadas pelo Vivado entre hierarquias.
+
+
+3. COMPARAÇÃO COM A SÍNTESE OOC DO IP 1.1
+=========================================
+
+Síntese Out-of-Context anterior do IP isolado:
+  CLB LUTs:      165.564 (71,86%)
+  Registradores: 178.894 (38,82%)
+  BRAM tiles:    74,5 (23,88%)
+  URAM:          11 (11,46%)
+  DSP48E2:       1.174 (67,94%)
+
+IP integrado e otimizado dentro do block design pós-route:
+  CLB LUTs:      162.352 (70,47%)
+  Registradores: 179.101 (38,87%)
+  BRAM tiles:    74,5 (23,88%)
+  URAM:          11 (11,46%)
+  DSP48E2:       1.174 (67,94%)
+
+Diferença integrado versus OOC:
+  CLB LUTs:      -3.212
+  Registradores: +207
+  BRAM tiles:    0
+  URAM:          0
+  DSP48E2:       0
+
+Essa pequena diferença é esperada, pois a síntese OOC e a implementação global
+possuem contextos e otimizações diferentes. Para calcular o overhead do block
+design, devem ser usados os valores hierárquicos da mesma implementação
+pós-route, e não a subtração direta do relatório OOC.
+
+
+4. FECHAMENTO DE TIMING
+=======================
+
+Clock:                 clk_pl_0
+Frequência:            100,000 MHz
+Período:               10,000 ns
+WNS (setup):           +0,122 ns
+TNS (setup):            0,000 ns
+Endpoints com falha:    0
+WHS (hold):            +0,009 ns
+THS (hold):             0,000 ns
+Endpoints hold falhos:  0
+WPWS:                  +3,500 ns
+TPWS:                   0,000 ns
+
+Resultado informado pelo Vivado:
+  All user specified timing constraints are met.
+
+Conclusão:
+  A implementação fechou timing em 100 MHz, sem violações de setup ou hold.
+
+
+5. STATUS DE ROTEAMENTO
+=======================
+
+Redes lógicas totais:             1.490.484
+Redes que não necessitam route:   1.121.693
+Redes roteáveis:                    368.791
+Redes completamente roteadas:      368.791
+Redes com erros de roteamento:            0
+
+Conclusão:
+  O design foi completamente roteado e não possui erros de roteamento.
+
+
+6. DRC — DESIGN RULE CHECK
+==========================
+
+O relatório DRC encontrou 3.008 ocorrências, todas classificadas como Warning
+na tabela-resumo apresentada. Não foram indicados erros ou Critical Warnings.
+
+Resumo das advertências:
+  DPIP-2:     795 — recomendação de pipeline nas entradas dos DSPs
+  DPOP-3:   1.020 — recomendação de uso do registrador PREG dos DSPs
+  DPOP-4:   1.174 — recomendação de uso do registrador MREG dos DSPs
+  PDRC-132:     2 — advertência de emparelhamento de LUTs em slices
+  PDRC-140:     1 — advertência de emparelhamento de LUTs em slices
+  PDRC-144:     1 — advertência de emparelhamento de LUTs em slices
+  PDRC-146:     2 — advertência de emparelhamento de LUTs em slices
+  REQP-1934:    2 — advisory de colisão NO_CHANGE em RAMB18E2
+  REQP-1935:   10 — advisory de colisão NO_CHANGE em RAMB36E2
+  RTSTAT-10:    1 — redes sem cargas roteáveis
+
+As advertências de pipeline são recomendações de desempenho e potência. Elas
+não impediram o fechamento de timing nem o funcionamento validado na ZCU104.
+
+
+7. ARQUITETURA INTEGRADA
+========================
+
+CPU ARM / PYNQ
+       |
+       | controle AXI-Lite
+       v
+DDR <-> AXI DMA <-> Accel_dma_wrapper <-> ResNet8 hls4ml IP 1.1
+
+Blocos principais:
+  - zynq_ultra_ps_e_0
+  - rst_ps8_0_100M
+  - axi_smc
+  - axi_smc_1
+  - axi_dma_0
+  - Accel_dma_wrapper_0
+  - myproject_0 (xilinx.com:hls:resnet8_resource_fifo_opt:1.1)
+
+
+8. RELATÓRIOS-FONTE
+===================
+
+Os relatórios originais foram gerados inicialmente em:
+  /home/miguel/Desktop/reports/utilization_post_route.rpt
+  /home/miguel/Desktop/reports/timing_post_route.rpt
+  /home/miguel/Desktop/reports/route_status.rpt
+  /home/miguel/Desktop/reports/drc_post_route.rpt
+
+Comandos principais utilizados no Vivado Tcl Console:
+  open_project /home/miguel/resnet8_vivado_ip11/resnet8_zcu104.xpr
+  open_run impl_1
+  report_utilization -hierarchical -hierarchical_depth 6
+  report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose
+  report_route_status
+  report_drc
+
+
+9. RESULTADO FINAL RESUMIDO
+===========================
+
+Sistema completo pós-route na ZCU104:
+  CLB LUTs      = 178.658 = 77,54%
+  Registradores = 197.484 = 42,86%
+  BRAM tiles    = 85,5    = 27,40%
+  URAM          = 11      = 11,46%
+  DSP48E2       = 1.174   = 67,94%
+  WNS           = +0,122 ns
+  TNS           = 0,000 ns
+  WHS           = +0,009 ns
+  THS           = 0,000 ns
+  Route errors  = 0
+  Frequência    = 100 MHz
+
+O sistema completo coube no dispositivo, foi totalmente roteado e cumpriu
+todas as restrições temporais especificadas para 100 MHz.

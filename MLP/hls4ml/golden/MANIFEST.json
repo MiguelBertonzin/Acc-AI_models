@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "source": "RTL co-simulation transaction files",
+  "samples": 30,
+  "format": {
+    "precision": "ap_fixed<16,6>",
+    "fractional_bits": 10,
+    "quantization": "AP_TRN",
+    "overflow": "AP_WRAP",
+    "input_packing": "x0[15:0], x1[31:16], x2[47:32], x3[63:48]"
+  },
+  "validation": {
+    "correct": 29,
+    "accuracy": 0.9666666666666667,
+    "golden_class_agreement": 1.0
+  },
+  "source_sha256": {
+    "input_transactions": "53f482b5c5c7a0f7ef2e416592e3ac64d4bd7418592db91226a2f487b96e7cde",
+    "output_0_transactions": "cb00b170d03d44a4369523c42eba504910d4d982df62bed2afd0b3f4e4250a0a",
+    "output_1_transactions": "4405ee9d2c7a38b485b36695172b63aaafc72adc42278be80a6001b1535bc520",
+    "output_2_transactions": "09f02c28bea440cdf5a7e0fbcfe0c0d0395dfaa6cf6a5ca1f4c93e9213420e3a"
+  },
+  "files": [
+    {
+      "path": "iris_holdout_hls_apfixed16_6.npz",
+      "bytes": 3840,
+      "sha256": "b6464c106fc58f6d949c244da569501c9409dbf084438cb18cfac90a3dc75143"
+    },
+    {
+      "path": "iris_holdout_hls_apfixed16_6.csv",
+      "bytes": 1799,
+      "sha256": "98ebba3019384d056a7334c0219ba0476db30c0118a77b12d7cd01298154efa7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 814,
+      "sha256": "bf9cf27e344dab54d9e2713ae2fa5113405eeff47697d01cdaf9e7b1f6a34c4d"
+    }
+  ]
+}

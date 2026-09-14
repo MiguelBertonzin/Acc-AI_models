@@ -1,0 +1,27 @@
+{
+  "real_collection_date": "2026-08-28",
+  "platform": "AMD/Xilinx ZCU104",
+  "device": "XCZU7EV-FFVC1156-2-E",
+  "kernel": "6.6.10-xilinx-v2024.1-gfc1c20f0a1a9",
+  "python": "3.10.4",
+  "numpy": "1.21.5",
+  "pynq": "3.1.1",
+  "visible_arm_cpus": 4,
+  "bitstream": "resnet8_hls_ip11.bit",
+  "hwh": "resnet8_hls_ip11.hwh",
+  "dataset": "cifar10_test_uint8.npz",
+  "dataset_shape": [
+    10000,
+    32,
+    32,
+    3
+  ],
+  "precision": "ap_fixed<22,12,AP_RND_CONV,AP_SAT>",
+  "clock_mhz": 100.0,
+  "batch": 1,
+  "unique_images": 10000,
+  "cycles": 100,
+  "total_inferences": 1000000,
+  "warmup": 100,
+  "seed": 20260825
+}

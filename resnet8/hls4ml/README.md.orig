@@ -1,0 +1,88 @@
+# Fluxo hls4ml da ResNet8 para ZCU104
+
+Esta pasta concentra scripts, configurações, dados, builds, logs, relatórios e artefatos do fluxo hls4ml. O alvo reproduz o projeto anterior: ZCU104, Vitis/Vivado 2024.2, `io_stream`, estratégia `Resource`, convoluções `LineBuffer`, `ap_fixed<22,12,AP_RND_CONV,AP_SAT>`, clock de 10 ns e `ReuseFactor` máximo de 288.
+
+## Decisão principal
+
+Use `../resnet8_cifar10_keras3_no_softmax.h5` para gerar o acelerador. O modelo original permanece como referência e como teste de equivalência. A justificativa completa está em `docs/DECISAO_SOFTMAX.md`.
+
+O plano pedido replica o caso roteável do repositório anterior. Os valores solicitados 8/32/64/128 são ajustados pelo backend ao fator válido mais próximo (tipicamente 9/36/64/128); `conv2d_6` e `conv2d_7` permanecem em 288. O CSV gerado em cada build registra pedido, valor efetivo e fatores válidos.
+
+## Estrutura
+
+```text
+hls4ml/
+├── configs/       parâmetros do dispositivo e plano de reuse
+├── data/          CIFAR-10 preparado para validação/testbench
+├── docs/          decisões técnicas e procedimento FIFO
+├── environment/   dependências e criação do ambiente Python
+├── models/        inventário e checksums dos modelos-fonte
+├── scripts/       auditoria, conversão, síntese e otimização
+├── builds/        projetos gerados pelo hls4ml/Vitis
+├── logs/          logs capturados pelo usuário
+├── reports/       auditorias e resumos consolidados
+└── artifacts/ip/  IPs exportados que forem promovidos
+```
+
+## Ambiente detectado
+
+```text
+Python       3.12.7
+TensorFlow   2.21.0
+Keras        3.13.2
+hls4ml       1.3.0
+NumPy        1.26.4
+Vitis HLS    2024.2 (/opt/Xilinx/Vitis_HLS/2024.2/bin/vitis_hls)
+Vivado       2024.2 (/opt/Xilinx/Vivado/2024.2/bin/vivado)
+Part         xczu7ev-ffvc1156-2-e
+Clock        10.0 ns (100 MHz)
+```
+
+Para criar um ambiente isolado do zero:
+
+```bash
+bash environment/create_venv.sh
+source .venv/bin/activate
+```
+
+## Ordem de execução
+
+Todos os comandos partem desta pasta:
+
+```bash
+cd hls4ml
+
+# 0. Ferramentas, versões e modelos
+python scripts/00_check_environment.py
+python scripts/01_inspect_models.py
+
+# 1. Dados de validação
+python scripts/02_prepare_cifar10.py
+
+# 2. Geração e validação C++ rápida, sem HLS synthesis
+python scripts/03_build_baseline.py --validate-samples 100
+
+# 3. C synthesis do baseline
+python scripts/03_build_baseline.py --out builds/baseline_synth --synth --validate-samples 100
+
+# 4. Profiling RTL e reescrita das profundidades FIFO
+python scripts/04_optimize_fifo.py --tb-samples 2
+
+# 5. Opcional: além do FIFO flow, exportar IP e Vivado synthesis
+python scripts/04_optimize_fifo.py --out builds/fifo_opt_vsynth --tb-samples 2 --vsynth
+```
+
+Os scripts resolvem caminhos a partir desta pasta, portanto também funcionam se chamados de outro diretório. Um diretório de build existente nunca é apagado silenciosamente; use outro `--out` ou passe `--force` conscientemente.
+
+## Critérios antes de avançar ao Vivado
+
+- concordância top-1 Keras/hls4ml medida e documentada;
+- reuse efetivo de todas as camadas `<= 288`;
+- C synthesis concluída sem deadlock;
+- `fifo_depths.json` sem canal no limite de profiling;
+- C synthesis final feita depois da reescrita dos FIFOs;
+- relatórios de LUT, FF, DSP, BRAM, URAM, latência e II preservados no build;
+- somente depois disso, exportar/promover o IP para `artifacts/ip/`.
+
+O empacotamento especial usado no repositório anterior (sobrepor `syn/verilog` no IP exportado para eliminar RTL stale com FIFOs `d4096`) não deve ser aplicado automaticamente. Primeiro verifique se o hls4ml 1.3.0/Vitis 2024.2 ainda apresenta o problema; o script FIFO grava uma auditoria das instâncias `d4096` para essa decisão.
+

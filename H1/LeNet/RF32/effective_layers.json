@@ -1,0 +1,80 @@
+[
+  {
+    "name": "input_layer",
+    "class": "VitisInput",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "conv1",
+    "class": "VitisConv2D",
+    "reuse_factor": 25,
+    "strategy": "resource"
+  },
+  {
+    "name": "conv1_relu",
+    "class": "VitisActivation",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "pool1",
+    "class": "VitisPooling2D",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "conv2",
+    "class": "VitisConv2D",
+    "reuse_factor": 30,
+    "strategy": "resource"
+  },
+  {
+    "name": "conv2_relu",
+    "class": "VitisActivation",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "pool2",
+    "class": "VitisPooling2D",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "flatten",
+    "class": "VitisReshape",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "dense1",
+    "class": "VitisDense",
+    "reuse_factor": 32,
+    "strategy": "resource"
+  },
+  {
+    "name": "dense1_relu",
+    "class": "VitisActivation",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "dense2",
+    "class": "VitisDense",
+    "reuse_factor": 30,
+    "strategy": "resource"
+  },
+  {
+    "name": "dense2_relu",
+    "class": "VitisActivation",
+    "reuse_factor": 32,
+    "strategy": null
+  },
+  {
+    "name": "output",
+    "class": "VitisDense",
+    "reuse_factor": 28,
+    "strategy": "resource"
+  }
+]
