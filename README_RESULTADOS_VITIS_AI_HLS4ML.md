@@ -106,14 +106,20 @@ Fontes: `LeNet/hls4ml/README_FINAL_LENET_ZCU104_HLS4ML_COLETA_COMPLETA.md` e `Le
 
 A quantização PTQ INT8 reduziu a acurácia de 74,90% para 73,96%. A DPU reproduziu exatamente a referência quantizada nas 10.000 imagens, sem divergências.
 
-| Cenário | Configuração | Latência média | Vazão | Potência ativa | Energia dinâmica |
-| --- | --- | ---: | ---: | ---: | ---: |
-| Inferência | 1 thread, 10.000 imagens | 0,2526 ms | 3.092,50 img/s | 15,2359 W | 0,2415 mJ/img |
-| Inferência | 3 threads, 10.000 imagens | 0,3406 ms | 6.707,23 img/s | 16,2043 W | 0,2559 mJ/img |
-| Ponta a ponta | 1 thread, 10.000 imagens | 0,6816 ms | 1.444,74 img/s | 14,9590 W | 0,3315 mJ/img |
-| Ponta a ponta | 3 threads, 10.000 imagens | 1,4291 ms | 2.081,76 img/s | 15,2784 W | 0,3902 mJ/img |
-| Saturado | 1 thread | 0,2467 ms | 3.991,11 img/s | 15,3896 W | 0,2287 mJ/img |
-| Saturado | 4 threads | 0,3071 ms | 12.814,81 img/s | 17,2803 W | 0,2232 mJ/img |
+| Cenário | T | Latência média (ms) | Vazão (img/s) | Potência ativa (W) | Potência dinâmica (W) | Energia total (mJ/img) | Energia dinâmica (mJ/img) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Inferência | 1 | 0,2526 | 3.092,50 | 15,2359 | 0,7571 | 4,8611 | 0,2415 |
+| Inferência | 2 | 0,2643 | 5.889,36 | 15,9118 | 1,4329 | 2,7064 | 0,2437 |
+| Inferência | 3 | 0,3406 | 6.707,23 | 16,2043 | 1,7254 | 2,4040 | 0,2559 |
+| Inferência | 4 | 0,5197 | 6.545,64 | 16,1586 | 1,6797 | 2,4610 | 0,2558 |
+| Ponta a ponta | 1 | 0,6816 | 1.444,74 | 14,9590 | 0,4802 | 10,3270 | 0,3315 |
+| Ponta a ponta | 2 | 0,9549 | 2.070,73 | 15,2439 | 0,7651 | 7,3667 | 0,3697 |
+| Ponta a ponta | 3 | 1,4291 | 2.081,76 | 15,2784 | 0,7995 | 7,4558 | 0,3902 |
+| Ponta a ponta | 4 | 1,9235 | 2.054,89 | 15,3047 | 0,8258 | 7,5154 | 0,4055 |
+| Saturado | 1 | 0,2467 | 3.991,11 | 15,3896 | 0,9107 | 3,8650 | 0,2287 |
+| Saturado | 2 | 0,2615 | 7.517,01 | 16,1958 | 1,7169 | 2,1644 | 0,2295 |
+| Saturado | 3 | 0,2738 | 10.725,94 | 16,9033 | 2,4244 | 1,5811 | 0,2268 |
+| Saturado | 4 | 0,3071 | 12.814,81 | 17,2803 | 2,8014 | 1,3767 | 0,2232 |
 
 O XModel possui 249.251 bytes e foi compilado para dois núcleos DPU a 300 MHz. A coleta completa está preservada em `resnet8/Vitis AI/resnet8_final_v1_RESULTS_2026-09-01.tar.gz`; os relatórios de conversão, quantização e compilação permanecem em `resnet8/Vitis AI/reports/`.
 
