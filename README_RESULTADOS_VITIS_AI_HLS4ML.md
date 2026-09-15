@@ -48,6 +48,8 @@ Foi empregada precisão `ap_fixed<16,6>`, estratégia `Latency`, `ReuseFactor=1`
 | Ponta a ponta | 0,2247 | 0,2454 | 4.558,03 | 10,1530 | 0,2017 | 2,2463 | 0,0446 |
 | Saturado | 0,0542 | 0,0545 | 17.507,64 | 10,1327 | 0,1784 | 0,5526 | 0,0097 |
 
+Na MLP, `inference-only` considera a entrada já normalizada e mede escrita via AXI4-Lite, execução, polling, leitura, conversão e `argmax`. O E2E começa nas features float já normalizadas e acrescenta quantização `ap_fixed<16,6>` e empacotamento; portanto, não inclui o `StandardScaler`. O saturado reutiliza uma entrada já carregada e mede a capacidade máxima serial do caminho acelerado. A vazão corresponde ao número de inferências dividido pelo tempo total da campanha, e a energia é calculada pela potência medida dividida pela vazão da mesma janela.
+
 | Item de implementação | Resultado |
 | --- | ---: |
 | Acurácia HLS/FPGA | 96,67% |
@@ -89,6 +91,8 @@ A implementação utiliza `ap_fixed<22,12>`, E/S em fluxo e frequência de 100 M
 | Inferência batch 1 efetiva | 0,9963 | 1.007,38 | 10,5653 | 0,2132 | 10,4570 | 0,2110 |
 | Ponta a ponta | 1,2782 | 780,39 | 10,5583 | 0,2067 | 13,3998 | 0,2623 |
 | Saturado serial | 0,3608 | 2.774,61 | 10,6072 | 0,2515 | 3,7917 | 0,0899 |
+
+Na LeNet, `inference-only` utiliza imagens previamente normalizadas e quantizadas, mas inclui a troca da imagem, cópia para o `PynqBuffer`, `flush`, DMA, `invalidate`, decode e `argmax`. O E2E começa na imagem MNIST `uint8` em RAM e inclui conversão para float, divisão por 255, quantização Q22.12 e todo o caminho de inferência. O saturado mantém uma entrada fixa no buffer e repete somente as transferências e esperas do DMA. A vazão é medida sobre janelas completas, e a energia usa a potência dividida pela vazão observada na mesma janela.
 
 | Recurso do sistema completo | Utilização |
 | --- | ---: |
@@ -132,6 +136,8 @@ A implementação dedicada utiliza `ap_fixed<22,12>`, frequência de 100 MHz e s
 | Inferência | 0,8493 | 0,8621 | 899,21 | 12,2283 | 1,6189 | 13,4994 | 1,7871 |
 | Ponta a ponta | 1,5977 | 1,6155 | 620,70 | 11,8088 | 1,1818 | 19,0992 | 1,9114 |
 | Saturado | 0,8326 | 0,8452 | 1.200,94 | 12,6580 | 2,0410 | 10,7266 | 1,7295 |
+
+Na ResNet8, `inference-only` recebe a imagem já quantizada e empacotada; sua vazão inclui cópia para o buffer, DMA, decode e `argmax`. O E2E começa na imagem CIFAR-10 `uint8` em RAM e inclui normalização, quantização Q22.12, empacotamento, DMA, decode e `argmax`. O saturado reutiliza uma entrada já carregada e remove preparação e pós-processamento para medir o teto serial do caminho acelerado. Potência dinâmica é a potência ativa menos a ociosa, e a energia por imagem é obtida dividindo a potência pela vazão da mesma janela.
 
 | Recurso do sistema completo | Utilização |
 | --- | ---: |
