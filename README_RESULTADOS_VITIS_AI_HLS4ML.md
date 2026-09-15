@@ -11,7 +11,7 @@ As métricas devem ser interpretadas conforme a fronteira de cada ensaio. `Infer
 | MLP | Vitis AI | 96,67% | 0,1767 ms, T1 | 4.894,83 inf/s, T2 | 10.470,98 inf/s, T3 |
 | MLP | hls4ml | 96,67% | 0,0525 ms | 7.251,48 inf/s | 17.507,64 inf/s |
 | LeNet | Vitis AI | 98,95% | 0,2256 ms, T1 | 5.291,79 inf/s, T2 | 9.292,01 inf/s, T3 |
-| LeNet | hls4ml | 98,99% | 0,3700 ms | 2.791,62 inf/s | 2.784,80 inf/s |
+| LeNet | hls4ml | 98,99% | 0,9963 ms | 1.007,38 inf/s | 2.774,61 inf/s |
 | ResNet8 | Vitis AI | 73,96% | 0,2526 ms, T1 | 6.707,23 inf/s, T3 | 12.814,81 inf/s, T4 |
 | ResNet8 | hls4ml | 74,92% | 0,8493 ms | 899,21 inf/s | 1.200,94 inf/s |
 
@@ -86,9 +86,9 @@ A implementação utiliza `ap_fixed<22,12>`, E/S em fluxo e frequência de 100 M
 
 | Cenário | Latência média (ms) | Vazão (inf/s) | Potência ativa (W) | Potência dinâmica (W) | Energia total (mJ/inf) | Energia dinâmica (mJ/inf) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| DMA + FPGA | 0,3700 | 2.791,62 | 10,6032 | 0,2770 | 3,8062 | 0,0995 |
-| Ponta a ponta | 1,0970 | 907,15 | 10,5442 | 0,2369 | 11,5453 | 0,2594 |
-| Saturado serial | — | 2.784,80 | 10,6009 | 0,2867 | 3,8068 | aproximadamente 0,1030 |
+| Inferência batch 1 efetiva | 0,9963 | 1.007,38 | 10,5653 | 0,2132 | 10,4570 | 0,2110 |
+| Ponta a ponta | 1,2782 | 780,39 | 10,5583 | 0,2067 | 13,3998 | 0,2623 |
+| Saturado serial | 0,3608 | 2.774,61 | 10,6072 | 0,2515 | 3,7917 | 0,0899 |
 
 | Recurso do sistema completo | Utilização |
 | --- | ---: |
